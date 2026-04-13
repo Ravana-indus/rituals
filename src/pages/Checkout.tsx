@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { useCart } from '../context/CartContext';
@@ -22,6 +22,7 @@ export default function Checkout() {
   const [promoSuccess, setPromoSuccess] = useState(false);
   const [deliveryMethod, setDeliveryMethod] = useState('standard');
   const [placingOrder, setPlacingOrder] = useState(false);
+  const [payHereParams, setPayHereParams] = useState<any>(null);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -32,6 +33,7 @@ export default function Checkout() {
     phone: '',
   });
   const [payHereError, setPayHereError] = useState('');
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -56,118 +58,107 @@ export default function Checkout() {
     if (!canProceed()) return;
     setPlacingOrder(true);
     setPayHereError('');
+    setPayHereParams(null);
+    
     try {
+      console.log('Starting order placement...');
       const shippingCents = deliveryMethod === 'express' ? 75000 : 45000;
       const discountCents = promoApplied ? Math.round(subtotal * 0.1) : 0;
       const totalCents = subtotal + shippingCents - discountCents;
       const totalAmount = (totalCents / 100).toFixed(2);
 
-      if (user) {
-        const shippingAddress = await api.addresses.create({
-          user_id: user.id,
-          recipient_name: `${formData.firstName} ${formData.lastName}`,
-          address_line_1: formData.address,
-          address_line_2: null,
-          city: formData.city,
-          district: '',
-          postal_code: formData.postalCode ?? null,
-          country: 'Sri Lanka',
-          phone: formData.phone ?? null,
-          is_default: false,
-          address_type: null,
-          label: null,
-        });
-
-        const { data: cartData } = await supabase
-          .from('carts')
-          .select('id')
-          .eq('user_id', user.id)
-          .eq('status', 'active')
-          .single();
-
-        const order = await api.cart.convertToOrder(cartData?.id ?? '', {
-          user_id: user.id,
-          email: user.email ?? '',
-          subtotal_cents: subtotal,
-          shipping_address_id: shippingAddress.id,
-          billing_address_id: shippingAddress.id,
-          shipping_cents: shippingCents,
-          discount_cents: discountCents,
-          total_cents: totalCents,
-          payment_method: 'payhere',
-          payment_status: 'pending',
-          status: 'pending',
-        });
-
-        const { data: payHereParams, error: initError } = await supabase.functions.invoke('payhere-initiate', {
-          body: {
-            order_id: order.id,
-            amount: totalAmount,
-            currency: 'LKR',
-            items_description: `${items.length} item(s) - The Heritage Curator`,
-            customer_first_name: formData.firstName,
-            customer_last_name: formData.lastName,
-            customer_email: user.email,
-            customer_phone: `94${formData.phone.replace(/\s/g, '')}`,
-            customer_address: formData.address,
-            customer_city: formData.city,
-            customer_country: 'Sri Lanka',
-          },
-        });
-
-        if (initError || !payHereParams?.signature) {
-          throw new Error(initError?.message || 'Failed to initiate payment');
-        }
-
-        const payhereForm = {
-          sandbox: true,
-          merchant_id: payHereParams.merchant_id,
-          return_url: `${window.location.origin}/order-confirmed?order_id=${order.id}`,
-          cancel_url: `${window.location.origin}/checkout`,
-          notify_url: payHereParams.notify_url,
-          order_id: payHereParams.order_id,
-          items_description: payHereParams.items_description,
-          payment: {
-            amount: payHereParams.amount,
-            currency: payHereParams.currency,
-          },
-          customer: {
-            first_name: payHereParams.customer_first_name,
-            last_name: payHereParams.customer_last_name,
-            email: payHereParams.customer_email,
-            phone: payHereParams.customer_phone,
-            address: payHereParams.customer_address,
-            city: payHereParams.customer_city,
-            country: payHereParams.customer_country,
-          },
-          signature: payHereParams.signature,
-        };
-
-        if (typeof window !== 'undefined' && (window as any).payhere) {
-          (window as any).payhere.startPayment(payhereForm);
-        } else {
-          throw new Error('PayHere SDK not loaded');
-        }
-
-        (window as any).payhere.onCompleted = async (orderId: string) => {
-          await clearCart();
-          navigate(`/order-confirmed?order_id=${orderId}`);
-        };
-
-        (window as any).payhere.onDismissed = () => {
-          setPayHereError('Payment was cancelled. Your order is saved and pending payment.');
-        };
-
-        (window as any).payhere.onError = (err: any) => {
-          setPayHereError(`Payment failed: ${err}`);
-        };
-
-        return;
+      if (!user) {
+        throw new Error('Please log in to place an order');
       }
-    } catch (err) {
+
+      if (items.length === 0) {
+        throw new Error('Your cart is empty');
+      }
+
+      console.log('Creating shipping address...');
+      const shippingAddress = await api.addresses.create({
+        user_id: user.id,
+        recipient_name: `${formData.firstName} ${formData.lastName}`,
+        address_line_1: formData.address,
+        address_line_2: null,
+        city: formData.city,
+        district: '',
+        postal_code: formData.postalCode ?? null,
+        country: 'Sri Lanka',
+        phone: formData.phone ?? null,
+        is_default: false,
+        address_type: null,
+        label: null,
+      });
+      console.log('Shipping address created:', shippingAddress.id);
+
+      const { data: cartData } = await supabase
+        .from('carts')
+        .select('id')
+        .eq('user_id', user.id)
+        .eq('status', 'active')
+        .single();
+      console.log('Cart data:', cartData);
+
+      console.log('Creating order...');
+      const order = await api.cart.convertToOrder(cartData?.id ?? '', {
+        user_id: user.id,
+        email: user.email ?? '',
+        subtotal_cents: subtotal,
+        shipping_address_id: shippingAddress.id,
+        billing_address_id: shippingAddress.id,
+        shipping_cents: shippingCents,
+        discount_cents: discountCents,
+        total_cents: totalCents,
+        payment_method: 'payhere',
+        payment_status: 'pending',
+        status: 'pending',
+      });
+      console.log('Order created:', order.id);
+
+      // Prepare PayHere params for form submission
+      const phoneFormatted = `94${formData.phone.replace(/\s/g, '').replace(/^0/, '')}`;
+      
+      console.log('Preparing PayHere params...');
+      const params = {
+        merchant_id: '1224574',
+        return_url: `${window.location.origin}/order-confirmed?order_id=${order.id}`,
+        cancel_url: `${window.location.origin}/checkout`,
+        notify_url: `https://xbnsztyfyrhrdqhbboip.supabase.co/functions/v1/payhere-webhook`,
+        order_id: order.id,
+        items: `${items.length} item(s) - The Heritage Curator`,
+        currency: 'LKR',
+        amount: totalAmount,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: user.email,
+        phone: phoneFormatted,
+        address: formData.address,
+        city: formData.city,
+        country: 'Sri Lanka',
+      };
+      
+      console.log('PayHere params prepared:', params);
+      setPayHereParams(params);
+      
+      // Store order ID for return
+      localStorage.setItem('pending_order_id', order.id);
+      
+      // Submit form after a brief delay to allow React to render
+      setTimeout(() => {
+        if (formRef.current) {
+          console.log('Submitting PayHere form...');
+          formRef.current.submit();
+        } else {
+          console.error('Form ref not available');
+          setPayHereError('Failed to initiate payment. Please try again.');
+          setPlacingOrder(false);
+        }
+      }, 100);
+      
+    } catch (err: any) {
       console.error('Order placement failed:', err);
-      setPayHereError('Failed to place order. Please try again.');
-    } finally {
+      setPayHereError(err?.message || 'Failed to place order. Please try again.');
       setPlacingOrder(false);
     }
   };
@@ -384,14 +375,14 @@ export default function Checkout() {
               ) : (
                 <button
                   onClick={handlePlaceOrder}
-                  disabled={!canProceed()}
+                  disabled={!canProceed() || placingOrder}
                   className={`px-12 py-4 rounded-md font-bold tracking-wide transition-all text-center ${
-                    canProceed()
+                    canProceed() && !placingOrder
                       ? 'bg-secondary text-on-secondary hover:opacity-90 shadow-lg shadow-secondary/10'
                       : 'bg-outline-variant/30 text-on-surface-variant cursor-not-allowed'
                   }`}
                 >
-                  Place Order
+                  {placingOrder ? 'Processing...' : 'Place Order'}
                 </button>
               )}
             </div>
@@ -493,6 +484,32 @@ export default function Checkout() {
           </aside>
         </div>
       </main>
+
+      {/* Hidden PayHere Form */}
+      {payHereParams && (
+        <form
+          ref={formRef}
+          action="https://sandbox.payhere.lk/pay/checkout"
+          method="POST"
+          style={{ display: 'none' }}
+        >
+          <input type="hidden" name="merchant_id" value={payHereParams.merchant_id} />
+          <input type="hidden" name="return_url" value={payHereParams.return_url} />
+          <input type="hidden" name="cancel_url" value={payHereParams.cancel_url} />
+          <input type="hidden" name="notify_url" value={payHereParams.notify_url} />
+          <input type="hidden" name="order_id" value={payHereParams.order_id} />
+          <input type="hidden" name="items" value={payHereParams.items} />
+          <input type="hidden" name="currency" value={payHereParams.currency} />
+          <input type="hidden" name="amount" value={payHereParams.amount} />
+          <input type="hidden" name="first_name" value={payHereParams.first_name} />
+          <input type="hidden" name="last_name" value={payHereParams.last_name} />
+          <input type="hidden" name="email" value={payHereParams.email} />
+          <input type="hidden" name="phone" value={payHereParams.phone} />
+          <input type="hidden" name="address" value={payHereParams.address} />
+          <input type="hidden" name="city" value={payHereParams.city} />
+          <input type="hidden" name="country" value={payHereParams.country} />
+        </form>
+      )}
 
       <footer className="bg-surface-container border-t border-outline-variant/15 py-12 px-8 mt-auto">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
