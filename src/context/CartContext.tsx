@@ -31,15 +31,22 @@ interface CartContextType {
 }
 
 const CART_STORAGE_KEY = 'heritage_cart_items';
+const CART_VERSION_KEY = 'heritage_cart_version';
+const CURRENT_VERSION = '2';
 
 const CartContext = createContext<CartContextType | null>(null);
+
+// Helper to create unique key for item
+function getItemKey(productId: string, variantId?: string): string {
+  return variantId ? `${productId}:${variantId}` : productId;
+}
 
 // Helper to merge items by productId (sum quantities)
 function mergeItemsByProductId(items: CartItemUI[]): CartItemUI[] {
   const merged = new Map<string, CartItemUI>();
   
   for (const item of items) {
-    const key = item.productId + (item.variantId || '');
+    const key = getItemKey(item.productId, item.variantId);
     const existing = merged.get(key);
     
     if (existing) {
@@ -57,45 +64,73 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItemUI[]>([]);
   const [cart, setCart] = useState<Cart | null>(null);
   const [syncing, setSyncing] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const isLoadedRef = useRef(false);
+  const isSavingRef = useRef(false);
 
-  // Load cart on mount
+  // Load cart on mount - only runs once
   useEffect(() => {
-    if (isInitialized) return;
+    if (isLoadedRef.current) return;
+    isLoadedRef.current = true;
+    
+    // Check if we need to reset (version mismatch = schema change)
+    const storedVersion = localStorage.getItem(CART_VERSION_KEY);
+    if (storedVersion !== CURRENT_VERSION) {
+      console.log('Cart version mismatch, clearing localStorage');
+      localStorage.removeItem(CART_STORAGE_KEY);
+      localStorage.setItem(CART_VERSION_KEY, CURRENT_VERSION);
+      setItems([]);
+      return;
+    }
     
     const stored = localStorage.getItem(CART_STORAGE_KEY);
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed)) {
-          // Merge any duplicates from localStorage
+          // Always merge to be safe
           const merged = mergeItemsByProductId(parsed);
           setItems(merged);
-          if (merged.length !== parsed.length) {
-            localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(merged));
-          }
-          console.log('Loaded cart from localStorage:', merged.length, 'items');
+          console.log('Cart loaded:', merged.length, 'items, total qty:', merged.reduce((s, i) => s + i.quantity, 0));
         }
       } catch (e) {
-        console.error('Failed to parse cart from localStorage:', e);
+        console.error('Failed to parse cart:', e);
+        localStorage.removeItem(CART_STORAGE_KEY);
       }
     }
-    setIsInitialized(true);
-  }, [isInitialized]);
+  }, []);
 
-  // Save cart to localStorage whenever items change (only after init)
+  // Save cart to localStorage whenever items change
   useEffect(() => {
-    if (isInitialized) {
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    if (!isLoadedRef.current || isSavingRef.current) return;
+    
+    // Always dedupe before saving
+    const deduped = mergeItemsByProductId(items);
+    
+    // Only save if different from current
+    const currentStored = localStorage.getItem(CART_STORAGE_KEY);
+    const newStored = JSON.stringify(deduped);
+    
+    if (currentStored !== newStored) {
+      isSavingRef.current = true;
+      localStorage.setItem(CART_STORAGE_KEY, newStored);
+      localStorage.setItem(CART_VERSION_KEY, CURRENT_VERSION);
+      
+      // If we deduped, update state too
+      if (deduped.length !== items.length) {
+        console.log('Deduped items before save:', items.length, '->', deduped.length);
+        setItems(deduped);
+      }
+      
+      setTimeout(() => { isSavingRef.current = false; }, 0);
     }
-  }, [items, isInitialized]);
+  }, [items]);
 
   // Sync with database when user logs in
   useEffect(() => {
-    if (isInitialized && !authLoading && user) {
+    if (isLoadedRef.current && !authLoading && user) {
       syncCartWithDatabase();
     }
-  }, [user, authLoading, isInitialized]);
+  }, [user, authLoading]);
 
   async function syncCartWithDatabase() {
     if (!user) return;
@@ -127,7 +162,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       
       setCart(userCart);
       
-      // Get local items before clearing
+      // Get local items
       const localItems = items;
       
       // Load items from database
@@ -137,7 +172,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         .eq('cart_id', userCart.id);
 
       // Convert DB items to UI format
-      const dbItems: CartItemUI[] = (dbCartItems || []).map(ci => {
+      let dbItems: CartItemUI[] = (dbCartItems || []).map(ci => {
         const product = (ci.product as Product);
         const images = ((ci.product as any)?.images as ProductImage[]) ?? [];
         return {
@@ -208,13 +243,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         }
       }
 
-      // Merge any duplicates and set final items
+      // Final dedupe and set
       const mergedItems = mergeItemsByProductId(dbItems);
       setItems(mergedItems);
       
       // Clear localStorage after successful sync
       localStorage.removeItem(CART_STORAGE_KEY);
-      console.log('Cart synced. Final items:', mergedItems.length);
+      console.log('Cart synced. Final items:', mergedItems.length, 'total qty:', mergedItems.reduce((s, i) => s + i.quantity, 0));
       
     } catch (e) { 
       console.error('Cart sync error:', e); 
@@ -229,20 +264,21 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const productId = item.productId || item.id!;
 
     setItems(prev => {
-      const existing = prev.find(i => i.productId === productId && i.variantId === item.variantId);
-      let newItems;
+      const key = getItemKey(productId, item.variantId);
+      const existingIndex = prev.findIndex(i => getItemKey(i.productId, i.variantId) === key);
       
-      if (existing) {
+      if (existingIndex >= 0) {
         // Update quantity of existing item
-        newItems = prev.map(i => 
-          i.productId === productId && i.variantId === item.variantId 
-            ? { ...i, quantity: i.quantity + item.quantity } 
-            : i
-        );
+        const newItems = [...prev];
+        newItems[existingIndex] = {
+          ...newItems[existingIndex],
+          quantity: newItems[existingIndex].quantity + item.quantity
+        };
+        return newItems;
       } else {
         // Add new item
-        newItems = [...prev, {
-          id: item.id || crypto.randomUUID(),
+        return [...prev, {
+          id: crypto.randomUUID(),
           productId,
           variantId: item.variantId,
           brand: item.brand,
@@ -256,8 +292,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           badge: item.badge,
         }];
       }
-      
-      return newItems;
     });
 
     // Sync to database if logged in
@@ -293,8 +327,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [user, cart]);
 
-  const removeItem = useCallback(async (productId: string) => {
-    setItems(prev => prev.filter(i => i.productId !== productId));
+  const removeItem = useCallback(async (productId: string, variantId?: string) => {
+    setItems(prev => prev.filter(i => 
+      !(i.productId === productId && i.variantId === variantId)
+    ));
 
     if (user && cart) {
       try {
@@ -302,19 +338,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           .from('cart_items')
           .delete()
           .eq('cart_id', cart.id)
-          .eq('product_id', productId);
+          .eq('product_id', productId)
+          .eq('variant_id', variantId || null);
       } catch (e) {
         console.error('Remove from cart DB error:', e);
       }
     }
   }, [user, cart]);
 
-  const updateQuantity = useCallback(async (productId: string, qty: number) => {
+  const updateQuantity = useCallback(async (productId: string, qty: number, variantId?: string) => {
     setItems(prev => {
       if (qty <= 0) {
-        return prev.filter(i => i.productId !== productId);
+        return prev.filter(i => !(i.productId === productId && i.variantId === variantId));
       }
-      return prev.map(i => i.productId === productId ? { ...i, quantity: qty } : i);
+      return prev.map(i => 
+        (i.productId === productId && i.variantId === variantId) 
+          ? { ...i, quantity: qty } 
+          : i
+      );
     });
 
     if (user && cart) {
@@ -324,13 +365,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             .from('cart_items')
             .delete()
             .eq('cart_id', cart.id)
-            .eq('product_id', productId);
+            .eq('product_id', productId)
+            .eq('variant_id', variantId || null);
         } else {
-          await supabase
+          // Find the item first to get its ID
+          const { data: item } = await supabase
             .from('cart_items')
-            .update({ quantity: qty })
+            .select('id')
             .eq('cart_id', cart.id)
-            .eq('product_id', productId);
+            .eq('product_id', productId)
+            .eq('variant_id', variantId || null)
+            .single();
+            
+          if (item) {
+            await supabase
+              .from('cart_items')
+              .update({ quantity: qty })
+              .eq('id', item.id);
+          }
         }
       } catch (e) {
         console.error('Update quantity DB error:', e);
@@ -351,11 +403,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [user, cart]);
 
-  const itemCount = items.reduce((sum, i) => sum + i.quantity, 0);
-  const subtotal = items.reduce((sum, i) => sum + i.priceValue * i.quantity, 0);
+  // Recalculate totals from deduped items
+  const dedupedItems = mergeItemsByProductId(items);
+  const itemCount = dedupedItems.reduce((sum, i) => sum + i.quantity, 0);
+  const subtotal = dedupedItems.reduce((sum, i) => sum + i.priceValue * i.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ items, addItem, removeItem, updateQuantity, clearCart, itemCount, subtotal, syncing }}>
+    <CartContext.Provider value={{ 
+      items: dedupedItems, // Always return deduped items
+      addItem, 
+      removeItem: (productId: string) => removeItem(productId, undefined), 
+      updateQuantity: (productId: string, qty: number) => updateQuantity(productId, qty, undefined), 
+      clearCart, 
+      itemCount, 
+      subtotal, 
+      syncing 
+    }}>
       {children}
     </CartContext.Provider>
   );
