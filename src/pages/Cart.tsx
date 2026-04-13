@@ -94,7 +94,7 @@ export default function Cart() {
             ) : (
               <div className="space-y-6">
                 {items.map((item) => (
-                  <div key={item.id} className="flex gap-4 p-4 bg-surface-container dark:bg-[#1e1e1a] rounded-xl border border-outline-variant/10">
+                  <div key={item.productId} className="flex gap-4 p-4 bg-surface-container dark:bg-[#1e1e1a] rounded-xl border border-outline-variant/10">
                     <div className="w-24 h-28 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0">
                       <img src={item.imgSrc} alt={item.title} className="w-full h-full object-cover" />
                     </div>
@@ -115,7 +115,7 @@ export default function Cart() {
                               <span className="text-xs text-on-surface-variant">{item.size}</span>
                             </div>
                           </div>
-                          <button onClick={() => removeItem(item.id)} className="text-on-surface-variant hover:text-error transition-colors p-1">
+                          <button onClick={() => removeItem(item.productId)} className="text-on-surface-variant hover:text-error transition-colors p-1">
                             <Icon name="delete" className="text-lg" />
                           </button>
                         </div>
@@ -123,14 +123,14 @@ export default function Cart() {
                       <div className="flex items-end justify-between">
                         <div className="flex items-center gap-3">
                           <button
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            onClick={() => updateQuantity(item.productId, item.quantity - 1)}
                             className="w-8 h-8 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
                           >
                             <Icon name="remove" className="text-sm" />
                           </button>
                           <span className="font-bold text-lg w-8 text-center">{item.quantity}</span>
                           <button
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            onClick={() => updateQuantity(item.productId, item.quantity + 1)}
                             className="w-8 h-8 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
                           >
                             <Icon name="add" className="text-sm" />
