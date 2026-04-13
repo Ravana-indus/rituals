@@ -73,18 +73,18 @@ export default function Checkout() {
       items.forEach((item, i) => {
         console.log(`Item ${i + 1}: ${item.title}, qty=${item.quantity}, priceValue=${item.priceValue}, lineTotal=${item.priceValue * item.quantity}`);
       });
-      console.log('Subtotal (cents):', subtotal);
-      console.log('Subtotal (LKR):', (subtotal / 100).toFixed(2));
+      console.log('Subtotal (rupees):', subtotal);
       
-      const shippingCents = deliveryMethod === 'express' ? 75000 : 45000;
-      const discountCents = promoApplied ? Math.round(subtotal * 0.1) : 0;
-      const totalCents = subtotal + shippingCents - discountCents;
-      const totalAmount = (totalCents / 100).toFixed(2);
+      // All values in rupees (matching price_cents storage)
+      const shipping = deliveryMethod === 'express' ? 750 : 450;
+      const discount = promoApplied ? Math.round(subtotal * 0.1) : 0;
+      const total = subtotal + shipping - discount;
+      const totalAmount = total.toFixed(2);
       
-      console.log('Shipping (cents):', shippingCents);
-      console.log('Discount (cents):', discountCents);
-      console.log('Total (cents):', totalCents);
-      console.log('Total Amount (LKR):', totalAmount);
+      console.log('Shipping (rupees):', shipping);
+      console.log('Discount (rupees):', discount);
+      console.log('Total (rupees):', total);
+      console.log('Total Amount:', totalAmount);
       console.log('=== END DEBUG ===');
 
       if (!user) {
@@ -122,9 +122,9 @@ export default function Checkout() {
           subtotal_cents: subtotal,
           shipping_address_id: shippingAddress.id,
           billing_address_id: shippingAddress.id,
-          shipping_cents: shippingCents,
-          discount_cents: discountCents,
-          total_cents: totalCents,
+          shipping_cents: shipping,
+          discount_cents: discount,
+          total_cents: total,
           payment_method: 'payhere',
           payment_status: 'pending',
           status: 'pending',
@@ -197,14 +197,10 @@ export default function Checkout() {
     }
   };
 
-  const shippingCents = deliveryMethod === 'express' ? 75000 : 45000;
-  const discountCents = promoApplied ? Math.round(subtotal * 0.1) : 0;
-  const totalCents = subtotal + shippingCents - discountCents;
-  
-  // For display (convert cents to rupees)
-  const shipping = shippingCents / 100;
-  const discount = discountCents / 100;
-  const total = totalCents / 100;
+  // All values in rupees (matching how price_cents is stored)
+  const shipping = deliveryMethod === 'express' ? 750 : 450;
+  const discount = promoApplied ? Math.round(subtotal * 0.1) : 0;
+  const total = subtotal + shipping - discount;
 
   const formatPrice = (price: number) => 'LKR ' + price.toLocaleString('en-US');
 
