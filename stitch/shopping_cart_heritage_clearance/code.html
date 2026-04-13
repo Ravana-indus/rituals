@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#717878",
+                    "on-tertiary-fixed-variant": "#862116",
+                    "primary-container": "#1c5151",
+                    "surface-container-low": "#f6f3ea",
+                    "secondary-fixed-dim": "#ffb68d",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffdad4",
+                    "primary": "#003a3a",
+                    "primary-fixed": "#b8ecec",
+                    "secondary-container": "#fd8a3e",
+                    "on-tertiary-fixed": "#410000",
+                    "tertiary": "#6a0b05",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e5e2da",
+                    "primary-fixed-dim": "#9dd0cf",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#31312b",
+                    "surface-variant": "#e5e2da",
+                    "on-primary-fixed": "#002020",
+                    "tertiary-fixed-dim": "#ffb4a8",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c1c8c7",
+                    "surface-tint": "#346666",
+                    "tertiary-container": "#8a2419",
+                    "surface": "#fcf9f0",
+                    "surface-dim": "#dddad1",
+                    "on-secondary-container": "#672c00",
+                    "on-surface": "#1c1c17",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#ebe8df",
+                    "on-primary-fixed-variant": "#194e4e",
+                    "inverse-on-surface": "#f4f1e8",
+                    "error": "#ba1a1a",
+                    "secondary": "#9a4600",
+                    "inverse-primary": "#9dd0cf",
+                    "on-tertiary-container": "#ffa091",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f1eee5",
+                    "on-secondary-fixed-variant": "#763400",
+                    "on-secondary": "#ffffff",
+                    "background": "#fcf9f0",
+                    "surface-bright": "#fcf9f0",
+                    "on-secondary-fixed": "#321200",
+                    "on-surface-variant": "#414848",
+                    "on-primary-container": "#8fc2c2",
+                    "on-background": "#1c1c17",
+                    "secondary-fixed": "#ffdbc9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .stamp-badge {
+            clip-path: polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%);
+        }
+        body {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f0]/80 dark:bg-stone-950/80 backdrop-blur-md shadow-[0_20px_40px_rgba(28,28,23,0.06)] flex justify-between items-center px-8 h-20 max-w-full">
+<div class="text-2xl font-bold font-headline text-[#1c1c17] dark:text-[#f1eee5]">Heritage Curator</div>
+<div class="hidden md:flex gap-8 items-center font-headline font-medium tracking-tight">
+<a class="text-[#1c1c17]/70 dark:text-[#f1eee5]/70 hover:text-[#2A5D5D] transition-colors ease-in-out duration-300" href="#">Shop</a>
+<a class="text-[#1c1c17]/70 dark:text-[#f1eee5]/70 hover:text-[#2A5D5D] transition-colors ease-in-out duration-300" href="#">Rituals</a>
+<a class="text-[#1c1c17]/70 dark:text-[#f1eee5]/70 hover:text-[#2A5D5D] transition-colors ease-in-out duration-300" href="#">Offers</a>
+<a class="text-[#1c1c17]/70 dark:text-[#f1eee5]/70 hover:text-[#2A5D5D] transition-colors ease-in-out duration-300" href="#">About</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-[#2A5D5D] dark:text-[#4fa3a3] ease-in-out duration-300 active:scale-95" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-[#2A5D5D] dark:text-[#4fa3a3] ease-in-out duration-300 active:scale-95" data-icon="person">person</button>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
+<!-- Header -->
+<header class="mb-12">
+<h1 class="font-headline text-4xl md:text-5xl font-bold text-on-surface mb-2 tracking-tight">Your Ritual Selection</h1>
+<p class="text-on-surface-variant font-body italic">Handpicked treasures awaiting their journey to you.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Cart Items List -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Clearance Item 1 -->
+<div class="bg-surface-container-low p-6 flex flex-col md:flex-row gap-6 group hover:bg-surface-container-high transition-all duration-300 relative overflow-hidden">
+<div class="w-full md:w-40 h-40 overflow-hidden bg-surface-container">
+<img alt="Sandalwood Serum" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" data-alt="Luxurious amber glass bottle of sandalwood serum on a textured stone surface with soft botanical shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3XxtBhU1bR6eH9rmbxy2FR-jZPIfUuGFQIkUbX0NBwTthSSJEMUOyDbhCLCSgDTTp7XsJ_gTsqvhst0sDzIW336Cyl7HYQMF9rfP6SXJ56asgrT9B5R90k8_XGRsC9Y5e_mppJMoed_e_DJHGf_1rw3uUPwiVrmlM6Mc6KgB_IZ7b8ep1RrZ6tZpP7ya6c3FT_XPKtY9dZfu80ZhgnpwSegl3dHcBmk-EpeToTNCclV8wpXTr0Bm4J3PGRwmrRqjar3pc4MssJp5o"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<span class="bg-tertiary-container text-on-tertiary text-[10px] px-3 py-1 font-bold tracking-widest uppercase mb-2 inline-block stamp-badge">Clearance</span>
+<h3 class="font-headline text-xl font-bold text-on-surface">Sandalwood Serum</h3>
+<p class="text-sm text-on-surface-variant mt-1">Deep infusion of Mysore essence and Vitamin E.</p>
+</div>
+<button class="material-symbols-outlined text-outline hover:text-error transition-colors" data-icon="close">close</button>
+</div>
+<div class="mt-4 flex items-end justify-between">
+<div class="flex items-center gap-4">
+<span class="text-outline line-through text-sm font-label">LKR 8,400</span>
+<span class="text-secondary text-2xl font-bold font-headline">LKR 5,250</span>
+</div>
+<div class="flex items-center bg-surface-container-highest px-3 py-1 gap-4">
+<button class="text-primary font-bold">-</button>
+<span class="text-on-surface font-medium w-4 text-center">1</span>
+<button class="text-primary font-bold">+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Clearance Item 2 -->
+<div class="bg-surface-container-low p-6 flex flex-col md:flex-row gap-6 group hover:bg-surface-container-high transition-all duration-300 relative overflow-hidden">
+<div class="w-full md:w-40 h-40 overflow-hidden bg-surface-container">
+<img alt="Turmeric Soap" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" data-alt="Artisanal bar of turmeric soap with visible botanical flecks resting on a piece of raw organic silk fabric" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnUfs5MMBEjoVXw8dKlylsIZjjwzu_b_hhDPuXCH5KKBjzlnVsxUw0oPXZq-lBbZ34zQv7kECcW5lpgglCKccUnJOQAj8VwtvCWL6__hTSdQWq6XBzO-AYj2WAL8i5IlM6vOngxWwinkUT7v2GoJbVXPn8ua8-5QTUPJ3kC9crtYUFqizZLegZKEjRQtw7CXgZEunL4QIl_ohh20FpgD4ySijCREljukcXYNkbgGzxz3IxdWejnuzRyN_f_MFP3mG4YtycSiAGHktu"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<span class="bg-tertiary-container text-on-tertiary text-[10px] px-3 py-1 font-bold tracking-widest uppercase mb-2 inline-block stamp-badge">Bargain Find</span>
+<h3 class="font-headline text-xl font-bold text-on-surface">Turmeric Soap</h3>
+<p class="text-sm text-on-surface-variant mt-1">Cold-pressed brightening bar with raw Ceylon honey.</p>
+</div>
+<button class="material-symbols-outlined text-outline hover:text-error transition-colors" data-icon="close">close</button>
+</div>
+<div class="mt-4 flex items-end justify-between">
+<div class="flex items-center gap-4">
+<span class="text-outline line-through text-sm font-label">LKR 2,200</span>
+<span class="text-secondary text-2xl font-bold font-headline">LKR 1,100</span>
+</div>
+<div class="flex items-center bg-surface-container-highest px-3 py-1 gap-4">
+<button class="text-primary font-bold">-</button>
+<span class="text-on-surface font-medium w-4 text-center">2</span>
+<button class="text-primary font-bold">+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Heritage Note -->
+<div class="p-6 border border-outline-variant/15 flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome">auto_awesome</span>
+<div>
+<h4 class="font-headline italic text-on-surface">Heritage Care Note</h4>
+<p class="text-sm text-on-surface-variant mt-1 leading-relaxed">Our clearance items are batch-limited runs of our classic formulations. They maintain the same high-grade botanical integrity but are making room for our upcoming seasonal infusions.</p>
+</div>
+</div>
+</div>
+<!-- Summary Sidebar -->
+<aside class="lg:col-span-4 sticky top-24">
+<div class="bg-surface-container p-8 space-y-8">
+<h2 class="font-headline text-2xl font-bold text-on-surface">Order Summary</h2>
+<div class="space-y-4 font-label">
+<div class="flex justify-between text-on-surface-variant">
+<span>Subtotal</span>
+<span>LKR 10,600</span>
+</div>
+<div class="flex justify-between text-secondary font-semibold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="loyalty">loyalty</span>
+<span>Curated Savings</span>
+</div>
+<span>- LKR 4,250</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Shipping (Standard)</span>
+<span>LKR 450</span>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/30">
+<div class="flex justify-between items-baseline mb-8">
+<span class="font-headline text-lg">Savings Total</span>
+<span class="text-secondary font-headline text-2xl font-bold">LKR 4,250</span>
+</div>
+<div class="flex justify-between items-baseline mb-8">
+<span class="font-headline text-xl font-bold text-on-surface">Total</span>
+<span class="text-primary font-headline text-3xl font-bold">LKR 6,800</span>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 font-bold tracking-widest uppercase text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-3 active:scale-95 duration-300">
+                            Secure Checkout
+                            <span class="material-symbols-outlined text-base" data-icon="lock">lock</span>
+</button>
+</div>
+<!-- Trust Badges -->
+<div class="space-y-4 pt-4">
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface">Authenticity Guaranteed</p>
+<p class="text-[10px] text-on-surface-variant">Directly sourced from Sri Lankan artisans.</p>
+</div>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface">Ethically Harvested</p>
+<p class="text-[10px] text-on-surface-variant">Sustainably sourced botanical ingredients.</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 border-t border-[#c1c8c7]/15 bg-[#f1eee5] dark:bg-stone-900">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto font-body text-sm tracking-wide">
+<div>
+<div class="font-headline italic text-lg text-[#1c1c17] dark:text-[#f1eee5] mb-4">The Heritage Curator</div>
+<p class="text-[#1c1c17]/60 dark:text-[#f1eee5]/60 max-w-md">© 2024 The Heritage Curator. Crafted with intention. Bringing the timeless rituals of Ceylon to your modern doorstep.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
+<a class="text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300" href="#">Terms of Service</a>
+<a class="text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300" href="#">Authenticity Guarantee</a>
+<a class="text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300" href="#">Shipping &amp; Returns</a>
+</div>
+</div>
+</footer>
+</body></html>

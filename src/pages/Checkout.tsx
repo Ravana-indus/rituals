@@ -1,0 +1,515 @@
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
+import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+import { api } from '../lib/api';
+import { supabase } from '../lib/supabase';
+
+const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
+  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
+    {name}
+  </span>
+);
+
+export default function Checkout() {
+  const navigate = useNavigate();
+  const { items, subtotal, clearCart } = useCart();
+  const { user } = useAuth();
+  const [step, setStep] = useState(1);
+  const [promoCode, setPromoCode] = useState('');
+  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoSuccess, setPromoSuccess] = useState(false);
+  const [deliveryMethod, setDeliveryMethod] = useState('standard');
+  const [placingOrder, setPlacingOrder] = useState(false);
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    postalCode: '',
+    phone: '',
+  });
+  const [payHereError, setPayHereError] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const canProceed = () => {
+    if (step === 1) {
+      return formData.firstName && formData.lastName && formData.address && formData.city && formData.phone;
+    }
+    return true;
+  };
+
+  const handleApplyPromo = () => {
+    if (promoCode.trim()) {
+      setPromoApplied(true);
+      setPromoSuccess(true);
+      setTimeout(() => setPromoSuccess(false), 2000);
+    }
+  };
+
+  const handlePlaceOrder = async () => {
+    if (!canProceed()) return;
+    setPlacingOrder(true);
+    setPayHereError('');
+    try {
+      const shippingCents = deliveryMethod === 'express' ? 75000 : 45000;
+      const discountCents = promoApplied ? Math.round(subtotal * 0.1) : 0;
+      const totalCents = subtotal + shippingCents - discountCents;
+      const totalAmount = (totalCents / 100).toFixed(2);
+
+      if (user) {
+        const shippingAddress = await api.addresses.create({
+          user_id: user.id,
+          recipient_name: `${formData.firstName} ${formData.lastName}`,
+          address_line_1: formData.address,
+          address_line_2: null,
+          city: formData.city,
+          district: '',
+          postal_code: formData.postalCode ?? null,
+          country: 'Sri Lanka',
+          phone: formData.phone ?? null,
+          is_default: false,
+          address_type: null,
+          label: null,
+        });
+
+        const { data: cartData } = await supabase
+          .from('carts')
+          .select('id')
+          .eq('user_id', user.id)
+          .eq('status', 'active')
+          .single();
+
+        const order = await api.cart.convertToOrder(cartData?.id ?? '', {
+          user_id: user.id,
+          email: user.email ?? '',
+          subtotal_cents: subtotal,
+          shipping_address_id: shippingAddress.id,
+          billing_address_id: shippingAddress.id,
+          shipping_cents: shippingCents,
+          discount_cents: discountCents,
+          total_cents: totalCents,
+          payment_method: 'payhere',
+          payment_status: 'pending',
+          status: 'pending',
+        });
+
+        const { data: payHereParams, error: initError } = await supabase.functions.invoke('payhere-initiate', {
+          body: {
+            order_id: order.id,
+            amount: totalAmount,
+            currency: 'LKR',
+            items_description: `${items.length} item(s) - The Heritage Curator`,
+            customer_first_name: formData.firstName,
+            customer_last_name: formData.lastName,
+            customer_email: user.email,
+            customer_phone: `94${formData.phone.replace(/\s/g, '')}`,
+            customer_address: formData.address,
+            customer_city: formData.city,
+            customer_country: 'Sri Lanka',
+          },
+        });
+
+        if (initError || !payHereParams?.signature) {
+          throw new Error(initError?.message || 'Failed to initiate payment');
+        }
+
+        const payhereForm = {
+          sandbox: true,
+          merchant_id: payHereParams.merchant_id,
+          return_url: `${window.location.origin}/order-confirmed?order_id=${order.id}`,
+          cancel_url: `${window.location.origin}/checkout`,
+          notify_url: payHereParams.notify_url,
+          order_id: payHereParams.order_id,
+          items_description: payHereParams.items_description,
+          payment: {
+            amount: payHereParams.amount,
+            currency: payHereParams.currency,
+          },
+          customer: {
+            first_name: payHereParams.customer_first_name,
+            last_name: payHereParams.customer_last_name,
+            email: payHereParams.customer_email,
+            phone: payHereParams.customer_phone,
+            address: payHereParams.customer_address,
+            city: payHereParams.customer_city,
+            country: payHereParams.customer_country,
+          },
+          signature: payHereParams.signature,
+        };
+
+        if (typeof window !== 'undefined' && (window as any).payhere) {
+          (window as any).payhere.startPayment(payhereForm);
+        } else {
+          throw new Error('PayHere SDK not loaded');
+        }
+
+        (window as any).payhere.onCompleted = async (orderId: string) => {
+          await clearCart();
+          navigate(`/order-confirmed?order_id=${orderId}`);
+        };
+
+        (window as any).payhere.onDismissed = () => {
+          setPayHereError('Payment was cancelled. Your order is saved and pending payment.');
+        };
+
+        (window as any).payhere.onError = (err: any) => {
+          setPayHereError(`Payment failed: ${err}`);
+        };
+
+        return;
+      }
+    } catch (err) {
+      console.error('Order placement failed:', err);
+      setPayHereError('Failed to place order. Please try again.');
+    } finally {
+      setPlacingOrder(false);
+    }
+  };
+
+  const shipping = deliveryMethod === 'express' ? 750 : 450;
+  const discount = promoApplied ? Math.round(subtotal * 0.1) : 0;
+  const total = subtotal + shipping - discount;
+
+  const formatPrice = (price: number) => 'LKR ' + price.toLocaleString('en-US');
+
+  const stepClass = (s: number) => {
+    if (step > s) return 'bg-primary text-on-primary border-primary';
+    if (step === s) return 'bg-primary text-on-primary border-primary';
+    return 'border-outline-variant text-on-surface-variant';
+  };
+
+  return (
+    <div className="bg-surface dark:bg-[#121212] selection:bg-secondary-fixed min-h-screen flex flex-col font-manrope text-on-surface">
+      <Header />
+
+      <main className="pt-8 pb-24 px-4 md:px-8 max-w-7xl mx-auto flex-grow w-full">
+        <Link to="/cart" className="inline-flex items-center gap-2 text-sm text-on-surface-variant hover:text-primary transition-colors mb-8">
+          <Icon name="arrow_back" className="text-lg" />
+          Return to Cart
+        </Link>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-7 space-y-8">
+            <nav className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-2">
+                <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold ${stepClass(1)}`}>
+                  {step > 1 ? <Icon name="check" className="text-sm" /> : '1'}
+                </span>
+                <span className={`text-sm tracking-tight font-medium ${step === 1 ? 'text-primary' : 'text-on-surface-variant'}`}>Shipping</span>
+              </div>
+              <div className="h-px w-8 bg-outline-variant/30"></div>
+              <div className="flex items-center gap-2">
+                <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold ${stepClass(2)}`}>
+                  {step > 2 ? <Icon name="check" className="text-sm" /> : '2'}
+                </span>
+                <span className={`text-sm tracking-tight font-medium ${step === 2 ? 'text-primary' : 'text-on-surface-variant'}`}>Delivery</span>
+              </div>
+              <div className="h-px w-8 bg-outline-variant/30"></div>
+              <div className="flex items-center gap-2">
+                <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold ${stepClass(3)}`}>
+                  {step > 3 ? <Icon name="check" className="text-sm" /> : '3'}
+                </span>
+                <span className={`text-sm tracking-tight font-medium ${step === 3 ? 'text-primary' : 'text-on-surface-variant'}`}>Payment</span>
+              </div>
+            </nav>
+
+            {step === 1 && (
+              <section className="space-y-8">
+                <h1 className="font-noto-serif text-3xl text-on-surface">Shipping Details</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">First Name</label>
+                    <input
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      placeholder="e.g. Arjuna"
+                      type="text"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Last Name</label>
+                    <input
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      placeholder="e.g. Wijesinghe"
+                      type="text"
+                    />
+                  </div>
+                  <div className="md:col-span-2 flex flex-col gap-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Shipping Address</label>
+                    <input
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      placeholder="Street name and house number"
+                      type="text"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">City</label>
+                    <input
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      placeholder="Colombo"
+                      type="text"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Postal Code</label>
+                    <input
+                      name="postalCode"
+                      value={formData.postalCode}
+                      onChange={handleChange}
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      placeholder="00100"
+                      type="text"
+                    />
+                  </div>
+                  <div className="md:col-span-2 flex flex-col gap-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Phone Number</label>
+                    <div className="flex gap-4">
+                      <span className="bg-surface-container border-b border-outline-variant/30 py-3 px-2 text-on-surface-variant dark:bg-[#1e1e1a]">+94</span>
+                      <input
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                        placeholder="77 123 4567"
+                        type="tel"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {step === 2 && (
+              <section className="space-y-8">
+                <h1 className="font-noto-serif text-3xl text-on-surface">Delivery Method</h1>
+                <div className="space-y-4">
+                  <label className={`flex items-center justify-between p-6 rounded-xl border-2 cursor-pointer transition-all ${deliveryMethod === 'standard' ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-primary/50'}`}>
+                    <div className="flex items-center gap-4">
+                      <input
+                        type="radio"
+                        name="delivery"
+                        value="standard"
+                        checked={deliveryMethod === 'standard'}
+                        onChange={(e) => setDeliveryMethod(e.target.value)}
+                        className="w-4 h-4 text-primary"
+                      />
+                      <div>
+                        <h3 className="font-bold text-on-surface">Standard Shipping</h3>
+                        <p className="text-sm text-on-surface-variant">3-5 business days</p>
+                      </div>
+                    </div>
+                    <span className="text-primary font-bold">Rs. 450.00</span>
+                  </label>
+
+                  <label className={`flex items-center justify-between p-6 rounded-xl border-2 cursor-pointer transition-all ${deliveryMethod === 'express' ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-primary/50'}`}>
+                    <div className="flex items-center gap-4">
+                      <input
+                        type="radio"
+                        name="delivery"
+                        value="express"
+                        checked={deliveryMethod === 'express'}
+                        onChange={(e) => setDeliveryMethod(e.target.value)}
+                        className="w-4 h-4 text-primary"
+                      />
+                      <div>
+                        <h3 className="font-bold text-on-surface">Express Delivery</h3>
+                        <p className="text-sm text-on-surface-variant">1-2 business days</p>
+                      </div>
+                    </div>
+                    <span className="text-primary font-bold">Rs. 750.00</span>
+                  </label>
+                </div>
+              </section>
+            )}
+
+            {step === 3 && (
+              <section className="space-y-8">
+                <h1 className="font-noto-serif text-3xl text-on-surface">Payment Details</h1>
+                <div className="p-6 bg-surface-container dark:bg-[#1e1e1a] rounded-xl space-y-6">
+                  <div className="flex items-center gap-4">
+                    <img src="https://www.payhere.lk/images/logo.png" alt="PayHere" className="h-8" />
+                    <p className="text-sm text-on-surface-variant">You will be redirected to PayHere to complete payment securely</p>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <Icon name="lock" className="text-primary" />
+                    <span>Your payment is processed securely by PayHere. We never store your card details.</span>
+                  </div>
+                  {payHereError && (
+                    <div className="p-4 bg-error/10 border border-error/30 rounded-lg text-sm text-error">
+                      {payHereError}
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+
+            <div className="flex items-center justify-between pt-6">
+              {step > 1 ? (
+                <button onClick={() => setStep(s => s - 1)} className="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+                  <Icon name="arrow_back" className="text-lg" />
+                  Back
+                </button>
+              ) : (
+                <div />
+              )}
+              {step < 3 ? (
+                <button
+                  onClick={() => canProceed() && setStep(s => s + 1)}
+                  disabled={!canProceed()}
+                  className={`px-12 py-4 rounded-md font-bold tracking-wide transition-all text-center ${
+                    canProceed()
+                      ? 'bg-primary text-on-primary hover:opacity-90 shadow-lg shadow-primary/10'
+                      : 'bg-outline-variant/30 text-on-surface-variant cursor-not-allowed'
+                  }`}
+                >
+                  Continue
+                </button>
+              ) : (
+                <button
+                  onClick={handlePlaceOrder}
+                  disabled={!canProceed()}
+                  className={`px-12 py-4 rounded-md font-bold tracking-wide transition-all text-center ${
+                    canProceed()
+                      ? 'bg-secondary text-on-secondary hover:opacity-90 shadow-lg shadow-secondary/10'
+                      : 'bg-outline-variant/30 text-on-surface-variant cursor-not-allowed'
+                  }`}
+                >
+                  Place Order
+                </button>
+              )}
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-12 border-t border-outline-variant/15">
+              <div className="flex flex-col items-center text-center gap-3">
+                <Icon name="workspace_premium" filled className="text-primary text-3xl" />
+                <p className="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Authentic Sourcing</p>
+              </div>
+              <div className="flex flex-col items-center text-center gap-3">
+                <Icon name="encrypted" filled className="text-primary text-3xl" />
+                <p className="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Secure SSL Payment</p>
+              </div>
+              <div className="flex flex-col items-center text-center gap-3 col-span-2 md:col-span-1">
+                <Icon name="eco" filled className="text-primary text-3xl" />
+                <p className="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Ethically Crafted</p>
+              </div>
+            </div>
+          </div>
+
+          <aside className="lg:col-span-5">
+            <div className="sticky top-32 p-8 bg-surface-container dark:bg-[#1a1a16] rounded-2xl space-y-6 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
+              <h2 className="font-noto-serif text-2xl text-on-surface">Order Summary</h2>
+
+              <div className="space-y-4 max-h-64 overflow-y-auto">
+                {items.length === 0 ? (
+                  <p className="text-sm text-on-surface-variant text-center py-4">No items in cart</p>
+                ) : (
+                  items.map((item) => (
+                    <div key={item.id} className="flex gap-3 items-center">
+                      <div className="w-14 h-16 bg-surface-container-low rounded overflow-hidden flex-shrink-0">
+                        <img src={item.imgSrc} alt={item.title} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-grow">
+                        <h4 className="font-manrope font-bold text-xs truncate">{item.title}</h4>
+                        <p className="text-[10px] text-on-surface-variant">{item.size} × {item.quantity}</p>
+                        <p className="text-sm font-bold text-secondary">{item.price}</p>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Promo or Gift Code"
+                  value={promoCode}
+                  onChange={(e) => setPromoCode(e.target.value)}
+                  className="flex-grow bg-surface border border-outline-variant/20 rounded-md py-2 px-3 text-sm focus:border-primary outline-none dark:bg-[#252520] dark:border-[#3a3a34]"
+                />
+                <button
+                  onClick={handleApplyPromo}
+                  className={`px-4 py-2 font-bold text-xs rounded-md transition-all ${
+                    promoSuccess ? 'bg-green-600 text-white' : 'bg-surface-container-highest text-on-surface hover:bg-outline-variant/20'
+                  }`}
+                >
+                  {promoSuccess ? 'Applied!' : 'Apply'}
+                </button>
+              </div>
+
+              <div className="space-y-3 pt-4 border-t border-outline-variant/15">
+                <div className="flex justify-between text-sm text-on-surface-variant">
+                  <span>Subtotal</span>
+                  <span>{formatPrice(subtotal)}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="flex items-center gap-2">
+                    Shipping
+                    {promoApplied && <span className="bg-green-600/20 text-green-600 dark:text-green-400 text-[10px] px-2 py-0.5 rounded-full font-bold">10% Off</span>}
+                  </span>
+                  <span>{formatPrice(shipping)}</span>
+                </div>
+                {promoApplied && (
+                  <div className="flex justify-between text-sm text-green-600 dark:text-green-400">
+                    <span>Discount</span>
+                    <span>-{formatPrice(discount)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center pt-4 border-t border-outline-variant/15">
+                  <span className="font-noto-serif text-xl font-bold text-on-surface">Total</span>
+                  <div className="text-right">
+                    <p className="text-2xl font-bold font-noto-serif text-secondary">{formatPrice(total)}</p>
+                    <p className="text-[10px] text-on-surface-variant uppercase tracking-widest">Includes taxes</p>
+                  </div>
+                </div>
+              </div>
+
+              {promoApplied && (
+                <div className="bg-secondary-fixed/20 text-on-secondary-fixed p-4 rounded-lg flex items-center gap-3 border border-secondary/10">
+                  <Icon name="local_offer" filled className="text-secondary" />
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wider">Heritage Benefit</p>
+                    <p className="text-xs italic font-noto-serif">You've saved {formatPrice(discount)} today!</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </aside>
+        </div>
+      </main>
+
+      <footer className="bg-surface-container border-t border-outline-variant/15 py-12 px-8 mt-auto">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-4">
+            <span className="font-noto-serif italic text-xl text-on-surface">The Heritage Curator.</span>
+            <p className="font-manrope text-sm tracking-wide text-on-surface-variant max-w-sm">
+              © 2024 The Heritage Curator. Crafted with intention. Supporting artisan communities across Sri Lanka.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-8 md:justify-end">
+            <Link to="/support" className="text-sm font-manrope text-on-surface-variant hover:text-secondary transition-colors">Privacy Policy</Link>
+            <Link to="/support" className="text-sm font-manrope text-on-surface-variant hover:text-secondary transition-colors">Terms of Service</Link>
+            <Link to="/support" className="text-sm font-manrope text-on-surface-variant hover:text-secondary transition-colors">Authenticity Guarantee</Link>
+            <Link to="/support" className="text-sm font-manrope text-on-surface-variant hover:text-secondary transition-colors">Shipping & Returns</Link>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

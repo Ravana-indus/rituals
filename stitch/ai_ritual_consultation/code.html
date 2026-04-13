@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#9dd0cf",
+                    "outline-variant": "#c1c8c7",
+                    "surface": "#fcf9f0",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#321200",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#ffdbc9",
+                    "on-surface": "#1c1c17",
+                    "surface-dim": "#dddad1",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#b8ecec",
+                    "surface-variant": "#e5e2da",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#8fc2c2",
+                    "primary-fixed-dim": "#9dd0cf",
+                    "on-surface-variant": "#414848",
+                    "on-tertiary-container": "#ffa091",
+                    "tertiary": "#6a0b05",
+                    "inverse-on-surface": "#f4f1e8",
+                    "surface-container": "#f1eee5",
+                    "surface-tint": "#346666",
+                    "primary": "#003a3a",
+                    "secondary-fixed-dim": "#ffb68d",
+                    "background": "#fcf9f0",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#fd8a3e",
+                    "on-primary-fixed": "#002020",
+                    "surface-container-highest": "#e5e2da",
+                    "primary-container": "#1c5151",
+                    "on-tertiary-fixed": "#410000",
+                    "on-secondary-container": "#672c00",
+                    "tertiary-container": "#8a2419",
+                    "secondary": "#9a4600",
+                    "surface-container-high": "#ebe8df",
+                    "tertiary-fixed-dim": "#ffb4a8",
+                    "surface-bright": "#fcf9f0",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#194e4e",
+                    "on-error": "#ffffff",
+                    "on-background": "#1c1c17",
+                    "surface-container-low": "#f6f3ea",
+                    "inverse-surface": "#31312b",
+                    "outline": "#717878",
+                    "on-tertiary-fixed-variant": "#862116",
+                    "tertiary-fixed": "#ffdad4",
+                    "on-secondary-fixed-variant": "#763400"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.grainy-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDfHnwCQOdAh-quvLEapn7MA132wVvOPjv5wdSn1tCpVepdfNoGZ39FMzaizRl04TfIMwccIQSalrB4g3JJar9qBZNvLu4lZa6GBH10rlsQJHELc3Id5sufOiQUT8rsVqLfHIZMVH6yuHxFZLSeB60ZwiukQN1uQW1ywetlWYowwCyRc0F_YLBXXVOnbakdphqKUPV6ZhCdX5HALTxx6iB1mKXZU7Nb8jHADczjJp_Zt1UslUHBJQPOwq8haPmlCDjfDu1ewQbPAI7n);
+    opacity: 0.03;
+    pointer-events: none
+    }
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px
+    }
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent
+    }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #c1c8c7;
+    border-radius: 10px
+    }</style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<div class="grainy-overlay fixed inset-0 z-[60]"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f0]/80 dark:bg-[#1c1c17]/80 backdrop-blur-md shadow-[0_20px_40px_rgba(28,28,23,0.06)] flex justify-between items-center px-6 py-4 max-w-full">
+<div class="text-2xl font-semibold text-[#1c1c17] dark:text-[#fcf9f0] font-headline">The Heritage Curator</div>
+<div class="hidden md:flex items-center gap-8 font-headline italic tracking-tight">
+<a class="text-[#2A5D5D] border-b-2 border-[#2A5D5D] pb-1 transition-colors duration-300" href="#">Consult</a>
+<a class="text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Rituals</a>
+<a class="text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Curations</a>
+<a class="text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Apothecary</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#2A5D5D] hover:scale-110 transition-transform"><span class="material-symbols-outlined" data-icon="history">history</span></button>
+<button class="text-[#2A5D5D] hover:scale-110 transition-transform"><span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span></button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/15">
+<img alt="Customer profile avatar" data-alt="Close-up portrait of a woman with natural skin and soft lighting, radiating health and serenity, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARxkBaPNGCYT16byIy2XfgmIHKicgRCinZhVb6OzUy2CnQ7_cHf2V-0wcNI_NaEqzYI7wP0RfwX3g7hEJbgcrD6VSPTOukDDlDnGI7A0y1gkM_SY-SAhtv1N-7eOcwAD87t1pixBPP40wzQ23lQ6L_uxOP5KIT7cMgMTl488jTBEorRbA_kqBgys1sxp9orUVECvs9JiQS642uqv7p8OzFdLKaVXtCMxqYEeZUMEn_on1eymN9rU0P734bMeDYLQPx9bHHgoS_5deg"/>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Conversational Consultation -->
+<section class="lg:col-span-8 space-y-8">
+<header class="max-w-2xl">
+<span class="font-headline italic text-primary text-xl mb-2 block">Ayubowan, Traveler</span>
+<h1 class="text-4xl md:text-5xl font-headline font-bold text-on-surface leading-tight">What brings you to the <span class="text-primary italic">Apothecary's Desk</span> today?</h1>
+<p class="mt-4 text-on-surface-variant font-body leading-relaxed max-w-xl">
+                    Describe your concerns as you would to an old friend. Our curator listens to the whispers of your skin and the rhythm of your wellness.
+                </p>
+</header>
+<div class="bg-surface-container-low rounded-xl p-6 md:p-10 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-tertiary-container text-on-tertiary-fixed-variant text-[10px] font-bold tracking-[0.2em] px-3 py-1 rounded-full uppercase">Digital Consultation</span>
+</div>
+<div class="space-y-8">
+<!-- Master's Message -->
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-primary flex-shrink-0 flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="face">face</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] max-w-lg">
+<p class="text-on-surface leading-relaxed italic font-headline">"To heal the flower, one must understand the soil. Tell me, what elements of your being feel out of balance today?"</p>
+</div>
+</div>
+<!-- Input Area -->
+<div class="space-y-6">
+<label class="block">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-3 block">Seeker's Observation</span>
+<textarea class="w-full bg-surface border-none border-b-2 border-outline-variant/30 focus:ring-0 focus:border-primary transition-all text-on-surface placeholder:text-outline p-4 font-headline text-lg italic rounded-t-lg" placeholder="e.g., My skin feels parched like the dry season winds..." rows="3"></textarea>
+</label>
+<!-- Condition Selection Chips -->
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4 block">Common Imbalances</span>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2.5 rounded-full bg-surface border border-outline-variant/20 hover:border-primary hover:text-primary transition-all font-label text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="water_drop">water_drop</span> Dry Skin
+                                </button>
+<button class="px-5 py-2.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold font-label text-sm flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="spa">spa</span> Stress
+                                </button>
+<button class="px-5 py-2.5 rounded-full bg-surface border border-outline-variant/20 hover:border-primary hover:text-primary transition-all font-label text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="content_cut">content_cut</span> Hair Loss
+                                </button>
+<button class="px-5 py-2.5 rounded-full bg-surface border border-outline-variant/20 hover:border-primary hover:text-primary transition-all font-label text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="wb_sunny">wb_sunny</span> Hyper-pigmentation
+                                </button>
+<button class="px-5 py-2.5 rounded-full bg-surface border border-outline-variant/20 hover:border-primary hover:text-primary transition-all font-label text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="bedtime">bedtime</span> Insomnia
+                                </button>
+</div>
+</div>
+<!-- Action -->
+<div class="pt-6 flex justify-end">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-10 py-4 rounded-lg font-label font-bold tracking-widest flex items-center gap-3 hover:opacity-90 transition-opacity">
+                                BEGIN RITUAL ANALYSIS
+                                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Contextual History & Wisdom -->
+<aside class="lg:col-span-4 space-y-8">
+<!-- User History Card -->
+<div class="bg-surface-container rounded-xl p-6 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline font-bold text-lg">Past Journeys</h3>
+<span class="material-symbols-outlined text-primary" data-icon="history_edu">history_edu</span>
+</div>
+<div class="space-y-4">
+<div class="p-4 bg-surface-container-lowest rounded-lg border-l-4 border-secondary transition-transform hover:-translate-x-1">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">March 14, 2024</span>
+<span class="bg-secondary-fixed px-2 py-0.5 rounded text-[10px] font-bold text-on-secondary-fixed">RESOLVED</span>
+</div>
+<p class="font-headline text-sm font-semibold">The Monsoon Skin Rescue</p>
+<p class="text-xs text-on-surface-variant mt-1 italic">Prescribed: Sandalwood &amp; Honey Paste</p>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-lg border-l-4 border-primary transition-transform hover:-translate-x-1">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">Feb 28, 2024</span>
+<span class="bg-primary-fixed px-2 py-0.5 rounded text-[10px] font-bold text-on-primary-fixed">ONGOING</span>
+</div>
+<p class="font-headline text-sm font-semibold">Scalp Vitality Ritual</p>
+<p class="text-xs text-on-surface-variant mt-1 italic">Prescribed: Gotu Kola Infusion</p>
+</div>
+</div>
+<button class="w-full mt-6 text-center text-xs font-bold text-primary tracking-widest hover:underline">VIEW COMPLETE ARCHIVE</button>
+</div>
+<!-- The Curator's Tip -->
+<div class="relative rounded-xl overflow-hidden aspect-[4/5] flex flex-col justify-end p-8 group">
+<img alt="Traditional botanical herbs" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Aesthetic arrangement of dried herbs, mortar and pestle, and ceramic apothecary jars on a rustic wooden table with soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgsDGHA0LFDWT73Z6Yjj6-n6Y0vV48a2EdcuPsgthhGKghIrECnLKWEfvTxX_wRMQuk7CYbGfdBwAmPd_rYpBJNCKlEymu7m_oCneS2yt8YUnQ4jytqxF9Q5Dk0Ks0nAGGuBshHIxDWdWHqZ6XpXZGBFWsgea6xCpY8VdKpAfjjRTNGc2cLwCsia-RV_MnOm9YwSdfKHurrhRkhE8FdZGyb_EqkY8Dzw0wU6pSxcY2bMCdboNial45JRjq4Ejb3c86tTfJUObwoeq9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
+<div class="relative z-10 text-on-primary">
+<span class="font-headline italic text-lg text-primary-fixed">Wisdom of the Week</span>
+<h4 class="text-2xl font-headline font-bold mt-2">The Cooling Spirit of Vetiver</h4>
+<p class="text-sm mt-3 font-body opacity-90 leading-relaxed">
+                        "When the mind burns with anxiety, the earth provides its roots. Vetiver calms the fire within."
+                    </p>
+<button class="mt-6 border border-white/30 px-6 py-2 rounded-full text-xs font-bold tracking-widest hover:bg-white hover:text-primary transition-colors uppercase">Discover More</button>
+</div>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#fcf9f0] dark:bg-[#1c1c17] z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(28,28,23,0.04)] border-t border-[#c1c8c7]/15">
+<div class="flex flex-col items-center justify-center bg-[#2A5D5D] text-white rounded-xl px-5 py-2 scale-95 transition-transform duration-500 ease-in-out">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Consult</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Rituals</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Curations</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2">
+<span class="material-symbols-outlined" data-icon="local_pharmacy">local_pharmacy</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Apothecary</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Heritage Curator | AI-Curated Rituals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#9dd0cf",
+                        "outline-variant": "#c1c8c7",
+                        "surface": "#fcf9f0",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#321200",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#ffdbc9",
+                        "on-surface": "#1c1c17",
+                        "surface-dim": "#dddad1",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#b8ecec",
+                        "surface-variant": "#e5e2da",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#8fc2c2",
+                        "primary-fixed-dim": "#9dd0cf",
+                        "on-surface-variant": "#414848",
+                        "on-tertiary-container": "#ffa091",
+                        "tertiary": "#6a0b05",
+                        "inverse-on-surface": "#f4f1e8",
+                        "surface-container": "#f1eee5",
+                        "surface-tint": "#346666",
+                        "primary": "#003a3a",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "background": "#fcf9f0",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fd8a3e",
+                        "on-primary-fixed": "#002020",
+                        "surface-container-highest": "#e5e2da",
+                        "primary-container": "#1c5151",
+                        "on-tertiary-fixed": "#410000",
+                        "on-secondary-container": "#672c00",
+                        "tertiary-container": "#8a2419",
+                        "secondary": "#9a4600",
+                        "surface-container-high": "#ebe8df",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "surface-bright": "#fcf9f0",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#194e4e",
+                        "on-error": "#ffffff",
+                        "on-background": "#1c1c17",
+                        "surface-container-low": "#f6f3ea",
+                        "inverse-surface": "#31312b",
+                        "outline": "#717878",
+                        "on-tertiary-fixed-variant": "#862116",
+                        "tertiary-fixed": "#ffdad4",
+                        "on-secondary-fixed-variant": "#763400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Manrope", sans-serif
+    }
+.font-noto-serif {
+    font-family: "Noto Serif", serif
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.stamp-badge {
+    clip-path: polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)
+    }
+.paper-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAYm2G3b54rGoamdz3QvlkjQFBqZrCGdJsvFQLZQhI5kqkXXVsPpkchA5DmHOrAudgSWvrQN0jzb_0Z7Nl7_u_RJylcY2TDiE1IyYbfph2WOaHn9JH4Vuw8zK0jkdb1-FFjwXsDA1E4WDvE0rsNOYs8v7F2Lmqk2sLNh5pG9Ten6n8DSVvTBJhCbiE9KZJU0tTLWDMjDCZd3Y7lWCyVPW_oqnLRcLnfgmRS5zuYYiDxCy3sU3Z7m3JqEvUwAB1ip3d_Gb00hLvb3v4k);
+    background-repeat: repeat
+    }</style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f0]/80 dark:bg-[#1c1c17]/80 backdrop-blur-md shadow-[0_20px_40px_rgba(28,28,23,0.06)]">
+<div class="flex justify-between items-center px-6 py-4 max-w-full">
+<div class="text-2xl font-semibold text-[#1c1c17] dark:text-[#fcf9f0] font-noto-serif">The Heritage Curator</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#2A5D5D] border-b-2 border-[#2A5D5D] pb-1 font-manrope text-sm font-bold tracking-widest" href="#">Consult</a>
+<a class="text-[#1c1c17]/60 hover:text-[#2A5D5D] transition-colors duration-300 font-manrope text-sm font-bold tracking-widest uppercase" href="#">Rituals</a>
+<a class="text-[#1c1c17]/60 hover:text-[#2A5D5D] transition-colors duration-300 font-manrope text-sm font-bold tracking-widest uppercase" href="#">Curations</a>
+<a class="text-[#1c1c17]/60 hover:text-[#2A5D5D] transition-colors duration-300 font-manrope text-sm font-bold tracking-widest uppercase" href="#">Apothecary</a>
+</div>
+<div class="flex items-center space-x-6 text-[#2A5D5D]">
+<span class="material-symbols-outlined cursor-pointer">history</span>
+<span class="material-symbols-outlined cursor-pointer">shopping_bag</span>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Customer profile avatar" data-alt="Close up portrait of a sophisticated person with warm lighting and a neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxBW3aqXluLBhcdrkY80hIQFrzqC3vlx1SJpWnvYBrP6CtYyqpjD9w5T8oS9vfuiVTldJCpV7IwCaWWGFLO7CGDzt8nkOMs78YxRbx9TIlNjC1HweqYjMoheLRofE03McAadGVQ9E3nry70abnO6cL2buselrm8Ea2U-XrD6FZkh8-mzS2HudtTLmWXnH2ph-y7LI8tglqSORi7bMNaasdviX6fpXyh4Qy56mAkBl4wx2jfDcB34lu52p8M6vr2olZZYgUhyngHqI6"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-32 px-4 md:px-8 max-w-7xl mx-auto space-y-16">
+<!-- Header Section -->
+<header class="text-center space-y-4 pt-8">
+<div class="inline-flex items-center space-x-2 px-4 py-1 rounded-full bg-primary-container text-on-primary-container text-xs font-bold tracking-widest uppercase mb-4">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span>AI-Curated Selection</span>
+</div>
+<h1 class="text-4xl md:text-6xl font-noto-serif italic tracking-tight text-primary leading-tight">Master Curator's Selection</h1>
+<p class="max-w-2xl mx-auto text-on-surface-variant font-body">Based on your recent botanical consultation, we have curated these specific rituals to restore balance to your unique Prakriti.</p>
+</header>
+<!-- Bento Layout: Why this is for you & Featured Bundle -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- AI Reasoning Panel -->
+<div class="lg:col-span-4 bg-surface-container-low p-8 rounded-xl space-y-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<h3 class="text-2xl font-noto-serif text-primary italic">Why this is for you</h3>
+<div class="space-y-4 relative z-10">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">spa</span>
+<p class="text-sm leading-relaxed text-on-surface-variant">Your profile indicates high <strong>Pitta</strong> activity, requiring cooling Sandalwood and Vetiver base notes.</p>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+<p class="text-sm leading-relaxed text-on-surface-variant">The humidity levels in Colombo right now suggest a lighter, serum-based hydration rather than heavy creams.</p>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">temp_preferences_custom</span>
+<p class="text-sm leading-relaxed text-on-surface-variant">Based on your sleep patterns, we've prioritized high-concentration night botanicals.</p>
+</div>
+</div>
+<div class="pt-4">
+<button class="text-primary font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all duration-300">
+                        View Full Analysis <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Main Featured Ritual Bundle -->
+<div class="lg:col-span-8 bg-surface-container-highest rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
+<div class="md:w-1/2 relative h-64 md:h-auto">
+<img alt="The Radiant Skin Ritual" class="w-full h-full object-cover" data-alt="Premium glass bottles of skincare oil and serums arranged artfully on a marble surface with soft natural light and shadows of tropical leaves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxwB-5-53l0fMcuJx-Hcmdim4J0kZOBYjSjttVSRAeZU9IsF01dDoMXvzZsnfGJT2KmhkFX_fUCEIgAn5CrpULqOUEbxLn0VAe_34Z3YAwBXx7B9ojLnTzJMq4n3W7nTF7sTFBAvs5hh48N3GECkXC3T9yz7NuvHohTYxXUMVVh7bzjMyHfUo-0RxyjK4v2CXwOyl5jjS8Z3WwvmV9T_UFngLGdKxPH0YtyY0Z_8xhEZTtsuZH66jIAU7SAPRQk9pYjGJbnh13w-tE"/>
+<div class="absolute top-4 left-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-tighter stamp-badge">
+                        Save 15%
+                    </div>
+</div>
+<div class="md:w-1/2 p-8 flex flex-col justify-between">
+<div>
+<h2 class="text-3xl font-noto-serif text-primary mb-2">The Radiant Skin Ritual</h2>
+<p class="text-on-surface-variant text-sm mb-6">A 4-step sequence featuring Turmeric, Saffron, and Virgin Coconut oil to restore natural luminescence.</p>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3 text-xs text-on-surface/70">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                Golden Glow Cleansing Balm
+                            </div>
+<div class="flex items-center gap-3 text-xs text-on-surface/70">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                Saffron Infused Tonic
+                            </div>
+<div class="flex items-center gap-3 text-xs text-on-surface/70">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                Night Recovery Elixir
+                            </div>
+</div>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<span class="block text-xs text-on-surface/40 line-through font-manrope">LKR 12,400</span>
+<span class="text-2xl font-bold text-secondary font-manrope">LKR 10,540</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-primary-container transition-colors shadow-lg">
+                            Add Ritual
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Ritual Bundles -->
+<section class="space-y-8">
+<div class="flex justify-between items-end border-b border-outline-variant/15 pb-4">
+<h3 class="text-2xl font-noto-serif italic text-primary">Secondary Focus Rituals</h3>
+<a class="text-xs font-bold uppercase tracking-widest text-on-surface/60 hover:text-primary transition-colors" href="#">Explore All Bundles</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Bundle 2 -->
+<div class="bg-surface-container-low rounded-xl p-2 group hover:bg-surface-container transition-colors duration-300">
+<div class="relative h-64 rounded-lg overflow-hidden mb-6">
+<img alt="The Strengthening Hair Ritual" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Deep green botanical hair oils in traditional glass bottles with raw ayurvedic herbs scattered around on a textured stone surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcOQK4tL1tcOwZsGNzPyxop0SyOjtbnIz42ZoBu23RYLYXKimRS1oTuELM3dtwPV9s-UhX3ZqwTJYWOlm9eoPPXYmzkBmDU8c5mOGp4KJ1WFQ2B3SKsq_fAURMbjlHA0XiG8VYxf3T2OafMG0jf8ccEaWcw-wdWBmFNVA6OZVLAAgd8BE_NqU6asmAAYlZlk2mJmileuqbINKl0s9bjLI_ZZjUxWpIfGDQvUmjvQNcbkW5IOrsEmK0SB1YfPt3WmBSfY6nPE1ZP29y"/>
+<div class="absolute top-4 right-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-tighter stamp-badge">
+                            Ritual Value
+                        </div>
+</div>
+<div class="px-4 pb-4">
+<h4 class="text-xl font-noto-serif text-primary mb-2">The Strengthening Hair Ritual</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-6">Repair environmental damage with traditional Neelibringadi and Gotu Kola extracts.</p>
+<div class="flex items-center justify-between">
+<div>
+<span class="block text-[10px] text-on-surface/40 line-through">LKR 8,900</span>
+<span class="text-lg font-bold text-secondary">LKR 7,500</span>
+</div>
+<button class="bg-secondary text-on-secondary w-10 h-10 rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bundle 3 -->
+<div class="bg-surface-container-low rounded-xl p-2 group hover:bg-surface-container transition-colors duration-300">
+<div class="relative h-64 rounded-lg overflow-hidden mb-6">
+<img alt="The Evening Calm Ritual" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A zen-like spa setting with incense smoke, a wooden bowl of petals, and dark amber apothecary bottles in dim, moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFTCRH0upS9rv3LmtXIsLl7in7SdAh74amhlZHxGcY8lciIeN25cln1tJxIznq-MKA7ZlK04tOrM2trmgO2TU0LMHxgy4vw9pn8iKbUYUIuIQH66hRQblJ6RgLpfoJmNy51AgXjg_92MHBA0giJUH9uX30xGMk6_9tVy5E_g4Rrrwfvn9WD9W_IDbwyoj3BMhSa6iENRwu4iZmHzKCJuwdvTzN8tVhAGPpMc8PEJpp0oyNjc50Gnly31-Oe4SqgukMfwWYpxhcx2vl"/>
+<div class="absolute top-4 right-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-tighter stamp-badge">
+                            Deal Applied
+                        </div>
+</div>
+<div class="px-4 pb-4">
+<h4 class="text-xl font-noto-serif text-primary mb-2">The Evening Calm Ritual</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-6">Soothe the senses before sleep with Ashwagandha tea and Lavender temple balms.</p>
+<div class="flex items-center justify-between">
+<div>
+<span class="block text-[10px] text-on-surface/40 line-through">LKR 6,200</span>
+<span class="text-lg font-bold text-secondary">LKR 5,200</span>
+</div>
+<button class="bg-secondary text-on-secondary w-10 h-10 rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Hand-picked suggestion -->
+<div class="bg-surface border-2 border-dashed border-outline-variant/30 rounded-xl p-8 flex flex-col items-center justify-center text-center space-y-4">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-fixed text-3xl">auto_fix_high</span>
+</div>
+<h4 class="text-xl font-noto-serif text-primary italic">Modify Your Ritual</h4>
+<p class="text-xs text-on-surface-variant">Prefer different scents or textures? Adjust your curated selection here.</p>
+<button class="border border-primary text-primary px-6 py-2 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-primary/5 transition-colors">
+                        Re-Curate
+                    </button>
+</div>
+</div>
+</section>
+<!-- Thrifty Tagline Footer Section -->
+<div class="bg-surface-container py-12 px-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden paper-texture">
+<div class="relative z-10">
+<h3 class="text-3xl font-noto-serif text-primary italic mb-2">The Heritage Promise</h3>
+<p class="text-on-surface-variant text-sm max-w-lg">Sourced from small-scale Sri Lankan farmers, bottled with clinical precision, and curated specifically for your biological clock.</p>
+</div>
+<div class="flex items-center gap-6 relative z-10">
+<div class="text-center">
+<span class="block text-3xl font-bold text-primary">100%</span>
+<span class="text-[10px] uppercase font-bold tracking-widest text-on-surface/40">Ethical Sourcing</span>
+</div>
+<div class="w-px h-12 bg-outline-variant/20"></div>
+<div class="text-center">
+<span class="block text-3xl font-bold text-primary">Fresh</span>
+<span class="text-[10px] uppercase font-bold tracking-widest text-on-surface/40">Batch Blended</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<div class="md:hidden">
+<div class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#fcf9f0] dark:bg-[#1c1c17] z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(28,28,23,0.04)] border-t border-[#c1c8c7]/15">
+<a class="flex flex-col items-center justify-center bg-[#2A5D5D] text-white rounded-xl px-5 py-2 scale-95 transition-transform duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Consult</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Rituals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Curations</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all" href="#">
+<span class="material-symbols-outlined">local_pharmacy</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Apothecary</span>
+</a>
+</div>
+</div>
+</body></html>

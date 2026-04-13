@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Confirmed | The Heritage Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#717878",
+                        "on-tertiary-fixed-variant": "#862116",
+                        "primary-container": "#1c5151",
+                        "surface-container-low": "#f6f3ea",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdad4",
+                        "primary": "#003a3a",
+                        "primary-fixed": "#b8ecec",
+                        "secondary-container": "#fd8a3e",
+                        "on-tertiary-fixed": "#410000",
+                        "tertiary": "#6a0b05",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e5e2da",
+                        "primary-fixed-dim": "#9dd0cf",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#31312b",
+                        "surface-variant": "#e5e2da",
+                        "on-primary-fixed": "#002020",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c1c8c7",
+                        "surface-tint": "#346666",
+                        "tertiary-container": "#8a2419",
+                        "surface": "#fcf9f0",
+                        "surface-dim": "#dddad1",
+                        "on-secondary-container": "#672c00",
+                        "on-surface": "#1c1c17",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#ebe8df",
+                        "on-primary-fixed-variant": "#194e4e",
+                        "inverse-on-surface": "#f4f1e8",
+                        "error": "#ba1a1a",
+                        "secondary": "#9a4600",
+                        "inverse-primary": "#9dd0cf",
+                        "on-tertiary-container": "#ffa091",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#f1eee5",
+                        "on-secondary-fixed-variant": "#763400",
+                        "on-secondary": "#ffffff",
+                        "background": "#fcf9f0",
+                        "surface-bright": "#fcf9f0",
+                        "on-secondary-fixed": "#321200",
+                        "on-surface-variant": "#414848",
+                        "on-primary-container": "#8fc2c2",
+                        "on-background": "#1c1c17",
+                        "secondary-fixed": "#ffdbc9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3, .serif { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .stamp-badge {
+            clip-path: polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f0]/80 dark:bg-stone-950/80 backdrop-blur-md shadow-[0_20px_40px_rgba(28,28,23,0.06)] flex justify-between items-center px-8 h-20 max-w-full">
+<div class="text-2xl font-bold font-['Noto_Serif'] text-[#1c1c17] dark:text-[#f1eee5]">Heritage Curator</div>
+<div class="hidden md:flex gap-8 items-center font-['Noto_Serif'] font-medium tracking-tight">
+<a class="text-[#1c1c17]/70 dark:text-[#f1eee5]/70 hover:text-[#2A5D5D] transition-colors ease-in-out duration-300 active:scale-95" href="#">Shop</a>
+<a class="text-[#1c1c17]/70 dark:text-[#f1eee5]/70 hover:text-[#2A5D5D] transition-colors ease-in-out duration-300 active:scale-95" href="#">Rituals</a>
+<a class="text-[#1c1c17]/70 dark:text-[#f1eee5]/70 hover:text-[#2A5D5D] transition-colors ease-in-out duration-300 active:scale-95" href="#">Offers</a>
+<a class="text-[#1c1c17]/70 dark:text-[#f1eee5]/70 hover:text-[#2A5D5D] transition-colors ease-in-out duration-300 active:scale-95" href="#">About</a>
+</div>
+<div class="flex gap-6 items-center text-[#2A5D5D] dark:text-[#4fa3a3]">
+<button class="hover:bg-[#f1eee5] dark:hover:bg-stone-800 transition-all duration-300 p-2 rounded-full active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="hover:bg-[#f1eee5] dark:hover:bg-stone-800 transition-all duration-300 p-2 rounded-full active:scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+<main class="flex-grow pt-32 pb-20 px-6 max-w-5xl mx-auto w-full">
+<!-- Confirmation Header -->
+<div class="text-center mb-16">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-container text-on-primary-container mb-6 shadow-sm">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Your Ritual is Secured</h1>
+<p class="text-on-surface-variant max-w-md mx-auto leading-relaxed">Your curation has been processed with the utmost care. A confirmation email is on its way to your sanctuary.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Order Details -->
+<div class="lg:col-span-7 space-y-8">
+<!-- Status Bento Card -->
+<section class="bg-surface-container-low p-8 rounded-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-5 translate-x-10 -translate-y-10">
+<span class="material-symbols-outlined text-9xl">verified_user</span>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between gap-6 relative z-10">
+<div>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Order Reference</p>
+<p class="text-xl font-bold font-headline text-primary">#HC-882941-24</p>
+</div>
+<div>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Delivery Timeline</p>
+<p class="text-xl font-medium text-on-surface">3-5 Business Days</p>
+<p class="text-sm text-on-surface-variant italic">Estimated: Nov 14 — Nov 16</p>
+</div>
+</div>
+</section>
+<!-- Product Summary -->
+<section class="space-y-6">
+<h2 class="text-2xl font-bold text-primary border-b border-outline-variant/15 pb-4">Order Summary</h2>
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="flex gap-6 items-center p-4 rounded-lg bg-surface-container-lowest transition-colors hover:bg-surface-container-high group">
+<div class="w-24 h-24 rounded-md overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="Apothecary bottle" class="w-full h-full object-cover mix-blend-multiply" data-alt="minimalist glass apothecary bottle with amber liquid on a soft cream background with elegant shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDodDChdR7cI9e5YHCKcRwqIHbtDwqS1Tv-Sem-Y4g1WSQJ-f82NHtuEd-b8pUJBqy1s9aMa9kpXJKTjNLbqgcpwhJk_N873dWytLTc0OaJYWXQHcf5FOE8C8shYNJokYr68Gr-8MBxrccpd5v6q1ONcaiiDNSYPhlEaHSmyUkds0slES7lybjh50HuGFZHa3MO4YGEPnpDlQJm3qFn1fDJm0vp-hBNOu57SLpNm_RwhqgDjycNE3WQ0uGOXOITekSCwQIj55YYazm3"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold font-headline leading-tight">Sandals &amp; Vetiver Restorative Oil</h3>
+<p class="font-bold text-primary">LKR 4,200</p>
+</div>
+<p class="text-sm text-on-surface-variant mb-2">100ml • Ritual Grade</p>
+<span class="bg-tertiary-container text-white text-[10px] uppercase font-bold tracking-tighter px-3 py-1 rounded-sm stamp-badge">Clearance</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-6 items-center p-4 rounded-lg bg-surface-container-lowest transition-colors hover:bg-surface-container-high group">
+<div class="w-24 h-24 rounded-md overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="Incense set" class="w-full h-full object-cover mix-blend-multiply" data-alt="premium handcrafted incense sticks and ceramic holder on a textured linen surface with soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCZm0zM71PPOYQEgf4XMGd3K0uGdJh8LHlN1ALFzD7CtGSm426xeOuRDQ-NuW2RJW_LO6XgRMFW1Tok--LuN0InF3sEOfoKPaGK-_o5-3FeA-_ZfyBCITg0IyiqeO2ozcPKmcRYlxUiNhPeiUxOy8xY5QLTGYK2kafhPIG8fxGaMMDHJnWdKGAOOgTIK9FjxGISvZotzt4fG9ORTUiHxdyZFWECW_hvkkbeaeZzaC_BYsFlXD5NQ1C_6a-XbPkl1e-FEKxdy3ikJ-6"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold font-headline leading-tight">Sacred Smoke Incense Set</h3>
+<p class="font-bold text-primary">LKR 2,850</p>
+</div>
+<p class="text-sm text-on-surface-variant mb-2">Ceramic Base + 24 Sticks</p>
+<span class="bg-tertiary-container text-white text-[10px] uppercase font-bold tracking-tighter px-3 py-1 rounded-sm stamp-badge">Special Offer</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Totals and Authenticity -->
+<aside class="lg:col-span-5 space-y-8">
+<div class="bg-surface-container p-8 rounded-xl shadow-[0_20px_40px_rgba(28,28,23,0.06)] border border-outline-variant/5">
+<h2 class="text-xl font-bold font-headline mb-6 text-primary">Financial Summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Subtotal</span>
+<span class="font-medium">LKR 7,050</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Shipping (Insured)</span>
+<span class="font-medium">LKR 450</span>
+</div>
+<div class="flex justify-between text-sm text-on-tertiary-fixed-variant">
+<span>Clearance Discount</span>
+<span class="font-bold">- LKR 1,200</span>
+</div>
+<div class="pt-4 border-t border-outline-variant/20 flex justify-between items-end">
+<span class="text-lg font-bold font-headline">Total</span>
+<div class="text-right">
+<span class="block text-2xl font-bold text-primary">LKR 6,300</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-widest">Taxes Included</span>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface-container-high rounded border border-dashed border-outline-variant/30 text-center">
+<p class="font-['Noto_Serif'] italic text-primary text-sm mb-1">Thank you for choosing authenticity</p>
+<p class="text-[11px] text-on-surface-variant leading-relaxed">Your patronage supports traditional artisans and sustainable sourcing practices in the island.</p>
+</div>
+<div class="mt-8">
+<a class="block w-full text-center bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 rounded-md font-bold text-sm tracking-wide transition-all hover:opacity-90 active:scale-[0.98] duration-300 shadow-sm" href="#">
+                            Return to Curation
+                        </a>
+</div>
+</div>
+<!-- Support Anchor -->
+<div class="flex items-center gap-4 px-4">
+<span class="material-symbols-outlined text-secondary" data-icon="support_agent">support_agent</span>
+<div>
+<p class="text-sm font-bold text-primary">Need assistance?</p>
+<p class="text-xs text-on-surface-variant">Our curators are available via chat or at care@heritagecurator.com</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f1eee5] dark:bg-stone-900 w-full py-12 px-8 border-t border-[#c1c8c7]/15">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
+<div>
+<div class="font-['Noto_Serif'] italic text-lg text-[#1c1c17] dark:text-[#f1eee5] mb-2">The Heritage Curator</div>
+<p class="font-['Manrope'] text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60">© 2024 The Heritage Curator. Crafted with intention.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
+<a class="font-['Manrope'] text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300" href="#">Terms of Service</a>
+<a class="font-['Manrope'] text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300" href="#">Authenticity Guarantee</a>
+<a class="font-['Manrope'] text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300" href="#">Shipping &amp; Returns</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;0,900;1,400&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#6a0b05",
+                    "on-tertiary-container": "#ffa091",
+                    "on-surface-variant": "#414848",
+                    "primary-fixed-dim": "#9dd0cf",
+                    "secondary-fixed-dim": "#ffb68d",
+                    "background": "#fcf9f0",
+                    "surface-tint": "#346666",
+                    "primary": "#003a3a",
+                    "surface-container": "#f1eee5",
+                    "inverse-on-surface": "#f4f1e8",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#321200",
+                    "surface": "#fcf9f0",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#c1c8c7",
+                    "inverse-primary": "#9dd0cf",
+                    "surface-variant": "#e5e2da",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#8fc2c2",
+                    "primary-fixed": "#b8ecec",
+                    "surface-dim": "#dddad1",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#1c1c17",
+                    "secondary-fixed": "#ffdbc9",
+                    "surface-container-low": "#f6f3ea",
+                    "on-primary-fixed-variant": "#194e4e",
+                    "on-error": "#ffffff",
+                    "on-background": "#1c1c17",
+                    "surface-bright": "#fcf9f0",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#763400",
+                    "tertiary-fixed": "#ffdad4",
+                    "outline": "#717878",
+                    "on-tertiary-fixed-variant": "#862116",
+                    "inverse-surface": "#31312b",
+                    "surface-container-highest": "#e5e2da",
+                    "primary-container": "#1c5151",
+                    "secondary-container": "#fd8a3e",
+                    "on-primary-fixed": "#002020",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ffb4a8",
+                    "surface-container-high": "#ebe8df",
+                    "tertiary-container": "#8a2419",
+                    "secondary": "#9a4600",
+                    "on-secondary-container": "#672c00",
+                    "on-tertiary-fixed": "#410000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.stamp-badge {
+    clip-path: polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)
+    }
+.paper-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBko4IOkB7i0oOY91Q9GMcwV8Jkz7jOHsNHqJMnPbtWo-4K4VF5ZLW2UWuFqw83xLhwSh0RZjnG9g48PANPO-vt09mK6YWMVs-Epq8kLYGsFAgmUfXHc_13YttLspecl7vcaDjf4b5oteaffxPZyXE3nk91JzEy2jp8SlHMXcOOYsapgOwpvlYr4o2cJrIBhONqW8mDHeiXpBLVvSFTo6DbZHLrXq9iysp0z9agC4gONCO66EZjYsxVg-eDFkqBMOiFe8nzGakGk_px)
+    }</style>
+</head>
+<body class="bg-background font-body text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f0]/80 dark:bg-[#1c1c17]/80 backdrop-blur-md shadow-[0_20px_40px_rgba(28,28,23,0.06)] h-20 flex justify-between items-center px-8 w-full">
+<div class="text-2xl font-['Noto_Serif'] font-black text-[#1c1c17] dark:text-[#fcf9f0]">Heritage Curator</div>
+<div class="hidden md:flex space-x-8 font-['Noto_Serif'] font-bold tracking-tight">
+<a class="text-[#2A5D5D] border-b-2 border-[#2A5D5D] pb-1 transition-colors duration-300" href="#">Rituals</a>
+<a class="text-[#1c1c17]/70 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Apothecary</a>
+<a class="text-[#1c1c17]/70 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Heritage</a>
+<a class="text-[#1c1c17]/70 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Journal</a>
+</div>
+<div class="flex items-center space-x-6 text-[#2A5D5D]">
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform" data-icon="shopping_bag">shopping_bag</span>
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform" data-icon="person">person</span>
+</div>
+</nav>
+<!-- Main Content Shell -->
+<div class="pt-20 flex min-h-screen">
+<!-- SideNavBar (The Ritual Builder) -->
+<aside class="h-full w-80 fixed left-0 flex flex-col py-10 px-6 space-y-8 bg-surface-container border-r-0 z-40 hidden lg:flex">
+<div class="mb-4">
+<h2 class="font-['Noto_Serif'] italic text-secondary text-lg">The Ritual Builder</h2>
+<p class="font-['Manrope'] text-xs uppercase tracking-widest text-on-surface/60">Curating your personal care</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center space-x-4 py-3 px-4 bg-surface-variant text-primary font-bold rounded-r-full scale-95 duration-500" href="#">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+<span class="font-['Manrope'] text-sm uppercase tracking-widest">Hair Ritual</span>
+</a>
+<a class="flex items-center space-x-4 py-3 px-4 text-on-surface/60 hover:bg-surface-variant/50 transition-colors rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="face_6">face_6</span>
+<span class="font-['Manrope'] text-sm uppercase tracking-widest">Skin Ritual</span>
+</a>
+<a class="flex items-center space-x-4 py-3 px-4 text-on-surface/60 hover:bg-surface-variant/50 transition-colors rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-['Manrope'] text-sm uppercase tracking-widest">Fragrance</span>
+</a>
+<a class="flex items-center space-x-4 py-3 px-4 text-on-surface/60 hover:bg-surface-variant/50 transition-colors rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-['Manrope'] text-sm uppercase tracking-widest">Your Selection</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-outline-variant/15 space-y-4">
+<div class="bg-primary-container p-4 rounded-lg text-on-primary shadow-sm">
+<p class="text-[10px] uppercase tracking-widest opacity-80 mb-1">Bundle Progress</p>
+<div class="h-1 bg-surface/20 rounded-full mb-3">
+<div class="h-1 bg-secondary-fixed w-2/3 rounded-full"></div>
+</div>
+<p class="font-headline text-sm italic">Add 1 more for 15% off</p>
+</div>
+<button class="w-full bg-secondary text-on-secondary font-bold py-3 px-6 rounded-md uppercase tracking-widest text-xs hover:bg-on-secondary-container transition-colors duration-300">
+                    Complete Ritual
+                </button>
+</div>
+<div class="space-y-4 pt-4">
+<a class="flex items-center space-x-3 text-xs font-light text-on-surface/70 hover:text-secondary" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="loyalty">loyalty</span>
+<span>Subscription Benefits</span>
+</a>
+<a class="flex items-center space-x-3 text-xs font-light text-on-surface/70 hover:text-secondary" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span>
+<span>Help</span>
+</a>
+</div>
+</aside>
+<!-- Product Canvas -->
+<main class="lg:ml-80 flex-1 px-8 lg:px-16 py-12">
+<!-- Header Section -->
+<header class="mb-12 max-w-4xl">
+<h1 class="font-headline text-5xl font-black text-primary leading-tight mb-4">Hair Ritual Collection</h1>
+<p class="text-on-surface-variant font-body max-w-2xl leading-relaxed">
+                    Rooted in Ayurvedic tradition and refined for the modern eye. Select your foundation, nourishment, and finish to curate a ritual that honors your heritage.
+                </p>
+</header>
+<!-- Editorial Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 mb-20">
+<!-- Product Card 1 -->
+<article class="group relative bg-surface-container-low hover:bg-surface-container-high transition-colors duration-500 rounded-sm">
+<div class="absolute top-4 right-4 z-10">
+<div class="bg-tertiary text-on-secondary text-[10px] font-bold px-3 py-1 uppercase tracking-[0.2em] stamp-badge">Bargain Find</div>
+</div>
+<div class="aspect-[4/5] overflow-hidden bg-surface-variant/30 p-8 flex items-center justify-center">
+<img alt="Luxury Hair Oil" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" data-alt="Minimalist glass bottle of hair oil on a textured stone surface with soft morning light and long shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvo_nOCMI0_jQeSaO86dMIyvdCl1sWJqc6_2THuR4PsVRm0mBYUXYL1V-6Twoxd3kclGYIV2ELnmkM7mAQ_lLKFrN1VWhJXRuEvsVVXIdN3ru__9oNdkqhUfH1UtKu6oYp6adsJqRjK8Z4S1NuMJjGkmKUNwXsVKPfMok1YH56i5MQaf4cbfoipQ1AH5FDtp7QLyKzXPcalIOyKmbQe5kHoOaCsFsCWTALSSO2CABrUhD7ZoDwiw81BnBf7um9xvVoZD1zH_UwzwhX"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl text-primary leading-none">Vata Balance Oil</h3>
+<span class="font-body text-sm font-semibold text-secondary">LKR 4,200</span>
+</div>
+<p class="text-xs text-on-surface-variant/80 font-light mb-6">Sesame &amp; Gotu Kola infusion for scalp revitalization.</p>
+<button class="w-full py-3 text-[10px] uppercase tracking-widest border border-primary/10 hover:border-secondary hover:text-secondary transition-all font-bold">Add to Ritual</button>
+</div>
+</article>
+<!-- Product Card 2 (Asymmetric Span) -->
+<article class="group relative bg-surface-container-low hover:bg-surface-container-high transition-colors duration-500 rounded-sm">
+<div class="aspect-[4/5] overflow-hidden bg-surface-variant/30 p-8 flex items-center justify-center">
+<img alt="Ayurvedic Shampoo" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" data-alt="Organic hair cleanser in a ceramic bottle placed next to a single jasmine flower on a linen cloth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNLnMhpVgwQKKKJNbhcz8Evqob_AnCdMkL6dL6iHFN_4c_LVa5V8OaOQEfy0Qbo3p98RQqR3Qsfd0Jl_beOjzPfdKappUuKn6f5Ke37VPNDHeKnx588GuKfw9GRPspZwV-arky1x9gLnLD2llS0lXfAiTnf0Eugi-c6GcVXN-yGVFYDK6VeZ7Vd2iKAYF1LwizXQdCgWQTjdKb9rQ9Jp74gcZET8tQV3DqPg1eR6F9Ks_nvgPb5MNFfEBENH4E0NSt0jelThAs9dn0"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl text-primary leading-none">Hibiscus Cleanser</h3>
+<span class="font-body text-sm font-semibold text-secondary">LKR 3,850</span>
+</div>
+<p class="text-xs text-on-surface-variant/80 font-light mb-6">Gentle sulfate-free lather with natural saponins.</p>
+<button class="w-full py-3 text-[10px] uppercase tracking-widest border border-primary/10 hover:border-secondary hover:text-secondary transition-all font-bold">Add to Ritual</button>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="group relative bg-surface-container-low hover:bg-surface-container-high transition-colors duration-500 rounded-sm">
+<div class="absolute top-4 left-4 z-10">
+<span class="font-headline italic text-[11px] text-on-surface-variant bg-white/40 backdrop-blur-sm px-2 py-1 rounded">Best for Dry Hair</span>
+</div>
+<div class="aspect-[4/5] overflow-hidden bg-surface-variant/30 p-8 flex items-center justify-center">
+<img alt="Nourishing Mask" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" data-alt="Rich white hair cream in a dark amber jar with a wooden spatula resting on top, soft focus greenery behind" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUZDmo-OxlQVMZzhQBdhd5wkARMqZ04tAelIVgjUy_qJCjo34bD3Tq9TJ1xeoezbs-6pNepj9CKP5wVc4aXeKKesQpTTABppF0yBBLKJL2pYKM6xNu_nnEba4gvwFu-8pYHUOz4WlfacajQavD7WwDMys2MfnKHjp4uL4xpjlc7h0kk-zns9fDGkfkcRinSkZRZxNr1rCw33mUmp6sGnVNRL8qR-MixLzoxTi_hsWgAvu9XKgLzuT_gLxbjnVPLYtaH7OVLoOoolvx"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl text-primary leading-none">Coconut Milk Mask</h3>
+<span class="font-body text-sm font-semibold text-secondary">LKR 5,100</span>
+</div>
+<p class="text-xs text-on-surface-variant/80 font-light mb-6">Deep conditioning treatment for tropical humidity.</p>
+<button class="w-full py-3 text-[10px] uppercase tracking-widest border border-primary/10 hover:border-secondary hover:text-secondary transition-all font-bold">Add to Ritual</button>
+</div>
+</article>
+<!-- Product Card 4 -->
+<article class="group relative bg-surface-container-low hover:bg-surface-container-high transition-colors duration-500 rounded-sm">
+<div class="aspect-[4/5] overflow-hidden bg-surface-variant/30 p-8 flex items-center justify-center">
+<img alt="Herbal Scalp Serum" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" data-alt="Small serum bottle with a dropper showing clear liquid against a soft sand-colored background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPXqbZ1p5mKKivsZpI9Ljid0GR6XLCaNp8rBssqaT1bjgJCJBF6CyhrmoQkkERa7KcohnwCMt8NXUzSbNRJkpcOCznV2v4rnnLwCw1BHG1i5jsGo3ed7DvZE4dQH2P4GB5uBW34A_wdTq1f9iga-g6rnzXl0FrnhyzvjUke8VVVXPHtuwBuIMUMxF2P9nlSQtzZKkMveIcpRTiDP_GrqXuHzO_7slR7f8JKaseWxPb-8OB6gRKF3RRAAPfohWLDi6p4JoZglE8zV3W"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl text-primary leading-none">Neem Scalp Elixir</h3>
+<span class="font-body text-sm font-semibold text-secondary">LKR 4,600</span>
+</div>
+<p class="text-xs text-on-surface-variant/80 font-light mb-6">Intensive serum for balanced scalp health.</p>
+<button class="w-full py-3 text-[10px] uppercase tracking-widest border border-primary/10 hover:border-secondary hover:text-secondary transition-all font-bold">Add to Ritual</button>
+</div>
+</article>
+</section>
+<!-- Curator's Note (Graceful Secondary Section) -->
+<section class="mt-32 p-16 bg-surface-container-high border-t border-outline-variant/10 flex flex-col md:flex-row gap-12 items-center rounded-xl paper-texture shadow-sm">
+<div class="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 grayscale opacity-80 border-4 border-surface">
+<img alt="Curator" class="w-full h-full object-cover" data-alt="Sophisticated portrait of a woman with grey hair in a minimalist silk blouse, natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1B81cycUiLrWgg7sUTgqFNXZ1ZGYKXamCshoR2fcS5e8KHEb3zioj4AeY--p68CMaCISeDwORROYgxyMbCWge8CH_EePNQ6zBasEs282M9efCuWBg021Led_tsaxkAEzuIrzSTVuqcSI5MK-VR1WePtGirmu61nmjGzKT2AfskYhz0z2Aa7YCbnjmNEVarpO5qMfftxcynvOeqWo_lFiENaVvHSWmkkqaODtZ10zT-bjJVYasmKD6ixz_BQebbqHqZFHsSsay7xIP"/>
+</div>
+<div class="flex-1">
+<span class="font-headline italic text-secondary text-sm block mb-2">A Note from the Curator</span>
+<h4 class="font-headline text-2xl text-primary mb-4">Honoring the Routine</h4>
+<p class="text-on-surface-variant leading-relaxed italic text-sm md:text-base">
+                        "Luxury is not found in the price, but in the time we take to honor ourselves. These formulas are sourced from generational growers across the island, ensuring that your thrifty choices never compromise on the sacredness of the ritual."
+                    </p>
+<p class="mt-4 font-headline text-sm font-bold text-primary">— Dr. Amara Silva</p>
+</div>
+</section>
+</main>
+<!-- Your Selection (High-end Summary Panel) -->
+<section class="w-96 bg-white hidden xl:flex flex-col border-l border-outline-variant/10 shadow-[-10px_0_30px_rgba(28,28,23,0.03)] z-40 h-screen sticky top-0 overflow-y-auto">
+<div class="p-8 pb-4">
+<h2 class="font-headline text-2xl text-primary mb-1">Your Ritual</h2>
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface/50">Selections so far</p>
+</div>
+<div class="flex-1 px-8 space-y-8 overflow-y-auto py-4">
+<!-- Selection Item -->
+<div class="flex gap-4 group">
+<div class="w-16 h-20 bg-surface-container-low flex-shrink-0 p-2 overflow-hidden">
+<img alt="Selection" class="w-full h-full object-contain mix-blend-multiply" data-alt="Small bottle of hair oil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfoPsKn3V870fbV4xd2Rezgc1XvKt7MGf2UCH6O69SMl8Df4UzdLgWnVyhnib-DjJz8KnKEYDJW7QZkC9BkdkWV9cdWxkHkKhUtI5bHAf1UAtEG5Sejroxkjcr6xl-udsI0Q_VG4ZFxsUgc_LID43gjj-beEhgHTWKntu4Axjlae7Gs1AaxITpiebc-FR8bar85Niqrd4_erHfFMb401FW8zpnyLMAyAMSoB7g5pPBY44utxHRBALvAVJPnT_z-9ne66vvdCvlk1P-"/>
+</div>
+<div class="flex-1 border-b border-outline-variant/10 pb-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-xs font-bold text-primary uppercase tracking-wider">Vata Balance Oil</h4>
+<button class="text-on-surface/30 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+<p class="text-[10px] text-on-surface/60 mb-2">100ml / Ritual Foundation</p>
+<span class="text-xs font-semibold text-secondary">LKR 4,200</span>
+</div>
+</div>
+<!-- Selection Item -->
+<div class="flex gap-4 group">
+<div class="w-16 h-20 bg-surface-container-low flex-shrink-0 p-2 overflow-hidden">
+<img alt="Selection" class="w-full h-full object-contain mix-blend-multiply" data-alt="Ceramic shampoo bottle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf9Gggh2tG5vKP9P52VGQVlRgekL9wPab2mrr2L2S_hpgIdTVBcxlCfEi-nczzseZMNaO_tWSraWUc975CrGa2bjoGM5aiS3_2dekTqkO5jl-dBFQs-Kg_T22lBLt1FRwy8DbmAOVvAcJ6OeGVcfRVdOCT4RQbU0fewMpMMIF6L4AALmVE_Sk1tGJKQLGtbMirV_KScsodU8bBxKZRm7Vy_FGPXR2KjxGahPk7l0RyeWzSJEYmTruas2nZg0SU8YLaQvRc7LdA9cWN"/>
+</div>
+<div class="flex-1 border-b border-outline-variant/10 pb-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-xs font-bold text-primary uppercase tracking-wider">Hibiscus Cleanser</h4>
+<button class="text-on-surface/30 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+<p class="text-[10px] text-on-surface/60 mb-2">250ml / Gentle Purification</p>
+<span class="text-xs font-semibold text-secondary">LKR 3,850</span>
+</div>
+</div>
+<!-- Selection Item -->
+<div class="flex gap-4 group">
+<div class="w-16 h-20 bg-surface-container-low flex-shrink-0 p-2 overflow-hidden">
+<img alt="Selection" class="w-full h-full object-contain mix-blend-multiply" data-alt="Amber jar of hair mask" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWgebw0zMrkamRD4BqB9pjPw3bT4FD5Nb3pPgZUiOyQSO0YAHzcnvjLiHEOFc_xEPFfd4JPntfH21BauCZHzYF_mTNnAI7YRT3PSE57kQw4FRZPWHgqpt82p_TCFnlqGZijaJ0FXKetK0S_bgrGF21bczLlsqaQS9WBWD5vaL5r-MN-2LzRc7u46DcVXRVM7FsSzjIMNNxylykQspWIWT2M9tZgBYCTPXDRZJC84OgG2lopsFotgYOmv92AS0zcVb5kq-MHCpicJCm"/>
+</div>
+<div class="flex-1 border-b border-outline-variant/10 pb-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-xs font-bold text-primary uppercase tracking-wider">Coconut Milk Mask</h4>
+<button class="text-on-surface/30 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+<p class="text-[10px] text-on-surface/60 mb-2">200g / Deep Nourishment</p>
+<span class="text-xs font-semibold text-secondary">LKR 5,100</span>
+</div>
+</div>
+</div>
+<div class="p-8 bg-surface-container-low border-t border-outline-variant/20">
+<div class="space-y-3 mb-6">
+<div class="flex justify-between text-xs font-medium text-on-surface/60">
+<span>Subtotal</span>
+<span>LKR 13,150</span>
+</div>
+<div class="flex justify-between text-xs font-bold text-secondary">
+<span class="flex items-center">
+<span class="material-symbols-outlined text-xs mr-1" data-icon="auto_awesome">auto_awesome</span>
+                            Ritual Bundle Discount
+                        </span>
+<span>- LKR 1,972 (15%)</span>
+</div>
+<div class="pt-3 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="font-headline text-lg text-primary font-black">Total</span>
+<span class="font-headline text-xl text-primary font-black">LKR 11,178</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-primary-container transition-all shadow-md">
+                    Secure Checkout
+                </button>
+<p class="text-center text-[10px] text-on-surface/40 mt-4 italic font-light">Free delivery included with this ritual bundle.</p>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="bg-surface border-t-[0.5px] border-[#c1c8c7]/15 py-12">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8">
+<div class="text-[#2A5D5D] font-['Manrope'] text-xs font-light mb-6 md:mb-0">
+                © 2024 The Heritage Curator. Thrifty Luxury, Rooted in Tradition.
+            </div>
+<div class="flex flex-wrap justify-center gap-8 font-['Manrope'] text-xs font-light">
+<a class="text-[#1c1c17]/70 hover:text-[#D2691E] transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="text-[#1c1c17]/70 hover:text-[#D2691E] transition-colors duration-300" href="#">Sourcing Ethics</a>
+<a class="text-[#1c1c17]/70 hover:text-[#D2691E] transition-colors duration-300" href="#">Wholesale</a>
+<a class="text-[#1c1c17]/70 hover:text-[#D2691E] transition-colors duration-300 underline" href="#">Ritual Guide</a>
+</div>
+</div>
+</footer>
+</body></html>

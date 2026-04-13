@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile | The Heritage Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fcf9f0",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#9dd0cf",
+                        "surface-variant": "#e5e2da",
+                        "surface-container": "#f1eee5",
+                        "on-primary-fixed": "#002020",
+                        "secondary-container": "#fd8a3e",
+                        "tertiary-container": "#8a2419",
+                        "surface-tint": "#346666",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "surface-container-low": "#f6f3ea",
+                        "on-tertiary-fixed-variant": "#862116",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1c1c17",
+                        "tertiary": "#6a0b05",
+                        "surface-dim": "#dddad1",
+                        "on-primary-fixed-variant": "#194e4e",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fcf9f0",
+                        "secondary": "#9a4600",
+                        "secondary-fixed": "#ffdbc9",
+                        "surface-container-highest": "#e5e2da",
+                        "outline": "#717878",
+                        "inverse-on-surface": "#f4f1e8",
+                        "primary": "#003a3a",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#414848",
+                        "tertiary-fixed": "#ffdad4",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "on-tertiary-fixed": "#410000",
+                        "on-tertiary-container": "#ffa091",
+                        "on-background": "#1c1c17",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#8fc2c2",
+                        "on-secondary-fixed": "#321200",
+                        "primary-fixed": "#b8ecec",
+                        "on-secondary-container": "#672c00",
+                        "primary-fixed-dim": "#9dd0cf",
+                        "on-secondary-fixed-variant": "#763400",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1c5151",
+                        "background": "#fcf9f0",
+                        "inverse-surface": "#31312b",
+                        "outline-variant": "#c1c8c7",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#ebe8df"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        .stamp-badge {
+            clip-path: polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<div class="editorial-grain fixed inset-0 z-0"></div>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f0]/80 dark:bg-[#1c1c17]/80 backdrop-blur-md shadow-sm shadow-[#1c1c17]/5 transition-all duration-300">
+<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-serif tracking-tight text-[#2A5D5D] dark:text-[#fcf9f0] font-headline">The Heritage Curator</div>
+<div class="hidden md:flex space-x-8 font-['Noto_Serif'] font-medium">
+<a class="text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Rituals</a>
+<a class="text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Apothecary</a>
+<a class="text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Clearance</a>
+<a class="text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Legacy</a>
+</div>
+<div class="flex items-center space-x-6 text-[#2A5D5D]">
+<button class="material-symbols-outlined text-2xl hover:opacity-80 transition-opacity">shopping_bag</button>
+<button class="material-symbols-outlined text-2xl text-[#2A5D5D] border-b-2 border-[#2A5D5D] pb-1">person</button>
+</div>
+</div>
+<div class="bg-[#f1eee5] dark:bg-[#2a2a24] h-px"></div>
+</nav>
+<main class="relative z-10 pt-24 pb-32 max-w-7xl mx-auto px-6">
+<!-- Hero Profile Header -->
+<header class="flex flex-col md:flex-row items-center gap-8 mb-16">
+<div class="relative">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface-container-highest shadow-xl">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a refined man with short hair and a warm smile, soft natural morning light, high-end editorial aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXf0ORCQ62c_IuNDcTV3GJwNq-SphtbsSMo-wdgDDtVVIJ28ZG4-dqABpeCpcl7--Z3Xee2lYhVjhT3QkImUAsF7SQ26ytxNAelPqB1TJN7spXEPDL3l5vQPYtTUevE5yR88uN15ynTmeped2Isbs1f4ayQK7yznGiFM3PMToy9jFDAAmhPI7q9Iz6z3b-Rv4IesYmiICGidXjKvdD3uLJ7DPguRD-Hu-CiAEXkMtRhHx5xw4yn9uiA76UBsWidf4JlwiN0b-NOl6R"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-secondary text-on-secondary px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg">
+                    Elite
+                </div>
+</div>
+<div class="text-center md:text-left">
+<h1 class="text-4xl font-headline font-bold text-primary mb-1">Ananda Senanayake</h1>
+<p class="text-on-surface-variant font-medium tracking-tight">Curation Member since 2021 • Colombo, Sri Lanka</p>
+<div class="mt-4 flex flex-wrap justify-center md:justify-start gap-3">
+<span class="bg-surface-container px-4 py-1.5 rounded-full text-sm font-semibold text-primary-container">Gold Tier Membership</span>
+<span class="bg-surface-container px-4 py-1.5 rounded-full text-sm font-semibold text-primary-container">12,450 Ritual Points</span>
+</div>
+</div>
+</header>
+<!-- Bento Grid Sections -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Elite Member Status (Wide) -->
+<section class="md:col-span-8 bg-surface-container-low rounded-xl p-8 relative overflow-hidden group">
+<div class="relative z-10 h-full flex flex-col justify-between">
+<div>
+<h2 class="text-2xl font-headline text-primary mb-4">Elite Member Status</h2>
+<p class="text-on-surface-variant max-w-md mb-8">You are currently in the <span class="text-secondary font-bold">Lanka Heritage Gold</span> tier. Your next ritual discovery is waiting.</p>
+<div class="space-y-4">
+<div class="flex justify-between items-end mb-1">
+<span class="text-xs uppercase font-bold tracking-widest text-outline">Next Milestone: Platinum Curator</span>
+<span class="text-xs font-bold text-primary">85% Complete</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex gap-4">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-bold text-sm tracking-wide hover:opacity-90 transition-opacity">Redeem Ritual Rewards</button>
+<button class="text-primary font-bold text-sm underline decoration-primary/30 hover:decoration-primary transition-all">Tier Benefits</button>
+</div>
+</div>
+<div class="absolute right-0 top-0 w-1/3 h-full opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
+<span class="material-symbols-outlined text-[12rem] text-primary" style="font-variation-settings: 'wght' 100">workspace_premium</span>
+</div>
+</section>
+<!-- Quick Account Actions (Vertical) -->
+<section class="md:col-span-4 bg-primary-container text-on-primary-container rounded-xl p-8 flex flex-col justify-between">
+<h3 class="text-xl font-headline mb-6 text-on-primary-container/80">Account Insights</h3>
+<ul class="space-y-6">
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-fixed">verified_user</span>
+<div>
+<p class="text-sm font-bold">Identity Verified</p>
+<p class="text-xs opacity-70">Secured with 2FA</p>
+</div>
+</li>
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-fixed">payments</span>
+<div>
+<p class="text-sm font-bold">Primary Card</p>
+<p class="text-xs opacity-70">Visa ending in •••• 8821</p>
+</div>
+</li>
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-fixed">mail</span>
+<div>
+<p class="text-sm font-bold">Email</p>
+<p class="text-xs opacity-70">ananda.s@ceylon.com</p>
+</div>
+</li>
+</ul>
+<button class="mt-8 w-full border border-on-primary-container/20 py-3 rounded-lg text-sm font-bold hover:bg-on-primary-container/10 transition-colors">Edit Personal Profile</button>
+</section>
+<!-- Order Rituals (Order History) -->
+<section class="md:col-span-12 lg:col-span-7 bg-surface-container rounded-xl p-8">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-2xl font-headline text-primary">Order RitualS</h2>
+<a class="text-sm font-bold text-secondary uppercase tracking-widest" href="#">View All</a>
+</div>
+<div class="space-y-4">
+<!-- Order Item 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center gap-6 shadow-sm">
+<div class="w-16 h-16 bg-surface-container-low rounded-md flex-shrink-0">
+<img class="w-full h-full object-cover rounded-md" data-alt="Antique amber glass apothecary bottle with handcrafted label sitting on a textured paper surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjcZQJ_sn_94T-eSGO20Bt0UMVLxczpridD3340yasGf708_AaOz-T0IqHm6sjeZ53ilcy5TJXTe3PigC1g8-6o_v8n_-N0IK5b8nT_60vWtoEAcJyt0_2c1umsUrLzod8LzbRwFt7j2NsKrsl6I6DTP3viPy7N485OwtKdFpgTZg_4CFenUVcEgn9B_otVR7QhufkaZJnXXBsYCRx48wr3DtVT_zOvyfyG9cbiaMe-wxeZdsqxLiFF4gMz9HUrxnRRDUp4XAxdpnP"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<h4 class="font-bold text-primary">The Ceylon Night Elixir</h4>
+<span class="text-sm font-bold text-on-surface">LKR 8,450</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-2">Order #HC-29401 • Shipped Oct 12</p>
+<span class="inline-block bg-tertiary-container text-white px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter stamp-badge">Ritual Complete</span>
+</div>
+</div>
+<!-- Order Item 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center gap-6 shadow-sm opacity-80">
+<div class="w-16 h-16 bg-surface-container-low rounded-md flex-shrink-0">
+<img class="w-full h-full object-cover rounded-md" data-alt="Artisanal sandalwood soap bars wrapped in natural fiber twine with dried botanicals" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANKtpDcdV4sy0bTep1iynTi6Mpps3pKEORUVj0wLFBKaNz4WeqYAYNsEjmSuJZMCxzWblS5wuEjEtNNDHRS4UemuanSiJ7TBRkEpKGUR2ug5QpKZ0RLDGBJi70EAQHboe9jWWc0OKt9sOS7atMF8FndxvA0iCiGUbJw0h4KOcMfEQ6bJ0GBBQKUTrMUu3KNlLBq5tW8QZlYmlGqI-tL25jbfeLwgTyYaxyWJW04MhT21lW1foIpLRb6D8La0Sh8ypcfmfoxosJUMTx"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<h4 class="font-bold text-primary">Heritage Sandalwood Bar (Set of 3)</h4>
+<span class="text-sm font-bold text-on-surface">LKR 4,200</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-2">Order #HC-28119 • Delivered Sep 28</p>
+<span class="inline-block bg-primary/20 text-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter stamp-badge">Legacy Order</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Saved Apothecary (Wishlist) -->
+<section class="md:col-span-12 lg:col-span-5 bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/15">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-2xl font-headline text-primary">Saved Apothecary</h2>
+<span class="material-symbols-outlined text-secondary">favorite</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low rounded-lg mb-3 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Small brass incense burner with wisps of smoke in a dark, moody Sri Lankan temple setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaoOwL4twk5rPwoKK0aozWCUfkjxqxiKziBQFK7aKz9CXbuvxWkmqoZFakqqSIH58nEuF_qt97OI23uWhOdp0udVIY71hPwlOvxHtAd68KETdyPg93BLy2pEGe-t3YD8KSh15Wpiqsh_3LNWzqW7lFXmpQVlqKUqKqayCE7G4O3lbcqSaBSDDCDKgJp_N7HeXv4diW6KKuyTJN_BSLrprjriJNgBvGAk-Z8nguK84xoc896EBP1Dk1acnu3G8SXxYswg2kfBLwD3mv"/>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-outline mb-1">Rituals</p>
+<p class="text-sm font-headline font-bold text-primary leading-tight">Temple Incense Set</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low rounded-lg mb-3 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Handcrafted ceramic bowl with natural coconut oil and fresh tropical herbs on a wooden platter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc-HAJzsI7CwzBiWwkhByctatx8U3Xu040C1cHQAwQ-9EQmxnyNdC51Y2-M5G1O-sQmN639j8PbV1sL2uH8GCqKPRYM1-RiqYBFRXsLkIOOz5yBGRPR9afJKu4CpGy9qwIirHDFbF3ki1PgAm_bbC-OY-j8czNPIyPLiMoajxURt_z3bSAVFH3rz3xbbkK_W6W6vOa31UXOeG5_eMxxKQcI_omwXE88AB3Hi0W8OsiaoSSXM2gYfgyivhnChK82oI6nZJYMfpDYMRb"/>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-outline mb-1">Wellness</p>
+<p class="text-sm font-headline font-bold text-primary leading-tight">Virgin Coconut Hair Ritual</p>
+</div>
+</div>
+<button class="mt-8 w-full bg-secondary text-on-secondary py-3 rounded-lg text-sm font-bold tracking-widest uppercase hover:opacity-90 transition-opacity">Discovery My Collection</button>
+</section>
+<!-- Account Settings (Full Width) -->
+<section class="md:col-span-12 bg-surface-container-high rounded-xl overflow-hidden">
+<div class="p-8">
+<h2 class="text-2xl font-headline text-primary mb-8">Account SettingS</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="space-y-6">
+<h4 class="text-xs font-bold uppercase tracking-widest text-secondary">Preferences</h4>
+<div class="space-y-4">
+<label class="flex items-center justify-between cursor-pointer">
+<span class="text-sm font-medium">Newsletter Rituals</span>
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer">
+<span class="text-sm font-medium">Early Access Drops</span>
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</div>
+</label>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="text-xs font-bold uppercase tracking-widest text-secondary">Language &amp; Region</h4>
+<div class="space-y-4">
+<button class="w-full flex justify-between items-center text-sm font-medium border-b border-outline-variant/30 pb-2">
+<span>English (US)</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="w-full flex justify-between items-center text-sm font-medium border-b border-outline-variant/30 pb-2">
+<span>LKR - Sri Lankan Rupee</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<div class="space-y-6 flex flex-col justify-between">
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-secondary">Security</h4>
+<button class="mt-4 w-full text-left text-sm font-medium text-primary hover:underline">Change Password</button>
+<button class="mt-2 w-full text-left text-sm font-medium text-primary hover:underline">Manage Connected Devices</button>
+</div>
+<button class="mt-8 flex items-center justify-center gap-2 text-error font-bold text-sm tracking-widest uppercase hover:bg-error/5 py-2 rounded transition-colors border border-error/20">
+<span class="material-symbols-outlined text-sm">logout</span>
+                                Sign Out
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f1eee5] dark:bg-[#161612] w-full mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-12 border-t border-[#c1c8c7]/10 max-w-7xl mx-auto">
+<div class="flex flex-col gap-4">
+<div class="font-serif italic text-[#2A5D5D] text-xl">The Heritage Curator</div>
+<p class="font-['Manrope'] text-sm tracking-tight text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 max-w-sm">
+                    Preserving the essence of Sri Lankan wellness through modern curation and ancient wisdom.
+                </p>
+<p class="font-['Manrope'] text-xs text-[#1c1c17]/50 mt-4">© 2024 The Heritage Curator. Ceylon's Finest Apothecary.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-3 font-['Manrope'] text-sm">
+<a class="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] underline decoration-[#2A5D5D]/30 transition-all duration-300" href="#">Provenance</a>
+<a class="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] underline decoration-[#2A5D5D]/30 transition-all duration-300" href="#">Shipping</a>
+</div>
+<div class="flex flex-col gap-3 font-['Manrope'] text-sm">
+<a class="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] underline decoration-[#2A5D5D]/30 transition-all duration-300" href="#">Ritual Guide</a>
+<a class="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] underline decoration-[#2A5D5D]/30 transition-all duration-300" href="#">Privacy</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-[#fcf9f0] dark:bg-[#1c1c17] flex justify-around items-center px-4 py-3 pb-safe z-50 border-t border-[#c1c8c7]/15 shadow-[0_-4px_20px_rgba(28,28,23,0.04)] rounded-t-lg">
+<a class="flex flex-col items-center justify-center text-[#1c1c17]/50 dark:text-[#fcf9f0]/50 hover:opacity-80 transition-transform duration-200 scale-95" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-widest mt-1">Curator</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1c1c17]/50 dark:text-[#fcf9f0]/50 hover:opacity-80 transition-transform duration-200 scale-95" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-widest mt-1">Rituals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1c1c17]/50 dark:text-[#fcf9f0]/50 hover:opacity-80 transition-transform duration-200 scale-95" href="#">
+<span class="material-symbols-outlined">local_mall</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-widest mt-1">Bag</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#2A5D5D] text-[#fcf9f0] rounded-xl px-4 py-1.5 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

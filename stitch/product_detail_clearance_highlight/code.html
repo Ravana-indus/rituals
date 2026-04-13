@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#346666",
+                        "tertiary-container": "#8a2419",
+                        "secondary-container": "#fd8a3e",
+                        "background": "#fcf9f0",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e5e2da",
+                        "primary-fixed": "#b8ecec",
+                        "on-secondary-container": "#672c00",
+                        "outline-variant": "#c1c8c7",
+                        "primary-fixed-dim": "#9dd0cf",
+                        "on-tertiary-fixed-variant": "#862116",
+                        "secondary": "#9a4600",
+                        "on-background": "#1c1c17",
+                        "tertiary": "#6a0b05",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "primary": "#003a3a",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#321200",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#414848",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#31312b",
+                        "surface": "#fcf9f0",
+                        "surface-container-highest": "#e5e2da",
+                        "surface-container-low": "#f6f3ea",
+                        "on-primary-fixed": "#002020",
+                        "inverse-primary": "#9dd0cf",
+                        "tertiary-fixed": "#ffdad4",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#410000",
+                        "surface-container-high": "#ebe8df",
+                        "primary-container": "#1c5151",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#f1eee5",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#8fc2c2",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1c1c17",
+                        "secondary-fixed": "#ffdbc9",
+                        "inverse-on-surface": "#f4f1e8",
+                        "outline": "#717878",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "on-tertiary-container": "#ffa091",
+                        "on-primary-fixed-variant": "#194e4e",
+                        "on-secondary-fixed-variant": "#763400",
+                        "surface-dim": "#dddad1",
+                        "surface-bright": "#fcf9f0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3, .serif { font-family: 'Noto Serif', serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f0]/80 dark:bg-slate-900/80 backdrop-blur-md shadow-[0_20px_40px_rgba(28,28,23,0.06)] h-20 flex justify-between items-center px-8 max-w-full">
+<div class="text-2xl font-['Noto_Serif'] italic text-[#2A5D5D] dark:text-teal-500">Heritage Luxe</div>
+<div class="hidden md:flex items-center gap-8 font-['Noto_Serif'] font-semibold tracking-tight">
+<a class="text-[#1c1c17]/70 dark:text-slate-400 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Curation</a>
+<a class="text-[#2A5D5D] border-b-2 border-[#2A5D5D] pb-1 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Apothecary</a>
+<a class="text-[#1c1c17]/70 dark:text-slate-400 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Rituals</a>
+<a class="text-[#1c1c17]/70 dark:text-slate-400 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Archives</a>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-[#1c1c17]/70 dark:text-slate-400 hover:text-[#2A5D5D] transition-colors duration-300 font-semibold" href="#">Account</a>
+<button class="flex items-center text-[#2A5D5D]">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</nav>
+<main class="pt-28 pb-16 px-4 md:px-8 max-w-7xl mx-auto">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-xs uppercase tracking-widest text-on-surface-variant mb-8 font-medium">
+<a href="#">Apothecary</a>
+<span class="material-symbols-outlined text-[10px]" data-icon="chevron_right">chevron_right</span>
+<a href="#">Serums</a>
+<span class="material-symbols-outlined text-[10px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-bold">Clarifying Serum</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Gallery Section -->
+<div class="lg:col-span-7 flex flex-col-reverse md:flex-row gap-4">
+<div class="flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto no-scrollbar md:w-24 shrink-0">
+<button class="w-20 h-24 md:w-full md:h-32 rounded-lg overflow-hidden border-2 border-primary bg-surface-container-low flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of glass amber serum bottle with gold dropper resting on raw sandalwood block with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCohv4AQvpyE6kNMFsF2nWsuajz4uc1uBFH6vhWqKUqhhe6uhJJRQQZhMDQgw6AQHHQdI8cBaGEEOUXLhDOF3xNnvbB3axlHMep9tdiD7scdkUiasRigL3YXhAHDnaePXxB73AioRpeRiYXR6oyRvx-sMeK7h7NDWSrV76mNKc7nQuAHPxkpY8nKwlMFyAouQTlROOEhLcLZ_7Vr3o9pqCk6MjBOR6DS3r2LUs4-AvEfGH7-kxFvq9GsqrcSeJcBRNvtlDYcWEMZ2yZ"/>
+</button>
+<button class="w-20 h-24 md:w-full md:h-32 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0 opacity-60">
+<img class="w-full h-full object-cover" data-alt="Macro shot of golden viscous turmeric serum texture with small air bubbles on white marble background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn6kQm-P0xxIbK_8t--aObOuC6ImZJXHZJ7Rgz1brsi2wdbbcq7Cf9za0uKxKOMY9PbO4Ts8H7z4clDJfDzT339fN60GLlgdQUkYmQBpKQM2I3ygkX0w4oyTiH0aj0Ec-lGzMCo-Ra_M-IrgYJZyCFSHZlGmwjxSBpa3x4VfAXOKLNApXHjDZOAtnU3t_Gu1UDoTejZ1o7Sb1rjKsRjJKU9_8KqGaax3BgYkR6ZMXwbvlUIEi_gsj99O1IT8nc63VacbWKg_rigrc_"/>
+</button>
+<button class="w-20 h-24 md:w-full md:h-32 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0 opacity-60">
+<img class="w-full h-full object-cover" data-alt="Artisanal glass serum bottle held by hands against a background of lush tropical Sri Lankan foliage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf6o5kLg1bwLtfoALoQwKtTVEhO6Xo2EkBvuM8YTNTdg7839HablnHKD4Q_rXWg8n9SwTRhuL7ogbaDHLVyggM3yxs-ABRMsaqU6QJQGUabIdd6JdLLqV1OqfyFgeTQQ_KeGgNb8Hyt1wpoZ7iR9Zop0_RIym__IOBvLLy3-nxHbIbBrx9Zhn0YOIHNp_eOEKkOhRg3fCCCYtzlfAIseuqD0EIYQPG6HNjAioZ9m7UL4d_EvEhTgXJ0zjMGH09JLPUzxUakI9SLmYv"/>
+</button>
+</div>
+<div class="flex-grow aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low relative">
+<img class="w-full h-full object-cover" data-alt="Aesthetic hero shot of the Royal Sandalwood &amp; Turmeric Serum on a textured paper surface with dramatic architectural shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDavrBnwdzQ3C1LcXmtY3D20vreNl3DUU8U7qb18eKjtRwsYmxlBXgnPdQ3mjWFbH10WiwUZS7Jhwc64s8xYzh9iUCycJcb6Lev-rh7bRJ18RhzAe-FOdXWrBGp1e2Pc2MoBizkNnT-Tdu0a2zH3mZoriBOxk7UZw3JRMx31qr2oboDjwimrwStMlb2pRFswb9FYftD_x2W-cIc1JOCy8usJnI8Bt5XqHeH_9ojJN0zLlocOhTN9Ff91mxDOWLwEcRfJ-KwHDiIFaO3"/>
+<!-- Stamp Badge -->
+<div class="absolute top-6 right-6 bg-tertiary text-on-tertiary py-3 px-5 rounded-full flex flex-col items-center justify-center transform rotate-12 shadow-2xl border-2 border-tertiary-fixed-dim">
+<span class="text-[10px] uppercase font-bold tracking-tighter">Clearance Steal</span>
+<span class="text-xl font-headline italic">-30%</span>
+</div>
+</div>
+</div>
+<!-- Product Details Section -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-3">
+<span class="bg-tertiary text-on-tertiary text-[11px] px-3 py-1 rounded-full font-black uppercase tracking-[0.2em] shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="local_fire_department">local_fire_department</span>
+                            Clearance Steal
+                        </span>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] px-2 py-1 rounded font-bold uppercase tracking-widest">Heritage Batch</span>
+<span class="text-on-surface-variant text-xs uppercase tracking-widest">SKU: H-SAN-SER-30</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-bold leading-tight text-primary mb-2">Royal Sandalwood &amp; Turmeric Clarifying Serum</h1>
+<p class="text-lg italic serif text-on-surface-variant">The Heritage Curator Apothecary</p>
+</div>
+<div class="space-y-1">
+<div class="flex items-baseline gap-4">
+<span class="text-4xl font-black text-secondary">LKR 8,500</span>
+<span class="text-xl text-on-surface-variant/60 line-through">LKR 12,000</span>
+</div>
+<p class="text-sm font-bold text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="sell">sell</span>
+                        Lowest Price in Sri Lanka: Compare at LKR 12,000 — Save 30%
+                    </p>
+</div>
+<div class="p-5 bg-error-container/30 border border-error/20 rounded-xl flex items-center gap-4">
+<div class="w-4 h-4 bg-error rounded-full animate-pulse shadow-[0_0_10px_rgba(186,26,26,0.5)]"></div>
+<div class="flex flex-col">
+<p class="text-sm font-black text-error uppercase tracking-wider">Limited Clearance Stock</p>
+<p class="text-xs text-on-error-container">Only 4 units left at this special clearance price. Once gone, it will return to full price.</p>
+</div>
+</div>
+<!-- Variant Selectors -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Select Ritual Size</label>
+<a class="text-xs underline text-primary" href="#">Sizing Guide</a>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 py-3 px-4 border-2 border-primary bg-primary-container/10 text-primary font-bold rounded-lg transition-all">30ml</button>
+<button class="flex-1 py-3 px-4 border-2 border-outline-variant text-on-surface-variant font-bold rounded-lg hover:border-primary transition-all">50ml</button>
+</div>
+</div>
+<!-- High Urgency Callouts -->
+<div class="flex flex-col gap-2 p-4 bg-surface-container rounded-lg">
+<div class="flex items-center gap-3 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="visibility">visibility</span>
+<span class="font-medium">8 people are viewing this clearance deal right now</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="schedule">schedule</span>
+<span class="font-medium">Flash Deal Ends In: <span class="font-bold text-tertiary-container tabular-nums">04:22:15</span></span>
+</div>
+</div>
+<!-- Authenticity Block -->
+<div class="p-6 bg-primary-fixed/30 border border-primary/10 rounded-2xl">
+<div class="flex items-center gap-3 mb-4">
+<div class="bg-primary text-on-primary p-2 rounded-lg">
+<span class="material-symbols-outlined text-2xl" data-icon="verified_user">verified_user</span>
+</div>
+<h3 class="font-bold uppercase tracking-widest text-primary text-sm">100% Authenticity Guaranteed</h3>
+</div>
+<p class="text-xs leading-relaxed text-on-surface-variant mb-4">
+<span class="font-bold text-primary">Why our prices are lower:</span> We utilize direct ethical sourcing from local Sri Lankan artisans and manage clearance stock batches. You receive the exact same high-quality, authentic heritage formula at a fraction of the boutique price.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-primary/5">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="verified">verified</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Authenticity Verified</span>
+</div>
+<div class="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-primary/5">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="eco">eco</span>
+<span class="text-[10px] font-black uppercase tracking-tighter">Ethically Sourced</span>
+</div>
+</div>
+</div>
+<!-- Subscribe & Save Section -->
+<div class="space-y-4">
+<div class="space-y-3">
+<!-- One Time Purchase -->
+<label class="relative flex items-center p-4 border-2 border-outline-variant rounded-xl cursor-pointer hover:border-primary/50 transition-all group">
+<input checked="" class="w-4 h-4 text-primary focus:ring-primary border-outline-variant" name="purchase_type" type="radio" value="one-time"/>
+<div class="ml-4 flex-grow">
+<div class="flex justify-between items-center">
+<span class="font-bold text-sm uppercase tracking-widest">One-time Clearance Buy</span>
+<span class="font-bold">LKR 8,500</span>
+</div>
+</div>
+</label>
+<!-- Subscribe & Save -->
+<label class="relative flex flex-col p-4 border-2 border-primary bg-primary/5 rounded-xl cursor-pointer transition-all">
+<div class="flex items-center">
+<input class="w-4 h-4 text-primary focus:ring-primary border-primary" name="purchase_type" type="radio" value="subscribe"/>
+<div class="ml-4 flex-grow">
+<div class="flex justify-between items-center">
+<span class="font-bold text-sm uppercase tracking-widest text-primary">Subscribe &amp; Save More</span>
+<div class="flex flex-col items-end">
+<span class="font-bold text-primary">LKR 7,225</span>
+<span class="text-[10px] text-tertiary-container font-bold uppercase tracking-tighter">Extra 15% Off Clearance</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Frequency Selector -->
+<div class="mt-4 pl-8">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Deliver every</label>
+<select class="w-full bg-transparent border-none border-b border-primary/30 text-sm font-serif italic focus:ring-0 focus:border-primary py-1 px-0">
+<option>Every 1 month (Recommended)</option>
+<option>Every 2 months</option>
+<option>Every 3 months</option>
+</select>
+</div>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full py-5 px-8 rounded-lg bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold text-lg tracking-wide uppercase shadow-xl hover:shadow-primary/20 transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="spa" data-weight="fill">spa</span>
+                        Add to Ritual
+                    </button>
+<p class="text-[10px] text-center text-on-surface-variant uppercase tracking-widest font-bold">Direct from source • Authenticity Guaranteed • Hand-Bottled in Colombo</p>
+</div>
+<!-- Accordions -->
+<div class="mt-4 border-t border-outline-variant/30">
+<div class="py-4 border-b border-outline-variant/30">
+<button class="w-full flex justify-between items-center text-left group">
+<span class="font-bold uppercase tracking-widest text-sm">The Ritual &amp; Benefits</span>
+<span class="material-symbols-outlined group-hover:translate-y-1 transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+<div class="mt-4 text-on-surface-variant text-sm leading-relaxed space-y-3">
+<p>Infused with rare Mysore Sandalwood and high-curcumin Turmeric, this serum is designed to clarify blemish-prone skin while providing a meditative aromatic experience.</p>
+<ul class="list-disc pl-5 space-y-1">
+<li>Reduces appearance of hyperpigmentation</li>
+<li>Soothes inflammation and redness</li>
+<li>Deeply hydrates without clogging pores</li>
+</ul>
+</div>
+</div>
+<div class="py-4 border-b border-outline-variant/30">
+<button class="w-full flex justify-between items-center text-left group">
+<span class="font-bold uppercase tracking-widest text-sm">Full Apothecary Ingredients</span>
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Reviews Section -->
+<section class="mt-32">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="max-w-xl">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Customer Testimonials</h2>
+<div class="flex items-center gap-4">
+<div class="flex text-secondary">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+</div>
+<span class="text-sm font-bold uppercase tracking-widest text-on-surface-variant">4.9 Based on 128 Reviews</span>
+</div>
+</div>
+<button class="px-8 py-3 border-2 border-primary text-primary font-bold rounded-lg uppercase tracking-widest text-xs hover:bg-primary hover:text-on-primary transition-all">Write a Review</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Review 1 -->
+<div class="bg-surface-container p-8 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex text-secondary text-sm">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+</div>
+<div class="flex items-center gap-1 text-[10px] text-primary bg-primary-fixed px-2 py-1 rounded-full font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px]" data-icon="verified">verified</span>
+                            Verified
+                        </div>
+</div>
+<p class="serif italic text-lg leading-snug">"Truly transformative for my skin. The scent alone is worth the price—it feels like a spa ritual every evening."</p>
+<div class="mt-auto pt-4 border-t border-outline-variant/20">
+<p class="font-bold text-sm">Amara Perera</p>
+<p class="text-xs text-on-surface-variant">March 12, 2024</p>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-container p-8 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex text-secondary text-sm">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-outline" data-icon="star">star</span>
+</div>
+<div class="flex items-center gap-1 text-[10px] text-primary bg-primary-fixed px-2 py-1 rounded-full font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px]" data-icon="verified">verified</span>
+                            Verified
+                        </div>
+</div>
+<p class="serif italic text-lg leading-snug">"Beautiful packaging and the product absorbs so quickly. Saw results on my acne scars within two weeks."</p>
+<div class="mt-auto pt-4 border-t border-outline-variant/20">
+<p class="font-bold text-sm">Lakith S.</p>
+<p class="text-xs text-on-surface-variant">February 28, 2024</p>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="bg-surface-container p-8 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex text-secondary text-sm">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+</div>
+<div class="flex items-center gap-1 text-[10px] text-primary bg-primary-fixed px-2 py-1 rounded-full font-bold uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px]" data-icon="verified">verified</span>
+                            Verified
+                        </div>
+</div>
+<p class="serif italic text-lg leading-snug">"The Heritage Curator never fails. This serum is liquid gold. Highly recommend the 50ml for better value."</p>
+<div class="mt-auto pt-4 border-t border-outline-variant/20">
+<p class="font-bold text-sm">Nilu De Silva</p>
+<p class="text-xs text-on-surface-variant">January 15, 2024</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Cross-sell Section -->
+<section class="mt-32">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-5xl font-bold text-primary mb-4">Complete Your Ritual</h2>
+<p class="serif italic text-on-surface-variant">Carefully selected items to enhance your results</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Related 1 -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container-low rounded-xl overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Artisanal clay face mask jar on a wooden tray with a small applicator brush and dried herbs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlW3uapBpPRUWOmShiugadz7DmPxPYkfC0-ZNXVagQHOP3oTgjDP2Dw8uTbR-388ZiroOuXpbR_CymxCJ9WtU102OBHOvcnNUuGkXWqmiiEVc6SfPov2he7qIDajgZAkeLJB_6Fm0ASOVyyNTds4T61rwsXYz87S5eyRo3tBd0CPr3gpezji-UMcqgJCECrzAE6jLUGN4VXlvPlgzY_YS3gluchHAiTH_Q8IT7zJSSxXJeT6qcdvMyGs1ZfIX7236R7hHB9EM8f606"/>
+<button class="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-primary text-on-primary opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-bold text-lg mb-1">Ceylon Clay Detox Mask</h3>
+<p class="text-secondary font-bold text-sm mb-2">LKR 4,200</p>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-medium">Deep Cleansing</p>
+</div>
+<!-- Related 2 -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container-low rounded-xl overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Clear glass bottle of rose water toner with floating petals on a bed of fresh pink rose blossoms" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCImfrQKF6QJ3uH8RTtC1OU5RFMkxs-N8-OCybFu6IUbDBNjxYu-iL30xWTeF0XB_weWmSdriCYW3BXE6vbVSqeqz8_O9eTa8cAXVfq7BHP6H7Doxo2P95ArJjxRfEteFT6gKrnDwhEBBa_Bh5N12Dl2B4Yw3Fy2AAmDZESLnYvxkw-0y2ahyEgDRd76F-FuL5iYMqxpbmae6km_P8rMcuP9gQu1QzP6UaMiLkTNALsFrUP2hhYGv802lea0dVrh7HH2VVGYV1QztHd"/>
+<button class="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-primary text-on-primary opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-bold text-lg mb-1">Damask Rose Hydrosol</h3>
+<p class="text-secondary font-bold text-sm mb-2">LKR 3,500</p>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-medium">Toning Mist</p>
+</div>
+<!-- Related 3 -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container-low rounded-xl overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Stone Gua Sha facial tool resting on a piece of natural silk cloth with soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlC614hdSyVBRHID0Zmcz39c4d3RO4xQ94r1_5nNzgjApxInDB1CtDnyzGGAs-ltSpN6Fj2SWsX_PMJKWpSQcvKCjiJBVpPNKvDvmyUE4efgKouGItJP-xceMjbpqXLq6GX5m6vgAd5-HQX8HNmA2rtheUBvxtZZPd8y1DL3AFLObgbUN2HE7VZ67QdxvGUkhWsMLNfte5lmzzyp5WC8eMO1LURgfx4jOcOCRecfKXf8jVHY0fw5ql_lxjyYR0w8Ag8EGPNBDe0K1W"/>
+<button class="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-primary text-on-primary opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-bold text-lg mb-1">Sacred Stone Gua Sha</h3>
+<p class="text-secondary font-bold text-sm mb-2">LKR 5,800</p>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-medium">Ritual Tool</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f1eee5] dark:bg-slate-950 w-full py-12 px-8 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="font-['Noto_Serif'] text-lg text-[#2A5D5D]">Heritage Luxe</div>
+<div class="flex flex-col gap-4 font-['Manrope'] text-sm uppercase tracking-widest">
+<a class="text-[#1c1c17]/60 dark:text-slate-500 hover:text-[#D2691E] transition-all duration-500" href="#">Store Locator</a>
+<a class="text-[#1c1c17]/60 dark:text-slate-500 hover:text-[#D2691E] transition-all duration-500" href="#">Privacy Policy</a>
+<a class="text-[#1c1c17]/60 dark:text-slate-500 hover:text-[#D2691E] transition-all duration-500" href="#">Shipping &amp; Rituals</a>
+<a class="text-[#1c1c17]/60 dark:text-slate-500 hover:text-[#D2691E] transition-all duration-500" href="#">Contact Apothecary</a>
+</div>
+</div>
+<div class="text-right">
+<p class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-slate-500">© 2024 The Heritage Curator. Ethically sourced in Sri Lanka.</p>
+</div>
+</div>
+</footer>
+</body></html>

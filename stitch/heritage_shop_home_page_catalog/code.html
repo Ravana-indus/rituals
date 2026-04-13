@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Heritage Curator | Home-is-Shop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-container-lowest": "#ffffff", "on-secondary-fixed": "#321200", "outline-variant": "#c1c8c7", "inverse-primary": "#9dd0cf", surface: "#fcf9f0", "on-error-container": "#93000a", error: "#ba1a1a", "primary-fixed": "#b8ecec", "surface-variant": "#e5e2da", "on-secondary": "#ffffff", "on-primary-container": "#8fc2c2", "secondary-fixed": "#ffdbc9", "surface-dim": "#dddad1", "on-tertiary": "#ffffff", "on-surface": "#1c1c17", tertiary: "#6a0b05", "primary-fixed-dim": "#9dd0cf", "on-tertiary-container": "#ffa091", "on-surface-variant": "#414848", "surface-tint": "#346666", primary: "#003a3a", "secondary-fixed-dim": "#ffb68d", background: "#fcf9f0", "inverse-on-surface": "#f4f1e8", "surface-container": "#f1eee5", "error-container": "#ffdad6", "surface-container-highest": "#e5e2da", "primary-container": "#1c5151", "secondary-container": "#fd8a3e", "on-primary-fixed": "#002020", "tertiary-fixed-dim": "#ffb4a8", "surface-container-high": "#ebe8df", "on-tertiary-fixed": "#410000", "tertiary-container": "#8a2419", secondary: "#9a4600", "on-secondary-container": "#672c00", "surface-container-low": "#f6f3ea", "on-primary-fixed-variant": "#194e4e", "on-error": "#ffffff", "on-background": "#1c1c17", "surface-bright": "#fcf9f0", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#763400", "tertiary-fixed": "#ffdad4", "inverse-surface": "#31312b", outline: "#717878", "on-tertiary-fixed-variant": "#862116"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, fontFamily: {headline: ["Noto Serif"], body: ["Manrope"], label: ["Manrope"], display: "Noto Serif"}}}};</script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .font-noto-serif { font-family: 'Noto Serif', serif; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-manrope selection:bg-secondary-fixed">
+<!-- TopNavBar -->
+<header class="bg-[#fcf9f0]/80 dark:bg-[#1c1c17]/80 backdrop-blur-md shadow-sm dark:shadow-none docked full-width top-0 sticky z-50 flex flex-col w-full max-w-none px-6 py-4 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-8">
+<span class="font-noto-serif text-2xl font-bold italic text-[#003a3a] dark:text-[#fcf9f0]">The Heritage Curator</span>
+<div class="hidden lg:flex items-center bg-surface-container rounded-full px-4 py-2 w-96">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full font-manrope" placeholder="Search curated beauty..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-6 text-[#003a3a] dark:text-[#fcf9f0]">
+<div class="hidden md:flex flex-col items-end">
+<span class="text-[10px] uppercase tracking-widest text-outline">Balance</span>
+<span class="font-bold text-xs uppercase tracking-wider">Total Savings: LKR 2,450</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="hover:text-[#9a4600] transition-colors duration-300 scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="relative hover:text-[#9a4600] transition-colors duration-300 scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Douglas-inspired Category Ribbon -->
+<nav class="flex items-center space-x-8 overflow-x-auto no-scrollbar pb-1">
+<a class="text-[#003a3a] dark:text-[#fcf9f0] border-b-2 border-[#003a3a] dark:border-[#fcf9f0] pb-1 font-noto-serif font-medium uppercase tracking-wider text-sm whitespace-nowrap" href="#">New In</a>
+<a class="text-[#4a4a40] dark:text-[#a1a195] font-manrope font-medium uppercase tracking-wider text-sm whitespace-nowrap hover:text-[#9a4600] transition-colors duration-300" href="#">Brands</a>
+<a class="text-[#4a4a40] dark:text-[#a1a195] font-manrope font-medium uppercase tracking-wider text-sm whitespace-nowrap hover:text-[#9a4600] transition-colors duration-300" href="#">Skincare</a>
+<a class="text-[#4a4a40] dark:text-[#a1a195] font-manrope font-medium uppercase tracking-wider text-sm whitespace-nowrap hover:text-[#9a4600] transition-colors duration-300" href="#">Fragrance</a>
+<a class="text-[#4a4a40] dark:text-[#a1a195] font-manrope font-medium uppercase tracking-wider text-sm whitespace-nowrap hover:text-[#9a4600] transition-colors duration-300" href="#">Self-Care</a>
+<a class="text-[#4a4a40] dark:text-[#a1a195] font-manrope font-medium uppercase tracking-wider text-sm whitespace-nowrap hover:text-[#9a4600] transition-colors duration-300" href="#">Offers</a>
+<div class="h-4 w-[1px] bg-outline-variant opacity-30 flex-shrink-0"></div>
+<a class="text-secondary font-manrope font-bold uppercase tracking-wider text-sm whitespace-nowrap hover:opacity-80 transition-opacity" href="#">Bargain Event</a>
+</nav>
+</header>
+<main class="min-h-screen">
+<!-- Integrated Hero Banner -->
+<section class="relative w-full h-[400px] overflow-hidden">
+<div class="absolute inset-0 bg-primary-container">
+<img class="w-full h-full object-cover opacity-60 mix-blend-multiply" data-alt="Sophisticated lifestyle shot of high-end apothecary bottles on a warm stone surface with soft morning light and silk textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ck0WUH0px0KcngeO0FEbL2oq57PzKyKHS9xHbb3KY136NTW_I2s8I4UrqchdLWXLJIfZpaWf_mw9aZZPUKuk5NYnoe1krpoH7izeOJKs_hLwbb_LloWTLRYMho0iiamFrveEF0pRnYga3FowWbC8rESVrAOYCwod-Q1n6sIPp5qd2w1-dXZCkaJj362OR6ryJC5ixud4CsWKfYktHPbF3dPsiK4qqRqQ4v2rB_ll0hbjqx0GW4NUcQvQysgXtmKavR575n8KhDzU"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/40 to-transparent"></div>
+<div class="relative h-full flex flex-col justify-center px-12 md:px-24 space-y-4 max-w-4xl">
+<div class="inline-flex items-center space-x-2 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-sm w-fit">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Limited Stock Event</span>
+</div>
+<h1 class="font-noto-serif text-5xl md:text-7xl text-white font-bold leading-tight">Heritage Beauty, <br/><span class="italic font-normal">Reclaimed.</span></h1>
+<p class="text-white/80 font-manrope text-lg max-w-md">The curated edit of global luxury skincare and fragrance, now accessible for the discerning Sri Lankan ritual.</p>
+<div class="flex items-center space-x-4 pt-4">
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-md font-bold uppercase tracking-widest text-xs hover:bg-on-secondary-fixed-variant transition-all">Shop The Edit</button>
+<button class="border border-white/30 text-white backdrop-blur-sm px-8 py-3 rounded-md font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all">Curator's Note</button>
+</div>
+</div>
+</section>
+<!-- Sub-Category Filter Ribbon -->
+<div class="bg-surface-container sticky top-[132px] z-40 border-b border-outline-variant/10">
+<div class="px-8 py-4 flex items-center space-x-3 overflow-x-auto no-scrollbar">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap">All Items</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">Serums &amp; Oils</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">Eau de Parfum</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">Matte Lipsticks</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">Cleansing Balms</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">Night Recovery</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">Luxury Travel</button>
+</div>
+</div>
+<!-- Infinite Shop Grid -->
+<section class="p-8 md:p-12">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
+<!-- Product Card 1 -->
+<div class="group flex flex-col space-y-4">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Minimalist glass serum bottle with amber liquid on a soft cream background with elegant shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUztodxfQ_LpuN66Bm8gzFT_R5y1GeOBKnIuvDmrg1oEdPO6duxr_zXUeobN0NwrKmuPEPhwJSA8TYgzZXB7ClxdnN6DOkcFqhJgy3o9NxALquMET-lR6QtQbkjRlrwqbKEgvqQXgrfh4jpdsi2D6XaVNXl83akpiQKv22Hl8pHaaaMa6Dyuep384fjZ3v1ZZa5-o-rTdnQHtzfR_UuujUwbXvO77a6DH1xFsoWa5iRpiKM4hkaH0N0ggJSK7yvvpLioKvgwZG9g4W"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-tertiary-container text-white text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-tighter italic">Bargain Event</span>
+</div>
+<button class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm">
+<span class="material-symbols-outlined text-primary">add_shopping_cart</span>
+</button>
+</div>
+<div class="space-y-1">
+<p class="font-manrope text-[10px] uppercase tracking-[0.2em] text-outline">Augustinus Bader</p>
+<h3 class="font-noto-serif text-lg font-bold leading-tight">The Rich Cream</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">Ultimate skin rejuvenation with TFC8® technology for deep cellular renewal and hydration.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-6 h-6 rounded-full border border-outline-variant bg-[#f1f1f1] ring-1 ring-offset-2 ring-primary"></button>
+<button class="w-6 h-6 rounded-full border border-outline-variant bg-[#e8d5c4]"></button>
+<span class="text-[10px] text-outline font-bold uppercase ml-2">15ml / 30ml / 50ml</span>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-secondary font-bold text-xl font-manrope">LKR 42,500</span>
+<span class="text-outline text-sm line-through">LKR 58,000</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group flex flex-col space-y-4">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Elegant perfume bottle with a gold cap standing on a textured limestone pedestal with dramatic side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTuihDShNn5Y_kEc_WCIZsoPRDYgtTHYIqJPPqXjGQlz5NlLqvfSlctfq5vKqHkitUYuR7Y7YGLTiwFhwl684i6RCtwV5fsESb0zCT79_ewy5Q0miA7QWBzT6RBbf7ggkBM4pvprxuVn3F0Tb1t_5VXurYgqRqIbcKRooa-g_NQ9Rah2fTgFoce8IJjDQnaQKtyZj-3_wTWHAo7W2o7bqbCTK3v-LNFd2w1bBQKpfJNo8wMMyM-pfNid7fUqLY1GRt8--5pqzhRXYP"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-tighter">Limited Stock</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-manrope text-[10px] uppercase tracking-[0.2em] text-outline">Byredo</p>
+<h3 class="font-noto-serif text-lg font-bold leading-tight">Gypsy Water Eau de Parfum</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">A glamorization of the Romany lifestyle, based on a fascination for the myth of the forest.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 border border-primary text-[10px] font-bold uppercase">50ml</button>
+<button class="px-3 py-1 border border-outline-variant text-outline text-[10px] font-bold uppercase hover:border-primary hover:text-primary transition-colors">100ml</button>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-secondary font-bold text-xl font-manrope">LKR 64,200</span>
+<span class="text-outline text-sm line-through">LKR 75,000</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group flex flex-col space-y-4">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Array of luxury lipsticks in gold packaging showing different shades from deep red to nude coral" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFq6yGMLlZSF-h2r_GQhSdqInMzWU1k4KUbJcmz8aueGkNx00KyNZ4V8I3dbipXdYCUQQzTd3Ewnyu5sual4AMvK8MSCCpabFE7wra86Da0gSjiwO41qNgJ68Z0l-OIMPVhsx8z2nHeFdDDqyZv9aKF6O8gF0_MKsvw9L8ZZuRO82KkpuxPlA3H0CvM3pleAQ5OfCEYMnOOZAqO12hCU7nofB22ZKv_2EorhGkN937PdFgeaWMJRq0Ub5wHf_9elG3JX7Ou8eQEgA9"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary text-white text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-tighter">Editor's Pick</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-manrope text-[10px] uppercase tracking-[0.2em] text-outline">Gucci Beauty</p>
+<h3 class="font-noto-serif text-lg font-bold leading-tight">Rouge à Lèvres Mat</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">A collection of intensely-hued lip colors with a long-lasting matte finish.</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex -space-x-1">
+<div class="w-6 h-6 rounded-full border border-white bg-[#8b0000] z-10"></div>
+<div class="w-6 h-6 rounded-full border border-white bg-[#cd5c5c] z-20"></div>
+<div class="w-6 h-6 rounded-full border border-white bg-[#ff7f50] z-30"></div>
+</div>
+<span class="text-[10px] text-outline font-bold uppercase ml-2">+12 Shades</span>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-secondary font-bold text-xl font-manrope">LKR 12,800</span>
+<span class="text-outline text-sm line-through">LKR 16,500</span>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group flex flex-col space-y-4">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Macro shot of a cleansing balm texture with gold specks on a silver spatula, high luxury feel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBokzsii9l84M_WtPD_g19fpU3PNDNnBfGx5UKMQb2MtagshJ5swYncaleUHsQ6amVmxSooSySQr5vg8YdhMACAu1jptgmBp425MftRC5XRmaigrbpB4wXTNMt8wRS-g1F7BGZ4Ir9aQFcjnRQxTQFWr8HTOSYiD0dnfV8799d4vkbL7Sfl-SlopdKuHIlrcSQG7cLDBAj_Hsn_Ogo6In9eETH807gib8XKC4RyNfjsrshBW84gFl9vqd38MDs7EXnXbsXBnExPpWuX"/>
+<div class="absolute bottom-4 left-4">
+<div class="flex items-center space-x-1 bg-white/80 backdrop-blur-sm px-2 py-1 rounded-sm">
+<span class="material-symbols-outlined text-xs text-yellow-600" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[10px] font-black font-manrope">4.9 (124)</span>
+</div>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-manrope text-[10px] uppercase tracking-[0.2em] text-outline">Elemis</p>
+<h3 class="font-noto-serif text-lg font-bold leading-tight">Pro-Collagen Cleansing Balm</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">Transforming treatment cleanser that dissolves makeup, daily grime and pollutants.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 border border-primary text-[10px] font-bold uppercase">100g</button>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-secondary font-bold text-xl font-manrope">LKR 18,500</span>
+<span class="text-outline text-sm line-through">LKR 24,000</span>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group flex flex-col space-y-4">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Diptych style image showing a botanical extract bottle and fresh green leaves in high-end photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIVwoyhVQvYoyB-Jq1LMHZzW0AsJDa8RphQLKmqXJQA1qokHiBGArqhNIt02oB71BgKu4Wm1E8JBtNWvsb_ME9kX996ibec2kpErj_xlTP6ZQpm195B9G6pr5USpHE5eFMUxL-1Ds2GYQx-SHJLRdcDCY3ZIKD1-LqpR6ofNXeb-f2qao1rovovqcRh6tTl9CI2YUWYHqHJEbgmFE1IOvDL7qb4yg_SXzqQmkhJLaqDSx2uzn7Sp1Tyyd8kpFASPVpXQYxUjDt1t1Y"/>
+</div>
+<div class="space-y-1">
+<p class="font-manrope text-[10px] uppercase tracking-[0.2em] text-outline">Vintner's Daughter</p>
+<h3 class="font-noto-serif text-lg font-bold leading-tight">Active Botanical Serum</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">A multi-correctional face oil infused with 22 of the world’s most nutrient-rich botanicals.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-outline font-bold uppercase">30ml Luxe Edition</span>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-secondary font-bold text-xl font-manrope">LKR 55,000</span>
+<span class="text-outline text-sm line-through">LKR 68,000</span>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group flex flex-col space-y-4">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="High-end makeup palette opened to show vibrant shimmer shades on a dark marble surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdxgGDXGYw19piQGMCjoP3QVJuCmBjyBQMPDucxlkCpN-Hds8irSddVwsqGMt9Yy5FLVfA2dep7M7mRDJZIsEV6m-lS7BBAm7o8G5dcHYW1GKN2Affsqt-aU5bvyJ1apYmy7IH_XDjwO4ouCiU5ClvozCjypFfalCqu07wud02vy1p97cHHKtwVXKS6OvovclklsH198AUMZLcK68UeCR6SPz6eSUrFYcutEJXzQh3g_Cy3BRGzS7kVHNYxg4qyXv9Fu7tDbtsDNxU"/>
+<div class="absolute top-4 right-4">
+<span class="bg-tertiary-container text-white text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-tighter italic">Selling Fast</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="font-manrope text-[10px] uppercase tracking-[0.2em] text-outline">Pat McGrath Labs</p>
+<h3 class="font-noto-serif text-lg font-bold leading-tight">Mothership X: Moonlit Seduction</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">Ten celestial-inspired shades ranging from velvet mattes to galactic metallics.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-outline font-bold uppercase italic font-noto-serif">Curator's Masterpiece</span>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="text-secondary font-bold text-xl font-manrope">LKR 38,900</span>
+<span class="text-outline text-sm line-through">LKR 45,000</span>
+</div>
+</div>
+<!-- Skeleton loader for Infinite Scroll feel -->
+<div class="group flex flex-col space-y-4 opacity-40 animate-pulse">
+<div class="aspect-[4/5] bg-surface-container-highest"></div>
+<div class="h-4 bg-surface-container-highest w-1/2"></div>
+<div class="h-6 bg-surface-container-highest w-3/4"></div>
+<div class="h-10 bg-surface-container-highest w-full"></div>
+</div>
+<div class="group flex flex-col space-y-4 opacity-40 animate-pulse">
+<div class="aspect-[4/5] bg-surface-container-highest"></div>
+<div class="h-4 bg-surface-container-highest w-1/2"></div>
+<div class="h-6 bg-surface-container-highest w-3/4"></div>
+<div class="h-10 bg-surface-container-highest w-full"></div>
+</div>
+</div>
+<div class="mt-24 text-center">
+<button class="border-b-2 border-primary pb-1 font-bold uppercase tracking-widest text-xs hover:text-secondary hover:border-secondary transition-all">Loading more curated selections...</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f1eee5] dark:bg-[#151512] w-full flex flex-col items-center justify-center text-center space-y-6 px-8 py-12">
+<span class="font-noto-serif italic text-xl text-[#003a3a]">The Heritage Curator</span>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-2 font-manrope text-xs tracking-widest uppercase">
+<a class="text-[#4a4a40] hover:text-[#9a4600] transition-opacity duration-300" href="#">Shipping &amp; Returns</a>
+<a class="text-[#4a4a40] hover:text-[#9a4600] transition-opacity duration-300" href="#">Privacy Policy</a>
+<a class="text-[#4a4a40] hover:text-[#9a4600] transition-opacity duration-300" href="#">Sustainability Manifesto</a>
+<a class="text-[#4a4a40] hover:text-[#9a4600] transition-opacity duration-300" href="#">Store Locator</a>
+</div>
+<p class="font-manrope text-xs tracking-widest uppercase text-[#4a4a40] opacity-60">© 2024 The Heritage Curator. High-End Editorial Beauty.</p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-4 md:hidden bg-[#fcf9f0] dark:bg-[#1c1c17] z-50 border-t border-[#e5e2da] dark:border-[#2c2c26] shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<button class="flex flex-col items-center justify-center text-[#9a4600] dark:text-[#ffdbc9] font-black">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-manrope text-[10px] uppercase tracking-tighter">Shop</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520]">
+<span class="material-symbols-outlined">search</span>
+<span class="font-manrope text-[10px] uppercase tracking-tighter">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520]">
+<span class="material-symbols-outlined">sell</span>
+<span class="font-manrope text-[10px] uppercase tracking-tighter">Deals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520]">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-manrope text-[10px] uppercase tracking-tighter">Favorites</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520]">
+<span class="material-symbols-outlined">person</span>
+<span class="font-manrope text-[10px] uppercase tracking-tighter">Account</span>
+</button>
+</nav>
+</body></html>

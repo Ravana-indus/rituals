@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Track Your Ritual | Heritage Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#6a0b05",
+                        "surface-container-low": "#f6f3ea",
+                        "surface-container-high": "#ebe8df",
+                        "on-secondary-fixed": "#321200",
+                        "inverse-primary": "#9dd0cf",
+                        "surface-bright": "#fcf9f0",
+                        "inverse-on-surface": "#f4f1e8",
+                        "inverse-surface": "#31312b",
+                        "primary-container": "#1c5151",
+                        "on-primary-fixed-variant": "#194e4e",
+                        "surface-variant": "#e5e2da",
+                        "outline": "#717878",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdad4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#ffa091",
+                        "surface": "#fcf9f0",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dddad1",
+                        "secondary": "#9a4600",
+                        "on-primary-fixed": "#002020",
+                        "primary": "#003a3a",
+                        "surface-container": "#f1eee5",
+                        "on-secondary-fixed-variant": "#763400",
+                        "on-tertiary-fixed": "#410000",
+                        "on-surface-variant": "#414848",
+                        "on-surface": "#1c1c17",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#9dd0cf",
+                        "on-secondary-container": "#672c00",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#b8ecec",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#ffdbc9",
+                        "secondary-container": "#fd8a3e",
+                        "surface-container-highest": "#e5e2da",
+                        "outline-variant": "#c1c8c7",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#8a2419",
+                        "on-primary-container": "#8fc2c2",
+                        "on-background": "#1c1c17",
+                        "surface-tint": "#346666",
+                        "error": "#ba1a1a",
+                        "background": "#fcf9f0",
+                        "on-tertiary-fixed-variant": "#862116"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24
+    }
+.grain-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBHr5znIqrNIUwpABtqC4sH0HmEbneboSw7S95jp_Ln5B-ENqFwUAYxGPsA46q0LyWgvrsltKwK2UvqDCOS4Bo8NGCJkEC1hKDRKcQxGfAHETaaHqDNpc8tMMUzFXBp8HgufJjGIc_tvD7zDYEMnerlH-m0pQv1ycLYjI8gVnI3DWjWsRGtnueTjKEMnDmGdamrqIOL-p7II9j3x6ciTpc0PzKK_ie8HA_KaaZhQHBX9kc-ZHMf3_-czNx3Wq_qJcq_-H5imB1CuG9L);
+    opacity: 0.05
+    }</style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<nav class="bg-[#fcf9f0]/80 dark:bg-[#1c1c17]/80 backdrop-blur-md fixed top-0 w-full z-50 shadow-[0_20px_40px_rgba(28,28,23,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="font-headline text-2xl font-bold text-[#2A5D5D] italic">Heritage Curator</div>
+<div class="hidden md:flex items-center gap-8 font-['Noto_Serif'] tracking-tight">
+<a class="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] transition-colors" href="#">Shop All</a>
+<a class="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] transition-colors" href="#">Apothecary</a>
+<a class="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] transition-colors" href="#">Our Story</a>
+<a class="text-[#2A5D5D] border-b-2 border-[#2A5D5D] pb-1 font-semibold" href="#">Track Order</a>
+<a class="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] transition-colors" href="#">Support</a>
+</div>
+<div class="flex items-center gap-5">
+<button class="hover:bg-[#f1eee5] p-2 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-[#2A5D5D]">shopping_bag</span>
+</button>
+<button class="hover:bg-[#f1eee5] p-2 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-[#2A5D5D]">person</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-6 max-w-6xl mx-auto min-h-screen">
+<header class="mb-16 text-center">
+<h1 class="font-headline text-4xl md:text-5xl lg:text-6xl text-primary mb-4 italic tracking-tight">Trace Your Ritual</h1>
+<p class="font-body text-on-surface-variant max-w-xl mx-auto leading-relaxed">Each heritage artifact travels with intent. Enter your details below to follow the journey from our apothecary to your sanctuary.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<section class="lg:col-span-5 bg-surface-container-low p-8 rounded-xl shadow-sm border border-outline-variant/15">
+<div class="mb-8">
+<h2 class="font-headline text-xl text-primary mb-2">Identification</h2>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-medium">Verify your journey</p>
+</div>
+<form class="space-y-6">
+<div>
+<label class="block font-label text-sm font-semibold mb-2 text-on-surface/80">Ritual Tracking Number</label>
+<input class="w-full bg-surface py-3 px-4 border-b-2 border-surface-variant focus:border-primary focus:ring-0 transition-all outline-none text-on-surface font-medium placeholder:text-outline-variant" placeholder="e.g. HC-9928-102" type="text"/>
+</div>
+<div>
+<label class="block font-label text-sm font-semibold mb-2 text-on-surface/80">Email Identity</label>
+<input class="w-full bg-surface py-3 px-4 border-b-2 border-surface-variant focus:border-primary focus:ring-0 transition-all outline-none text-on-surface font-medium placeholder:text-outline-variant" placeholder="ritualist@example.com" type="email"/>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 rounded-lg font-bold tracking-wide hover:opacity-95 transition-opacity flex justify-center items-center gap-2 group" type="submit">
+                        Begin Search
+                        <span class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</button>
+</form>
+<div class="mt-12 pt-8 border-t border-outline-variant/15 text-center">
+<div class="inline-flex items-center gap-3 bg-secondary-fixed/30 px-6 py-3 rounded-full mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-on-secondary-fixed font-bold text-xs uppercase tracking-tighter">Authenticity Guaranteed</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Every item in your delivery is ethically sourced, hand-curated, and certified authentic by our curators.</p>
+</div>
+</section>
+<section class="lg:col-span-7 flex flex-col gap-8">
+<div class="bg-surface-container rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(28,28,23,0.06)] relative aspect-video md:aspect-[16/10]">
+<img alt="Delivery Journey" class="w-full h-full object-cover grayscale-[20%] opacity-90" data-alt="Top-down cinematic shot of a vintage mahogany desk with a handcrafted delivery map, brass compass, and heritage parchment paper in soft warm light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBygVHnI10wU7ThMDc58oxYzh-vqKGCZukW1N34r0-AB_KZQ4WMpY4PiFK-8h5U1h7PW30GWzSev2SLgIcTETNqRrUQ1taJf6MUPfddKFJxksMLlctWntRFoVNFRGQUQAJn1aANdiUZGQO9cQPPQtuMYz9vtY3ZbLF2CnuFIXCuiFoRL1R7AHJYXHEDyDyMaCL3sVo-CxHFxHJT4mD3WiPnHsvhD8U5SmMgDQH64w2t_covm_3YiT9I_ElONA_8uCe_4f6aW3_wUEqg"/>
+<div class="absolute inset-0 bg-primary/5 mix-blend-multiply"></div>
+<div class="absolute top-6 left-6 bg-surface/90 backdrop-blur-md px-4 py-2 rounded-lg border border-outline-variant/20 flex items-center gap-3">
+<div class="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
+<span class="text-xs font-bold text-primary uppercase tracking-widest">En Route to Sanctuary</span>
+</div>
+<div class="absolute bottom-6 right-6 bg-surface-container-lowest p-4 rounded-xl shadow-lg border border-outline-variant/10 max-w-[200px]">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1 font-bold">Courier Signature</p>
+<p class="font-headline italic text-primary">Master Curator Arlo</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/15">
+<h3 class="font-headline text-lg text-primary mb-8 border-b border-outline-variant/15 pb-4">Timeline of Ritual</h3>
+<div class="relative">
+<div class="absolute left-[15px] top-0 bottom-0 w-[2px] bg-outline-variant/20"></div>
+<div class="space-y-12">
+<div class="relative pl-12 flex items-start gap-4">
+<div class="absolute left-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div>
+<h4 class="font-bold text-primary text-sm uppercase tracking-wide">Ritual Prepared</h4>
+<p class="text-xs text-on-surface-variant mt-1 italic">Items curated and blessed in our Galle Fort apothecary.</p>
+<span class="text-[10px] text-outline mt-2 block">October 12, 09:14 AM</span>
+</div>
+</div>
+<div class="relative pl-12 flex items-start gap-4">
+<div class="absolute left-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10 shadow-lg border-2 border-surface-container-low">
+<span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<div>
+<h4 class="font-bold text-primary text-sm uppercase tracking-wide">Journey Begun</h4>
+<p class="text-xs text-on-surface-variant mt-1 italic">Entrusted to our artisan logistics network for delivery.</p>
+<span class="text-[10px] text-outline mt-2 block">October 14, 02:45 PM</span>
+</div>
+</div>
+<div class="relative pl-12 flex items-start gap-4">
+<div class="absolute left-0 w-8 h-8 bg-surface-container-highest rounded-full flex items-center justify-center z-10 border-2 border-outline-variant/20">
+<span class="material-symbols-outlined text-outline text-sm">home</span>
+</div>
+<div class="opacity-60">
+<h4 class="font-bold text-on-surface-variant text-sm uppercase tracking-wide">Arriving at Sanctuary</h4>
+<p class="text-xs text-on-surface-variant mt-1 italic">Preparing to grace your home. Estimated within 48 hours.</p>
+<span class="text-[10px] text-outline mt-2 block">Expected October 16</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="bg-[#f1eee5] dark:bg-[#1c1c17] w-full border-t border-[#c1c8c7]/15">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-screen-2xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="font-['Noto_Serif'] text-lg font-bold text-[#2A5D5D] dark:text-[#fcf9f0]">Heritage Curator</div>
+<p class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60">© 2024 The Heritage Curator. Crafted with Intent.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Terms of Service</a>
+<a class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Shipping &amp; Returns</a>
+<a class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Wholesale</a>
+<a class="font-['Manrope'] text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<div class="grain-overlay fixed inset-0 pointer-events-none z-[100]"></div>
+</body></html>

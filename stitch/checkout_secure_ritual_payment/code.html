@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | The Heritage Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#717878",
+                        "on-tertiary-fixed-variant": "#862116",
+                        "primary-container": "#1c5151",
+                        "surface-container-low": "#f6f3ea",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdad4",
+                        "primary": "#003a3a",
+                        "primary-fixed": "#b8ecec",
+                        "secondary-container": "#fd8a3e",
+                        "on-tertiary-fixed": "#410000",
+                        "tertiary": "#6a0b05",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e5e2da",
+                        "primary-fixed-dim": "#9dd0cf",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#31312b",
+                        "surface-variant": "#e5e2da",
+                        "on-primary-fixed": "#002020",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c1c8c7",
+                        "surface-tint": "#346666",
+                        "tertiary-container": "#8a2419",
+                        "surface": "#fcf9f0",
+                        "surface-dim": "#dddad1",
+                        "on-secondary-container": "#672c00",
+                        "on-surface": "#1c1c17",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#ebe8df",
+                        "on-primary-fixed-variant": "#194e4e",
+                        "inverse-on-surface": "#f4f1e8",
+                        "error": "#ba1a1a",
+                        "secondary": "#9a4600",
+                        "inverse-primary": "#9dd0cf",
+                        "on-tertiary-container": "#ffa091",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#f1eee5",
+                        "on-secondary-fixed-variant": "#763400",
+                        "on-secondary": "#ffffff",
+                        "background": "#fcf9f0",
+                        "surface-bright": "#fcf9f0",
+                        "on-secondary-fixed": "#321200",
+                        "on-surface-variant": "#414848",
+                        "on-primary-container": "#8fc2c2",
+                        "on-background": "#1c1c17",
+                        "secondary-fixed": "#ffdbc9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #fcf9f0; color: #1c1c17; }
+        .serif { font-family: 'Noto Serif', serif; }
+        .stamp-badge {
+            clip-path: polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        input:focus { outline: none !important; border-color: #003a3a !important; ring: 0 !important; }
+    </style>
+</head>
+<body class="bg-surface selection:bg-secondary-fixed">
+<!-- TopNavBar (Simplified for Checkout focus) -->
+<header class="fixed top-0 w-full z-50 bg-[#fcf9f0]/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto">
+<a class="text-2xl font-bold font-headline text-on-surface" href="#">Heritage Curator</a>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8 font-label text-sm tracking-wide text-on-surface/70">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg">verified_user</span> Secure Checkout</span>
+</div>
+<button class="material-symbols-outlined text-on-surface p-2 hover:bg-surface-container transition-all rounded-full" data-icon="close">close</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-24 px-4 md:px-8 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Checkout Process -->
+<div class="lg:col-span-7 space-y-12">
+<!-- Step Indicator -->
+<nav class="flex items-center gap-4 mb-8">
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-xs">1</span>
+<span class="text-sm tracking-tight">Shipping</span>
+</div>
+<div class="h-px w-8 bg-outline-variant/30"></div>
+<div class="flex items-center gap-2 text-on-surface/40">
+<span class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-xs">2</span>
+<span class="text-sm tracking-tight">Delivery</span>
+</div>
+<div class="h-px w-8 bg-outline-variant/30"></div>
+<div class="flex items-center gap-2 text-on-surface/40">
+<span class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center text-xs">3</span>
+<span class="text-sm tracking-tight">Payment</span>
+</div>
+</nav>
+<!-- Shipping Form Section -->
+<section class="space-y-8">
+<div class="flex justify-between items-end">
+<h1 class="serif text-3xl text-on-surface">Shipping Details</h1>
+<p class="text-sm text-on-surface/60 font-label">Already have an account? <a class="text-primary underline underline-offset-4" href="#">Sign in</a></p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface/50">First Name</label>
+<input class="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30" placeholder="e.g. Arjuna" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface/50">Last Name</label>
+<input class="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30" placeholder="e.g. Wijesinghe" type="text"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface/50">Shipping Address</label>
+<input class="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30" placeholder="Street name and house number" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface/50">City</label>
+<input class="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30" placeholder="Colombo" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface/50">Postal Code</label>
+<input class="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30" placeholder="00100" type="text"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface/50">Phone Number</label>
+<div class="flex gap-4">
+<span class="bg-surface-container border-b border-outline-variant/30 py-3 px-2 text-on-surface/60">+94</span>
+<input class="w-full bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30" placeholder="77 123 4567" type="tel"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Delivery Method (Preview of next step) -->
+<section class="p-8 bg-surface-container-low rounded-xl border border-outline-variant/10">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="serif text-xl mb-2">Delivery Method</h3>
+<p class="text-sm text-on-surface/60">Standard Shipping (3-5 business days)</p>
+</div>
+<span class="text-primary font-bold">Rs. 450.00</span>
+</div>
+</section>
+<!-- Navigation Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6">
+<button class="flex items-center gap-2 text-on-surface/60 hover:text-primary transition-colors group">
+<span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                        Return to Cart
+                    </button>
+<button class="w-full sm:w-auto px-12 py-4 bg-primary text-on-primary rounded-md font-bold tracking-wide hover:opacity-90 transition-all active:scale-95 shadow-lg shadow-primary/10">
+                        Continue to Delivery
+                    </button>
+</div>
+<!-- Trust Badges -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6 pt-12 border-t border-outline-variant/15">
+<div class="flex flex-col items-center text-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface/60">Authentic Sourcing</p>
+</div>
+<div class="flex flex-col items-center text-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">encrypted</span>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface/60">Secure SSL Payment</p>
+</div>
+<div class="flex flex-col items-center text-center gap-3 col-span-2 md:col-span-1">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface/60">Ethically Crafted</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Order Summary -->
+<aside class="lg:col-span-5">
+<div class="sticky top-32 p-8 bg-surface-container rounded-2xl space-y-8 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
+<h2 class="serif text-2xl text-on-surface">Order Summary</h2>
+<!-- Cart Items -->
+<div class="space-y-6">
+<div class="flex gap-4 items-center">
+<div class="relative w-20 h-24 bg-surface-container-high rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="artisanal amber glass bottle of luxury sandalwood face oil on a textured cream stone surface with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALX0y6sbmr3PlEYzwfa7Kglz-27oAmmF02KXyh2X-6EeMk6u0K5jzKQ-CW1roUCCXDb8LqEHwTunIA5jrHaoktPbxs_BdqdUiy6FnFZSHaIU2XiCfgC96Q6HP4tLoynMeHCcYCd4_QjWGfkdhd_tcgsOoV8TxK4si-X8FHKJVXGK7-ptW96aoKI6CNfCdVI0dB3YspwFhTHwdT3Qw9iftpuvZAYExZ6kg83YD97yRLA2NzlsXHWHKox2pjbm2jlncJ0RiLc9T5DnQN"/>
+<span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-on-primary text-[10px] rounded-full flex items-center justify-center font-bold">1</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label font-bold text-sm">Sacred Sandalwood Ritual Oil</h4>
+<p class="text-xs text-on-surface/50">100ml • Limited Batch</p>
+<p class="text-sm font-bold mt-1">Rs. 8,400.00</p>
+</div>
+</div>
+<div class="flex gap-4 items-center">
+<div class="relative w-20 h-24 bg-surface-container-high rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="luxury handmade ceramic bowl with herbal botanical infusion for skincare ceremony held by soft hands" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEvZrJuBpFSuoGf0g_zaH_7-1y9pfyWAvtrP5ypmmiHqJD1NM5Q4DpKsfyfq_F5KzP5KJEUUH6HNPnKqRAptGnPMlFYYMCtbMJYRn9ab8hXjWMcp1ldI_Pg-B-0jrzLKhTADurRSospsefQxE6JVX_PQtUp6TPcsLfTddUx-80Sm0QZo43qDxdeAqj2pId0vmItcM8ISmqol85LTDwAmxZXG_rHiCwoYOfb56oxAJcvWpzANKyHps7DKTP4odT6eFsqo51c-GP2R05"/>
+<span class="absolute -top-2 -right-2 w-6 h-6 bg-primary text-on-primary text-[10px] rounded-full flex items-center justify-center font-bold">2</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label font-bold text-sm">Hand-Thrown Ceramic Infusion Bowl</h4>
+<p class="text-xs text-on-surface/50">Dusk Grey • Artisan Crafted</p>
+<p class="text-sm font-bold mt-1">Rs. 4,200.00</p>
+</div>
+</div>
+</div>
+<!-- Discount Code -->
+<div class="flex gap-2">
+<input class="flex-grow bg-surface border border-outline-variant/20 rounded-md py-3 px-4 text-sm focus:border-primary" placeholder="Promo or Gift Code" type="text"/>
+<button class="px-6 py-2 bg-surface-container-highest text-on-surface font-bold text-sm rounded-md hover:bg-outline-variant/20 transition-all">Apply</button>
+</div>
+<!-- Totals -->
+<div class="space-y-3 pt-6 border-t border-outline-variant/15">
+<div class="flex justify-between text-sm text-on-surface/70">
+<span>Subtotal</span>
+<span>Rs. 16,800.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="flex items-center gap-2">
+                                Clearance Savings
+                                <span class="bg-tertiary-container text-on-tertiary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">Event</span>
+</span>
+<span class="text-tertiary-container font-bold">- Rs. 3,360.00</span>
+</div>
+<div class="flex justify-between text-sm text-on-surface/70">
+<span>Shipping</span>
+<span>Calculated at next step</span>
+</div>
+<div class="flex justify-between items-center pt-4 text-on-surface">
+<span class="serif text-xl font-bold">Total</span>
+<div class="text-right">
+<p class="text-2xl font-bold font-headline">Rs. 13,440.00</p>
+<p class="text-[10px] text-on-surface/40 uppercase tracking-widest">Includes taxes and duties</p>
+</div>
+</div>
+</div>
+<!-- Savings Stamp -->
+<div class="bg-secondary-fixed text-on-secondary-fixed p-4 rounded-lg flex items-center gap-4 border border-secondary/10">
+<div class="stamp-badge bg-secondary-container w-12 h-12 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-secondary" style="font-variation-settings: 'FILL' 1;">local_offer</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-wider">Heritage Benefit</p>
+<p class="text-sm italic font-headline">"You've preserved Rs. 3,360 today through our Curator's Circle."</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant/15 py-12 px-8">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="space-y-4">
+<span class="font-headline italic text-xl text-on-surface">The Heritage Curator.</span>
+<p class="font-label text-sm tracking-wide text-on-surface/60 max-w-sm">
+                    © 2024 The Heritage Curator. Crafted with intention. Supporting artisan communities across Sri Lanka.
+                </p>
+</div>
+<div class="flex flex-wrap gap-8 md:justify-end">
+<a class="text-sm font-label text-on-surface/60 hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm font-label text-on-surface/60 hover:text-secondary transition-colors" href="#">Terms of Service</a>
+<a class="text-sm font-label text-on-surface/60 hover:text-secondary transition-colors" href="#">Authenticity Guarantee</a>
+<a class="text-sm font-label text-on-surface/60 hover:text-secondary transition-colors" href="#">Shipping &amp; Returns</a>
+</div>
+</div>
+</footer>
+</body></html>
