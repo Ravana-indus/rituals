@@ -49,9 +49,9 @@ export default function Cart() {
   const [promoApplied, setPromoApplied] = useState(false);
   const [promoSuccess, setPromoSuccess] = useState(false);
 
-  const shipping = 450;
-  const discount = promoApplied ? Math.round(subtotal * 0.1) : 0;
-  const total = subtotal + shipping - discount;
+  const shippingCents = 45000; // LKR 450 in cents
+  const discountCents = promoApplied ? Math.round(subtotal * 0.1) : 0;
+  const totalCents = subtotal + shippingCents - discountCents;
 
   const handleApplyPromo = () => {
     if (promoCode.trim()) {
@@ -61,8 +61,9 @@ export default function Cart() {
     }
   };
 
-  const formatPrice = (price: number) => {
-    return 'LKR ' + price.toLocaleString('en-US');
+  // formatPrice expects value in cents, converts to LKR display
+  const formatPrice = (cents: number) => {
+    return 'LKR ' + (cents / 100).toLocaleString('en-US');
   };
 
   return (
@@ -210,17 +211,17 @@ export default function Cart() {
                 </div>
                 <div className="flex justify-between text-sm text-on-surface-variant">
                   <span>Shipping Estimate</span>
-                  <span>{formatPrice(shipping)}</span>
+                  <span>{formatPrice(shippingCents)}</span>
                 </div>
                 {promoApplied && (
                   <div className="flex justify-between items-center text-sm text-green-600 dark:text-green-400">
                     <span>Discount (10%)</span>
-                    <span>-{formatPrice(discount)}</span>
+                    <span>-{formatPrice(discountCents)}</span>
                   </div>
                 )}
                 <div className="flex justify-between items-center pt-4 border-t border-outline-variant/15">
                   <span className="font-noto-serif text-xl font-bold text-on-surface">Total</span>
-                  <span className="text-2xl font-bold font-noto-serif text-secondary">{formatPrice(total)}</span>
+                  <span className="text-2xl font-bold font-noto-serif text-secondary">{formatPrice(totalCents)}</span>
                 </div>
               </div>
 
