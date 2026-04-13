@@ -40,38 +40,47 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<Cart | null>(null);
   const [syncing, setSyncing] = useState(false);
   const initRef = useRef(false);
-  const pendingSyncRef = useRef(false);
+  const hasSyncedRef = useRef(false);
 
-  // Load cart from localStorage on mount
+  // Load cart from localStorage on mount (only for non-logged in users)
   useEffect(() => {
     if (initRef.current) return;
     initRef.current = true;
     
-    const stored = localStorage.getItem(CART_STORAGE_KEY);
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) {
-          setItems(parsed);
-          console.log('Loaded cart from localStorage:', parsed.length, 'items');
+    // Only load from localStorage if user is not logged in
+    if (!user) {
+      const stored = localStorage.getItem(CART_STORAGE_KEY);
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            setItems(parsed);
+            console.log('Loaded cart from localStorage:', parsed.length, 'items');
+          }
+        } catch (e) {
+          console.error('Failed to parse cart from localStorage:', e);
         }
-      } catch (e) {
-        console.error('Failed to parse cart from localStorage:', e);
       }
     }
   }, []);
 
-  // Save cart to localStorage whenever items change
+  // Save cart to localStorage whenever items change (only for non-logged in users)
   useEffect(() => {
-    if (initRef.current) {
+    if (initRef.current && !user) {
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
     }
-  }, [items]);
+  }, [items, user]);
 
-  // Load user's cart from DB when logged in, and sync local items
+  // Load/sync with database when user logs in
   useEffect(() => {
-    if (!authLoading && user) {
+    if (!authLoading && user && !hasSyncedRef.current) {
+      hasSyncedRef.current = true;
       loadUserCartAndSync();
+    }
+    // Reset sync flag when user logs out
+    if (!user) {
+      hasSyncedRef.current = false;
+      setCart(null);
     }
   }, [user, authLoading]);
 
@@ -100,53 +109,94 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       if (userCart) {
         setCart(userCart);
         
-        // Get current local items
-        const localItems = items;
+        // Get current local items before clearing
+        const localItems = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
         
-        if (localItems.length > 0) {
-          // Sync local items to database
-          console.log('Syncing', localItems.length, 'local items to database...');
-          for (const item of localItems) {
-            await supabase
-              .from('cart_items')
-              .upsert({
-                cart_id: userCart.id,
-                product_id: item.productId,
-                variant_id: item.variantId ?? null,
-                quantity: item.quantity,
-                price_cents: item.priceValue,
-              }, { onConflict: 'cart_id,product_id,variant_id' });
-          }
-          // Clear localStorage after successful sync
-          localStorage.removeItem(CART_STORAGE_KEY);
-          console.log('Cart synced to database');
-        }
-
-        // Load all items from database (merged with any existing server items)
-        const { data: cartItems } = await supabase
+        // Load existing items from database first
+        const { data: dbCartItems } = await supabase
           .from('cart_items')
           .select('*, product:products(*, images:product_images(*))')
           .eq('cart_id', userCart.id);
 
-        if (cartItems && cartItems.length > 0) {
-          setItems(cartItems.map(ci => {
-            const product = (ci.product as Product);
-            const images = ((ci.product as any)?.images as ProductImage[]) ?? [];
-            return {
-              id: ci.id,
-              productId: ci.product_id,
-              variantId: ci.variant_id,
-              brand: (ci.product as any)?.brand?.name ?? '',
-              title: product?.name ?? '',
-              priceValue: ci.price_cents,
-              price: formatPriceCents(ci.price_cents),
-              originalPrice: product?.compare_at_price_cents ? formatPriceCents(product.compare_at_price_cents) : '',
-              imgSrc: images[0]?.url ?? '',
-              size: product?.tagline ?? '',
-              quantity: ci.quantity,
-            };
-          }));
+        // Convert DB items to UI format
+        const dbItems: CartItemUI[] = (dbCartItems || []).map(ci => {
+          const product = (ci.product as Product);
+          const images = ((ci.product as any)?.images as ProductImage[]) ?? [];
+          return {
+            id: ci.id,
+            productId: ci.product_id,
+            variantId: ci.variant_id,
+            brand: (ci.product as any)?.brand?.name ?? '',
+            title: product?.name ?? '',
+            priceValue: ci.price_cents,
+            price: formatPriceCents(ci.price_cents),
+            originalPrice: product?.compare_at_price_cents ? formatPriceCents(product.compare_at_price_cents) : '',
+            imgSrc: images[0]?.url ?? '',
+            size: product?.tagline ?? '',
+            quantity: ci.quantity,
+          };
+        });
+
+        // Merge local items with DB items
+        if (localItems.length > 0) {
+          console.log('Merging', localItems.length, 'local items with', dbItems.length, 'DB items');
+          
+          // Create a map of existing DB items by productId for quick lookup
+          const dbItemsMap = new Map(dbItems.map(item => [item.productId, item]));
+          
+          // Add or update items from localStorage
+          for (const localItem of localItems) {
+            const existingDbItem = dbItemsMap.get(localItem.productId);
+            if (existingDbItem) {
+              // Update quantity in database (add local quantity to existing)
+              const newQuantity = existingDbItem.quantity + localItem.quantity;
+              await supabase
+                .from('cart_items')
+                .update({ quantity: newQuantity })
+                .eq('id', existingDbItem.id);
+              // Update in our local array too
+              existingDbItem.quantity = newQuantity;
+            } else {
+              // Insert new item to database
+              const { data: newItem } = await supabase
+                .from('cart_items')
+                .insert({
+                  cart_id: userCart.id,
+                  product_id: localItem.productId,
+                  variant_id: localItem.variantId ?? null,
+                  quantity: localItem.quantity,
+                  price_cents: localItem.priceValue,
+                })
+                .select('*, product:products(*, images:product_images(*))')
+                .single();
+              
+              if (newItem) {
+                const product = (newItem.product as Product);
+                const images = ((newItem.product as any)?.images as ProductImage[]) ?? [];
+                dbItems.push({
+                  id: newItem.id,
+                  productId: newItem.product_id,
+                  variantId: newItem.variant_id,
+                  brand: (newItem.product as any)?.brand?.name ?? '',
+                  title: product?.name ?? '',
+                  priceValue: newItem.price_cents,
+                  price: formatPriceCents(newItem.price_cents),
+                  originalPrice: product?.compare_at_price_cents ? formatPriceCents(product.compare_at_price_cents) : '',
+                  imgSrc: images[0]?.url ?? '',
+                  size: product?.tagline ?? '',
+                  quantity: newItem.quantity,
+                });
+              }
+            }
+          }
+          
+          // Clear localStorage after successful sync
+          localStorage.removeItem(CART_STORAGE_KEY);
+          console.log('Cart merged and synced to database');
         }
+
+        // Set final merged items
+        setItems(dbItems);
       }
     } catch (e) { 
       console.error('Cart load/sync error:', e); 
@@ -181,8 +231,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           badge: item.badge,
         }];
       }
-      // Save to localStorage immediately
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newItems));
+      // Save to localStorage immediately (only if not logged in)
+      if (!user) {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newItems));
+      }
       return newItems;
     });
 
@@ -197,7 +249,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             variant_id: item.variantId ?? null,
             quantity: item.quantity,
             price_cents: priceValue,
-          }, { onConflict: 'cart_id,product_id,variant_id' });
+          }, { onConflict: 'cart_id,product_id,variant_id' })
+          .select()
+          .single();
       } catch (e) { 
         console.error('Add to cart DB error:', e); 
       }
@@ -207,7 +261,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const removeItem = useCallback(async (id: string) => {
     setItems(prev => {
       const newItems = prev.filter(i => i.id !== id);
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newItems));
+      if (!user) {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newItems));
+      }
       return newItems;
     });
 
@@ -228,7 +284,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       } else {
         newItems = prev.map(i => i.id === id ? { ...i, quantity: qty } : i);
       }
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newItems));
+      if (!user) {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newItems));
+      }
       return newItems;
     });
 
