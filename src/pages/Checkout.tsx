@@ -92,29 +92,43 @@ export default function Checkout() {
       });
       console.log('Shipping address created:', shippingAddress.id);
 
-      const { data: cartData } = await supabase
-        .from('carts')
-        .select('id')
-        .eq('user_id', user.id)
-        .eq('status', 'active')
+      // Create order directly from cart context items (no need to query DB cart)
+      console.log('Creating order with items from cart context...');
+      const { data: order, error: orderError } = await supabase
+        .from('orders')
+        .insert({
+          user_id: user.id,
+          email: user.email ?? '',
+          subtotal_cents: subtotal,
+          shipping_address_id: shippingAddress.id,
+          billing_address_id: shippingAddress.id,
+          shipping_cents: shippingCents,
+          discount_cents: discountCents,
+          total_cents: totalCents,
+          payment_method: 'payhere',
+          payment_status: 'pending',
+          status: 'pending',
+        })
+        .select()
         .single();
-      console.log('Cart data:', cartData);
-
-      console.log('Creating order...');
-      const order = await api.cart.convertToOrder(cartData?.id ?? '', {
-        user_id: user.id,
-        email: user.email ?? '',
-        subtotal_cents: subtotal,
-        shipping_address_id: shippingAddress.id,
-        billing_address_id: shippingAddress.id,
-        shipping_cents: shippingCents,
-        discount_cents: discountCents,
-        total_cents: totalCents,
-        payment_method: 'payhere',
-        payment_status: 'pending',
-        status: 'pending',
-      });
+      
+      if (orderError) throw orderError;
       console.log('Order created:', order.id);
+
+      // Create order items from cart context
+      console.log('Creating order items...');
+      for (const item of items) {
+        await supabase.from('order_items').insert({
+          order_id: order.id,
+          product_id: item.productId,
+          variant_id: item.variantId ?? null,
+          product_name: item.title,
+          quantity: item.quantity,
+          unit_price_cents: item.priceValue,
+          total_cents: item.priceValue * item.quantity,
+        });
+      }
+      console.log('Order items created');
 
       // Prepare PayHere params for form submission
       const phoneFormatted = `94${formData.phone.replace(/\s/g, '').replace(/^0/, '')}`;
