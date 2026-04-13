@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import Header from '../components/Header';
 import { useAuth } from '../context/AuthContext';
 
@@ -11,11 +11,15 @@ const Icon = ({ name, filled = false, className = "" }: { name: string, filled?:
 
 export default function Login() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Get redirect URL from query params, default to '/profile'
+  const redirectTo = searchParams.get('redirect') || '/profile';
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -26,7 +30,7 @@ export default function Login() {
     if (error) {
       setError(error);
     } else {
-      navigate('/profile');
+      navigate(redirectTo);
     }
   }
 
