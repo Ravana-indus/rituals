@@ -18,10 +18,15 @@ import Cart from './pages/Cart';
 import Category from './pages/Category';
 import AdminLayout from './components/AdminLayout';
 import AdminDashboard from './pages/admin/Dashboard';
+import AdminAnalytics from './pages/admin/Analytics';
+import AdminFulfillment from './pages/admin/Fulfillment';
 import AdminProducts from './pages/admin/Products';
 import AdminBrands from './pages/admin/Brands';
 import AdminCategories from './pages/admin/Categories';
 import AdminOrders from './pages/admin/Orders';
+import AdminOrderDetailPage from './pages/admin/OrderDetailPage';
+import InvoicePrint from './pages/admin/InvoicePrint';
+import StickerPrint from './pages/admin/StickerPrint';
 import AdminUsers from './pages/admin/Users';
 import AdminSettings from './pages/admin/Settings';
 
@@ -56,12 +61,17 @@ export default function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/category/:slug" element={<Category />} />
+        <Route path="/admin/print/invoice/:id" element={<InvoicePrint />} />
+        <Route path="/admin/print/sticker/:id" element={<StickerPrint />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
           <Route path="brands" element={<AdminBrands />} />
           <Route path="categories" element={<AdminCategories />} />
+          <Route path="fulfillment" element={<AdminFulfillment />} />
+          <Route path="analytics" element={<AdminAnalytics />} />
           <Route path="orders" element={<AdminOrders />} />
+          <Route path="orders/:id" element={<AdminOrderDetailPage />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>

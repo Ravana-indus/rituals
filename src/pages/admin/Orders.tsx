@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../../lib/api';
 import type { Order, OrderStatus } from '../../types/database';
 import { formatPriceCents } from '../../types/database';
-import OrderDetail from '../../components/admin/OrderDetail';
 
 const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
   <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
@@ -22,10 +22,11 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 export default function AdminOrders() {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>('all');
-  const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
+
 
   useEffect(() => { loadOrders(); }, []);
 
@@ -92,7 +93,7 @@ export default function AdminOrders() {
                 <td className="p-4 text-xs text-on-surface-variant">{order.created_at ? new Date(order.created_at).toLocaleDateString('en-LK') : '—'}</td>
                 <td className="p-4">
                   <button
-                    onClick={() => setSelectedOrderId(order.id)}
+                    onClick={() => navigate(`/admin/orders/${order.id}`)}
                     className="p-1.5 rounded hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-colors"
                     title="View Details"
                   >
@@ -111,12 +112,6 @@ export default function AdminOrders() {
         )}
       </div>
 
-      {selectedOrderId && (
-        <OrderDetail
-          orderId={selectedOrderId}
-          onClose={() => setSelectedOrderId(null)}
-        />
-      )}
     </div>
   );
 }

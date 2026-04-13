@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { supabase } from '../../lib/supabase';
 import { api } from '../../lib/api';
 import type { Order, OrderItem, Address } from '../../types/database';
 import { formatPriceCents } from '../../types/database';
@@ -26,14 +28,16 @@ const STATUS_COLORS: Record<string, string> = {
   refunded: 'bg-red-100 text-red-800',
 };
 
-export default function OrderDetail({ orderId, onClose }: Props) {
+export default function OrderDetailPage() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const orderId = id!;
   const [order, setOrder] = React.useState<OrderDetail | null>(null);
   const [loading, setLoading] = React.useState(true);
   const [updating, setUpdating] = React.useState(false);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
+  const [newNote, setNewNote] = React.useState('');
+  const [savingNote, setSavingNote] = React.useState(false);
   useEffect(() => {
-    dialogRef.current?.showModal();
     loadOrder();
   }, [orderId]);
 
@@ -54,6 +58,17 @@ export default function OrderDetail({ orderId, onClose }: Props) {
     finally { setUpdating(false); }
   }
 
+  async function handleAddNote() {
+    if (!newNote.trim()) return;
+    setSavingNote(true);
+    try {
+      const appendedNote = order?.notes ? `${order.notes}\n\n[${new Date().toLocaleString('en-LK')}] ${newNote}` : `[${new Date().toLocaleString('en-LK')}] ${newNote}`;
+      await supabase.from('orders').update({ notes: appendedNote }).eq('id', orderId);
+      setNewNote('');
+      await loadOrder();
+    } catch(e) { console.error(e) } finally { setSavingNote(false); }
+  }
+
   async function updatePaymentStatus(paymentStatus: string) {
     setUpdating(true);
     try {
@@ -63,33 +78,45 @@ export default function OrderDetail({ orderId, onClose }: Props) {
     finally { setUpdating(false); }
   }
 
-  function handleBackdropClick(e: React.MouseEvent) {
-    if (e.target === dialogRef.current) onClose();
-  }
+
 
   if (!order) {
     return (
-      <dialog ref={dialogRef} onClose={onClose} onClick={handleBackdropClick} className="fixed inset-0 m-auto max-w-md w-[95vw] max-h-[90vh] bg-surface rounded-2xl border border-outline-variant/10 shadow-2xl backdrop:bg-black/50 overflow-hidden">
-        <div className="p-8 text-center text-on-surface-variant">
+      <div className="min-h-screen bg-surface-container-low p-6 flex items-center justify-center">
+        <div className="text-center text-on-surface-variant">
           {loading ? 'Loading...' : 'Order not found'}
+          <br/>
+          <button onClick={() => navigate('/admin/orders')} className="mt-4 text-primary underline">Back to Orders</button>
         </div>
-      </dialog>
+      </div>
     );
   }
 
   return (
-    <dialog ref={dialogRef} onClose={onClose} onClick={handleBackdropClick} className="fixed inset-0 m-auto max-w-lg w-[95vw] max-h-[90vh] bg-surface rounded-2xl border border-outline-variant/10 shadow-2xl backdrop:bg-black/50 overflow-hidden">
+    <div className="min-h-screen bg-surface-container-low text-on-surface p-6 space-y-6">
+      <div className="max-w-4xl mx-auto bg-surface rounded-2xl border border-outline-variant/10 shadow-sm overflow-hidden">
       <div className="flex items-center justify-between p-6 border-b border-outline-variant/10 sticky top-0 bg-surface z-10">
         <div>
           <h2 className="text-xl font-noto-serif text-primary">Order {order.order_number}</h2>
           <p className="text-xs text-on-surface-variant mt-0.5">{order.created_at ? new Date(order.created_at).toLocaleString('en-LK') : '—'}</p>
         </div>
-        <button onClick={onClose} className="p-1.5 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors">
-          <Icon name="close" className="text-lg" />
-        </button>
+        <div className="flex gap-2">
+          <button onClick={() => window.open(`/admin/print/invoice/${order.id}`, '_blank')} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors flex items-center gap-2" title="Print Invoice">
+            <Icon name="receipt" className="text-lg" />
+            <span className="text-sm hidden sm:inline">Invoice</span>
+          </button>
+          <button onClick={() => window.open(`/admin/print/sticker/${order.id}`, '_blank')} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors flex items-center gap-2" title="Print Sticker">
+            <Icon name="local_shipping" className="text-lg" />
+            <span className="text-sm hidden sm:inline">Sticker</span>
+          </button>
+          <button onClick={() => navigate('/admin/orders')} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors flex items-center gap-2">
+            <Icon name="arrow_back" className="text-lg" />
+            <span className="text-sm">Back</span>
+          </button>
+        </div>
       </div>
 
-      <div className="overflow-y-auto max-h-[calc(90vh-140px)] p-6 space-y-6">
+      <div className="p-8 space-y-8">
         <div className="flex gap-3 flex-wrap">
           <div>
             <label className="block text-xs uppercase tracking-widest text-on-surface-variant mb-1">Status</label>
@@ -182,12 +209,30 @@ export default function OrderDetail({ orderId, onClose }: Props) {
           </div>
         </div>
 
-        {order.notes && (
-          <div>
-            <p className="text-xs uppercase tracking-widest text-on-surface-variant mb-1">Notes</p>
-            <p className="text-sm text-on-surface-variant bg-surface-container-low rounded-lg p-3">{order.notes}</p>
+        <div>
+            <p className="text-xs uppercase tracking-widest text-on-surface-variant mb-1">Notes & History</p>
+            {order.notes && (
+              <div className="text-sm text-on-surface-variant bg-surface-container-low rounded-lg p-3 whitespace-pre-wrap mb-3">
+                {order.notes}
+              </div>
+            )}
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Add a note (e.g., Refund processed...)"
+                value={newNote}
+                onChange={e => setNewNote(e.target.value)}
+                className="flex-1 bg-surface-container-low border border-outline-variant/20 rounded-md py-2 px-3 text-sm focus:border-primary outline-none"
+              />
+              <button
+                onClick={handleAddNote}
+                disabled={savingNote || !newNote.trim()}
+                className="px-4 py-2 bg-surface-container-highest text-on-surface rounded-md text-xs font-bold hover:bg-outline-variant/20 disabled:opacity-50"
+              >
+                {savingNote ? 'Adding...' : 'Add Note'}
+              </button>
+            </div>
           </div>
-        )}
 
         {order.payment_method && (
           <div>
@@ -195,7 +240,36 @@ export default function OrderDetail({ orderId, onClose }: Props) {
             <p className="text-sm">{order.payment_method}</p>
           </div>
         )}
-      </div>
-    </dialog>
+              </div>
+
+        {/* New feature: Detailed Timeline / Extra Notes */}
+        <div className="mt-8 pt-8 border-t border-outline-variant/10">
+          <h3 className="text-sm uppercase tracking-widest text-on-surface-variant mb-4">Order Timeline</h3>
+          <div className="space-y-4">
+             <div className="flex gap-4">
+               <div className="flex flex-col items-center">
+                 <div className="w-2 h-2 rounded-full bg-primary mt-1.5"></div>
+                 <div className="w-px h-full bg-outline-variant/20 my-1"></div>
+               </div>
+               <div>
+                 <p className="text-sm font-medium">Order Placed</p>
+                 <p className="text-xs text-on-surface-variant">{order.created_at ? new Date(order.created_at).toLocaleString('en-LK') : '—'}</p>
+               </div>
+             </div>
+             {order.status !== 'pending' && (
+             <div className="flex gap-4">
+               <div className="flex flex-col items-center">
+                 <div className="w-2 h-2 rounded-full bg-primary mt-1.5"></div>
+               </div>
+               <div>
+                 <p className="text-sm font-medium">Order {order.status}</p>
+                 <p className="text-xs text-on-surface-variant">{order.updated_at ? new Date(order.updated_at).toLocaleString('en-LK') : '—'}</p>
+               </div>
+             </div>
+             )}
+          </div>
+        </div>
+          </div>
+    </div>
   );
 }
