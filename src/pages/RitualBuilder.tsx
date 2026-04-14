@@ -184,12 +184,12 @@ export default function RitualBuilder() {
   const catData = CATEGORY_DATA[category];
 
   return (
-    <div className="bg-background text-on-surface min-h-screen selection:bg-secondary-fixed dark:selection:bg-secondary-fixed-dim">
+    <div className="bg-background text-on-surface flex flex-col h-screen overflow-hidden selection:bg-secondary-fixed dark:selection:bg-secondary-fixed-dim">
       <Header />
 
-      <div className="pt-20 flex flex-col lg:flex-row min-h-screen">
+      <div className="flex flex-1 overflow-hidden flex-col lg:flex-row">
         {/* Left Sidebar */}
-        <aside className="flex flex-col py-6 lg:py-10 px-6 lg:px-6 space-y-4 lg:space-y-8 w-full lg:w-80 relative lg:fixed left-0 top-0 lg:top-20 h-auto lg:h-[calc(100vh-5rem)] bg-surface-container  z-40 overflow-y-auto no-scrollbar lg:border-r border-outline-variant/10">
+        <aside className="flex flex-col py-6 lg:py-10 px-6 space-y-4 lg:space-y-8 w-full lg:w-80 flex-shrink-0 bg-surface-container overflow-y-auto no-scrollbar border-b lg:border-b-0 lg:border-r border-outline-variant/10">
           <div className="mb-4">
             <h2 className="font-noto-serif italic text-secondary  text-lg">The Ritual Builder</h2>
             <p className="font-manrope text-xs uppercase tracking-widest text-on-surface/60 ">Curating your personal care</p>
@@ -260,8 +260,10 @@ export default function RitualBuilder() {
           </div>
         </aside>
 
+        {/* Scrollable center: main + footer */}
+        <div className="flex-1 flex flex-col overflow-y-auto">
         {/* Product Canvas */}
-        <main className="lg:ml-80 xl:mr-96 flex-1 px-6 md:px-10 lg:px-12 py-12">
+        <main className="flex-1 px-6 md:px-10 lg:px-12 py-12">
           <header className="mb-12 max-w-4xl">
             <h1 className="font-noto-serif text-5xl font-black text-primary  leading-tight mb-4">{catData.title}</h1>
             <p className="text-on-surface-variant  font-manrope max-w-2xl leading-relaxed">{catData.subtitle}</p>
@@ -349,8 +351,22 @@ export default function RitualBuilder() {
           </div>
         </main>
 
+          {/* Footer */}
+          <footer className="bg-surface w-full py-12 border-t-[0.5px] border-outline-variant/15">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8">
+              <p className="font-manrope text-xs font-light text-on-surface-variant/60  mb-6 md:mb-0">&copy; 2024 The Heritage Curator. Thrifty Luxury, Rooted in Tradition.</p>
+              <div className="flex flex-wrap justify-center gap-8 font-manrope text-xs font-light">
+                <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Privacy Policy</Link>
+                <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Sourcing Ethics</Link>
+                <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Wholesale</Link>
+                <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300 underline">Ritual Guide</Link>
+              </div>
+            </div>
+          </footer>
+        </div>
+
         {/* Right Summary Sidebar */}
-        <aside className="hidden xl:flex flex-col w-96 bg-surface-container-lowest  border-l border-outline-variant/10  shadow-[-10px_0_30px_rgba(28,28,23,0.03)] z-40 h-[calc(100vh-5rem)] fixed right-0 top-20 overflow-y-auto no-scrollbar">
+        <aside className="hidden xl:flex flex-col w-96 flex-shrink-0 bg-surface-container-lowest border-l border-outline-variant/10 shadow-[-10px_0_30px_rgba(28,28,23,0.03)] overflow-y-auto no-scrollbar">
           <div className="p-8 pb-4">
             <h2 className="font-noto-serif text-2xl text-primary  mb-1">Your Ritual</h2>
             <p className="text-xs uppercase tracking-[0.2em] text-on-surface/50 ">Selections so far</p>
@@ -422,19 +438,6 @@ export default function RitualBuilder() {
           </div>
         </aside>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-surface  w-full py-12 border-t-[0.5px] border-outline-variant/15  lg:pl-80 xl:pr-96">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8">
-          <p className="font-manrope text-xs font-light text-on-surface-variant/60  mb-6 md:mb-0">&copy; 2024 The Heritage Curator. Thrifty Luxury, Rooted in Tradition.</p>
-          <div className="flex flex-wrap justify-center gap-8 font-manrope text-xs font-light">
-            <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Privacy Policy</Link>
-            <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Sourcing Ethics</Link>
-            <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Wholesale</Link>
-            <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300 underline">Ritual Guide</Link>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
