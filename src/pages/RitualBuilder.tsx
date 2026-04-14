@@ -139,7 +139,7 @@ const CATEGORY_DATA: Record<Category, { title: string; subtitle: string; curator
 
 const CURATOR_PORTRAIT = 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1B81cycUiLrWgg7sUTgqFNXZ1ZGYKXamCshoR2fcS5e8KHEb3zioj4AeY--p68CMaCISeDwORROYgxyMbCWge8CH_EePNQ6zBasEs282M9efCuWBg021Led_tsaxkAEzuIrzSTVuqcSI5MK-VR1WePtGirmu61nmjGzKT2AfskYhz0z2Aa7YCbnjmNEVarpO5qMfftxcynvOeqWo_lFiENaVvHSWmkkqaODtZ10zT-bjJVYasmKD6ixz_BQebbqHqZFHsSsay7xIP';
 
-const formatLKR = (n: number) => `LKR ${n.toLocaleString('en-LK')}`;
+const formatLKR = (n: number) => `LKR ${n.toLocaleString('en-US')}`;
 
 const NAV_ITEMS: { label: string; icon: string; category: Category }[] = [
   { label: 'Hair Ritual', icon: 'spa', category: 'hair' },

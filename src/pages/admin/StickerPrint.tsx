@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { api } from '../../lib/api';
 import type { Order, Address } from '../../types/database';
+import { formatPriceCents } from '../../types/database';
 
 type OrderDetail = Order & { shipping_address: Address | null };
 
@@ -52,7 +53,7 @@ export default function StickerPrint() {
           {order.payment_method === 'cod' && (
             <div className="border-2 border-black px-2 py-1 text-center">
               <p className="font-bold uppercase text-xs">COD Amount</p>
-              <p className="font-bold">{new Intl.NumberFormat('en-LK', { style: 'currency', currency: 'LKR', minimumFractionDigits: 0 }).format(order.total_cents / 100)}</p>
+              <p className="font-bold">{formatPriceCents(order.total_cents)}</p>
             </div>
           )}
         </div>

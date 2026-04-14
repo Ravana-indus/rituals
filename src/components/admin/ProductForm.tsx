@@ -136,7 +136,7 @@ export default function ProductForm({ product, brands, categories, onSave, onClo
   }
 
   function formatPriceInput(cents: number) {
-    return (cents / 100).toFixed(2);
+    return new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(cents / 100);
   }
 
   function parsePriceInput(str: string) {
