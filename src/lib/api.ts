@@ -6,6 +6,10 @@ import type {
   Order, OrderInsert, OrderItem,
   Profile, Address,
   ShippingMethod, Promotion,
+  FulfillmentStatus, OrderFulfillment, OrderFulfillmentItem,
+  OrderRefund, OrderRefundItem, OrderNote, OrderTag, OrderEdit,
+  OrderSearchFilters, PaginatedOrders, Pagination,
+  OrderEditType,
 } from '../types/database';
 
 export const api = {
@@ -427,6 +431,398 @@ export const api = {
       const { error } = await supabase.from('orders').update(updates).eq('id', id);
       if (error) throw error;
     },
+    search: async (
+      filters: OrderSearchFilters,
+      pagination: Pagination
+    ): Promise<PaginatedOrders> => {
+      let query = supabase
+        .from('orders')
+        .select('*', { count: 'exact' })
+        .order(pagination.sort_by ?? 'created_at', {
+          ascending: pagination.sort_dir === 'asc',
+        });
+
+      if (filters.query) {
+        query = query.or(
+          `order_number.ilike.%${filters.query}%,email.ilike.%${filters.query}%`
+        );
+      }
+      if (filters.status) {
+        query = query.eq('status', filters.status);
+      }
+      if (filters.payment_status) {
+        query = query.eq('payment_status', filters.payment_status);
+      }
+      if (filters.fulfillment_status) {
+        query = query.eq('fulfillment_status', filters.fulfillment_status);
+      }
+      if (filters.date_from) {
+        query = query.gte('created_at', filters.date_from);
+      }
+      if (filters.date_to) {
+        query = query.lte('created_at', filters.date_to + 'T23:59:59');
+      }
+
+      const from = (pagination.page - 1) * pagination.per_page;
+      query = query.range(from, from + pagination.per_page - 1);
+
+      const { data, error, count } = await query;
+      if (error) throw error;
+
+      return {
+        data: data ?? [],
+        total: count ?? 0,
+        page: pagination.page,
+        per_page: pagination.per_page,
+        total_pages: Math.ceil((count ?? 0) / pagination.per_page),
+      };
+    },
+    getBulk: async (ids: string[]): Promise<Order[]> => {
+      const { data, error } = await supabase
+        .from('orders')
+        .select('*')
+        .in('id', ids);
+      if (error) throw error;
+      return data ?? [];
+    },
+    bulkUpdateStatus: async (ids: string[], status: string): Promise<void> => {
+      const { error } = await supabase
+        .from('orders')
+        .update({ status })
+        .in('id', ids);
+      if (error) throw error;
+    },
+    bulkArchive: async (ids: string[]): Promise<void> => {
+      const { error } = await supabase
+        .from('orders')
+        .update({ status: 'cancelled' })
+        .in('id', ids);
+      if (error) throw error;
+    },
+    addNote: async (orderId: string, content: string, noteType: 'internal' | 'customer'): Promise<OrderNote> => {
+      const { data, error } = await supabase
+        .from('order_notes')
+        .insert({ order_id: orderId, content, note_type: noteType })
+        .select()
+        .single();
+      if (error) throw error;
+      return data;
+    },
+    getNotes: async (orderId: string): Promise<OrderNote[]> => {
+      const { data, error } = await supabase
+        .from('order_notes')
+        .select('*')
+        .eq('order_id', orderId)
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+      return data ?? [];
+    },
+    addTag: async (orderId: string, tag: string): Promise<void> => {
+      const { error } = await supabase
+        .from('order_tags')
+        .insert({ order_id: orderId, tag });
+      if (error && error.code !== '23505') throw error;
+    },
+    removeTag: async (orderId: string, tag: string): Promise<void> => {
+      const { error } = await supabase
+        .from('order_tags')
+        .delete()
+        .eq('order_id', orderId)
+        .eq('tag', tag);
+      if (error) throw error;
+    },
+    getTags: async (orderId: string): Promise<string[]> => {
+      const { data, error } = await supabase
+        .from('order_tags')
+        .select('tag')
+        .eq('order_id', orderId);
+      if (error) throw error;
+      return (data ?? []).map((r: { tag: string }) => r.tag);
+    },
+    getDistinctTags: async (): Promise<string[]> => {
+      const { data, error } = await supabase
+        .from('order_tags')
+        .select('tag');
+      if (error) throw error;
+      const unique = new Set((data ?? []).map((r: { tag: string }) => r.tag));
+      return Array.from(unique).sort();
+    },
+    exportCsv: async (filters: OrderSearchFilters): Promise<string> => {
+      const { data: orders } = await supabase
+        .from('orders')
+        .select('*, shipping_address:addresses!shipping_address_id(*), billing_address:addresses!billing_address_id(*)')
+        .order('created_at', { ascending: false });
+
+      if (!orders || orders.length === 0) {
+        const header = ['Order #', 'Date', 'Email', 'Status', 'Payment Status', 'Fulfillment Status', 'Subtotal', 'Shipping', 'Tax', 'Discount', 'Total', 'Shipping Address', 'Items', 'Tags'];
+        return header.join(',');
+      }
+
+      const orderIds = orders.map((o: Record<string, unknown>) => o.id as string);
+      const [itemsResult, tagsResult] = await Promise.all([
+        supabase.from('order_items').select('*').in('order_id', orderIds),
+        supabase.from('order_tags').select('*').in('order_id', orderIds),
+      ]);
+
+      const itemsByOrder = (itemsResult.data ?? []).reduce((acc: Record<string, unknown[]>, item: Record<string, unknown>) => {
+        if (!acc[item.order_id as string]) acc[item.order_id as string] = [];
+        acc[item.order_id as string].push(item);
+        return acc;
+      }, {});
+
+      const tagsByOrder = (tagsResult.data ?? []).reduce((acc: Record<string, string[]>, tag: Record<string, unknown>) => {
+        if (!acc[tag.order_id as string]) acc[tag.order_id as string] = [];
+        acc[tag.order_id as string].push(tag.tag as string);
+        return acc;
+      }, {});
+
+      const header = [
+        'Order #', 'Date', 'Email',
+        'Status', 'Payment Status', 'Fulfillment Status',
+        'Subtotal', 'Shipping', 'Tax', 'Discount', 'Total',
+        'Shipping Address', 'Items', 'Tags',
+      ];
+
+      const formatAddress = (a: Record<string, unknown> | null) =>
+        a ? `${a.recipient_name}, ${a.address_line_1}, ${a.city}, ${a.district}, ${a.postal_code}, ${a.country}` : '';
+
+      const csvRows = orders.map((o: Record<string, unknown>) => {
+        const items = itemsByOrder[o.id as string] ?? [];
+        const tags = tagsByOrder[o.id as string] ?? [];
+        const shippingAddr = o.shipping_address as Record<string, unknown> | null;
+        return [
+          o.order_number,
+          o.created_at ? new Date(o.created_at as string).toLocaleDateString('en-LK') : '',
+          o.email,
+          o.status,
+          o.payment_status,
+          o.fulfillment_status,
+          ((o.subtotal_cents as number) ?? 0) / 100,
+          ((o.shipping_cents as number) ?? 0) / 100,
+          ((o.tax_cents as number) ?? 0) / 100,
+          ((o.discount_cents as number) ?? 0) / 100,
+          (o.total_cents as number) / 100,
+          formatAddress(shippingAddr),
+          items.map((i: Record<string, unknown>) => `${i.product_name} x${i.quantity}`).join('; '),
+          tags.join(', '),
+        ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(',');
+      });
+
+      return [header.join(','), ...csvRows].join('\n');
+    },
+  },
+
+  fulfillments: {
+    create: async (orderId: string, data: {
+      tracking_number?: string;
+      carrier?: string;
+      items: { order_item_id: string; quantity: number }[];
+    }): Promise<OrderFulfillment> => {
+      const { data: fulfillment, error } = await supabase
+        .from('order_fulfillments')
+        .insert({
+          order_id: orderId,
+          tracking_number: data.tracking_number ?? null,
+          carrier: data.carrier ?? null,
+          status: 'pending',
+        })
+        .select()
+        .single();
+      if (error) throw error;
+
+      for (const item of data.items) {
+        await supabase.from('order_fulfillment_items').insert({
+          fulfillment_id: fulfillment.id,
+          order_item_id: item.order_item_id,
+          quantity: item.quantity,
+        });
+        await supabase.rpc('increment_fulfilled_quantity', {
+          item_id: item.order_item_id,
+          qty: item.quantity,
+        }) as unknown as void;
+      }
+
+      await recalcFulfillmentStatus(orderId);
+
+      return fulfillment;
+    },
+    update: async (id: string, data: {
+      tracking_number?: string;
+      carrier?: string;
+      status?: 'pending' | 'in_transit' | 'delivered';
+      shipped_at?: string;
+      delivered_at?: string;
+    }): Promise<void> => {
+      const { error } = await supabase
+        .from('order_fulfillments')
+        .update(data)
+        .eq('id', id);
+      if (error) throw error;
+
+      if (data.status === 'delivered') {
+        const { data: ful } = await supabase.from('order_fulfillments').select('order_id').eq('id', id).single();
+        if (ful) await recalcFulfillmentStatus(ful.order_id);
+      }
+    },
+    getByOrder: async (orderId: string): Promise<(OrderFulfillment & { items: (OrderFulfillmentItem & { order_item: OrderItem })[] })[]> => {
+      const { data, error } = await supabase
+        .from('order_fulfillments')
+        .select('*')
+        .eq('order_id', orderId)
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+
+      const withItems = await Promise.all(
+        (data ?? []).map(async (f) => {
+          const { data: items } = await supabase
+            .from('order_fulfillment_items')
+            .select('*, order_item:order_items(*)')
+            .eq('fulfillment_id', f.id);
+          return { ...f, items: items ?? [] };
+        })
+      );
+      return withItems;
+    },
+  },
+
+  refunds: {
+    create: async (orderId: string, data: {
+      items: { order_item_id: string; quantity: number; amount_cents: number }[];
+      amount_cents: number;
+      reason: 'damaged' | 'wrong_item' | 'customer_request' | 'other';
+      note?: string;
+    }): Promise<OrderRefund> => {
+      const { data: refund, error } = await supabase
+        .from('order_refunds')
+        .insert({
+          order_id: orderId,
+          amount_cents: data.amount_cents,
+          reason: data.reason,
+          note: data.note ?? null,
+          status: 'processed',
+        })
+        .select()
+        .single();
+      if (error) throw error;
+
+      for (const item of data.items) {
+        await supabase.from('order_refund_items').insert({
+          refund_id: refund.id,
+          order_item_id: item.order_item_id,
+          quantity: item.quantity,
+          amount_cents: item.amount_cents,
+        });
+        await supabase.rpc('increment_refunded_quantity', {
+          item_id: item.order_item_id,
+          qty: item.quantity,
+        }) as unknown as void;
+      }
+
+      const { data: allRefunds } = await supabase
+        .from('order_refunds')
+        .select('amount_cents')
+        .eq('order_id', orderId)
+        .eq('status', 'processed');
+      const totalRefunded = (allRefunds ?? []).reduce((s: number, r: { amount_cents: number }) => s + r.amount_cents, 0);
+      const { data: order } = await supabase.from('orders').select('total_cents').eq('id', orderId).single();
+      if (order) {
+        const newStatus = totalRefunded >= order.total_cents ? 'refunded' : totalRefunded > 0 ? 'partially_refunded' : 'paid';
+        await supabase.from('orders').update({ payment_status: newStatus }).eq('id', orderId);
+      }
+
+      return refund;
+    },
+    getByOrder: async (orderId: string): Promise<(OrderRefund & { items: OrderRefundItem[] })[]> => {
+      const { data, error } = await supabase
+        .from('order_refunds')
+        .select('*')
+        .eq('order_id', orderId)
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+
+      const withItems = await Promise.all(
+        (data ?? []).map(async (r) => {
+          const { data: items } = await supabase
+            .from('order_refund_items')
+            .select('*')
+            .eq('refund_id', r.id);
+          return { ...r, items: items ?? [] };
+        })
+      );
+      return withItems;
+    },
+  },
+
+  orderEdits: {
+    apply: async (orderId: string, data: {
+      edits: {
+        edit_type: OrderEditType;
+        order_item_id?: string;
+        before_data: Record<string, unknown>;
+        after_data: Record<string, unknown>;
+        product_id?: string;
+        product_name?: string;
+        variant_id?: string;
+        variant_name?: string;
+        unit_price_cents?: number;
+        quantity?: number;
+      }[];
+    }): Promise<void> => {
+      for (const edit of data.edits) {
+        await supabase.from('order_edits').insert({
+          order_id: orderId,
+          edit_type: edit.edit_type,
+          before_data: edit.before_data,
+          after_data: edit.after_data,
+        });
+
+        if (edit.edit_type === 'add_item') {
+          await supabase.from('order_items').insert({
+            order_id: orderId,
+            product_id: edit.product_id,
+            variant_id: edit.variant_id ?? null,
+            product_name: edit.product_name,
+            variant_name: edit.variant_name ?? null,
+            quantity: edit.quantity ?? 1,
+            unit_price_cents: edit.unit_price_cents ?? 0,
+            total_cents: (edit.unit_price_cents ?? 0) * (edit.quantity ?? 1),
+          });
+        } else if (edit.edit_type === 'remove_item' && edit.order_item_id) {
+          await supabase.from('order_items').delete().eq('id', edit.order_item_id);
+        } else if (edit.edit_type === 'change_quantity' && edit.order_item_id) {
+          const newQty = edit.quantity ?? 1;
+          const { data: item } = await supabase.from('order_items').select('unit_price_cents').eq('id', edit.order_item_id).single();
+          await supabase.from('order_items').update({
+            quantity: newQty,
+            total_cents: (item?.unit_price_cents ?? 0) * newQty,
+          }).eq('id', edit.order_item_id);
+        } else if (edit.edit_type === 'change_price' && edit.order_item_id) {
+          const { data: item } = await supabase.from('order_items').select('quantity').eq('id', edit.order_item_id).single();
+          await supabase.from('order_items').update({
+            unit_price_cents: edit.unit_price_cents,
+            total_cents: (edit.unit_price_cents ?? 0) * (item?.quantity ?? 1),
+          }).eq('id', edit.order_item_id);
+        }
+      }
+
+      const { data: items } = await supabase.from('order_items').select('total_cents').eq('order_id', orderId);
+      const subtotal = (items ?? []).reduce((s: number, i: { total_cents: number }) => s + i.total_cents, 0);
+      const { data: order } = await supabase.from('orders').select('shipping_cents, discount_cents').eq('id', orderId).single();
+      await supabase.from('orders').update({
+        subtotal_cents: subtotal,
+        total_cents: subtotal + (order?.shipping_cents ?? 0) - (order?.discount_cents ?? 0),
+        edited_at: new Date().toISOString(),
+      }).eq('id', orderId);
+    },
+    getHistory: async (orderId: string): Promise<OrderEdit[]> => {
+      const { data, error } = await supabase
+        .from('order_edits')
+        .select('*')
+        .eq('order_id', orderId)
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+      return data ?? [];
+    },
   },
 
   profile: {
@@ -566,3 +962,19 @@ export const api = {
     },
   },
 };
+
+async function recalcFulfillmentStatus(orderId: string): Promise<void> {
+  const { data: items } = await supabase.from('order_items').select('quantity, fulfilled_quantity, refunded_quantity').eq('order_id', orderId);
+  if (!items || items.length === 0) return;
+
+  const totalQty = items.reduce((s: number, i: { quantity: number }) => s + i.quantity, 0);
+  const fulfilledQty = items.reduce((s: number, i: { fulfilled_quantity: number }) => s + i.fulfilled_quantity, 0);
+  const refundedQty = items.reduce((s: number, i: { refunded_quantity: number }) => s + i.refunded_quantity, 0);
+  const shippableQty = totalQty - refundedQty;
+
+  let status: 'unfulfilled' | 'partial' | 'fulfilled' = 'unfulfilled';
+  if (fulfilledQty >= shippableQty && shippableQty > 0) status = 'fulfilled';
+  else if (fulfilledQty > 0) status = 'partial';
+
+  await supabase.from('orders').update({ fulfillment_status: status }).eq('id', orderId);
+}
