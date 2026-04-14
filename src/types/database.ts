@@ -136,5 +136,9 @@ export function formatPriceCents(cents: number): string {
 }
 
 export function parsePriceString(priceStr: string): number {
-  return parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
+  const normalized = priceStr.replace(/,/g, '.');
+  const parts = normalized.split('.');
+  const intPart = parts[0];
+  const decPart = parts.length > 1 ? '.' + parts.slice(1).join('') : '';
+  return Math.round(parseFloat(intPart + decPart) * 100);
 }

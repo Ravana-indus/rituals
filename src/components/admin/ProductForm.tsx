@@ -140,8 +140,11 @@ export default function ProductForm({ product, brands, categories, onSave, onClo
   }
 
   function parsePriceInput(str: string) {
-    const cleaned = str.replace(/[^0-9.]/g, '');
-    const num = parseFloat(cleaned);
+    const normalized = str.replace(/,/g, '.');
+    const parts = normalized.split('.');
+    const intPart = parts[0];
+    const decPart = parts.length > 1 ? '.' + parts.slice(1).join('') : '';
+    const num = parseFloat(intPart + decPart);
     return isNaN(num) ? 0 : Math.round(num * 100);
   }
 
