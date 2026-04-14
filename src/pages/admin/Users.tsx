@@ -55,7 +55,7 @@ export default function AdminUsers() {
                 <td className="p-4"><p className="text-sm font-medium">{user.full_name ?? '—'}</p></td>
                 <td className="p-4 text-sm">{user.email}</td>
                 <td className="p-4">
-                  <span className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-semibold ${
+                  <span className={`text-xs uppercase tracking-wider px-2 py-0.5 rounded-full font-semibold ${
                     user.role === 'super_admin' ? 'bg-purple-100 text-purple-800' :
                     user.role === 'admin' ? 'bg-primary-container text-on-primary-container' :
                     'bg-surface-container text-on-surface-variant'

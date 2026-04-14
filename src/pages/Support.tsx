@@ -39,7 +39,7 @@ export default function Support() {
         <section className="max-w-7xl mx-auto px-8 py-16 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             {/* Apothecary Guidance */}
-            <div className="md:col-span-8 group relative overflow-hidden bg-surface-container-low rounded-xl p-10 flex flex-col justify-between min-h-[400px] transition-all hover:bg-surface-container">
+            <div className="md:col-span-8 group relative overflow-hidden bg-surface-container-low rounded-xl p-10 flex flex-col justify-between min-h-[250px] md:min-h-[400px] transition-all hover:bg-surface-container">
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-6">
                   <Icon name="medical_services" filled className="text-4xl text-primary-container" />
@@ -141,7 +141,7 @@ export default function Support() {
               <h3 className="font-noto-serif text-xl mb-3">Live Concierge Chat</h3>
               <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">Connect with our consultants in real-time. Available 9am - 6pm SLT.</p>
               <Link to="/consult" className="mt-auto w-full py-4 bg-secondary text-on-secondary rounded-lg font-manrope text-xs uppercase tracking-widest">Start Conversation</Link>
-              <span className="mt-4 text-[10px] uppercase tracking-widest text-secondary font-bold">Active Now</span>
+              <span className="mt-4 text-xs uppercase tracking-widest text-secondary font-bold">Active Now</span>
             </div>
             {/* Option 3 */}
             <div className="bg-surface p-10 rounded-xl shadow-[0_20px_40px_rgba(28,28,23,0.04)] text-center flex flex-col items-center">

@@ -41,7 +41,7 @@ export default function Register() {
       <div className="absolute inset-0 pointer-events-none z-[99] opacity-[0.03]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
 
       <main className="flex-grow flex flex-col md:flex-row min-h-screen">
-        <section className="hidden md:flex md:w-5/12 lg:w-1/2 relative overflow-hidden bg-primary-container">
+        <section className="flex flex-col w-full md:w-5/12 lg:w-1/2 relative overflow-hidden bg-primary-container min-h-[300px] md:min-h-full">
           <div className="absolute inset-0 z-0">
             <img className="w-full h-full object-cover opacity-60 mix-blend-multiply" alt="Atmospheric still life of antique amber apothecary bottles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8ytkqSi0aEfGGnZTpBVCcgGrNuyqlL92OuODC_0BUWz2F4cibJ1fYt3sLY40cppS87UjB9F5ekpI7XkgehMi-vYm3dKRvzKjxHmQx6Jv9a5dO5bAg1wPIRShZLyRZrNpe9U2dUP8mkhiUfWEeFBGVmVfy-FHchPv7Q5CHSVgEElLHZpHULJcz74ieyrLIBWQG25CrFe-BILB48P2DBklC_nqiYAMWBsuZMwybkadsH-FFF3Y7zuTWyEVrcNcSYgpVqBKCoKHrcc1M" />
           </div>
@@ -106,7 +106,7 @@ export default function Register() {
 
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="relative group">
-                <label className="block font-manrope text-[10px] font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="full_name">Full Name</label>
+                <label className="block font-manrope text-xs font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="full_name">Full Name</label>
                 <input
                   className="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary transition-all font-manrope text-on-surface placeholder:text-outline-variant/50"
                   id="full_name" name="full_name" placeholder="Ananda Perera" required type="text"
@@ -114,7 +114,7 @@ export default function Register() {
                 />
               </div>
               <div className="relative group">
-                <label className="block font-manrope text-[10px] font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="email">Email Address</label>
+                <label className="block font-manrope text-xs font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="email">Email Address</label>
                 <input
                   className="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary transition-all font-manrope text-on-surface placeholder:text-outline-variant/50"
                   id="email" name="email" placeholder="ritualist@heritagecurator.com" required type="email"
@@ -122,7 +122,7 @@ export default function Register() {
                 />
               </div>
               <div className="relative group">
-                <label className="block font-manrope text-[10px] font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="password">Secret Key (Password)</label>
+                <label className="block font-manrope text-xs font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="password">Secret Key (Password)</label>
                 <input
                   className="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary transition-all font-manrope text-on-surface placeholder:text-outline-variant/50"
                   id="password" name="password" placeholder="••••••••••••" required type="password" minLength={8}
@@ -167,7 +167,7 @@ export default function Register() {
       </div>
 
       <footer className="bg-surface-container py-6 px-8 border-t border-outline-variant/10 relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-manrope uppercase tracking-widest text-outline">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-manrope uppercase tracking-widest text-outline">
           <div>© 2024 The Heritage Curator. Ceylon's Finest Apothecary.</div>
           <div className="flex gap-6">
             <Link to="/support" className="hover:text-primary transition-colors">Provenance</Link>

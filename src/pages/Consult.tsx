@@ -29,7 +29,7 @@ export default function Consult() {
         <section className="lg:col-span-8 space-y-8">
           <header className="max-w-2xl">
             <span className="font-noto-serif italic text-primary text-xl mb-2 block">Ayubowan, Traveler</span>
-            <h1 className="text-4xl md:text-5xl font-noto-serif font-bold text-on-surface leading-tight">What brings you to the <span className="text-primary italic">Apothecary's Desk</span> today?</h1>
+            <h1 className="text-4xl lg:text-5xl font-noto-serif font-bold text-on-surface leading-tight">What brings you to the <span className="text-primary italic">Apothecary's Desk</span> today?</h1>
             <p className="mt-4 text-on-surface-variant font-manrope leading-relaxed max-w-xl">
               Describe your concerns as you would to an old friend. Our curator listens to the whispers of your skin and the rhythm of your wellness.
             </p>
@@ -37,7 +37,7 @@ export default function Consult() {
 
           <div className="bg-surface-container-low rounded-xl p-6 md:p-10 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4">
-              <span className="bg-tertiary-container text-on-tertiary-fixed-variant text-[10px] font-bold tracking-[0.2em] px-3 py-1 rounded-full uppercase">Digital Consultation</span>
+              <span className="bg-tertiary-container text-on-tertiary-fixed-variant text-xs font-bold tracking-[0.2em] px-3 py-1 rounded-full uppercase">Digital Consultation</span>
             </div>
             <div className="space-y-8">
               {/* Master's Message */}
@@ -131,36 +131,44 @@ export default function Consult() {
         {/* Right Column: Contextual History & Wisdom */}
         <aside className="lg:col-span-4 space-y-8">
           {/* User History Card */}
-          <div className="bg-surface-container rounded-xl p-6 border border-outline-variant/10">
-            <div className="flex items-center justify-between mb-6">
+          <details className="bg-surface-container rounded-xl p-6 border border-outline-variant/10 group md:block">
+            <summary className="flex items-center justify-between cursor-pointer list-none [&::-webkit-details-marker]:hidden">
               <h3 className="font-noto-serif font-bold text-lg">Past Journeys</h3>
-              <Icon name="history_edu" className="text-primary" />
-            </div>
-            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Icon name="history_edu" className="text-primary" />
+                <Icon name="expand_more" className="text-primary md:hidden group-open:rotate-180 transition-transform" />
+              </div>
+            </summary>
+            <div className="space-y-4 mt-6">
               <div className="p-4 bg-surface-container-lowest rounded-lg border-l-4 border-secondary transition-transform hover:-translate-x-1">
                 <div className="flex justify-between items-start mb-1">
-                  <span className="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">March 14, 2024</span>
-                  <span className="bg-secondary-fixed px-2 py-0.5 rounded text-[10px] font-bold text-on-secondary-fixed">RESOLVED</span>
+                  <span className="text-xs font-bold uppercase tracking-tighter text-on-surface-variant">March 14, 2024</span>
+                  <span className="bg-secondary-fixed px-2 py-0.5 rounded text-xs font-bold text-on-secondary-fixed">RESOLVED</span>
                 </div>
                 <p className="font-noto-serif text-sm font-semibold">The Monsoon Skin Rescue</p>
                 <p className="text-xs text-on-surface-variant mt-1 italic">Prescribed: Sandalwood & Honey Paste</p>
               </div>
               <div className="p-4 bg-surface-container-lowest rounded-lg border-l-4 border-primary transition-transform hover:-translate-x-1">
                 <div className="flex justify-between items-start mb-1">
-                  <span className="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">Feb 28, 2024</span>
-                  <span className="bg-primary-fixed px-2 py-0.5 rounded text-[10px] font-bold text-on-primary-fixed">ONGOING</span>
+                  <span className="text-xs font-bold uppercase tracking-tighter text-on-surface-variant">Feb 28, 2024</span>
+                  <span className="bg-primary-fixed px-2 py-0.5 rounded text-xs font-bold text-on-primary-fixed">ONGOING</span>
                 </div>
                 <p className="font-noto-serif text-sm font-semibold">Scalp Vitality Ritual</p>
                 <p className="text-xs text-on-surface-variant mt-1 italic">Prescribed: Gotu Kola Infusion</p>
               </div>
             </div>
-            <button className="w-full mt-6 text-center text-white/60 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
+            <button className="w-full mt-6 text-center text-primary/60 dark:text-white/60 text-xs font-bold uppercase tracking-widest hover:text-primary dark:hover:text-white transition-colors">
               VIEW COMPLETE ARCHIVE
             </button>
-          </div>
+          </details>
 
           {/* The Curator's Tip */}
-          <div className="relative rounded-xl overflow-hidden aspect-[4/5] flex flex-col justify-end p-8 group">
+          <details className="md:block group">
+            <summary className="flex md:hidden items-center justify-between cursor-pointer list-none [&::-webkit-details-marker]:hidden bg-surface-container p-6 rounded-xl border border-outline-variant/10">
+              <h3 className="font-noto-serif font-bold text-lg text-primary">Curator's Tip</h3>
+              <Icon name="expand_more" className="text-primary group-open:rotate-180 transition-transform" />
+            </summary>
+            <div className="relative rounded-xl overflow-hidden aspect-[4/5] md:aspect-auto md:min-h-[400px] flex flex-col justify-end p-8 group hidden group-open:flex md:flex mt-4 md:mt-0">
             <img alt="Traditional botanical herbs" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgsDGHA0LFDWT73Z6Yjj6-n6Y0vV48a2EdcuPsgthhGKghIrECnLKWEfvTxX_wRMQuk7CYbGfdBwAmPd_rYpBJNCKlEymu7m_oCneS2yt8YUnQ4jytqxF9Q5Dk0Ks0nAGGuBshHIxDWdWHqZ6XpXZGBFWsgea6xCpY8VdKpAfjjRTNGc2cLwCsia-RV_MnOm9YwSdfKHurrhRkhE8FdZGyb_EqkY8Dzw0wU6pSxcY2bMCdboNial45JRjq4Ejb3c86tTfJUObwoeq9" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
             <div className="relative z-10 text-on-primary">
@@ -173,27 +181,28 @@ export default function Consult() {
                 Discover More
               </button>
             </div>
-          </div>
+            </div>
+          </details>
         </aside>
       </main>
 
       {/* BottomNavBar (Mobile Only) */}
       <nav className="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#fcf9f0] dark:bg-[#1c1c17] z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(28,28,23,0.04)] border-t border-[#c1c8c7]/15">
-        <Link to="/consult" className="flex flex-col items-center justify-center bg-[#2A5D5D] text-white rounded-xl px-5 py-2 scale-95 transition-transform duration-500 ease-in-out">
+        <Link to="/consult" className="flex flex-col items-center justify-center bg-[#2A5D5D] text-white rounded-xl min-w-[64px] min-h-[44px] px-3 py-2 scale-95 transition-transform duration-500 ease-in-out">
           <Icon name="chat_bubble" />
-          <span className="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Consult</span>
+          <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Consult</span>
         </Link>
-        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
           <Icon name="auto_awesome" />
-          <span className="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Rituals</span>
+          <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Rituals</span>
         </Link>
-        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
           <Icon name="auto_stories" />
-          <span className="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Rituals</span>
+          <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Stories</span>
         </Link>
-        <Link to="/" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+        <Link to="/" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
           <Icon name="local_pharmacy" />
-          <span className="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Apothecary</span>
+          <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Shop</span>
         </Link>
       </nav>
     </div>

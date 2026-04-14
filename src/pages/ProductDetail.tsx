@@ -105,7 +105,7 @@ export default function ProductDetail() {
   if (loading) return (
     <div className="bg-background text-on-surface min-h-screen flex flex-col">
       <Header />
-      <main className="pt-8 pb-16 px-4 md:px-8 max-w-7xl mx-auto flex-grow flex items-center justify-center">
+      <main className="pt-8 pb-24 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto flex-grow flex items-center justify-center">
         <div className="animate-pulse text-primary">Loading product...</div>
       </main>
     </div>
@@ -114,7 +114,7 @@ export default function ProductDetail() {
   if (!product) return (
     <div className="bg-background text-on-surface min-h-screen flex flex-col">
       <Header />
-      <main className="pt-8 pb-16 px-4 md:px-8 max-w-7xl mx-auto flex-grow flex items-center justify-center">
+      <main className="pt-8 pb-24 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto flex-grow flex items-center justify-center">
         <div className="text-center">
           <Icon name="search_off" className="text-5xl text-on-surface-variant mb-4" />
           <h1 className="text-2xl font-noto-serif text-primary mb-2">Product Not Found</h1>
@@ -132,14 +132,14 @@ export default function ProductDetail() {
     <div className="bg-background text-on-surface min-h-screen flex flex-col">
       <Header />
 
-      <main className="pt-8 pb-16 px-4 md:px-8 max-w-7xl mx-auto flex-grow">
+      <main className="pt-8 pb-24 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto flex-grow">
         <nav className="flex items-center gap-2 text-xs uppercase tracking-widest text-on-surface-variant mb-8 font-medium">
           <Link to="/">Apothecary</Link>
-          <Icon name="chevron_right" className="text-[10px]" />
+          <Icon name="chevron_right" className="text-xs" />
           {product.category && (
             <>
               <Link to={`/category/${product.category.slug}`}>{product.category.name}</Link>
-              <Icon name="chevron_right" className="text-[10px]" />
+              <Icon name="chevron_right" className="text-xs" />
             </>
           )}
           <span className="text-primary font-bold">{product.name}</span>
@@ -155,7 +155,7 @@ export default function ProductDetail() {
               />
               {discount && (
                 <div className="absolute top-6 right-6 bg-tertiary text-on-tertiary py-3 px-5 rounded-full flex flex-col items-center justify-center transform rotate-12 shadow-2xl border-2 border-tertiary-fixed-dim">
-                  <span className="text-[10px] uppercase font-bold tracking-tighter">Clearance Steal</span>
+                  <span className="text-xs uppercase font-bold tracking-tighter">Clearance Steal</span>
                   <span className="text-xl font-noto-serif italic">-{discount}%</span>
                 </div>
               )}
@@ -166,7 +166,7 @@ export default function ProductDetail() {
                   <button
                     key={img.id}
                     onClick={() => setSelectedImage(i)}
-                    className={`w-20 h-24 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0 border-2 transition-all ${selectedImage === i ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                    className={`w-16 md:w-20 h-20 md:h-24 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0 border-2 transition-all ${selectedImage === i ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'}`}
                   >
                     <img className="w-full h-full object-cover" alt={img.alt_text ?? product.name} src={img.url} />
                   </button>
@@ -187,11 +187,11 @@ export default function ProductDetail() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-primary/5">
                   <Icon name="verified" className="text-primary text-base" />
-                  <span className="text-[10px] font-black uppercase tracking-tighter">Authenticity Verified</span>
+                  <span className="text-xs font-black uppercase tracking-tighter">Authenticity Verified</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-primary/5">
                   <Icon name="eco" className="text-primary text-base" />
-                  <span className="text-[10px] font-black uppercase tracking-tighter">Ethically Sourced</span>
+                  <span className="text-xs font-black uppercase tracking-tighter">Ethically Sourced</span>
                 </div>
               </div>
             </div>
@@ -200,14 +200,14 @@ export default function ProductDetail() {
           <div className="lg:col-span-5 flex flex-col gap-6">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="bg-tertiary text-on-tertiary text-[11px] px-3 py-1 rounded-full font-black uppercase tracking-[0.2em] shadow-sm flex items-center gap-1">
+                <span className="bg-tertiary text-on-tertiary text-xs px-3 py-1 rounded-full font-black uppercase tracking-[0.2em] shadow-sm flex items-center gap-1">
                   <Icon name="local_fire_department" className="text-[14px]" />
                   Clearance Steal
                 </span>
-                <span className="bg-secondary-fixed text-on-secondary-fixed text-[10px] px-2 py-1 rounded font-bold uppercase tracking-widest">Heritage Batch</span>
+                <span className="bg-secondary-fixed text-on-secondary-fixed text-xs px-2 py-1 rounded font-bold uppercase tracking-widest">Heritage Batch</span>
                 {product.sku && <span className="text-on-surface-variant text-xs uppercase tracking-widest">SKU: {product.sku}</span>}
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight text-primary mb-2 font-noto-serif">{product.name}</h1>
+              <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-primary mb-2 font-noto-serif">{product.name}</h1>
               <p className="text-lg italic font-noto-serif text-on-surface-variant">{product.brand?.name ?? 'The Heritage Curator Apothecary'}</p>
             </div>
 
@@ -303,7 +303,7 @@ export default function ProductDetail() {
                   Buy Now
                 </button>
               </div>
-              <p className="text-[10px] text-center text-on-surface-variant uppercase tracking-widest font-bold">Direct from source · Authenticity Guaranteed · Hand-Bottled in Colombo</p>
+              <p className="text-xs text-center text-on-surface-variant uppercase tracking-widest font-bold">Direct from source · Authenticity Guaranteed · Hand-Bottled in Colombo</p>
             </div>
 
             <div className="mt-4 border-t border-outline-variant/30">
@@ -400,7 +400,7 @@ export default function ProductDetail() {
                       </Link>
                       {relDiscount && (
                         <div className="absolute top-3 left-3">
-                          <span className="bg-tertiary text-on-tertiary text-[10px] font-black px-2 py-1 rounded-sm uppercase tracking-widest">-{relDiscount}%</span>
+                          <span className="bg-tertiary text-on-tertiary text-xs font-black px-2 py-1 rounded-sm uppercase tracking-widest">-{relDiscount}%</span>
                         </div>
                       )}
                     </div>

@@ -73,7 +73,7 @@ export default function Cart() {
       <main className="flex-grow pt-8 pb-24 px-4 md:px-8 max-w-7xl mx-auto w-full">
         <nav className="flex items-center gap-2 text-xs uppercase tracking-widest text-on-surface-variant mb-6">
           <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-          <Icon name="chevron_right" className="text-[10px]" />
+          <Icon name="chevron_right" className="text-xs" />
           <span className="text-primary font-bold">Cart</span>
         </nav>
 
@@ -96,18 +96,18 @@ export default function Cart() {
               <div className="space-y-6">
                 {items.map((item) => (
                   <div key={item.productId} className="flex gap-4 p-4 bg-surface-container dark:bg-[#1e1e1a] rounded-xl border border-outline-variant/10">
-                    <div className="w-24 h-28 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0">
+                    <div className="w-20 md:w-24 h-24 md:h-28 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0">
                       <img src={item.imgSrc} alt={item.title} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-grow flex flex-col justify-between">
                       <div>
                         <div className="flex items-start justify-between">
                           <div>
-                            <p className="text-[10px] uppercase tracking-[0.2em] text-outline">{item.brand}</p>
+                            <p className="text-xs uppercase tracking-[0.2em] text-outline">{item.brand}</p>
                             <h3 className="font-noto-serif text-lg font-bold text-on-surface">{item.title}</h3>
                             <div className="flex items-center gap-2 mt-1">
                               {item.badge && (
-                                <span className={`text-[9px] px-2 py-0.5 rounded font-black uppercase tracking-wider ${
+                                <span className={`text-xs px-2 py-0.5 rounded font-black uppercase tracking-wider ${
                                   item.badge.type === 'clearance' ? 'bg-red-600 text-white' : 'bg-secondary text-on-secondary'
                                 }`}>
                                   {item.badge.label}
@@ -116,23 +116,23 @@ export default function Cart() {
                               <span className="text-xs text-on-surface-variant">{item.size}</span>
                             </div>
                           </div>
-                          <button onClick={() => removeItem(item.productId)} className="text-on-surface-variant hover:text-error transition-colors p-1">
+                          <button onClick={() => removeItem(item.productId)} className="text-on-surface-variant hover:text-error transition-colors p-3 min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 -mt-2">
                             <Icon name="delete" className="text-lg" />
                           </button>
                         </div>
                       </div>
                       <div className="flex items-end justify-between">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-1">
                           <button
                             onClick={() => updateQuantity(item.productId, item.quantity - 1)}
-                            className="w-8 h-8 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+                            className="w-11 h-11 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
                           >
                             <Icon name="remove" className="text-sm" />
                           </button>
                           <span className="font-bold text-lg w-8 text-center">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.productId, item.quantity + 1)}
-                            className="w-8 h-8 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+                            className="w-11 h-11 rounded-full border border-outline-variant/30 flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
                           >
                             <Icon name="add" className="text-sm" />
                           </button>
@@ -201,7 +201,7 @@ export default function Cart() {
           </div>
 
           <aside className="lg:col-span-5">
-            <div className="sticky top-32 p-8 bg-surface-container dark:bg-[#1a1a16] rounded-2xl space-y-6 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
+            <div className="sticky top-20 md:top-32 p-8 bg-surface-container dark:bg-[#1a1a16] rounded-2xl space-y-6 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
               <h2 className="font-noto-serif text-2xl text-on-surface">Order Summary</h2>
 
               <div className="space-y-3 pt-4 border-t border-outline-variant/15">
@@ -258,7 +258,7 @@ export default function Cart() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-                    <span className={`text-[10px] px-2 py-1 rounded font-black uppercase tracking-widest ${
+                    <span className={`text-xs px-2 py-1 rounded font-black uppercase tracking-widest ${
                       product.badge.type === 'clearance' ? 'bg-red-600 text-white' : 'bg-secondary text-on-secondary'
                     }`}>
                       {product.badge.label}
@@ -272,17 +272,17 @@ export default function Cart() {
                   </button>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-outline">{product.brand}</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-outline">{product.brand}</p>
                   <h3 className="font-noto-serif text-lg font-bold text-on-surface">{product.title}</h3>
                 </div>
                 <div className="flex items-center space-x-3 bg-secondary/5 p-2 rounded-md border border-secondary/10">
                   <div className="flex flex-col">
-                    <span className="text-outline text-[10px] uppercase font-bold leading-none">Was</span>
+                    <span className="text-outline text-xs uppercase font-bold leading-none">Was</span>
                     <span className="text-outline text-xs line-through decoration-red-500/50">{formatPriceCents(product.originalPriceValue)}</span>
                   </div>
                   <div className="h-6 w-[1px] bg-secondary/20"></div>
                   <div className="flex flex-col">
-                    <span className="text-secondary text-[10px] uppercase font-black leading-none">Now</span>
+                    <span className="text-secondary text-xs uppercase font-black leading-none">Now</span>
                     <span className="text-secondary font-black text-lg font-manrope">{formatPriceCents(product.priceValue)}</span>
                   </div>
                 </div>

@@ -53,7 +53,7 @@ export default function Login() {
             <p className="text-on-surface-variant font-manrope text-sm uppercase tracking-[0.2em] mb-8">Apothecary & Rituals</p>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-highest/40 border border-outline-variant/15">
               <Icon name="verified" className="text-[16px] text-primary" />
-              <span className="text-[10px] uppercase tracking-widest font-semibold text-primary/80">Authenticity Guaranteed</span>
+              <span className="text-xs uppercase tracking-widest font-semibold text-primary/80">Authenticity Guaranteed</span>
             </div>
           </div>
 
@@ -66,7 +66,7 @@ export default function Login() {
             )}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-1">
-                <label className="block text-[11px] uppercase tracking-widest font-semibold text-on-surface-variant ml-1" htmlFor="email">Email Identity</label>
+                <label className="block text-xs uppercase tracking-widest font-semibold text-on-surface-variant ml-1" htmlFor="email">Email Identity</label>
                 <input
                   className="w-full bg-surface border-none focus:ring-2 focus:ring-primary/20 rounded-lg px-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 transition-all duration-300"
                   id="email" name="email" placeholder="Enter your email address" type="email"
@@ -75,8 +75,8 @@ export default function Login() {
               </div>
               <div className="space-y-1">
                 <div className="flex justify-between items-center ml-1">
-                  <label className="block text-[11px] uppercase tracking-widest font-semibold text-on-surface-variant" htmlFor="password">Password Token</label>
-                  <Link to="/support" className="text-[11px] text-secondary hover:text-primary transition-colors duration-300 font-medium tracking-tight">Forgot Password?</Link>
+                  <label className="block text-xs uppercase tracking-widest font-semibold text-on-surface-variant" htmlFor="password">Password Token</label>
+                  <Link to="/support" className="text-xs text-secondary hover:text-primary transition-colors duration-300 font-medium tracking-tight">Forgot Password?</Link>
                 </div>
                 <input
                   className="w-full bg-surface border-none focus:ring-2 focus:ring-primary/20 rounded-lg px-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 transition-all duration-300"

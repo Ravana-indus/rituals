@@ -150,7 +150,7 @@ export default function AdminDashboard() {
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-semibold">{formatPriceCents(order.total_cents)}</p>
-                  <span className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                  <span className={`text-xs uppercase tracking-wider px-2 py-0.5 rounded-full ${
                     order.status === 'delivered' ? 'bg-green-100 text-green-800' :
                     order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
                     'bg-surface-container text-on-surface-variant'

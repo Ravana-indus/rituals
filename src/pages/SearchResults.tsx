@@ -153,7 +153,7 @@ export default function SearchResults() {
           {query ? (
             <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
               <div>
-                <h1 className="font-noto-serif text-4xl md:text-5xl text-primary dark:text-[#fcf9f0] font-bold mb-2">
+                <h1 className="font-noto-serif text-4xl lg:text-5xl text-primary dark:text-[#fcf9f0] font-bold mb-2">
                   Results for: <span className="italic text-secondary dark:text-secondary-fixed-dim">{query}</span>
                 </h1>
                 <p className="font-manrope text-outline dark:text-outline-variant font-medium">
@@ -167,7 +167,7 @@ export default function SearchResults() {
             </div>
           ) : (
             <div>
-              <h1 className="font-noto-serif text-4xl md:text-5xl text-primary dark:text-[#fcf9f0] font-bold mb-4">
+              <h1 className="font-noto-serif text-4xl lg:text-5xl text-primary dark:text-[#fcf9f0] font-bold mb-4">
                 Search Authentic Brands
               </h1>
               <p className="font-manrope text-outline dark:text-outline-variant font-medium mb-8">
@@ -251,7 +251,7 @@ export default function SearchResults() {
                 },
                   badge && React.createElement('div', { className: 'absolute top-4 left-4 z-20' },
                     React.createElement('div', {
-                      className: `px-4 py-1 stamp-badge text-[10px] font-bold tracking-tighter uppercase flex items-center gap-1 ${
+                      className: `px-4 py-1 stamp-badge text-xs font-bold tracking-tighter uppercase flex items-center gap-1 ${
                         badge.type === 'bargain'
                           ? 'bg-tertiary-container dark:bg-[#8a2419] text-white'
                           : 'bg-primary dark:bg-primary text-white'
@@ -271,7 +271,7 @@ export default function SearchResults() {
                     )
                   ),
                   React.createElement('div', { className: 'flex flex-col flex-grow' },
-                    React.createElement('span', { className: 'text-[10px] uppercase tracking-[0.2em] text-secondary dark:text-secondary-fixed-dim font-bold mb-1' },
+                    React.createElement('span', { className: 'text-xs uppercase tracking-[0.2em] text-secondary dark:text-secondary-fixed-dim font-bold mb-1' },
                       product.brand?.name ?? ''
                     ),
                     React.createElement(Link, { to: `/product?slug=${product.slug}` },
@@ -291,12 +291,12 @@ export default function SearchResults() {
                           })
                         ),
                         stockLeft < 15 && React.createElement('span', {
-                          className: 'text-[10px] text-secondary dark:text-secondary-fixed-dim font-black whitespace-nowrap'
+                          className: 'text-xs text-secondary dark:text-secondary-fixed-dim font-black whitespace-nowrap'
                         }, `Only ${stockLeft} left`)
                       ),
-                      React.createElement('div', { className: 'flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 text-[9px]' },
+                      React.createElement('div', { className: 'flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 text-xs' },
                         React.createElement('span', { className: 'flex items-center gap-0.5 text-primary dark:text-primary-fixed' },
-                          React.createElement(Icon, { name: "verified", className: "text-[10px]", filled: true }), ' Authenticity Guaranteed'
+                          React.createElement(Icon, { name: "verified", className: "text-xs", filled: true }), ' Authenticity Guaranteed'
                         )
                       )
                     ),
@@ -359,7 +359,7 @@ export default function SearchResults() {
           <Link to="/support" className="text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300">Ethos</Link>
           <Link to="/contact" className="text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300">Contact Us</Link>
         </div>
-        <p className="font-manrope text-[10px] uppercase tracking-widest text-[#4a4a40] dark:text-[#a1a195]">
+        <p className="font-manrope text-xs uppercase tracking-widest text-[#4a4a40] dark:text-[#a1a195]">
           © 2024 The Heritage Curator. Ethically Sourced, Artfully Curated.
         </p>
       </footer>

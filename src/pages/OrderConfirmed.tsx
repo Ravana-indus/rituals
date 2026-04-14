@@ -25,7 +25,7 @@ function OrderStatusBadge({ status }: { status: string }) {
   };
   const { label, color } = map[status] ?? { label: status, color: 'bg-surface-container text-on-surface-variant' };
   return React.createElement('span', {
-    className: `inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter ${color}`,
+    className: `inline-block px-2 py-0.5 rounded text-xs font-bold uppercase tracking-tighter ${color}`,
     style: { clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }
   }, label);
 }
@@ -68,8 +68,8 @@ export default function OrderConfirmed() {
         <main className="flex-grow pt-8 pb-20 px-6 max-w-5xl mx-auto w-full">
           <div className="text-center mb-16 animate-pulse">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-low mb-6" />
-            <div className="h-10 bg-surface-container-low rounded w-72 mx-auto mb-4" />
-            <div className="h-5 bg-surface-container-low rounded w-96 mx-auto" />
+            <div className="h-10 bg-surface-container-low rounded w-full max-w-xs mx-auto mb-4" />
+            <div className="h-5 bg-surface-container-low rounded w-full max-w-sm mx-auto" />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-7 space-y-8">
@@ -115,7 +115,7 @@ export default function OrderConfirmed() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-container text-on-primary-container mb-6 shadow-sm">
             <Icon name="check_circle" filled className="text-3xl" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4 font-noto-serif">Your Ritual is Secured</h1>
+          <h1 className="text-4xl lg:text-5xl font-bold text-primary mb-4 font-noto-serif">Your Ritual is Secured</h1>
           <p className="text-on-surface-variant max-w-md mx-auto leading-relaxed">Your curation has been processed with the utmost care. A confirmation email is on its way to your sanctuary.</p>
         </div>
 
@@ -169,7 +169,7 @@ export default function OrderConfirmed() {
                         `${item.variant_name ?? 'Standard'} × ${item.quantity}`
                       ),
                       React.createElement('span', {
-                        className: 'bg-tertiary-container text-white text-[10px] uppercase font-bold tracking-tighter px-3 py-1 rounded-sm',
+                        className: 'bg-tertiary-container text-white text-xs uppercase font-bold tracking-tighter px-3 py-1 rounded-sm',
                         style: { clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }
                       }, 'Heritage Item')
                     )
@@ -199,14 +199,14 @@ export default function OrderConfirmed() {
                   <span className="text-lg font-bold font-noto-serif">Total</span>
                   <div className="text-right">
                     <span className="block text-2xl font-bold text-primary">{formatPriceCents(order.total_cents)}</span>
-                    <span className="text-[10px] text-on-surface-variant uppercase tracking-widest">Taxes Included</span>
+                    <span className="text-xs text-on-surface-variant uppercase tracking-widest">Taxes Included</span>
                   </div>
                 </div>
               </div>
 
               {shippingAddr && (
                 <div className="p-4 bg-surface-container-high rounded border border-dashed border-outline-variant/30 mb-6">
-                  <p className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Shipping To</p>
+                  <p className="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Shipping To</p>
                   <p className="text-sm font-medium">{shippingAddr.recipient_name}</p>
                   <p className="text-xs text-on-surface-variant">{shippingAddr.address_line_1}</p>
                   {shippingAddr.address_line_2 && <p className="text-xs text-on-surface-variant">{shippingAddr.address_line_2}</p>}
@@ -218,7 +218,7 @@ export default function OrderConfirmed() {
 
               <div className="p-4 bg-surface-container-high rounded border border-dashed border-outline-variant/30 text-center">
                 <p className="font-noto-serif italic text-primary text-sm mb-1">Thank you for choosing authenticity</p>
-                <p className="text-[11px] text-on-surface-variant leading-relaxed">Your patronage supports traditional artisans and sustainable sourcing practices in the island.</p>
+                <p className="text-xs text-on-surface-variant leading-relaxed">Your patronage supports traditional artisans and sustainable sourcing practices in the island.</p>
               </div>
 
               <div className="mt-8">

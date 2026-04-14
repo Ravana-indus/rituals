@@ -32,7 +32,7 @@ function OrderStatusBadge({ status }: { status: string }) {
     refunded: 'Refunded',
   };
   return React.createElement('span', {
-    className: `inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter ${styles[status] ?? styles.pending}`,
+    className: `inline-block px-2 py-0.5 rounded text-xs font-bold uppercase tracking-tighter ${styles[status] ?? styles.pending}`,
     style: { clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }
   }, labels[status] ?? status);
 }
@@ -289,17 +289,17 @@ export default function Profile() {
       </footer>
 
       <nav className="md:hidden fixed bottom-0 left-0 w-full bg-[#fcf9f0] dark:bg-[#1c1c17] flex justify-around items-center px-4 py-3 pb-safe z-50 border-t border-[#c1c8c7]/15 shadow-[0_-4px_20px_rgba(28,28,23,0.04)] rounded-t-lg">
-        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/50 dark:text-[#fcf9f0]/50 hover:opacity-80 transition-transform duration-200 scale-95">
+        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/50 dark:text-[#fcf9f0]/50 hover:opacity-80 transition-transform duration-200 min-w-[64px] min-h-[44px] px-2 py-1 scale-95">
           <Icon name="history_edu" />
-          <span className="font-manrope text-[10px] uppercase tracking-widest mt-1">Rituals</span>
+          <span className="font-manrope text-xs uppercase tracking-widest mt-1">Rituals</span>
         </Link>
-        <Link to="/checkout" className="flex flex-col items-center justify-center text-[#1c1c17]/50 dark:text-[#fcf9f0]/50 hover:opacity-80 transition-transform duration-200 scale-95">
+        <Link to="/checkout" className="flex flex-col items-center justify-center text-[#1c1c17]/50 dark:text-[#fcf9f0]/50 hover:opacity-80 transition-transform duration-200 min-w-[64px] min-h-[44px] px-2 py-1 scale-95">
           <Icon name="local_mall" />
-          <span className="font-manrope text-[10px] uppercase tracking-widest mt-1">Bag</span>
+          <span className="font-manrope text-xs uppercase tracking-widest mt-1">Bag</span>
         </Link>
-        <Link to="/profile" className="flex flex-col items-center justify-center bg-[#2A5D5D] text-[#fcf9f0] rounded-xl px-4 py-1.5 transition-transform duration-200">
+        <Link to="/profile" className="flex flex-col items-center justify-center bg-[#2A5D5D] text-[#fcf9f0] rounded-xl transition-transform duration-200 min-w-[64px] min-h-[44px] px-4 py-1.5">
           <Icon name="account_circle" />
-          <span className="font-manrope text-[10px] uppercase tracking-widest mt-1">Profile</span>
+          <span className="font-manrope text-xs uppercase tracking-widest mt-1">Profile</span>
         </Link>
       </nav>
     </div>

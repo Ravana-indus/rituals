@@ -74,7 +74,7 @@ export default function CuratedSelection() {
           <div className="lg:col-span-8 bg-surface-container-highest rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
             <div className="md:w-1/2 relative h-64 md:h-auto">
               <img alt="The Radiant Skin Ritual" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxwB-5-53l0fMcuJx-Hcmdim4J0kZOBYjSjttVSRAeZU9IsF01dDoMXvzZsnfGJT2KmhkFX_fUCEIgAn5CrpULqOUEbxLn0VAe_34Z3YAwBXx7B9ojLnTzJMq4n3W7nTF7sTFBAvs5hh48N3GECkXC3T9yz7NuvHohTYxXUMVVh7bzjMyHfUo-0RxyjK4v2CXwOyl5jjS8Z3WwvmV9T_UFngLGdKxPH0YtyY0Z_8xhEZTtsuZH66jIAU7SAPRQk9pYjGJbnh13w-tE" />
-              <div className="absolute top-4 left-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
+              <div className="absolute top-4 left-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-xs font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
                 Save 15%
               </div>
             </div>
@@ -110,14 +110,14 @@ export default function CuratedSelection() {
                 <div className="flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
                   <div className="h-full bg-secondary rounded-full" style={{ width: '25%' }} />
                 </div>
-                <span className="text-[10px] text-secondary font-black">Only 5 left</span>
+                <span className="text-xs text-secondary font-black">Only 5 left</span>
               </div>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] mt-2">
-                <span className="flex items-center gap-0.5 text-primary"><Icon name="verified" className="text-[10px]" filled /> Authenticity Guaranteed</span>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs mt-2">
+                <span className="flex items-center gap-0.5 text-primary"><Icon name="verified" className="text-xs" filled /> Authenticity Guaranteed</span>
                 <span className="text-outline">·</span>
                 <span className="text-outline">Exp: Dec 2026</span>
                 <span className="text-outline">·</span>
-                <span className="flex items-center gap-0.5 text-secondary"><Icon name="sell" className="text-[10px]" /> Bundle discount</span>
+                <span className="flex items-center gap-0.5 text-secondary"><Icon name="sell" className="text-xs" /> Bundle discount</span>
               </div>
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function CuratedSelection() {
             <div className="bg-surface-container-low rounded-xl p-2 group hover:bg-surface-container transition-colors duration-300">
               <div className="relative h-64 rounded-lg overflow-hidden mb-6">
                 <img alt="The Strengthening Hair Ritual" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcOQK4tL1tcOwZsGNzPyxop0SyOjtbnIz42ZoBu23RYLYXKimRS1oTuELM3dtwPV9s-UhX3ZqwTJYWOlm9eoPPXYmzkBmDU8c5mOGp4KJ1WFQ2B3SKsq_fAURMbjlHA0XiG8VYxf3T2OafMG0jf8ccEaWcw-wdWBmFNVA6OZVLAAgd8BE_NqU6asmAAYlZlk2mJmileuqbINKl0s9bjLI_ZZjUxWpIfGDQvUmjvQNcbkW5IOrsEmK0SB1YfPt3WmBSfY6nPE1ZP29y" />
-                <div className="absolute top-4 right-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
+                <div className="absolute top-4 right-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-xs font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
                   Ritual Value
                 </div>
               </div>
@@ -143,7 +143,7 @@ export default function CuratedSelection() {
                 <p className="text-xs text-on-surface-variant leading-relaxed mb-6">Repair environmental damage with traditional Neelibringadi and Gotu Kola extracts.</p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="block text-[10px] text-on-surface/40 line-through">LKR 8,900</span>
+                    <span className="block text-xs text-on-surface/40 line-through">LKR 8,900</span>
                     <span className="text-lg font-bold text-secondary">LKR 7,500</span>
                   </div>
                   <button
@@ -158,12 +158,12 @@ export default function CuratedSelection() {
                     <div className="h-full bg-secondary rounded-full" style={{ width: '60%' }} />
                   </div>
                 </div>
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] mt-2">
-                  <span className="flex items-center gap-0.5 text-primary"><Icon name="verified" className="text-[10px]" filled /> Auth</span>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs mt-2">
+                  <span className="flex items-center gap-0.5 text-primary"><Icon name="verified" className="text-xs" filled /> Auth</span>
                   <span className="text-outline">·</span>
                   <span className="text-outline">Exp: Nov 2026</span>
                   <span className="text-outline">·</span>
-                  <span className="flex items-center gap-0.5 text-secondary"><Icon name="sell" className="text-[10px]" /> Limited batch</span>
+                  <span className="flex items-center gap-0.5 text-secondary"><Icon name="sell" className="text-xs" /> Limited batch</span>
                 </div>
               </div>
             </div>
@@ -172,7 +172,7 @@ export default function CuratedSelection() {
             <div className="bg-surface-container-low rounded-xl p-2 group hover:bg-surface-container transition-colors duration-300">
               <div className="relative h-64 rounded-lg overflow-hidden mb-6">
                 <img alt="The Evening Calm Ritual" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFTCRH0upS9rv3LmtXIsLl7in7SdAh74amhlZHxGcY8lciIeN25cln1tJxIznq-MKA7ZlK04tOrM2trmgO2TU0LMHxgy4vw9pn8iKbUYUIuIQH66hRQblJ6RgLpfoJmNy51AgXjg_92MHBA0giJUH9uX30xGMk6_9tVy5E_g4Rrrwfvn9WD9W_IDbwyoj3BMhSa6iENRwu4iZmHzKCJuwdvTzN8tVhAGPpMc8PEJpp0oyNjc50Gnly31-Oe4SqgukMfwWYpxhcx2vl" />
-                <div className="absolute top-4 right-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
+                <div className="absolute top-4 right-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-xs font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
                   Deal Applied
                 </div>
               </div>
@@ -181,7 +181,7 @@ export default function CuratedSelection() {
                 <p className="text-xs text-on-surface-variant leading-relaxed mb-6">Soothe the senses before sleep with Ashwagandha tea and Lavender temple balms.</p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="block text-[10px] text-on-surface/40 line-through">LKR 6,200</span>
+                    <span className="block text-xs text-on-surface/40 line-through">LKR 6,200</span>
                     <span className="text-lg font-bold text-secondary">LKR 5,200</span>
                   </div>
                   <button
@@ -195,14 +195,14 @@ export default function CuratedSelection() {
                   <div className="flex-1 h-1 bg-surface-container-high rounded-full overflow-hidden">
                     <div className="h-full bg-secondary rounded-full" style={{ width: '40%' }} />
                   </div>
-                  <span className="text-[10px] text-secondary font-black">Only 8 left</span>
+                  <span className="text-xs text-secondary font-black">Only 8 left</span>
                 </div>
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] mt-2">
-                  <span className="flex items-center gap-0.5 text-primary"><Icon name="verified" className="text-[10px]" filled /> Auth</span>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs mt-2">
+                  <span className="flex items-center gap-0.5 text-primary"><Icon name="verified" className="text-xs" filled /> Auth</span>
                   <span className="text-outline">·</span>
                   <span className="text-outline">Exp: Oct 2026</span>
                   <span className="text-outline">·</span>
-                  <span className="flex items-center gap-0.5 text-secondary"><Icon name="sell" className="text-[10px]" /> Seasonal</span>
+                  <span className="flex items-center gap-0.5 text-secondary"><Icon name="sell" className="text-xs" /> Seasonal</span>
                 </div>
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function CuratedSelection() {
               </div>
               <h4 className="text-xl font-noto-serif text-primary italic">Modify Your Ritual</h4>
               <p className="text-xs text-on-surface-variant">Prefer different scents or textures? Adjust your curated selection here.</p>
-              <Link to="/ritual-builder" className="border border-primary text-primary px-6 py-2 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-primary/5 transition-colors">
+              <Link to="/ritual-builder" className="border border-primary text-primary px-6 py-2 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-primary/5 transition-colors">
                 Re-Curate
               </Link>
             </div>
@@ -230,12 +230,12 @@ export default function CuratedSelection() {
           <div className="flex items-center gap-6 relative z-10">
             <div className="text-center">
               <span className="block text-3xl font-bold text-primary">100%</span>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-on-surface/40">Ethical Sourcing</span>
+              <span className="text-xs uppercase font-bold tracking-widest text-on-surface/40">Ethical Sourcing</span>
             </div>
             <div className="w-px h-12 bg-outline-variant/20"></div>
             <div className="text-center">
               <span className="block text-3xl font-bold text-primary">Fresh</span>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-on-surface/40">Batch Blended</span>
+              <span className="text-xs uppercase font-bold tracking-widest text-on-surface/40">Batch Blended</span>
             </div>
           </div>
         </div>
@@ -244,21 +244,21 @@ export default function CuratedSelection() {
       {/* Bottom Navigation Bar (Mobile) */}
       <div className="md:hidden">
         <div className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#fcf9f0] dark:bg-[#1c1c17] z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(28,28,23,0.04)] border-t border-[#c1c8c7]/15">
-          <Link to="/consult" className="flex flex-col items-center justify-center bg-[#2A5D5D] text-white rounded-xl px-5 py-2 scale-95 transition-transform duration-500 ease-in-out">
+          <Link to="/consult" className="flex flex-col items-center justify-center bg-[#2A5D5D] text-white rounded-xl min-w-[64px] min-h-[44px] px-3 py-2 scale-95 transition-transform duration-500 ease-in-out">
             <Icon name="chat_bubble" />
-            <span className="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Consult</span>
+            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Consult</span>
           </Link>
-          <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+          <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
             <Icon name="auto_awesome" />
-            <span className="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Rituals</span>
+            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Rituals</span>
           </Link>
-          <Link to="/curated-selection" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+          <Link to="/curated-selection" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
             <Icon name="auto_stories" />
-            <span className="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Curations</span>
+            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Curations</span>
           </Link>
-          <Link to="/" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 px-5 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+          <Link to="/" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
             <Icon name="local_pharmacy" />
-            <span className="font-manrope text-[10px] font-bold uppercase tracking-widest mt-1">Apothecary</span>
+            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Apothecary</span>
           </Link>
         </div>
       </div>
