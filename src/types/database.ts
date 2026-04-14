@@ -127,11 +127,11 @@ export type PaymentStatus = 'pending' | 'paid' | 'failed' | 'refunded' | 'partia
 export type BadgeType = 'tertiary' | 'secondary' | 'editorial';
 
 export function formatPriceCents(cents: number): string {
-  return new Intl.NumberFormat('en-LK', {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'LKR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(cents);
 }
 

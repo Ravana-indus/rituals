@@ -78,9 +78,17 @@ export function OrderDrawer() {
                   {order.created_at ? new Date(order.created_at).toLocaleString('en-LK') : '—'}
                 </p>
               </div>
-              <button onClick={handleClose} className="p-1.5 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors">
-                <Icon name="close" className="text-lg" />
-              </button>
+              <div className="flex items-center gap-1">
+                <button onClick={() => window.open(`/admin/print/invoice/${order.id}`, '_blank')} className="p-1.5 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Print Invoice">
+                  <Icon name="receipt" className="text-lg" />
+                </button>
+                <button onClick={() => window.open(`/admin/print/sticker/${order.id}`, '_blank')} className="p-1.5 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Print Sticker">
+                  <Icon name="local_shipping" className="text-lg" />
+                </button>
+                <button onClick={handleClose} className="p-1.5 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors">
+                  <Icon name="close" className="text-lg" />
+                </button>
+              </div>
             </div>
 
             <div className="border-b border-outline-variant/10">

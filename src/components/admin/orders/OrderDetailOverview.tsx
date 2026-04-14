@@ -293,8 +293,8 @@ export function OrderDetailOverview({ orderId, onEditOrder }: OrderDetailOvervie
                   <td className="py-3 pr-4 text-right">{item.quantity}</td>
                   <td className="py-3 pr-4 text-right">{formatPriceCents(item.unit_price_cents)}</td>
                   <td className="py-3 pr-4 text-right font-medium">{formatPriceCents(item.total_cents)}</td>
-                  <td className="py-3 pr-4 text-right text-on-surface-variant">{(item as OrderItem & { fulfilled_quantity?: number }).fulfilled_quantity ?? 0}</td>
-                  <td className="py-3 text-right text-on-surface-variant">{(item as OrderItem & { refunded_quantity?: number }).refunded_quantity ?? 0}</td>
+                  <td className="py-3 pr-4 text-right text-on-surface-variant">{item.fulfilled_quantity ?? 0}</td>
+                  <td className="py-3 text-right text-on-surface-variant">{item.refunded_quantity ?? 0}</td>
                 </tr>
               ))}
             </tbody>

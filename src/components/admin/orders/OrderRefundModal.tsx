@@ -13,7 +13,7 @@ interface OrderRefundModalProps {
   onRefund: () => void;
 }
 
-interface OrderItemWithRefund extends OrderItem {
+interface OrderItemWithRefund extends Omit<OrderItem, 'refunded_quantity'> {
   refunded_quantity?: number;
 }
 

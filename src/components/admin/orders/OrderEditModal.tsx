@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { api } from '../../../lib/api';
+import { supabase } from '../../../lib/supabase';
 import { useOrderContext } from '../../../context/OrderContext';
 import { Icon } from '../../ui/Icon';
 import type { OrderItem, OrderEditType, Product, ProductVariant } from '../../../types/database';
@@ -98,7 +99,6 @@ export function OrderEditModal({ orderId, items, onClose, onSave }: OrderEditMod
 
   async function fetchVariants(productId: string) {
     try {
-      const { supabase } = await import('../../../lib/supabase');
       const { data } = await supabase
         .from('product_variants')
         .select('*')

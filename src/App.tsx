@@ -18,13 +18,12 @@ import Cart from './pages/Cart';
 import Category from './pages/Category';
 import AdminLayout from './components/AdminLayout';
 import AdminDashboard from './pages/admin/Dashboard';
-import AdminAnalytics from './pages/admin/Analytics';
-import AdminFulfillment from './pages/admin/Fulfillment';
 import AdminProducts from './pages/admin/Products';
 import AdminBrands from './pages/admin/Brands';
 import AdminCategories from './pages/admin/Categories';
 import AdminOrders from './pages/admin/Orders';
-import AdminOrderDetailPage from './pages/admin/OrderDetailPage';
+import AdminAnalytics from './pages/admin/Analytics';
+import AdminFulfillment from './pages/admin/Fulfillment';
 import InvoicePrint from './pages/admin/InvoicePrint';
 import StickerPrint from './pages/admin/StickerPrint';
 import AdminUsers from './pages/admin/Users';
@@ -71,7 +70,6 @@ export default function App() {
           <Route path="fulfillment" element={<AdminFulfillment />} />
           <Route path="analytics" element={<AdminAnalytics />} />
           <Route path="orders" element={<AdminOrders />} />
-          <Route path="orders/:id" element={<AdminOrderDetailPage />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
