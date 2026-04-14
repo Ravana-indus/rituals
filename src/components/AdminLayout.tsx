@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { OrderProvider } from '../context/OrderContext';
 
 const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
   <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
@@ -48,6 +49,7 @@ export default function AdminLayout() {
   }
 
   return (
+    <OrderProvider>
     <div className="min-h-screen bg-surface flex">
       <aside className={`w-64 bg-primary text-on-primary flex flex-col fixed h-full z-50 transform transition-transform duration-200 ease-in-out ${mobileOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         <div className="p-6 border-b border-white/10 flex items-center justify-between">
@@ -106,5 +108,6 @@ export default function AdminLayout() {
         <Outlet />
       </main>
     </div>
+    </OrderProvider>
   );
 }
