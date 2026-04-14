@@ -145,7 +145,7 @@ export default function ProductForm({ product, brands, categories, onSave, onClo
     const intPart = parts[0];
     const decPart = parts.length > 1 ? '.' + parts.slice(1).join('') : '';
     const num = parseFloat(intPart + decPart);
-    return isNaN(num) ? 0 : Math.round(num * 100);
+    return isNaN(num) ? 0 : Math.round(num);
   }
 
   return (
