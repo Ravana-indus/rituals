@@ -14,6 +14,8 @@ const NAV_ITEMS = [
   { path: '/admin/brands', label: 'Brands', icon: 'stars' },
   { path: '/admin/categories', label: 'Categories', icon: 'category' },
   { path: '/admin/orders', label: 'Orders', icon: 'receipt_long' },
+  { path: '/admin/analytics', label: 'Analytics', icon: 'analytics' },
+  { path: '/admin/fulfillment', label: 'Fulfillment', icon: 'local_shipping' },
   { path: '/admin/users', label: 'Users', icon: 'people' },
   { path: '/admin/settings', label: 'Settings', icon: 'settings' },
 ];
