@@ -49,7 +49,7 @@ export default function Cart() {
   const [promoApplied, setPromoApplied] = useState(false);
   const [promoSuccess, setPromoSuccess] = useState(false);
 
-  const shipping = 450;
+  const shipping = 450; // LKR 450 (stored in rupees)
   const discount = promoApplied ? Math.round(subtotal * 0.1) : 0;
   const total = subtotal + shipping - discount;
 
@@ -61,8 +61,9 @@ export default function Cart() {
     }
   };
 
-  const formatPrice = (price: number) => {
-    return 'LKR ' + price.toLocaleString('en-US');
+  // formatPrice expects value in rupees (same as price_cents storage)
+  const formatPrice = (rupees: number) => {
+    return 'LKR ' + rupees.toLocaleString('en-US');
   };
 
   return (
