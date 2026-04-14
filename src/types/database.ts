@@ -26,6 +26,101 @@ export type Consultation = Database['public']['Tables']['consultations']['Row'];
 export type RitualCategory = Database['public']['Tables']['ritual_categories']['Row'];
 export type RitualCategoryProduct = Database['public']['Tables']['ritual_category_products']['Row'];
 
+export type FulfillmentStatus = 'unfulfilled' | 'partial' | 'fulfilled';
+export type FulfillmentRecordStatus = 'pending' | 'in_transit' | 'delivered';
+export type RefundReason = 'damaged' | 'wrong_item' | 'customer_request' | 'other';
+export type RefundStatus = 'pending' | 'processed' | 'failed';
+export type NoteType = 'internal' | 'customer' | 'activity';
+export type OrderEditType = 'add_item' | 'remove_item' | 'change_quantity' | 'change_price';
+
+export type OrderSearchFilters = {
+  query?: string;
+  status?: OrderStatus;
+  payment_status?: PaymentStatus;
+  fulfillment_status?: FulfillmentStatus;
+  date_from?: string;
+  date_to?: string;
+  tags?: string[];
+};
+
+export type Pagination = {
+  page: number;
+  per_page: number;
+  sort_by?: string;
+  sort_dir?: 'asc' | 'desc';
+};
+
+export type PaginatedOrders = {
+  data: Order[];
+  total: number;
+  page: number;
+  per_page: number;
+  total_pages: number;
+};
+
+export type OrderFulfillment = {
+  id: string;
+  order_id: string;
+  tracking_number: string | null;
+  carrier: string | null;
+  status: FulfillmentRecordStatus;
+  shipped_at: string | null;
+  delivered_at: string | null;
+  created_by: string | null;
+  created_at: string;
+};
+
+export type OrderFulfillmentItem = {
+  id: string;
+  fulfillment_id: string;
+  order_item_id: string;
+  quantity: number;
+};
+
+export type OrderRefund = {
+  id: string;
+  order_id: string;
+  amount_cents: number;
+  reason: RefundReason;
+  status: RefundStatus;
+  note: string | null;
+  created_by: string | null;
+  created_at: string;
+};
+
+export type OrderRefundItem = {
+  id: string;
+  refund_id: string;
+  order_item_id: string;
+  quantity: number;
+  amount_cents: number;
+};
+
+export type OrderNote = {
+  id: string;
+  order_id: string;
+  content: string;
+  note_type: NoteType;
+  created_by: string | null;
+  created_at: string;
+};
+
+export type OrderTag = {
+  id: string;
+  order_id: string;
+  tag: string;
+};
+
+export type OrderEdit = {
+  id: string;
+  order_id: string;
+  edit_type: OrderEditType;
+  before_data: Record<string, unknown>;
+  after_data: Record<string, unknown>;
+  edited_by: string | null;
+  created_at: string;
+};
+
 export type ProfileRole = 'customer' | 'admin' | 'super_admin';
 export type OrderStatus = 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
 export type PaymentStatus = 'pending' | 'paid' | 'failed' | 'refunded' | 'partially_refunded';
