@@ -209,9 +209,7 @@ export function OrderDetailOverview({ orderId, onEditOrder }: OrderDetailOvervie
 
       <div className="bg-surface-container-low rounded-xl p-4">
         <h3 className="text-xs uppercase tracking-widest text-on-surface-variant mb-2">Customer</h3>
-        <p className="font-medium">{order.first_name} {order.last_name}</p>
-        <p className="text-sm text-on-surface-variant">{order.email}</p>
-        {order.phone && <p className="text-sm text-on-surface-variant">{order.phone}</p>}
+        <p className="font-medium">{order.email}</p>
         {order.user_id && (
           <a
             href={`/admin/users?userId=${order.user_id}`}

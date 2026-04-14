@@ -84,12 +84,6 @@ export default function OrderPayment({ orderId, onRefund }: OrderPaymentProps) {
               <span className="font-mono text-xs">{order.payhere_payment_id}</span>
             </div>
           )}
-          {order.provider && (
-            <div className="flex justify-between text-sm">
-              <span className="text-on-surface-variant">Provider</span>
-              <span className="font-medium">{order.provider}</span>
-            </div>
-          )}
         </div>
       </div>
 

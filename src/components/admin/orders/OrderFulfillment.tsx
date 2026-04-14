@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../../../lib/api';
-import type { OrderFulfillment, OrderFulfillmentItem, OrderItem, FulfillmentStatus } from '../../types/database';
-import { Icon } from '../ui/Icon';
-import { useOrderContext } from '../../context/OrderContext';
+import type { OrderFulfillment, OrderFulfillmentItem, OrderItem, FulfillmentStatus } from '../../../types/database';
+import { Icon } from '../../ui/Icon';
+import { useOrderContext } from '../../../context/OrderContext';
 
 interface OrderFulfillmentProps {
   orderId: string;
