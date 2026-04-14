@@ -19,7 +19,7 @@ function OrderStatusBadge({ status }: { status: string }) {
     confirmed: { label: 'Confirmed', color: 'bg-primary/20 text-primary' },
     processing: { label: 'Processing', color: 'bg-primary/20 text-primary' },
     shipped: { label: 'Shipped', color: 'bg-secondary-fixed/20 text-secondary' },
-    delivered: { label: 'Ritual Complete', color: 'bg-green-600/20 text-green-700 dark:text-green-400' },
+    delivered: { label: 'Ritual Complete', color: 'bg-green-600/20 text-green-700 ' },
     cancelled: { label: 'Cancelled', color: 'bg-error/20 text-error' },
     refunded: { label: 'Refunded', color: 'bg-error/20 text-error' },
   };
@@ -169,7 +169,7 @@ export default function OrderConfirmed() {
                         `${item.variant_name ?? 'Standard'} × ${item.quantity}`
                       ),
                       React.createElement('span', {
-                        className: 'bg-tertiary-container text-white text-xs uppercase font-bold tracking-tighter px-3 py-1 rounded-sm',
+                        className: 'bg-tertiary-container text-on-surface text-xs uppercase font-bold tracking-tighter px-3 py-1 rounded-sm',
                         style: { clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }
                       }, 'Heritage Item')
                     )
@@ -191,7 +191,7 @@ export default function OrderConfirmed() {
                   <span className="text-on-surface-variant">Shipping (Insured)</span>
                   <span className="font-medium">{shippingCost > 0 ? formatPriceCents(shippingCost) : 'TBD'}</span>
                 </div>
-                {discount > 0 && React.createElement('div', { key: 'discount', className: 'flex justify-between text-sm text-green-600 dark:text-green-400' },
+                {discount > 0 && React.createElement('div', { key: 'discount', className: 'flex justify-between text-sm text-green-600 ' },
                   React.createElement('span', null, 'Heritage Discount'),
                   React.createElement('span', { className: 'font-bold' }, `- ${formatPriceCents(discount)}`)
                 )}
@@ -239,17 +239,17 @@ export default function OrderConfirmed() {
         </div>
       </main>
 
-      <footer className="bg-[#f1eee5] dark:bg-stone-900 w-full py-12 px-8 border-t border-[#c1c8c7]/15">
+      <footer className="bg-surface-container  w-full py-12 px-8 border-t border-outline-variant/15">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
           <div>
-            <div className="font-noto-serif italic text-lg text-[#1c1c17] dark:text-[#f1eee5] mb-2">The Heritage Curator</div>
-            <p className="font-manrope text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60">© 2024 The Heritage Curator. Crafted with intention.</p>
+            <div className="font-noto-serif italic text-lg text-on-surface  mb-2">The Heritage Curator</div>
+            <p className="font-manrope text-sm tracking-wide text-on-surface/60 ">© 2024 The Heritage Curator. Crafted with intention.</p>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
-            <Link to="/support" className="font-manrope text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300">Privacy Policy</Link>
-            <Link to="/support" className="font-manrope text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300">Terms of Service</Link>
-            <Link to="/support" className="font-manrope text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300">Authenticity Guarantee</Link>
-            <Link to="/support" className="font-manrope text-sm tracking-wide text-[#1c1c17]/60 dark:text-[#f1eee5]/60 hover:text-[#D2691E] transition-colors duration-300">Shipping & Returns</Link>
+            <Link to="/support" className="font-manrope text-sm tracking-wide text-on-surface/60  hover:text-[#D2691E] transition-colors duration-300">Privacy Policy</Link>
+            <Link to="/support" className="font-manrope text-sm tracking-wide text-on-surface/60  hover:text-[#D2691E] transition-colors duration-300">Terms of Service</Link>
+            <Link to="/support" className="font-manrope text-sm tracking-wide text-on-surface/60  hover:text-[#D2691E] transition-colors duration-300">Authenticity Guarantee</Link>
+            <Link to="/support" className="font-manrope text-sm tracking-wide text-on-surface/60  hover:text-[#D2691E] transition-colors duration-300">Shipping & Returns</Link>
           </div>
         </div>
       </footer>

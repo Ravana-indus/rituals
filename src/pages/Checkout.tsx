@@ -213,7 +213,7 @@ export default function Checkout() {
   };
 
   return (
-    <div className="bg-surface dark:bg-[#121212] selection:bg-secondary-fixed min-h-screen flex flex-col font-manrope text-on-surface">
+    <div className="bg-surface  selection:bg-secondary-fixed min-h-screen flex flex-col font-manrope text-on-surface">
       <Header />
 
       <main className="pt-8 pb-24 px-4 md:px-8 max-w-7xl mx-auto flex-grow w-full">
@@ -259,7 +259,7 @@ export default function Checkout() {
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleChange}
-                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none "
                       placeholder="e.g. Arjuna"
                       type="text"
                     />
@@ -270,7 +270,7 @@ export default function Checkout() {
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleChange}
-                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none "
                       placeholder="e.g. Wijesinghe"
                       type="text"
                     />
@@ -281,7 +281,7 @@ export default function Checkout() {
                       name="address"
                       value={formData.address}
                       onChange={handleChange}
-                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none "
                       placeholder="Street name and house number"
                       type="text"
                     />
@@ -292,7 +292,7 @@ export default function Checkout() {
                       name="city"
                       value={formData.city}
                       onChange={handleChange}
-                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none "
                       placeholder="Colombo"
                       type="text"
                     />
@@ -303,7 +303,7 @@ export default function Checkout() {
                       name="postalCode"
                       value={formData.postalCode}
                       onChange={handleChange}
-                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                      className="bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none "
                       placeholder="00100"
                       type="text"
                     />
@@ -311,12 +311,12 @@ export default function Checkout() {
                   <div className="md:col-span-2 flex flex-col gap-2">
                     <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Phone Number</label>
                     <div className="flex gap-2 sm:gap-4">
-                      <span className="bg-surface-container border-b border-outline-variant/30 py-3 px-2 text-on-surface-variant dark:bg-[#1e1e1a] flex-shrink-0">+94</span>
+                      <span className="bg-surface-container border-b border-outline-variant/30 py-3 px-2 text-on-surface-variant  flex-shrink-0">+94</span>
                       <input
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full min-w-0 bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                        className="w-full min-w-0 bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none "
                         placeholder="77 123 4567"
                         type="tel"
                       />
@@ -429,7 +429,7 @@ export default function Checkout() {
                 </div>
 
                 {paymentMethod === 'payhere' && (
-                  <div className="p-6 bg-surface-container dark:bg-[#1e1e1a] rounded-xl space-y-6">
+                  <div className="p-6 bg-surface-container  rounded-xl space-y-6">
                     <div className="flex items-center gap-3 text-sm text-on-surface-variant">
                       <Icon name="lock" className="text-primary" />
                       <span>Your payment is processed securely by PayHere. We never store your card details.</span>
@@ -443,7 +443,7 @@ export default function Checkout() {
                 )}
 
                 {paymentMethod === 'bank_transfer' && (
-                  <div className="p-6 bg-surface-container dark:bg-[#1e1e1a] rounded-xl space-y-4">
+                  <div className="p-6 bg-surface-container  rounded-xl space-y-4">
                     <h4 className="font-bold text-sm">Bank Account Details</h4>
                     <div className="text-sm text-on-surface-variant space-y-1">
                       <p>Bank: Commercial Bank</p>
@@ -510,7 +510,7 @@ export default function Checkout() {
           </div>
 
           <aside className="lg:col-span-5">
-            <div className="sticky top-20 md:top-32 p-8 bg-surface-container dark:bg-[#1a1a16] rounded-2xl space-y-6 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
+            <div className="sticky top-20 md:top-32 p-8 bg-surface-container  rounded-2xl space-y-6 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
               <h2 className="font-noto-serif text-2xl text-on-surface">Order Summary</h2>
 
               <div className="space-y-4 max-h-64 overflow-y-auto">
@@ -538,12 +538,12 @@ export default function Checkout() {
                   placeholder="Promo or Gift Code"
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
-                  className="flex-grow bg-surface border border-outline-variant/20 rounded-md py-2 px-3 text-sm focus:border-primary outline-none dark:bg-[#252520] dark:border-[#3a3a34]"
+                  className="flex-grow bg-surface border border-outline-variant/20 rounded-md py-2 px-3 text-sm focus:border-primary outline-none  "
                 />
                 <button
                   onClick={handleApplyPromo}
                   className={`px-4 py-2 font-bold text-xs rounded-md transition-all ${
-                    promoSuccess ? 'bg-green-600 text-white' : 'bg-surface-container-highest text-on-surface hover:bg-outline-variant/20'
+                    promoSuccess ? 'bg-green-600 text-on-surface' : 'bg-surface-container-highest text-on-surface hover:bg-outline-variant/20'
                   }`}
                 >
                   {promoSuccess ? 'Applied!' : 'Apply'}
@@ -558,12 +558,12 @@ export default function Checkout() {
                 <div className="flex justify-between items-center text-sm">
                   <span className="flex items-center gap-2">
                     Shipping
-                    {promoApplied && <span className="bg-green-600/20 text-green-600 dark:text-green-400 text-xs px-2 py-0.5 rounded-full font-bold">10% Off</span>}
+                    {promoApplied && <span className="bg-green-600/20 text-green-600  text-xs px-2 py-0.5 rounded-full font-bold">10% Off</span>}
                   </span>
                   <span>{formatPrice(shipping)}</span>
                 </div>
                 {promoApplied && (
-                  <div className="flex justify-between text-sm text-green-600 dark:text-green-400">
+                  <div className="flex justify-between text-sm text-green-600 ">
                     <span>Discount</span>
                     <span>-{formatPrice(discount)}</span>
                   </div>

@@ -28,25 +28,25 @@ export default function Header() {
   
   const navLinkClass = (path: string) => `font-manrope font-medium uppercase tracking-wider text-sm whitespace-nowrap transition-colors duration-300 pb-1 ${
     isActive(path) 
-      ? 'text-primary dark:text-[#fcf9f0] border-b-2 border-primary dark:border-[#fcf9f0] font-noto-serif' 
-      : 'text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary border-b-2 border-transparent'
+      ? 'text-primary  border-b-2 border-primary  font-noto-serif'
+      : 'text-on-surface-variant  hover:text-secondary border-b-2 border-transparent'
   }`;
 
   return (
-    <header className="bg-[#fcf9f0]/80 dark:bg-[#1c1c17]/80 backdrop-blur-md shadow-sm dark:shadow-none sticky top-0 z-50 flex flex-col w-full px-6 py-4 space-y-4 transition-colors duration-300">
+    <header className="bg-surface/80  backdrop-blur-md shadow-sm  sticky top-0 z-50 flex flex-col w-full px-6 py-4 space-y-4 transition-colors duration-300">
       <div className="flex items-center justify-between max-w-7xl mx-auto w-full">
         <div className="flex items-center gap-8">
-          <Link to="/" className="font-noto-serif text-2xl font-bold italic text-primary dark:text-[#fcf9f0]">The Heritage Curator</Link>
-          <div className="hidden lg:flex items-center bg-surface-container dark:bg-[#2a2a24] rounded-full px-4 py-2 w-auto lg:w-96 flex-grow max-w-sm border border-secondary/20 dark:border-secondary/40">
-            <Icon name="search" className="text-outline dark:text-outline-variant" />
+          <Link to="/" className="font-noto-serif text-2xl font-bold italic text-primary ">The Heritage Curator</Link>
+          <div className="hidden lg:flex items-center bg-surface-container  rounded-full px-4 py-2 w-auto lg:w-96 flex-grow max-w-sm border border-secondary/20 ">
+            <Icon name="search" className="text-outline " />
             <form onSubmit={handleSearch} className="w-full ml-2">
-              <input className="bg-transparent border-none focus:ring-0 text-sm w-full font-manrope text-on-surface dark:text-[#fcf9f0] placeholder:text-outline dark:placeholder:text-outline-variant outline-none" placeholder="Search authentic brands..." type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+              <input className="bg-transparent border-none focus:ring-0 text-sm w-full font-manrope text-on-surface  placeholder:text-outline dark:placeholder:text-outline-variant outline-none" placeholder="Search authentic brands..." type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
             </form>
           </div>
         </div>
-        <div className="flex items-center space-x-6 text-primary dark:text-[#fcf9f0]">
+        <div className="flex items-center space-x-6 text-primary ">
           <div className="hidden md:flex flex-col items-end">
-            <span className="text-xs uppercase tracking-widest text-outline dark:text-outline-variant">Balance</span>
+            <span className="text-xs uppercase tracking-widest text-outline ">Balance</span>
             <span className="font-bold text-xs uppercase tracking-wider">Total Savings: LKR 2,450</span>
           </div>
           <div className="flex items-center space-x-4">

@@ -65,8 +65,8 @@ export default function Consult() {
                       onClick={() => toggleCondition('Dry Skin')}
                       className={`px-5 py-2.5 rounded-full border transition-all ${
                         selectedConditions.includes('Dry Skin')
-                          ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed border-primary dark:border-primary-fixed shadow-sm'
-                          : 'bg-surface-container-low dark:bg-[#1e1e1a] text-on-surface-variant dark:text-[#c1c8c7] border-primary/30 dark:border-primary-fixed/30 hover:border-primary dark:hover:border-primary-fixed'
+                          ? 'bg-primary  text-on-primary  border-primary  shadow-sm'
+                          : 'bg-surface-container-low  text-on-surface-variant  border-primary/30  hover:border-primary '
                       }`}
                     >
                       <Icon name="water_drop" filled={selectedConditions.includes('Dry Skin')} className="text-sm" /> Dry Skin
@@ -75,8 +75,8 @@ export default function Consult() {
                       onClick={() => toggleCondition('Stress')}
                       className={`px-5 py-2.5 rounded-full border transition-all ${
                         selectedConditions.includes('Stress')
-                          ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed border-primary dark:border-primary-fixed shadow-sm'
-                          : 'bg-surface-container-low dark:bg-[#1e1e1a] text-on-surface-variant dark:text-[#c1c8c7] border-primary/30 dark:border-primary-fixed/30 hover:border-primary dark:hover:border-primary-fixed'
+                          ? 'bg-primary  text-on-primary  border-primary  shadow-sm'
+                          : 'bg-surface-container-low  text-on-surface-variant  border-primary/30  hover:border-primary '
                       }`}
                     >
                       <Icon name="spa" filled={selectedConditions.includes('Stress')} className="text-sm" /> Stress
@@ -85,8 +85,8 @@ export default function Consult() {
                       onClick={() => toggleCondition('Hair Loss')}
                       className={`px-5 py-2.5 rounded-full border transition-all ${
                         selectedConditions.includes('Hair Loss')
-                          ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed border-primary dark:border-primary-fixed shadow-sm'
-                          : 'bg-surface-container-low dark:bg-[#1e1e1a] text-on-surface-variant dark:text-[#c1c8c7] border-primary/30 dark:border-primary-fixed/30 hover:border-primary dark:hover:border-primary-fixed'
+                          ? 'bg-primary  text-on-primary  border-primary  shadow-sm'
+                          : 'bg-surface-container-low  text-on-surface-variant  border-primary/30  hover:border-primary '
                       }`}
                     >
                       <Icon name="content_cut" filled={selectedConditions.includes('Hair Loss')} className="text-sm" /> Hair Loss
@@ -95,8 +95,8 @@ export default function Consult() {
                       onClick={() => toggleCondition('Hyper-pigmentation')}
                       className={`px-5 py-2.5 rounded-full border transition-all ${
                         selectedConditions.includes('Hyper-pigmentation')
-                          ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed border-primary dark:border-primary-fixed shadow-sm'
-                          : 'bg-surface-container-low dark:bg-[#1e1e1a] text-on-surface-variant dark:text-[#c1c8c7] border-primary/30 dark:border-primary-fixed/30 hover:border-primary dark:hover:border-primary-fixed'
+                          ? 'bg-primary  text-on-primary  border-primary  shadow-sm'
+                          : 'bg-surface-container-low  text-on-surface-variant  border-primary/30  hover:border-primary '
                       }`}
                     >
                       <Icon name="wb_sunny" filled={selectedConditions.includes('Hyper-pigmentation')} className="text-sm" /> Hyper-pigmentation
@@ -105,8 +105,8 @@ export default function Consult() {
                       onClick={() => toggleCondition('Insomnia')}
                       className={`px-5 py-2.5 rounded-full border transition-all ${
                         selectedConditions.includes('Insomnia')
-                          ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed border-primary dark:border-primary-fixed shadow-sm'
-                          : 'bg-surface-container-low dark:bg-[#1e1e1a] text-on-surface-variant dark:text-[#c1c8c7] border-primary/30 dark:border-primary-fixed/30 hover:border-primary dark:hover:border-primary-fixed'
+                          ? 'bg-primary  text-on-primary  border-primary  shadow-sm'
+                          : 'bg-surface-container-low  text-on-surface-variant  border-primary/30  hover:border-primary '
                       }`}
                     >
                       <Icon name="bedtime" filled={selectedConditions.includes('Insomnia')} className="text-sm" /> Insomnia
@@ -157,7 +157,7 @@ export default function Consult() {
                 <p className="text-xs text-on-surface-variant mt-1 italic">Prescribed: Gotu Kola Infusion</p>
               </div>
             </div>
-            <button className="w-full mt-6 text-center text-primary/60 dark:text-white/60 text-xs font-bold uppercase tracking-widest hover:text-primary dark:hover:text-white transition-colors">
+            <button className="w-full mt-6 text-center text-primary/60  text-xs font-bold uppercase tracking-widest hover:text-primary  transition-colors">
               VIEW COMPLETE ARCHIVE
             </button>
           </details>
@@ -177,7 +177,7 @@ export default function Consult() {
               <p className="text-sm mt-3 font-manrope opacity-90 leading-relaxed">
                 "When the mind burns with anxiety, the earth provides its roots. Vetiver calms the fire within."
               </p>
-              <button className="mt-6 border border-white/30 px-6 py-3 rounded-lg text-white/80 text-sm font-medium hover:bg-white/10 hover:text-white transition-all">
+              <button className="mt-6 border border-white/30 px-6 py-3 rounded-lg text-on-surface text-sm font-medium hover:bg-surface hover:text-on-surface transition-all">
                 Discover More
               </button>
             </div>
@@ -187,20 +187,20 @@ export default function Consult() {
       </main>
 
       {/* BottomNavBar (Mobile Only) */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#fcf9f0] dark:bg-[#1c1c17] z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(28,28,23,0.04)] border-t border-[#c1c8c7]/15">
-        <Link to="/consult" className="flex flex-col items-center justify-center bg-[#2A5D5D] text-white rounded-xl min-w-[64px] min-h-[44px] px-3 py-2 scale-95 transition-transform duration-500 ease-in-out">
+      <nav className="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-surface  z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(28,28,23,0.04)] border-t border-outline-variant/15">
+        <Link to="/consult" className="flex flex-col items-center justify-center bg-primary text-on-surface rounded-xl min-w-[64px] min-h-[44px] px-3 py-2 scale-95 transition-transform duration-500 ease-in-out">
           <Icon name="chat_bubble" />
           <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Consult</span>
         </Link>
-        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-on-surface/40  min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container  transition-all">
           <Icon name="auto_awesome" />
           <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Rituals</span>
         </Link>
-        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-on-surface/40  min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container  transition-all">
           <Icon name="auto_stories" />
           <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Stories</span>
         </Link>
-        <Link to="/" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+        <Link to="/" className="flex flex-col items-center justify-center text-on-surface/40  min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container  transition-all">
           <Icon name="local_pharmacy" />
           <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Shop</span>
         </Link>

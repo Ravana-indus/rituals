@@ -135,14 +135,14 @@ export default function CategoryPage() {
         </div>
       </main>
 
-      <footer className="bg-[#f1eee5] dark:bg-[#0a0a08] w-full flex flex-col items-center justify-center text-center space-y-6 px-8 py-12 mt-auto">
-        <span className="font-noto-serif italic text-xl text-primary dark:text-primary-fixed">The Heritage Curator</span>
+      <footer className="bg-surface-container  w-full flex flex-col items-center justify-center text-center space-y-6 px-8 py-12 mt-auto">
+        <span className="font-noto-serif italic text-xl text-primary ">The Heritage Curator</span>
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-manrope text-xs tracking-widest uppercase">
-          <Link to="/support" className="text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary transition-colors">Shipping & Returns</Link>
-          <Link to="/support" className="text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary transition-colors">Privacy Policy</Link>
-          <Link to="/support" className="text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary transition-colors">Sustainability</Link>
+          <Link to="/support" className="text-on-surface-variant  hover:text-secondary transition-colors">Shipping & Returns</Link>
+          <Link to="/support" className="text-on-surface-variant  hover:text-secondary transition-colors">Privacy Policy</Link>
+          <Link to="/support" className="text-on-surface-variant  hover:text-secondary transition-colors">Sustainability</Link>
         </div>
-        <p className="font-manrope text-xs tracking-widest uppercase text-[#4a4a40] dark:text-[#a1a195] opacity-60">© 2024 The Heritage Curator.</p>
+        <p className="font-manrope text-xs tracking-widest uppercase text-on-surface-variant  opacity-60">© 2024 The Heritage Curator.</p>
       </footer>
     </div>
   );
@@ -189,7 +189,7 @@ function CategoryProductCard({ product }: { product: ProductWithRelations }) {
 
   return (
     <div className="group flex flex-col space-y-4">
-      <div className="relative aspect-[4/5] bg-surface-container-low dark:bg-[#1e1e1a] overflow-hidden rounded-sm">
+      <div className="relative aspect-[4/5] bg-surface-container-low  overflow-hidden rounded-sm">
         <Link to={`/product?slug=${product.slug}`}>
           <img
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -207,27 +207,27 @@ function CategoryProductCard({ product }: { product: ProductWithRelations }) {
         </div>
       </div>
       <div className="space-y-1">
-        <p className="font-manrope text-xs uppercase tracking-[0.2em] text-outline dark:text-outline-variant">{product.brand?.name ?? '—'}</p>
+        <p className="font-manrope text-xs uppercase tracking-[0.2em] text-outline ">{product.brand?.name ?? '—'}</p>
         <Link to={`/product?slug=${product.slug}`}>
-          <h3 className="font-noto-serif text-lg font-bold leading-tight text-on-surface dark:text-[#fcf9f0] hover:text-primary transition-colors">{product.name}</h3>
+          <h3 className="font-noto-serif text-lg font-bold leading-tight text-on-surface  hover:text-primary transition-colors">{product.name}</h3>
         </Link>
-        {product.tagline && <p className="text-on-surface-variant dark:text-[#c1c8c7] text-sm line-clamp-2 leading-relaxed">{product.tagline}</p>}
+        {product.tagline && <p className="text-on-surface-variant  text-sm line-clamp-2 leading-relaxed">{product.tagline}</p>}
       </div>
       <div className="flex items-center gap-3">
-        <span className="text-lg font-bold text-secondary dark:text-secondary-fixed-dim font-manrope">{formatPriceCents(product.price_cents)}</span>
+        <span className="text-lg font-bold text-secondary  font-manrope">{formatPriceCents(product.price_cents)}</span>
         {product.compare_at_price_cents && product.compare_at_price_cents > product.price_cents && (
           <span className="text-sm text-on-surface-variant line-through">{formatPriceCents(product.compare_at_price_cents)}</span>
         )}
       </div>
       <div className="flex items-center gap-2">
-        <div className="flex-1 h-1.5 bg-surface-container-highest dark:bg-[#3a3a34] rounded-full overflow-hidden">
+        <div className="flex-1 h-1.5 bg-surface-container-highest  rounded-full overflow-hidden">
           <div
-            className="h-full bg-secondary dark:bg-secondary-fixed-dim rounded-full"
+            className="h-full bg-secondary  rounded-full"
             style={{ width: `${Math.min(100, ((product.stock_qty ?? 0) / 20) * 100)}%` }}
           />
         </div>
         {(product.stock_qty ?? 0) <= (product.low_stock_threshold ?? 5) && (
-          <span className="text-xs text-secondary dark:text-secondary-fixed-dim font-black whitespace-nowrap">
+          <span className="text-xs text-secondary  font-black whitespace-nowrap">
             Only {product.stock_qty ?? 0} left
           </span>
         )}
@@ -235,14 +235,14 @@ function CategoryProductCard({ product }: { product: ProductWithRelations }) {
       <div className="flex gap-2 mt-2">
         <button
           onClick={handleAddToCart}
-          className="flex-1 py-2.5 bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed font-bold text-xs rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+          className="flex-1 py-2.5 bg-primary  text-on-primary  font-bold text-xs rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
         >
           <Icon name="add_shopping_cart" className="text-sm" />
           Add to Cart
         </button>
         <button
           onClick={handleBuyNow}
-          className="flex-1 py-2.5 bg-secondary dark:bg-secondary text-on-secondary dark:text-on-secondary font-bold text-xs rounded-lg hover:opacity-90 transition-opacity"
+          className="flex-1 py-2.5 bg-secondary  text-on-secondary  font-bold text-xs rounded-lg hover:opacity-90 transition-opacity"
         >
           Buy Now
         </button>

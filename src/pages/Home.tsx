@@ -64,78 +64,78 @@ export default function Home() {
 
       <main className="flex-grow">
         <section className="relative w-full h-[400px] md:h-[440px] overflow-hidden">
-          <div className="absolute inset-0 bg-primary-container dark:bg-[#1c1c17]">
+          <div className="absolute inset-0 bg-primary-container ">
             <img
               className="w-full h-full object-cover opacity-70 mix-blend-multiply dark:opacity-50"
               alt="Luxury apothecary products styled on warm marble with botanical accents"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ck0WUH0px0KcngeO0FEbL2oq57PzKyKHS9xHbb3KY136NTW_I2s8I4UrqchdLWXLJIfZpaWf_mw9aZZPUKuk5NYnoe1krpoH7izeOJKs_hLwbb_LloWTLRYMho0iiamFrveEF0pRnYga3FowWbC8rESVrAOYCwod-Q1n6sIPp5qd2w1-dXZCkaJj362OR6ryJC5ixud4CsWKfYktHPbF3dPsiK4qqRqQ4v2rB_ll0hbjqx0GW4NUcQvQysgXtmKavR575n8KhDzU"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent dark:from-[#001a1a] dark:via-[#001a1a]/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent  " />
           <div className="relative h-full flex flex-col justify-center max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-12 space-y-5">
-            <div className="inline-flex items-center space-x-2 bg-tertiary-container dark:bg-[#8a2419] text-on-tertiary px-4 py-1.5 rounded-sm w-fit shadow-lg">
+            <div className="inline-flex items-center space-x-2 bg-tertiary-container  text-on-tertiary px-4 py-1.5 rounded-sm w-fit shadow-lg">
               <Icon name="bolt" filled className="text-sm" />
               <span className="text-xs font-black uppercase tracking-[0.2em]">Limited Stock Event</span>
             </div>
-            <h1 className="font-noto-serif text-4xl lg:text-5xl xl:text-7xl text-white font-bold leading-[1.05]">
+            <h1 className="font-noto-serif text-4xl lg:text-5xl xl:text-7xl text-on-surface font-bold leading-[1.05]">
               Heritage Beauty,<br />
-              <span className="italic font-normal text-secondary-fixed dark:text-[#ffdbc9]">Reclaimed.</span>
+              <span className="italic font-normal text-secondary-fixed ">Reclaimed.</span>
             </h1>
-            <p className="text-white/85 font-manrope text-base md:text-lg max-w-xl leading-relaxed">
+            <p className="text-on-surface font-manrope text-base md:text-lg max-w-xl leading-relaxed">
               The curated edit of global luxury skincare and fragrance, now accessible for the discerning Sri Lankan ritual.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 pt-1">
-              <Link to="/#shop" className="bg-secondary dark:bg-[#9a4600] text-on-secondary px-8 py-3.5 rounded-md font-bold uppercase tracking-widest text-xs hover:bg-on-secondary-fixed-variant dark:hover:bg-[#763400] transition-all shadow-lg hover:scale-[1.02] text-center">
+              <Link to="/#shop" className="bg-secondary  text-on-secondary px-8 py-3.5 rounded-md font-bold uppercase tracking-widest text-xs hover:bg-on-secondary-fixed-variant  transition-all shadow-lg hover:scale-[1.02] text-center">
                 Shop Clearance
               </Link>
-              <Link to="/consult" className="border border-white/50 text-white backdrop-blur-sm px-8 py-3.5 rounded-md font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all text-center">
+              <Link to="/consult" className="border border-white/50 text-on-surface backdrop-blur-sm px-8 py-3.5 rounded-md font-bold uppercase tracking-widest text-xs hover:bg-surface transition-all text-center">
                 AI Ritual Consult
               </Link>
             </div>
           </div>
         </section>
 
-        <section className="bg-surface-container-high dark:bg-[#1a1a15] border-y border-outline-variant/30 dark:border-outline-variant/10">
+        <section className="bg-surface-container-high  border-y border-outline-variant/30 ">
           <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-12 py-6 md:py-7 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
             <div className="flex items-center gap-3.5 md:gap-4">
-              <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary dark:text-primary-fixed flex-shrink-0">
+              <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-primary/10  flex items-center justify-center text-primary  flex-shrink-0">
                 <Icon name="verified_user" className="text-xl md:text-2xl" />
               </div>
               <div>
-                <h4 className="font-noto-serif font-bold text-primary dark:text-primary-fixed uppercase text-xs md:text-xs tracking-wider leading-tight">100% Authentic Guarantee</h4>
-                <p className="text-xs md:text-xs text-on-surface-variant dark:text-outline-variant mt-0.5">Original batch codes on every item.</p>
+                <h4 className="font-noto-serif font-bold text-primary  uppercase text-xs md:text-xs tracking-wider leading-tight">100% Authentic Guarantee</h4>
+                <p className="text-xs md:text-xs text-on-surface-variant  mt-0.5">Original batch codes on every item.</p>
               </div>
             </div>
             <div className="flex items-center gap-3.5 md:gap-4">
-              <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary dark:text-primary-fixed flex-shrink-0">
+              <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-primary/10  flex items-center justify-center text-primary  flex-shrink-0">
                 <Icon name="verified" className="text-xl md:text-2xl" />
               </div>
               <div>
-                <h4 className="font-noto-serif font-bold text-primary dark:text-primary-fixed uppercase text-xs md:text-xs tracking-wider leading-tight">Authorised Distribution</h4>
-                <p className="text-xs md:text-xs text-on-surface-variant dark:text-outline-variant mt-0.5">Direct from brand. No grey market.</p>
+                <h4 className="font-noto-serif font-bold text-primary  uppercase text-xs md:text-xs tracking-wider leading-tight">Authorised Distribution</h4>
+                <p className="text-xs md:text-xs text-on-surface-variant  mt-0.5">Direct from brand. No grey market.</p>
               </div>
             </div>
             <div className="flex items-center gap-3.5 md:gap-4">
-              <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary dark:text-primary-fixed flex-shrink-0">
+              <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-primary/10  flex items-center justify-center text-primary  flex-shrink-0">
                 <Icon name="ac_unit" className="text-xl md:text-2xl" />
               </div>
               <div>
-                <h4 className="font-noto-serif font-bold text-primary dark:text-primary-fixed uppercase text-xs md:text-xs tracking-wider leading-tight">Temperature Controlled</h4>
-                <p className="text-xs md:text-xs text-on-surface-variant dark:text-outline-variant mt-0.5">Climate-safe storage & island-wide delivery.</p>
+                <h4 className="font-noto-serif font-bold text-primary  uppercase text-xs md:text-xs tracking-wider leading-tight">Temperature Controlled</h4>
+                <p className="text-xs md:text-xs text-on-surface-variant  mt-0.5">Climate-safe storage & island-wide delivery.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <div className="bg-surface-container dark:bg-[#1e1e1a] border-b border-outline-variant/10 dark:border-outline-variant/5 transition-colors duration-300" id="shop">
+        <div className="bg-surface-container  border-b border-outline-variant/10  transition-colors duration-300" id="shop">
           <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-12 pt-5 pb-0">
             <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar border-b border-outline-variant/20 pb-0">
               <button
                 onClick={() => setActiveCategory('all')}
                 className={`flex items-center gap-2 px-4 pb-3.5 text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 border-b-2 ${
                   activeCategory === 'all'
-                    ? 'border-primary dark:border-primary-fixed text-primary dark:text-primary-fixed'
-                    : 'border-transparent text-on-surface-variant dark:text-[#a1a195] hover:text-on-surface dark:hover:text-[#e5e2da]'
+                    ? 'border-primary  text-primary '
+                    : 'border-transparent text-on-surface-variant  hover:text-on-surface '
                 }`}
               >
                 <Icon name="grid_view" className="text-base" />
@@ -147,8 +147,8 @@ export default function Home() {
                   onClick={() => setActiveCategory(cat.slug)}
                   className={`flex items-center gap-2 px-4 pb-3.5 text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 border-b-2 ${
                     activeCategory === cat.slug
-                      ? 'border-primary dark:border-primary-fixed text-primary dark:text-primary-fixed'
-                      : 'border-transparent text-on-surface-variant dark:text-[#a1a195] hover:text-on-surface dark:hover:text-[#e5e2da]'
+                      ? 'border-primary  text-primary '
+                      : 'border-transparent text-on-surface-variant  hover:text-on-surface '
                   }`}
                 >
                   <Icon name={getCategoryIcon(cat.slug)} className="text-base" />
@@ -163,8 +163,8 @@ export default function Home() {
                 onClick={() => setActiveBrand('all')}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all flex-shrink-0 ${
                   activeBrand === 'all'
-                    ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed shadow-sm'
-                    : 'bg-surface-container-high dark:bg-[#2a2a24] text-on-surface-variant dark:text-[#a1a195] hover:bg-surface-variant dark:hover:bg-[#3a3a34] border border-transparent hover:border-outline-variant'
+                    ? 'bg-primary  text-on-primary  shadow-sm'
+                    : 'bg-surface-container-high  text-on-surface-variant  hover:bg-surface-variant  border border-transparent hover:border-outline-variant'
                 }`}
               >
                 All Brands
@@ -175,8 +175,8 @@ export default function Home() {
                   onClick={() => setActiveBrand(brand.id)}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all flex-shrink-0 ${
                     activeBrand === brand.id
-                      ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed shadow-sm'
-                      : 'bg-surface-container-high dark:bg-[#2a2a24] text-on-surface-variant dark:text-[#a1a195] hover:bg-surface-variant dark:hover:bg-[#3a3a34] border border-transparent hover:border-outline-variant'
+                      ? 'bg-primary  text-on-primary  shadow-sm'
+                      : 'bg-surface-container-high  text-on-surface-variant  hover:bg-surface-variant  border border-transparent hover:border-outline-variant'
                   }`}
                 >
                   {brand.name}
@@ -188,8 +188,8 @@ export default function Home() {
 
         <section className="p-6 md:p-10 lg:p-12 max-w-screen-2xl mx-auto pb-24 md:pb-12">
           <div className="flex items-center justify-between mb-8">
-            <p className="text-sm text-on-surface-variant dark:text-[#a1a195]">
-              <span className="font-bold text-primary dark:text-primary-fixed">{filteredProducts.length}</span>
+            <p className="text-sm text-on-surface-variant ">
+              <span className="font-bold text-primary ">{filteredProducts.length}</span>
               {' '}product{filteredProducts.length !== 1 ? 's' : ''}
               {activeCategory !== 'all' && ` in ${categories.find(c => c.slug === activeCategory)?.name ?? activeCategory}`}
               {activeBrand !== 'all' && ` from ${brands.find(b => b.id === activeBrand)?.name ?? ''}`}
@@ -197,7 +197,7 @@ export default function Home() {
             {(activeCategory !== 'all' || activeBrand !== 'all') && (
               <button
                 onClick={() => { setActiveCategory('all'); setActiveBrand('all'); }}
-                className="text-xs text-secondary dark:text-secondary-fixed-dim hover:underline font-medium"
+                className="text-xs text-secondary  hover:underline font-medium"
               >
                 Clear filters
               </button>
@@ -208,10 +208,10 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 lg:gap-x-8 gap-y-12 lg:gap-y-16">
               {[...Array(8)].map((_, i) => (
                 <div key={i} className="flex flex-col space-y-4 animate-pulse">
-                  <div className="aspect-[4/5] bg-surface-container-highest dark:bg-[#3a3a34] rounded-sm" />
-                  <div className="h-3 bg-surface-container-highest dark:bg-[#3a3a34] w-1/2 rounded" />
-                  <div className="h-5 bg-surface-container-highest dark:bg-[#3a3a34] w-3/4 rounded" />
-                  <div className="h-10 bg-surface-container-highest dark:bg-[#3a3a34] w-full rounded" />
+                  <div className="aspect-[4/5] bg-surface-container-highest  rounded-sm" />
+                  <div className="h-3 bg-surface-container-highest  w-1/2 rounded" />
+                  <div className="h-5 bg-surface-container-highest  w-3/4 rounded" />
+                  <div className="h-10 bg-surface-container-highest  w-full rounded" />
                 </div>
               ))}
             </div>
@@ -236,7 +236,7 @@ export default function Home() {
                 setTimeout(() => setLoadingMore(false), 1500);
               }}
               disabled={loadingMore}
-              className="border-b-2 border-primary dark:border-primary-fixed pb-1 font-bold uppercase tracking-widest text-xs hover:text-secondary hover:border-secondary transition-all text-primary dark:text-primary-fixed disabled:opacity-50"
+              className="border-b-2 border-primary  pb-1 font-bold uppercase tracking-widest text-xs hover:text-secondary hover:border-secondary transition-all text-primary  disabled:opacity-50"
             >
               {loadingMore ? 'Loading...' : 'Loading more curated selections...'}
             </button>
@@ -244,35 +244,35 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-[#f1eee5] dark:bg-[#0a0a08] w-full flex flex-col items-center justify-center text-center space-y-6 px-8 py-12 mt-auto transition-colors duration-300 pb-24 md:pb-12">
-        <span className="font-noto-serif italic text-xl text-primary dark:text-primary-fixed">The Heritage Curator</span>
+      <footer className="bg-surface-container  w-full flex flex-col items-center justify-center text-center space-y-6 px-8 py-12 mt-auto transition-colors duration-300 pb-24 md:pb-12">
+        <span className="font-noto-serif italic text-xl text-primary ">The Heritage Curator</span>
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-manrope text-xs tracking-widest uppercase">
-          <Link to="/support" className="text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300">Shipping & Returns</Link>
-          <Link to="/support" className="text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300">Privacy Policy</Link>
-          <Link to="/support" className="text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300">Sustainability Manifesto</Link>
-          <Link to="/support" className="text-[#4a4a40] dark:text-[#a1a195] hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300">Store Locator</Link>
+          <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Shipping & Returns</Link>
+          <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Privacy Policy</Link>
+          <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Sustainability Manifesto</Link>
+          <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Store Locator</Link>
         </div>
-        <p className="font-manrope text-xs tracking-widest uppercase text-[#4a4a40] dark:text-[#a1a195] opacity-60">© 2024 The Heritage Curator. High-End Editorial Beauty.</p>
+        <p className="font-manrope text-xs tracking-widest uppercase text-on-surface-variant  opacity-60">© 2024 The Heritage Curator. High-End Editorial Beauty.</p>
       </footer>
 
-      <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-4 md:hidden bg-[#fcf9f0] dark:bg-[#1c1c17] z-50 border-t border-[#e5e2da] dark:border-[#2c2c26] shadow-[0_-4px_12px_rgba(0,0,0,0.05)] transition-colors duration-300">
-        <Link to="/" className="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-black min-w-[64px] min-h-[44px] px-1 py-1">
+      <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-4 md:hidden bg-surface  z-50 border-t border-[#e5e2da]  shadow-[0_-4px_12px_rgba(0,0,0,0.05)] transition-colors duration-300">
+        <Link to="/" className="flex flex-col items-center justify-center text-secondary  font-black min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="storefront" filled />
           <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Shop</span>
         </Link>
-        <Link to="/search" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
+        <Link to="/search" className="flex flex-col items-center justify-center text-on-surface-variant  hover:bg-[#f6f3ea]  rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="search" />
           <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Search</span>
         </Link>
-        <Link to="/consult" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
+        <Link to="/consult" className="flex flex-col items-center justify-center text-on-surface-variant  hover:bg-[#f6f3ea]  rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="chat_bubble" />
           <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Consult</span>
         </Link>
-        <Link to="/profile" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
+        <Link to="/profile" className="flex flex-col items-center justify-center text-on-surface-variant  hover:bg-[#f6f3ea]  rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="favorite" />
           <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Favorites</span>
         </Link>
-        <Link to="/login" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
+        <Link to="/login" className="flex flex-col items-center justify-center text-on-surface-variant  hover:bg-[#f6f3ea]  rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="person" />
           <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Account</span>
         </Link>
@@ -322,7 +322,7 @@ function HomeProductCard({ product }: { product: ProductWithRelations }) {
 
   return (
     <div className="group flex flex-col space-y-4">
-      <div className="relative aspect-[4/5] bg-surface-container-low dark:bg-[#1e1e1a] overflow-hidden rounded-sm">
+      <div className="relative aspect-[4/5] bg-surface-container-low  overflow-hidden rounded-sm">
         <Link to={`/product?slug=${product.slug}`}>
           <img
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -340,27 +340,27 @@ function HomeProductCard({ product }: { product: ProductWithRelations }) {
         </div>
       </div>
       <div className="space-y-1">
-        <p className="font-manrope text-xs uppercase tracking-[0.2em] text-outline dark:text-outline-variant">{product.brand?.name ?? '—'}</p>
+        <p className="font-manrope text-xs uppercase tracking-[0.2em] text-outline ">{product.brand?.name ?? '—'}</p>
         <Link to={`/product?slug=${product.slug}`}>
-          <h3 className="font-noto-serif text-lg font-bold leading-tight text-on-surface dark:text-[#fcf9f0] hover:text-primary transition-colors">{product.name}</h3>
+          <h3 className="font-noto-serif text-lg font-bold leading-tight text-on-surface  hover:text-primary transition-colors">{product.name}</h3>
         </Link>
-        {product.tagline && <p className="text-on-surface-variant dark:text-[#c1c8c7] text-sm line-clamp-2 leading-relaxed">{product.tagline}</p>}
+        {product.tagline && <p className="text-on-surface-variant  text-sm line-clamp-2 leading-relaxed">{product.tagline}</p>}
       </div>
       <div className="flex items-center gap-3">
-        <span className="text-lg font-bold text-secondary dark:text-secondary-fixed-dim font-manrope">{formatPriceCents(product.price_cents)}</span>
+        <span className="text-lg font-bold text-secondary  font-manrope">{formatPriceCents(product.price_cents)}</span>
         {product.compare_at_price_cents && product.compare_at_price_cents > product.price_cents && (
           <span className="text-sm text-on-surface-variant line-through">{formatPriceCents(product.compare_at_price_cents)}</span>
         )}
       </div>
       <div className="flex items-center gap-2">
-        <div className="flex-1 h-1.5 bg-surface-container-highest dark:bg-[#3a3a34] rounded-full overflow-hidden">
+        <div className="flex-1 h-1.5 bg-surface-container-highest  rounded-full overflow-hidden">
           <div
-            className="h-full bg-secondary dark:bg-secondary-fixed-dim rounded-full transition-all"
+            className="h-full bg-secondary  rounded-full transition-all"
             style={{ width: `${Math.min(100, ((product.stock_qty ?? 0) / 20) * 100)}%` }}
           />
         </div>
         {(product.stock_qty ?? 0) <= (product.low_stock_threshold ?? 5) && (
-          <span className="text-xs text-secondary dark:text-secondary-fixed-dim font-black whitespace-nowrap">
+          <span className="text-xs text-secondary  font-black whitespace-nowrap">
             Only {product.stock_qty ?? 0} left
           </span>
         )}
@@ -368,19 +368,19 @@ function HomeProductCard({ product }: { product: ProductWithRelations }) {
       <div className="flex gap-2 mt-2">
         <button
           onClick={handleAddToCart}
-          className="flex-1 min-h-[44px] py-2 bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed font-bold text-xs rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+          className="flex-1 min-h-[44px] py-2 bg-primary  text-on-primary  font-bold text-xs rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
         >
           <Icon name="add_shopping_cart" className="text-sm" />
           Add to Cart
         </button>
         <button
           onClick={handleBuyNow}
-          className="flex-1 min-h-[44px] py-2 bg-secondary dark:bg-secondary text-on-secondary dark:text-on-secondary font-bold text-xs rounded-lg hover:opacity-90 transition-opacity"
+          className="flex-1 min-h-[44px] py-2 bg-secondary  text-on-secondary  font-bold text-xs rounded-lg hover:opacity-90 transition-opacity"
         >
           Buy Now
         </button>
       </div>
-      <div className="flex items-center gap-2 text-xs text-outline dark:text-outline-variant">
+      <div className="flex items-center gap-2 text-xs text-outline ">
         <Icon name="verified" className="text-xs" filled /> Authenticity Guaranteed
         {product.sku && <><span>·</span><span>SKU: {product.sku}</span></>}
       </div>

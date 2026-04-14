@@ -123,7 +123,7 @@ export function OrderList() {
           <button
             onClick={() => setFilter('status', filters.status ? undefined : 'pending')}
             className={`px-3 py-1.5 rounded-full text-xs uppercase tracking-wider font-semibold transition-colors ${
-              filters.status ? 'bg-primary text-white' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'
+              filters.status ? 'bg-primary text-on-surface' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'
             }`}
           >
             Status
@@ -131,7 +131,7 @@ export function OrderList() {
           <button
             onClick={() => setFilter('payment_status', filters.payment_status ? undefined : 'pending')}
             className={`px-3 py-1.5 rounded-full text-xs uppercase tracking-wider font-semibold transition-colors ${
-              filters.payment_status ? 'bg-primary text-white' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'
+              filters.payment_status ? 'bg-primary text-on-surface' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'
             }`}
           >
             Payment
@@ -139,7 +139,7 @@ export function OrderList() {
           <button
             onClick={() => setFilter('fulfillment_status', filters.fulfillment_status ? undefined : 'unfulfilled')}
             className={`px-3 py-1.5 rounded-full text-xs uppercase tracking-wider font-semibold transition-colors ${
-              filters.fulfillment_status ? 'bg-primary text-white' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'
+              filters.fulfillment_status ? 'bg-primary text-on-surface' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'
             }`}
           >
             Fulfillment

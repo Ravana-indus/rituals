@@ -189,10 +189,10 @@ export default function RitualBuilder() {
 
       <div className="pt-20 flex flex-col lg:flex-row min-h-screen">
         {/* Left Sidebar */}
-        <aside className="flex flex-col py-6 lg:py-10 px-6 lg:px-6 space-y-4 lg:space-y-8 w-full lg:w-80 relative lg:fixed left-0 top-0 lg:top-20 h-auto lg:h-[calc(100vh-5rem)] bg-surface-container dark:bg-[#1c1c17] z-40 overflow-y-auto no-scrollbar lg:border-r border-outline-variant/10">
+        <aside className="flex flex-col py-6 lg:py-10 px-6 lg:px-6 space-y-4 lg:space-y-8 w-full lg:w-80 relative lg:fixed left-0 top-0 lg:top-20 h-auto lg:h-[calc(100vh-5rem)] bg-surface-container  z-40 overflow-y-auto no-scrollbar lg:border-r border-outline-variant/10">
           <div className="mb-4">
-            <h2 className="font-noto-serif italic text-secondary dark:text-secondary-fixed-dim text-lg">The Ritual Builder</h2>
-            <p className="font-manrope text-xs uppercase tracking-widest text-on-surface/60 dark:text-[#c1c8c7]/60">Curating your personal care</p>
+            <h2 className="font-noto-serif italic text-secondary  text-lg">The Ritual Builder</h2>
+            <p className="font-manrope text-xs uppercase tracking-widest text-on-surface/60 ">Curating your personal care</p>
           </div>
 
           <nav className="flex-1 space-y-2">
@@ -202,15 +202,15 @@ export default function RitualBuilder() {
                 to={`/ritual-builder/${item.category}`}
                 className={`flex items-center space-x-4 py-3 px-4 transition-colors rounded-r-full ${
                   category === item.category
-                    ? 'bg-surface-variant dark:bg-[#2a2a24] text-primary dark:text-primary-fixed font-bold scale-95'
-                    : 'text-on-surface/60 dark:text-[#c1c8c7]/60 hover:bg-surface-variant/50 dark:hover:bg-[#2a2a24]/50'
+                    ? 'bg-surface-variant  text-primary  font-bold scale-95'
+                    : 'text-on-surface/60  hover:bg-surface-variant/50 '
                 }`}
               >
                 <Icon name={item.icon} filled={category === item.category} className="text-base" />
                 <span className="font-manrope text-sm uppercase tracking-widest">{item.label}</span>
               </Link>
             ))}
-            <Link to="/checkout" className="flex items-center space-x-4 py-3 px-4 text-on-surface/60 dark:text-[#c1c8c7]/60 hover:bg-surface-variant/50 dark:hover:bg-[#2a2a24]/50 transition-colors rounded-r-full border-t border-outline-variant/10 mt-4 pt-4">
+            <Link to="/checkout" className="flex items-center space-x-4 py-3 px-4 text-on-surface/60  hover:bg-surface-variant/50  transition-colors rounded-r-full border-t border-outline-variant/10 mt-4 pt-4">
               <Icon name="auto_stories" className="text-base" />
               <span className="font-manrope text-sm uppercase tracking-widest">Your Selection</span>
             </Link>
@@ -219,17 +219,17 @@ export default function RitualBuilder() {
           {/* Bundle Progress */}
           <div className="pt-6 border-t border-outline-variant/15 space-y-4">
             {needsMore > 0 ? (
-              <div className="bg-primary-container dark:bg-primary-container p-4 rounded-lg text-on-primary dark:text-on-primary shadow-sm">
+              <div className="bg-primary-container  p-4 rounded-lg text-on-primary  shadow-sm">
                 <p className="text-xs uppercase tracking-widest opacity-80 mb-1">Bundle Progress</p>
-                <div className="h-1 bg-surface/20 dark:bg-[#1c1c17]/30 rounded-full mb-3">
-                  <div className="h-1 bg-secondary-fixed-dim dark:bg-secondary-fixed rounded-full transition-all duration-500" style={{ width: `${Math.min((selectedProducts.length / bundleMin) * 100, 100)}%` }} />
+                <div className="h-1 bg-surface/20  rounded-full mb-3">
+                  <div className="h-1 bg-secondary-fixed-dim  rounded-full transition-all duration-500" style={{ width: `${Math.min((selectedProducts.length / bundleMin) * 100, 100)}%` }} />
                 </div>
                 <p className="font-noto-serif text-sm italic">Add {needsMore} more for 15% off</p>
               </div>
             ) : (
-              <div className="bg-primary-container dark:bg-primary-container p-4 rounded-lg text-on-primary dark:text-on-primary shadow-sm">
+              <div className="bg-primary-container  p-4 rounded-lg text-on-primary  shadow-sm">
                 <div className="flex items-center space-x-2 mb-1">
-                  <Icon name="auto_awesome" filled className="text-sm text-secondary-fixed-dim dark:text-secondary-fixed" />
+                  <Icon name="auto_awesome" filled className="text-sm text-secondary-fixed-dim " />
                   <p className="text-xs uppercase tracking-widest opacity-80">Bundle Discount Activated</p>
                 </div>
                 <p className="font-noto-serif text-sm italic">15% off your entire ritual</p>
@@ -240,8 +240,8 @@ export default function RitualBuilder() {
               onClick={(e) => selectedProducts.size === 0 && e.preventDefault()}
               className={`block w-full text-center py-3 px-6 rounded-md uppercase tracking-widest text-xs font-bold transition-colors duration-300 ${
                 selectedProducts.size > 0
-                  ? 'bg-secondary dark:bg-secondary-fixed-dim text-on-secondary dark:text-[#321200] hover:bg-on-secondary-container'
-                  : 'bg-surface-container-high dark:bg-[#2a2a24] text-outline cursor-not-allowed'
+                  ? 'bg-secondary  text-on-secondary  hover:bg-on-secondary-container'
+                  : 'bg-surface-container-high  text-outline cursor-not-allowed'
               }`}
             >
               {selectedProducts.size > 0 ? 'Complete Ritual' : 'Select Products'}
@@ -249,11 +249,11 @@ export default function RitualBuilder() {
           </div>
 
           <div className="space-y-4 pt-4">
-            <Link to="/support" className="flex items-center space-x-3 text-xs font-light text-on-surface/70 dark:text-[#c1c8c7]/60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors">
+            <Link to="/support" className="flex items-center space-x-3 text-xs font-light text-on-surface/70  hover:text-secondary  transition-colors">
               <Icon name="loyalty" className="text-sm" />
               <span>Subscription Benefits</span>
             </Link>
-            <Link to="/support" className="flex items-center space-x-3 text-xs font-light text-on-surface/70 dark:text-[#c1c8c7]/60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors">
+            <Link to="/support" className="flex items-center space-x-3 text-xs font-light text-on-surface/70  hover:text-secondary  transition-colors">
               <Icon name="help_outline" className="text-sm" />
               <span>Help</span>
             </Link>
@@ -263,57 +263,57 @@ export default function RitualBuilder() {
         {/* Product Canvas */}
         <main className="lg:ml-80 xl:mr-96 flex-1 px-6 md:px-10 lg:px-12 py-12">
           <header className="mb-12 max-w-4xl">
-            <h1 className="font-noto-serif text-5xl font-black text-primary dark:text-primary-fixed leading-tight mb-4">{catData.title}</h1>
-            <p className="text-on-surface-variant dark:text-[#c1c8c7] font-manrope max-w-2xl leading-relaxed">{catData.subtitle}</p>
+            <h1 className="font-noto-serif text-5xl font-black text-primary  leading-tight mb-4">{catData.title}</h1>
+            <p className="text-on-surface-variant  font-manrope max-w-2xl leading-relaxed">{catData.subtitle}</p>
           </header>
 
           {/* Editorial Grid */}
           <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 mb-20">
             {products.map((product) => (
-              <article key={product.id} className="group relative bg-surface-container-low dark:bg-[#1c1c17] hover:bg-surface-container-high dark:hover:bg-[#252521] transition-colors duration-500 rounded-sm">
+              <article key={product.id} className="group relative bg-surface-container-low  hover:bg-surface-container-high  transition-colors duration-500 rounded-sm">
                 {product.badge && product.badgeType === 'editorial' && (
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="font-noto-serif italic text-xs text-on-surface-variant dark:text-[#c1c8c7] bg-white/40 dark:bg-[#1c1c17]/40 backdrop-blur-sm px-2 py-1 rounded">{product.badge}</span>
+                    <span className="font-noto-serif italic text-xs text-on-surface-variant  bg-surface  backdrop-blur-sm px-2 py-1 rounded">{product.badge}</span>
                   </div>
                 )}
                 {product.badge && product.badgeType !== 'editorial' && (
                   <div className="absolute top-4 right-4 z-10">
-                    <div className={`stamp-badge px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] ${product.badgeType === 'tertiary' ? 'bg-tertiary-container text-white' : 'bg-secondary text-white'}`}>{product.badge}</div>
+                    <div className={`stamp-badge px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] ${product.badgeType === 'tertiary' ? 'bg-tertiary-container text-on-surface' : 'bg-secondary text-on-surface'}`}>{product.badge}</div>
                   </div>
                 )}
-                <div className="aspect-[4/5] overflow-hidden bg-surface-variant/30 dark:bg-[#252521]/30 p-8 flex items-center justify-center">
+                <div className="aspect-[4/5] overflow-hidden bg-surface-variant/30  p-8 flex items-center justify-center">
                   <img alt={product.name} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" src={product.image} />
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-noto-serif text-xl text-primary dark:text-primary-fixed leading-none">{product.name}</h3>
-                    <button onClick={() => toggleFavorite(product.id)} className="text-outline-variant dark:text-[#717878] hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 -mt-2">
-                      <Icon name="favorite" filled={favorites.has(product.id)} className={favorites.has(product.id) ? 'text-secondary dark:text-secondary-fixed-dim' : ''} />
+                    <h3 className="font-noto-serif text-xl text-primary  leading-none">{product.name}</h3>
+                    <button onClick={() => toggleFavorite(product.id)} className="text-outline-variant  hover:text-secondary  transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 -mt-2">
+                      <Icon name="favorite" filled={favorites.has(product.id)} className={favorites.has(product.id) ? 'text-secondary ' : ''} />
                     </button>
                   </div>
-                  <span className="font-manrope text-sm font-semibold text-secondary dark:text-secondary-fixed-dim">{formatLKR(product.curatorPrice)}</span>
-                  <p className="mt-2 text-xs text-on-surface-variant/80 dark:text-[#c1c8c7]/80 font-light">{product.description}</p>
+                  <span className="font-manrope text-sm font-semibold text-secondary ">{formatLKR(product.curatorPrice)}</span>
+                  <p className="mt-2 text-xs text-on-surface-variant/80  font-light">{product.description}</p>
                   {product.stockLeft && (
                     <div className="flex items-center gap-2 mt-4">
-                      <div className="flex-1 h-1 bg-surface-container-high dark:bg-[#3a3a34] rounded-full overflow-hidden">
-                        <div className="h-full bg-secondary dark:bg-secondary-fixed-dim rounded-full" style={{ width: `${product.stockPercent}%` }} />
+                      <div className="flex-1 h-1 bg-surface-container-high  rounded-full overflow-hidden">
+                        <div className="h-full bg-secondary  rounded-full" style={{ width: `${product.stockPercent}%` }} />
                       </div>
-                      <span className="text-xs text-secondary dark:text-secondary-fixed-dim font-black">Only {product.stockLeft} left</span>
+                      <span className="text-xs text-secondary  font-black">Only {product.stockLeft} left</span>
                     </div>
                   )}
-                  <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-3 text-xs text-on-surface-variant/60 dark:text-[#c1c8c7]/60">
-                    <span className="flex items-center gap-0.5 text-primary/70 dark:text-primary-fixed/70"><Icon name="verified" className="text-xs" filled /> Auth</span>
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-3 text-xs text-on-surface-variant/60 ">
+                    <span className="flex items-center gap-0.5 text-primary/70 "><Icon name="verified" className="text-xs" filled /> Auth</span>
                     <span>·</span>
                     <span>Exp: {product.expiry}</span>
                     <span>·</span>
-                    <span className="flex items-center gap-0.5 text-secondary/70 dark:text-secondary-fixed-dim/70"><Icon name="sell" className="text-xs" /> {product.whyDiscounted}</span>
+                    <span className="flex items-center gap-0.5 text-secondary/70 "><Icon name="sell" className="text-xs" /> {product.whyDiscounted}</span>
                   </div>
                   <button
                     onClick={() => toggleProduct(product.id)}
                     className={`w-full py-3 mt-4 text-xs uppercase tracking-widest font-bold border transition-all ${
                       selectedProducts.has(product.id)
-                        ? 'border-primary dark:border-primary-fixed bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed'
-                        : 'border-primary/10 dark:border-primary-fixed/10 text-primary dark:text-primary-fixed hover:border-secondary dark:hover:border-secondary-fixed-dim hover:text-secondary dark:hover:text-secondary-fixed-dim'
+                        ? 'border-primary  bg-primary  text-on-primary '
+                        : 'border-primary/10  text-primary  hover:border-secondary  hover:text-secondary '
                     }`}
                   >
                     {selectedProducts.has(product.id) ? 'Added to Ritual' : 'Add to Ritual'}
@@ -324,25 +324,25 @@ export default function RitualBuilder() {
           </section>
 
           {/* Curator's Note */}
-          <section className="p-12 md:p-16 bg-surface-container-high dark:bg-[#1c1c17] border-t border-outline-variant/10 dark:border-[#c1c8c7]/10 flex flex-col md:flex-row gap-12 items-center rounded-xl shadow-sm">
-            <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 grayscale opacity-80 border-4 border-surface dark:border-[#121212]">
+          <section className="p-12 md:p-16 bg-surface-container-high  border-t border-outline-variant/10  flex flex-col md:flex-row gap-12 items-center rounded-xl shadow-sm">
+            <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 grayscale opacity-80 border-4 border-surface ">
               <img alt="Curator" className="w-full h-full object-cover" src={CURATOR_PORTRAIT} />
             </div>
             <div className="flex-1">
-              <span className="font-noto-serif italic text-secondary dark:text-secondary-fixed-dim text-sm block mb-2">A Note from the Curator</span>
-              <h4 className="font-noto-serif text-2xl text-primary dark:text-primary-fixed mb-4">Honoring the Routine</h4>
-              <p className="text-on-surface-variant dark:text-[#c1c8c7] leading-relaxed italic text-sm md:text-base">&ldquo;{catData.curatorNote.quote}&rdquo;</p>
-              <p className="mt-4 font-noto-serif text-sm font-bold text-primary dark:text-primary-fixed">&mdash; {catData.curatorNote.attribution}</p>
+              <span className="font-noto-serif italic text-secondary  text-sm block mb-2">A Note from the Curator</span>
+              <h4 className="font-noto-serif text-2xl text-primary  mb-4">Honoring the Routine</h4>
+              <p className="text-on-surface-variant  leading-relaxed italic text-sm md:text-base">&ldquo;{catData.curatorNote.quote}&rdquo;</p>
+              <p className="mt-4 font-noto-serif text-sm font-bold text-primary ">&mdash; {catData.curatorNote.attribution}</p>
             </div>
           </section>
 
           {/* Mobile FAB */}
           <div className="lg:hidden fixed bottom-6 right-6 z-50">
             <Link to={selectedProducts.size > 0 ? '/order-confirmed' : '#'} onClick={(e) => selectedProducts.size === 0 && e.preventDefault()}>
-              <button className="bg-primary dark:bg-primary-fixed text-white dark:text-[#002020] w-14 h-14 rounded-full shadow-2xl flex items-center justify-center border-4 border-background dark:border-[#121212] group">
+              <button className="bg-primary  text-on-surface  w-14 h-14 rounded-full shadow-2xl flex items-center justify-center border-4 border-background  group">
                 <Icon name="auto_stories" className="text-2xl group-hover:scale-110 transition-transform" />
                 {selectedProducts.size > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-secondary dark:bg-secondary-fixed-dim text-white dark:text-[#321200] text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">{selectedProducts.size}</span>
+                  <span className="absolute -top-1 -right-1 bg-secondary  text-on-surface  text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">{selectedProducts.size}</span>
                 )}
               </button>
             </Link>
@@ -350,33 +350,33 @@ export default function RitualBuilder() {
         </main>
 
         {/* Right Summary Sidebar */}
-        <aside className="hidden xl:flex flex-col w-96 bg-surface-container-lowest dark:bg-[#1c1c17] border-l border-outline-variant/10 dark:border-[#c1c8c7]/10 shadow-[-10px_0_30px_rgba(28,28,23,0.03)] z-40 h-[calc(100vh-5rem)] fixed right-0 top-20 overflow-y-auto no-scrollbar">
+        <aside className="hidden xl:flex flex-col w-96 bg-surface-container-lowest  border-l border-outline-variant/10  shadow-[-10px_0_30px_rgba(28,28,23,0.03)] z-40 h-[calc(100vh-5rem)] fixed right-0 top-20 overflow-y-auto no-scrollbar">
           <div className="p-8 pb-4">
-            <h2 className="font-noto-serif text-2xl text-primary dark:text-primary-fixed mb-1">Your Ritual</h2>
-            <p className="text-xs uppercase tracking-[0.2em] text-on-surface/50 dark:text-[#c1c8c7]/50">Selections so far</p>
+            <h2 className="font-noto-serif text-2xl text-primary  mb-1">Your Ritual</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-on-surface/50 ">Selections so far</p>
           </div>
 
           <div className="flex-1 px-8 space-y-6 overflow-y-auto py-4 no-scrollbar">
             {selectedItems.length === 0 ? (
               <div className="text-center py-8">
-                <Icon name="spa" className="text-4xl text-outline-variant/30 dark:text-[#717878]/30" />
-                <p className="text-sm text-on-surface-variant/60 dark:text-[#c1c8c7]/60 mt-3 italic font-light">Add products from the catalog to build your ritual</p>
+                <Icon name="spa" className="text-4xl text-outline-variant/30 " />
+                <p className="text-sm text-on-surface-variant/60  mt-3 italic font-light">Add products from the catalog to build your ritual</p>
               </div>
             ) : (
               selectedItems.map((item) => (
                 <div key={item.id} className="flex gap-4 group">
-                  <div className="w-16 h-20 bg-surface-container-low dark:bg-[#252521] flex-shrink-0 p-2 overflow-hidden">
+                  <div className="w-16 h-20 bg-surface-container-low  flex-shrink-0 p-2 overflow-hidden">
                     <img alt={item.name} className="w-full h-full object-contain mix-blend-multiply" src={item.thumb} />
                   </div>
-                  <div className="flex-1 border-b border-outline-variant/10 dark:border-[#c1c8c7]/10 pb-4">
+                  <div className="flex-1 border-b border-outline-variant/10  pb-4">
                     <div className="flex justify-between items-start mb-1">
-                      <h4 className="text-xs font-bold text-primary dark:text-primary-fixed uppercase tracking-wider">{item.name}</h4>
-                      <button onClick={() => removeProduct(item.id)} className="text-on-surface/30 dark:text-[#c1c8c7]/30 hover:text-error dark:hover:text-error transition-colors">
+                      <h4 className="text-xs font-bold text-primary  uppercase tracking-wider">{item.name}</h4>
+                      <button onClick={() => removeProduct(item.id)} className="text-on-surface/30  hover:text-error  transition-colors">
                         <Icon name="close" className="text-sm" />
                       </button>
                     </div>
-                    <p className="text-xs text-on-surface/60 dark:text-[#c1c8c7]/60 mb-2">{item.tagline}</p>
-                    <span className="text-xs font-semibold text-secondary dark:text-secondary-fixed-dim">{formatLKR(item.curatorPrice)}</span>
+                    <p className="text-xs text-on-surface/60  mb-2">{item.tagline}</p>
+                    <span className="text-xs font-semibold text-secondary ">{formatLKR(item.curatorPrice)}</span>
                   </div>
                 </div>
               ))
@@ -384,22 +384,22 @@ export default function RitualBuilder() {
           </div>
 
           {/* Bottom Pricing & Checkout */}
-          <div className="p-8 bg-surface-container-low dark:bg-[#1c1c17] border-t border-outline-variant/20 dark:border-[#c1c8c7]/20">
+          <div className="p-8 bg-surface-container-low  border-t border-outline-variant/20 ">
             {selectedItems.length > 0 && (
               <div className="space-y-3 mb-6">
-                <div className="flex justify-between text-xs font-medium text-on-surface/60 dark:text-[#c1c8c7]/60">
+                <div className="flex justify-between text-xs font-medium text-on-surface/60 ">
                   <span>Subtotal</span>
                   <span>{formatLKR(subtotal)}</span>
                 </div>
                 {discount > 0 && (
-                  <div className="flex justify-between text-xs font-bold text-secondary dark:text-secondary-fixed-dim">
+                  <div className="flex justify-between text-xs font-bold text-secondary ">
                     <span className="flex items-center"><Icon name="auto_awesome" className="text-xs mr-1" />Ritual Bundle Discount</span>
                     <span>- {formatLKR(discount)} (15%)</span>
                   </div>
                 )}
-                <div className="pt-3 border-t border-outline-variant/10 dark:border-[#c1c8c7]/10 flex justify-between items-center">
-                  <span className="font-noto-serif text-lg text-primary dark:text-primary-fixed font-black">Total</span>
-                  <span className="font-noto-serif text-xl text-primary dark:text-primary-fixed font-black">{formatLKR(total)}</span>
+                <div className="pt-3 border-t border-outline-variant/10  flex justify-between items-center">
+                  <span className="font-noto-serif text-lg text-primary  font-black">Total</span>
+                  <span className="font-noto-serif text-xl text-primary  font-black">{formatLKR(total)}</span>
                 </div>
               </div>
             )}
@@ -409,29 +409,29 @@ export default function RitualBuilder() {
               onClick={(e) => selectedProducts.size === 0 && e.preventDefault()}
               className={`block w-full text-center py-4 rounded-md font-bold text-xs uppercase tracking-[0.2em] shadow-md transition-all duration-300 ${
                 selectedProducts.size > 0
-                  ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed hover:translate-y-[-1px] active:translate-y-0'
-                  : 'bg-surface-container-high dark:bg-[#2a2a24] text-outline cursor-not-allowed'
+                  ? 'bg-primary  text-on-primary  hover:translate-y-[-1px] active:translate-y-0'
+                  : 'bg-surface-container-high  text-outline cursor-not-allowed'
               }`}
             >
               {selectedProducts.size > 0 ? 'Secure Checkout' : 'Select Products First'}
             </Link>
 
             {selectedProducts.size >= bundleMin && (
-              <p className="text-center text-xs text-on-surface/40 dark:text-[#c1c8c7]/40 mt-3 italic font-light">Free delivery included with this ritual bundle.</p>
+              <p className="text-center text-xs text-on-surface/40  mt-3 italic font-light">Free delivery included with this ritual bundle.</p>
             )}
           </div>
         </aside>
       </div>
 
       {/* Footer */}
-      <footer className="bg-surface dark:bg-[#121212] w-full py-12 border-t-[0.5px] border-outline-variant/15 dark:border-[#c1c8c7]/15 lg:pl-80 xl:pr-96">
+      <footer className="bg-surface  w-full py-12 border-t-[0.5px] border-outline-variant/15  lg:pl-80 xl:pr-96">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8">
-          <p className="font-manrope text-xs font-light text-on-surface-variant/60 dark:text-[#c1c8c7]/60 mb-6 md:mb-0">&copy; 2024 The Heritage Curator. Thrifty Luxury, Rooted in Tradition.</p>
+          <p className="font-manrope text-xs font-light text-on-surface-variant/60  mb-6 md:mb-0">&copy; 2024 The Heritage Curator. Thrifty Luxury, Rooted in Tradition.</p>
           <div className="flex flex-wrap justify-center gap-8 font-manrope text-xs font-light">
-            <Link to="/support" className="text-on-surface-variant/70 dark:text-[#c1c8c7]/60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300">Privacy Policy</Link>
-            <Link to="/support" className="text-on-surface-variant/70 dark:text-[#c1c8c7]/60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300">Sourcing Ethics</Link>
-            <Link to="/support" className="text-on-surface-variant/70 dark:text-[#c1c8c7]/60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300">Wholesale</Link>
-            <Link to="/support" className="text-on-surface-variant/70 dark:text-[#c1c8c7]/60 hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-300 underline">Ritual Guide</Link>
+            <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Privacy Policy</Link>
+            <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Sourcing Ethics</Link>
+            <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Wholesale</Link>
+            <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300 underline">Ritual Guide</Link>
           </div>
         </div>
       </footer>

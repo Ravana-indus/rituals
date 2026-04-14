@@ -54,7 +54,7 @@ export default function AdminLayout() {
       <aside className={`w-64 bg-primary text-on-primary flex flex-col fixed h-full z-50 transform transition-transform duration-200 ease-in-out ${mobileOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         <div className="p-6 border-b border-white/10 flex items-center justify-between">
           <Link to="/" className="font-noto-serif text-xl font-bold hover:opacity-80 transition-opacity">The Heritage Curator</Link>
-          <button onClick={() => setMobileOpen(false)} className="lg:hidden p-1 rounded hover:bg-white/10 text-on-primary">
+          <button onClick={() => setMobileOpen(false)} className="lg:hidden p-1 rounded hover:bg-surface text-on-primary">
             <Icon name="close" className="text-lg" />
           </button>
         </div>
@@ -69,7 +69,7 @@ export default function AdminLayout() {
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center gap-3 px-6 py-3 text-sm transition-colors ${
-                  isActive ? 'bg-white/10 font-semibold' : 'hover:bg-white/5'
+                  isActive ? 'bg-surface font-semibold' : 'hover:bg-surface'
                 }`}
               >
                 <Icon name={item.icon} className="text-lg" />
@@ -79,11 +79,11 @@ export default function AdminLayout() {
           })}
         </nav>
         <div className="p-4 border-t border-white/10 space-y-2">
-          <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-white/5 rounded-lg transition-colors">
+          <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-surface rounded-lg transition-colors">
             <Icon name="storefront" className="text-lg" />
             View Store
           </Link>
-          <button onClick={signOut} className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-white/5 rounded-lg transition-colors text-left">
+          <button onClick={signOut} className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-surface rounded-lg transition-colors text-left">
             <Icon name="logout" className="text-lg" />
             Sign Out
           </button>
