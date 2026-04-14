@@ -1,0 +1,11 @@
+--- src/components/admin/fulfillment/FulfillmentDashboard.tsx
++++ src/components/admin/fulfillment/FulfillmentDashboard.tsx
+@@ -2,7 +2,7 @@
+ import { api } from '../../../lib/api';
+ import type { Order } from '../../../types/database';
+ import { Icon } from '../../ui/Icon';
+-import { formatPriceCents } from '../../../lib/utils';
++import { formatPriceCents } from '../../../types/database';
+ import { Link } from 'react-router-dom';
+
+ export function FulfillmentDashboard() {

@@ -1,0 +1,49 @@
+--- src/components/admin/fulfillment/FulfillmentDashboard.tsx
++++ src/components/admin/fulfillment/FulfillmentDashboard.tsx
+@@ -107,6 +107,46 @@
+           </select>
+         </div>
+       </div>
++
++      {selectedOrderIds.size > 0 && (
++        <div className="bg-primary/10 border border-primary/20 p-4 rounded-xl flex flex-wrap items-center gap-4">
++          <span className="text-sm font-semibold text-primary">{selectedOrderIds.size} orders selected</span>
++          <select
++            value={bulkAction}
++            onChange={e => setBulkAction(e.target.value)}
++            className="px-3 py-2 bg-surface rounded-lg border border-outline-variant/30 text-sm"
++          >
++            <option value="">Select bulk action...</option>
++            <option value="fulfill">Fulfill Orders</option>
++            <option value="mark_shipped">Mark Status as Shipped</option>
++            <option value="mark_delivered">Mark Status as Delivered</option>
++          </select>
++
++          {bulkAction === 'fulfill' && (
++            <>
++              <select
++                value={bulkCarrier}
++                onChange={e => setBulkCarrier(e.target.value)}
++                className="px-3 py-2 bg-surface rounded-lg border border-outline-variant/30 text-sm"
++              >
++                <option value="">Select Carrier (Optional)</option>
++                <option value="SL Post">SL Post</option>
++                <option value="DHL">DHL</option>
++                <option value="FedEx">FedEx</option>
++                <option value="UPS">UPS</option>
++              </select>
++            </>
++          )}
++
++          <button
++            onClick={handleBulkAction}
++            disabled={performingBulk || !bulkAction}
++            className="px-4 py-2 bg-primary text-on-primary rounded-lg text-sm font-bold disabled:opacity-50"
++          >
++            {performingBulk ? 'Processing...' : 'Apply Action'}
++          </button>
++        </div>
++      )}
+
+       {/* Orders Table */}
+       <div className="bg-surface rounded-xl border border-outline-variant/10 overflow-hidden">
