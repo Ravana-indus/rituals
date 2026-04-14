@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../../lib/api';
 import type { Profile } from '../../types/database';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
+import { Icon } from '../../components/ui/Icon';
 
 export default function AdminUsers() {
   const [users, setUsers] = useState<Profile[]>([]);

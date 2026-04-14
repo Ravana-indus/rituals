@@ -3,12 +3,7 @@ import { Link } from 'react-router-dom';
 import { api } from '../../lib/api';
 import type { Order, Product } from '../../types/database';
 import { formatPriceCents } from '../../types/database';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
+import { Icon } from '../../components/ui/Icon';
 
 export default function AdminDashboard() {
   const [orders, setOrders] = useState<Order[]>([]);

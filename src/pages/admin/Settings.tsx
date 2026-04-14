@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
+import { Icon } from '../../components/ui/Icon';
 
 interface StoreSetting {
   key: string;

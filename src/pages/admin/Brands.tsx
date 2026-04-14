@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../../lib/api';
 import type { Brand } from '../../types/database';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
+import { Icon } from '../../components/ui/Icon';
 
 const emptyForm = { name: '', slug: '', description: '', country_of_origin: '', logo_url: '', is_active: true };
 

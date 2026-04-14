@@ -3,12 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../../lib/api';
 import type { Order, OrderStatus } from '../../types/database';
 import { formatPriceCents } from '../../types/database';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
+import OrderList from '../../components/admin/orders/OrderList';
+import { OrderDrawer } from '../../components/admin/orders/OrderDrawer';
+import { Icon } from '../../components/ui/Icon';
 
 const STATUS_OPTIONS: OrderStatus[] = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled', 'refunded'];
 const STATUS_COLORS: Record<string, string> = {
@@ -26,7 +23,6 @@ export default function AdminOrders() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>('all');
-
 
   useEffect(() => { loadOrders(); }, []);
 
@@ -62,6 +58,8 @@ export default function AdminOrders() {
           <button key={s} onClick={() => setFilter(s)} className={`px-3 py-1.5 rounded-full text-xs uppercase tracking-widest transition-colors ${filter === s ? 'bg-primary text-on-primary' : 'bg-surface text-on-surface-variant hover:bg-surface-container-high'}`}>{s}</button>
         ))}
       </div>
+
+      <OrderList />
 
       <div className="bg-surface rounded-xl border border-outline-variant/10 overflow-hidden">
         <table className="w-full">
@@ -112,6 +110,7 @@ export default function AdminOrders() {
         )}
       </div>
 
+      <OrderDrawer />
     </div>
   );
 }

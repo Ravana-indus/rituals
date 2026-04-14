@@ -3,12 +3,7 @@ import { api } from '../../lib/api';
 import type { Product, Brand, Category, ProductImage } from '../../types/database';
 import { formatPriceCents } from '../../types/database';
 import ProductForm from '../../components/admin/ProductForm';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
+import { Icon } from '../../components/ui/Icon';
 
 type ProductWithRelations = Product & { brand: Brand; category: Category; images: ProductImage[] };
 

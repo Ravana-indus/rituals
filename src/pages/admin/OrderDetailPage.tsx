@@ -4,12 +4,7 @@ import { supabase } from '../../lib/supabase';
 import { api } from '../../lib/api';
 import type { Order, OrderItem, Address } from '../../types/database';
 import { formatPriceCents } from '../../types/database';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
+import { Icon } from '../ui/Icon';
 
 type OrderDetail = Order & { items: OrderItem[]; shipping_address: Address | null; billing_address: Address | null };
 
