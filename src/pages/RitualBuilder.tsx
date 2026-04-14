@@ -283,8 +283,8 @@ export default function RitualBuilder() {
                     <div className={`stamp-badge px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] ${product.badgeType === 'tertiary' ? 'bg-tertiary-container text-on-surface' : 'bg-secondary text-on-surface'}`}>{product.badge}</div>
                   </div>
                 )}
-                <div className="aspect-[4/5] overflow-hidden bg-surface-variant/30  p-8 flex items-center justify-center">
-                  <img alt={product.name} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" src={product.image} />
+                <div className="aspect-[4/5] overflow-hidden bg-surface-variant/30 dark:bg-surface-container p-8 flex items-center justify-center">
+                  <img alt={product.name} className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-700" src={product.image} />
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-2">
@@ -382,7 +382,7 @@ export default function RitualBuilder() {
               selectedItems.map((item) => (
                 <div key={item.id} className="flex gap-4 group">
                   <div className="w-16 h-20 bg-surface-container-low  flex-shrink-0 p-2 overflow-hidden">
-                    <img alt={item.name} className="w-full h-full object-contain mix-blend-multiply" src={item.thumb} />
+                    <img alt={item.name} className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal" src={item.thumb} />
                   </div>
                   <div className="flex-1 border-b border-outline-variant/10  pb-4">
                     <div className="flex justify-between items-start mb-1">
