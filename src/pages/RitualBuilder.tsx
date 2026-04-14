@@ -187,9 +187,9 @@ export default function RitualBuilder() {
     <div className="bg-background text-on-surface min-h-screen selection:bg-secondary-fixed dark:selection:bg-secondary-fixed-dim">
       <Header />
 
-      <div className="pt-20 flex flex-col lg:flex-row min-h-screen">
-        {/* Left Sidebar */}
-        <aside className="flex flex-col py-6 lg:py-10 px-6 lg:px-6 space-y-4 lg:space-y-8 w-full lg:w-80 relative lg:fixed left-0 top-0 lg:top-20 h-auto lg:h-[calc(100vh-5rem)] bg-surface-container dark:bg-[#1c1c17] z-40 overflow-y-auto no-scrollbar lg:border-r border-outline-variant/10">
+      <div className="pt-20 flex min-h-screen">
+        {/* Left Sidebar — desktop only */}
+        <aside className="hidden lg:flex flex-col py-10 px-6 space-y-8 w-80 fixed left-0 top-20 h-[calc(100vh-5rem)] bg-surface-container dark:bg-[#1c1c17] z-40 overflow-y-auto no-scrollbar border-r border-outline-variant/10">
           <div className="mb-4">
             <h2 className="font-noto-serif italic text-secondary dark:text-secondary-fixed-dim text-lg">The Ritual Builder</h2>
             <p className="font-manrope text-xs uppercase tracking-widest text-on-surface/60 dark:text-[#c1c8c7]/60">Curating your personal care</p>
@@ -262,13 +262,34 @@ export default function RitualBuilder() {
 
         {/* Product Canvas */}
         <main className="lg:ml-80 xl:mr-96 flex-1 px-6 md:px-10 lg:px-12 py-12">
-          <header className="mb-12 max-w-4xl">
+
+          {/* Mobile category tab bar — hidden on desktop */}
+          <nav className="lg:hidden sticky top-20 z-30 -mx-6 md:-mx-10 -mt-12 mb-8 bg-surface-container dark:bg-[#1c1c17] border-b border-outline-variant/10">
+            <div className="flex overflow-x-auto no-scrollbar px-6 md:px-10">
+              {NAV_ITEMS.map((item) => (
+                <Link
+                  key={item.category}
+                  to={`/ritual-builder/${item.category}`}
+                  className={`flex items-center gap-2 px-4 py-3 whitespace-nowrap shrink-0 text-xs uppercase tracking-widest transition-colors border-b-2 ${
+                    category === item.category
+                      ? 'text-primary dark:text-primary-fixed border-primary dark:border-primary-fixed font-bold'
+                      : 'text-on-surface/60 dark:text-[#c1c8c7]/60 border-transparent'
+                  }`}
+                >
+                  <Icon name={item.icon} filled={category === item.category} className="text-base" />
+                  <span>{item.label}</span>
+                </Link>
+              ))}
+            </div>
+          </nav>
+
+          <header className="mb-8 max-w-4xl">
             <h1 className="font-noto-serif text-5xl font-black text-primary dark:text-primary-fixed leading-tight mb-4">{catData.title}</h1>
             <p className="text-on-surface-variant dark:text-[#c1c8c7] font-manrope max-w-2xl leading-relaxed">{catData.subtitle}</p>
           </header>
 
           {/* Editorial Grid */}
-          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 mb-20">
+          <section className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-8 mb-16">
             {products.map((product) => (
               <article key={product.id} className="group relative bg-surface-container-low dark:bg-[#1c1c17] hover:bg-surface-container-high dark:hover:bg-[#252521] transition-colors duration-500 rounded-sm">
                 {product.badge && product.badgeType === 'editorial' && (
@@ -281,7 +302,7 @@ export default function RitualBuilder() {
                     <div className={`stamp-badge px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] ${product.badgeType === 'tertiary' ? 'bg-tertiary-container text-white' : 'bg-secondary text-white'}`}>{product.badge}</div>
                   </div>
                 )}
-                <div className="aspect-[4/5] overflow-hidden bg-surface-variant/30 dark:bg-[#252521]/30 p-8 flex items-center justify-center">
+                <div className="aspect-[4/5] overflow-hidden bg-surface-variant/30 dark:bg-[#252521]/30 p-4 md:p-6 flex items-center justify-center">
                   <img alt={product.name} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" src={product.image} />
                 </div>
                 <div className="p-6">
