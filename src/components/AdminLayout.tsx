@@ -51,7 +51,7 @@ export default function AdminLayout() {
   return (
     <OrderProvider>
     <div className="min-h-screen bg-surface flex">
-      <aside className={`w-64 bg-primary text-on-primary flex flex-col fixed h-full z-50 transform transition-transform duration-200 ease-in-out ${mobileOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+      <aside className={`w-64 bg-primary text-on-primary flex flex-col fixed h-full z-50 transform transition-transform duration-200 ease-in-out print:hidden ${mobileOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         <div className="p-6 border-b border-white/10 flex items-center justify-between">
           <Link to="/" className="font-noto-serif text-xl font-bold hover:opacity-80 transition-opacity">The Heritage Curator</Link>
           <button onClick={() => setMobileOpen(false)} className="lg:hidden p-1 rounded hover:bg-surface text-on-primary">
@@ -95,7 +95,7 @@ export default function AdminLayout() {
       )}
 
       <main className="flex-1 lg:ml-64">
-        <div className="lg:hidden flex items-center gap-3 p-4 bg-surface border-b border-outline-variant/10">
+        <div className="lg:hidden flex items-center gap-3 p-4 bg-surface border-b border-outline-variant/10 print:hidden">
           <button
             onClick={() => setMobileOpen(true)}
             className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors"
