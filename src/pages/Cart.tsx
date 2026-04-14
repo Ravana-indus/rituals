@@ -67,7 +67,7 @@ export default function Cart() {
   };
 
   return (
-    <div className="bg-surface dark:bg-[#121212] text-on-surface font-manrope selection:bg-secondary-fixed min-h-screen flex flex-col">
+    <div className="bg-surface  text-on-surface font-manrope selection:bg-secondary-fixed min-h-screen flex flex-col">
       <Header />
 
       <main className="flex-grow pt-8 pb-24 px-4 md:px-8 max-w-7xl mx-auto w-full">
@@ -95,7 +95,7 @@ export default function Cart() {
             ) : (
               <div className="space-y-6">
                 {items.map((item) => (
-                  <div key={item.productId} className="flex gap-4 p-4 bg-surface-container dark:bg-[#1e1e1a] rounded-xl border border-outline-variant/10">
+                  <div key={item.productId} className="flex gap-4 p-4 bg-surface-container  rounded-xl border border-outline-variant/10">
                     <div className="w-20 md:w-24 h-24 md:h-28 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0">
                       <img src={item.imgSrc} alt={item.title} className="w-full h-full object-cover" />
                     </div>
@@ -108,7 +108,7 @@ export default function Cart() {
                             <div className="flex items-center gap-2 mt-1">
                               {item.badge && (
                                 <span className={`text-xs px-2 py-0.5 rounded font-black uppercase tracking-wider ${
-                                  item.badge.type === 'clearance' ? 'bg-red-600 text-white' : 'bg-secondary text-on-secondary'
+                                  item.badge.type === 'clearance' ? 'bg-red-600 text-on-surface' : 'bg-secondary text-on-secondary'
                                 }`}>
                                   {item.badge.label}
                                 </span>
@@ -148,12 +148,12 @@ export default function Cart() {
               </div>
             )}
 
-            <div className="p-4 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/30 rounded-xl">
+            <div className="p-4 bg-amber-50  border border-amber-200  rounded-xl">
               <div className="flex items-start gap-3">
-                <Icon name="info" className="text-amber-600 dark:text-amber-400 mt-0.5" />
+                <Icon name="info" className="text-amber-600  mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-sm text-amber-800 dark:text-amber-200">Heritage Care Note</h4>
-                  <p className="text-xs text-amber-700 dark:text-amber-300 mt-1">
+                  <h4 className="font-bold text-sm text-amber-800 ">Heritage Care Note</h4>
+                  <p className="text-xs text-amber-700  mt-1">
                     These clearance items are batch-limited runs. Once stock depletes, these exact formulations may not return. Store in a cool, dry place away from direct sunlight to preserve efficacy.
                   </p>
                 </div>
@@ -185,13 +185,13 @@ export default function Cart() {
                 placeholder="Promo or Gift Code"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
-                className="flex-grow bg-surface-container border border-outline-variant/20 rounded-md py-3 px-4 text-sm focus:border-primary outline-none dark:bg-[#1e1e1a] dark:border-[#3a3a34] dark:text-on-surface dark:placeholder:text-on-surface-variant"
+                className="flex-grow bg-surface-container border border-outline-variant/20 rounded-md py-3 px-4 text-sm focus:border-primary outline-none    dark:placeholder:text-on-surface-variant"
               />
               <button
                 onClick={handleApplyPromo}
                 className={`px-6 py-2 font-bold text-sm rounded-md transition-all ${
                   promoSuccess
-                    ? 'bg-green-600 text-white'
+                    ? 'bg-green-600 text-on-surface'
                     : 'bg-surface-container-highest text-on-surface hover:bg-outline-variant/20'
                 }`}
               >
@@ -201,7 +201,7 @@ export default function Cart() {
           </div>
 
           <aside className="lg:col-span-5">
-            <div className="sticky top-20 md:top-32 p-8 bg-surface-container dark:bg-[#1a1a16] rounded-2xl space-y-6 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
+            <div className="sticky top-20 md:top-32 p-8 bg-surface-container  rounded-2xl space-y-6 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
               <h2 className="font-noto-serif text-2xl text-on-surface">Order Summary</h2>
 
               <div className="space-y-3 pt-4 border-t border-outline-variant/15">
@@ -214,7 +214,7 @@ export default function Cart() {
                   <span>{formatPrice(shipping)}</span>
                 </div>
                 {promoApplied && (
-                  <div className="flex justify-between items-center text-sm text-green-600 dark:text-green-400">
+                  <div className="flex justify-between items-center text-sm text-green-600 ">
                     <span>Discount (10%)</span>
                     <span>-{formatPrice(discount)}</span>
                   </div>
@@ -259,16 +259,16 @@ export default function Cart() {
                   />
                   <div className="absolute top-3 left-3 flex flex-col gap-1.5">
                     <span className={`text-xs px-2 py-1 rounded font-black uppercase tracking-widest ${
-                      product.badge.type === 'clearance' ? 'bg-red-600 text-white' : 'bg-secondary text-on-secondary'
+                      product.badge.type === 'clearance' ? 'bg-red-600 text-on-surface' : 'bg-secondary text-on-secondary'
                     }`}>
                       {product.badge.label}
                     </span>
                   </div>
                   <button
                     onClick={() => addItem({ ...product, id: product.id + '-' + Date.now() })}
-                    className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm hover:bg-primary hover:text-white"
+                    className="absolute bottom-4 right-4 bg-surface backdrop-blur-md p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm hover:bg-primary hover:text-on-surface"
                   >
-                    <Icon name="add_shopping_cart" className="text-primary group-hover:text-white" />
+                    <Icon name="add_shopping_cart" className="text-primary group-hover:text-on-surface" />
                   </button>
                 </div>
                 <div className="space-y-1">

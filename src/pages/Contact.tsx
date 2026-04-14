@@ -154,15 +154,15 @@ export default function Contact() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full mt-auto bg-[#f1eee5] flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8">
-        <div className="font-noto-serif text-lg font-semibold text-[#1c1c17]">The Heritage Curator</div>
+      <footer className="w-full mt-auto bg-surface-container flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8">
+        <div className="font-noto-serif text-lg font-semibold text-on-surface">The Heritage Curator</div>
         <div className="flex flex-wrap justify-center gap-8">
           <Link to="/support" className="font-manrope text-xs uppercase tracking-[0.2em] text-stone-500 hover:text-[#D2691E] transition-colors duration-300">Privacy Policy</Link>
           <Link to="/support" className="font-manrope text-xs uppercase tracking-[0.2em] text-stone-500 hover:text-[#D2691E] transition-colors duration-300">Terms of Service</Link>
           <Link to="/support" className="font-manrope text-xs uppercase tracking-[0.2em] text-stone-500 hover:text-[#D2691E] transition-colors duration-300">Shipping & Returns</Link>
           <Link to="/support" className="font-manrope text-xs uppercase tracking-[0.2em] text-stone-500 hover:text-[#D2691E] transition-colors duration-300">Wholesale</Link>
         </div>
-        <div className="font-manrope text-xs uppercase tracking-[0.2em] text-[#2A5D5D] text-center md:text-right">
+        <div className="font-manrope text-xs uppercase tracking-[0.2em] text-primary text-center md:text-right">
           © 2024 The Heritage Curator. Handcrafted in Sri Lanka.
         </div>
       </footer>

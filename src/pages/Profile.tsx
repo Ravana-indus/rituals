@@ -14,11 +14,11 @@ const Icon = ({ name, filled = false, className = "", style = {} }: { name: stri
 
 function OrderStatusBadge({ status }: { status: string }) {
   const styles: Record<string, string> = {
-    pending: 'bg-secondary-fixed/20 text-secondary dark:bg-secondary/20 dark:text-secondary-fixed',
-    confirmed: 'bg-primary/20 text-primary dark:bg-primary-fixed/20 dark:text-primary-fixed',
-    processing: 'bg-primary/20 text-primary dark:bg-primary-fixed/20 dark:text-primary-fixed',
-    shipped: 'bg-secondary-fixed/20 text-secondary dark:bg-secondary/20 dark:text-secondary-fixed',
-    delivered: 'bg-green-600/20 text-green-700 dark:bg-green-600/20 dark:text-green-400',
+    pending: 'bg-secondary-fixed/20 text-secondary  ',
+    confirmed: 'bg-primary/20 text-primary  ',
+    processing: 'bg-primary/20 text-primary  ',
+    shipped: 'bg-secondary-fixed/20 text-secondary  ',
+    delivered: 'bg-green-600/20 text-green-700  ',
     cancelled: 'bg-error/20 text-error',
     refunded: 'bg-error/20 text-error',
   };
@@ -266,38 +266,38 @@ export default function Profile() {
         </div>
       </main>
 
-      <footer className="bg-[#f1eee5] dark:bg-[#161612] w-full mt-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-12 border-t border-[#c1c8c7]/10 max-w-7xl mx-auto">
+      <footer className="bg-surface-container  w-full mt-auto relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-12 border-t border-outline-variant/10 max-w-7xl mx-auto">
           <div className="flex flex-col gap-4">
-            <div className="font-noto-serif italic text-[#2A5D5D] text-xl">The Heritage Curator</div>
-            <p className="font-manrope text-sm tracking-tight text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 max-w-sm">
+            <div className="font-noto-serif italic text-primary text-xl">The Heritage Curator</div>
+            <p className="font-manrope text-sm tracking-tight text-on-surface/70  max-w-sm">
               Preserving the essence of Sri Lankan wellness through modern curation and ancient wisdom.
             </p>
-            <p className="font-manrope text-xs text-[#1c1c17]/50 mt-4">© 2024 The Heritage Curator. Ceylon's Finest Apothecary.</p>
+            <p className="font-manrope text-xs text-on-surface/50 mt-4">© 2024 The Heritage Curator. Ceylon's Finest Apothecary.</p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-3 font-manrope text-sm">
-              <Link to="/support" className="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] underline decoration-[#2A5D5D]/30 transition-all duration-300">Provenance</Link>
-              <Link to="/support" className="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] underline decoration-[#2A5D5D]/30 transition-all duration-300">Shipping</Link>
+              <Link to="/support" className="text-on-surface/70  hover:text-primary underline decoration-[#2A5D5D]/30 transition-all duration-300">Provenance</Link>
+              <Link to="/support" className="text-on-surface/70  hover:text-primary underline decoration-[#2A5D5D]/30 transition-all duration-300">Shipping</Link>
             </div>
             <div className="flex flex-col gap-3 font-manrope text-sm">
-              <Link to="/support" className="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] underline decoration-[#2A5D5D]/30 transition-all duration-300">Ritual Guide</Link>
-              <Link to="/support" className="text-[#1c1c17]/70 dark:text-[#fcf9f0]/70 hover:text-[#2A5D5D] underline decoration-[#2A5D5D]/30 transition-all duration-300">Privacy</Link>
+              <Link to="/support" className="text-on-surface/70  hover:text-primary underline decoration-[#2A5D5D]/30 transition-all duration-300">Ritual Guide</Link>
+              <Link to="/support" className="text-on-surface/70  hover:text-primary underline decoration-[#2A5D5D]/30 transition-all duration-300">Privacy</Link>
             </div>
           </div>
         </div>
       </footer>
 
-      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-[#fcf9f0] dark:bg-[#1c1c17] flex justify-around items-center px-4 py-3 pb-safe z-50 border-t border-[#c1c8c7]/15 shadow-[0_-4px_20px_rgba(28,28,23,0.04)] rounded-t-lg">
-        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/50 dark:text-[#fcf9f0]/50 hover:opacity-80 transition-transform duration-200 min-w-[64px] min-h-[44px] px-2 py-1 scale-95">
+      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-surface  flex justify-around items-center px-4 py-3 pb-safe z-50 border-t border-outline-variant/15 shadow-[0_-4px_20px_rgba(28,28,23,0.04)] rounded-t-lg">
+        <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-on-surface/50  hover:opacity-80 transition-transform duration-200 min-w-[64px] min-h-[44px] px-2 py-1 scale-95">
           <Icon name="history_edu" />
           <span className="font-manrope text-xs uppercase tracking-widest mt-1">Rituals</span>
         </Link>
-        <Link to="/checkout" className="flex flex-col items-center justify-center text-[#1c1c17]/50 dark:text-[#fcf9f0]/50 hover:opacity-80 transition-transform duration-200 min-w-[64px] min-h-[44px] px-2 py-1 scale-95">
+        <Link to="/checkout" className="flex flex-col items-center justify-center text-on-surface/50  hover:opacity-80 transition-transform duration-200 min-w-[64px] min-h-[44px] px-2 py-1 scale-95">
           <Icon name="local_mall" />
           <span className="font-manrope text-xs uppercase tracking-widest mt-1">Bag</span>
         </Link>
-        <Link to="/profile" className="flex flex-col items-center justify-center bg-[#2A5D5D] text-[#fcf9f0] rounded-xl transition-transform duration-200 min-w-[64px] min-h-[44px] px-4 py-1.5">
+        <Link to="/profile" className="flex flex-col items-center justify-center bg-primary text-primary rounded-xl transition-transform duration-200 min-w-[64px] min-h-[44px] px-4 py-1.5">
           <Icon name="account_circle" />
           <span className="font-manrope text-xs uppercase tracking-widest mt-1">Profile</span>
         </Link>

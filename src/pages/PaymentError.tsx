@@ -131,15 +131,15 @@ export default function PaymentError() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-[#c1c8c7]/15 bg-[#f1eee5] dark:bg-stone-950 flex flex-col md:flex-row justify-between items-center px-8 py-12 mt-auto">
-        <div className="font-noto-serif italic text-stone-800 dark:text-stone-200 mb-6 md:mb-0">
+      <footer className="w-full border-t border-outline-variant/15 bg-surface-container  flex flex-col md:flex-row justify-between items-center px-8 py-12 mt-auto">
+        <div className="font-noto-serif italic text-stone-800  mb-6 md:mb-0">
           The Heritage Curator
         </div>
         <div className="flex flex-wrap justify-center gap-8 mb-6 md:mb-0">
-          <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-[#D2691E] dark:hover:text-orange-400 transition-colors">Privacy Policy</Link>
-          <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-[#D2691E] dark:hover:text-orange-400 transition-colors">Terms of Service</Link>
-          <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-[#D2691E] dark:hover:text-orange-400 transition-colors">Shipping & Returns</Link>
-          <Link to="/contact" className="font-manrope text-sm uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-[#D2691E] dark:hover:text-orange-400 transition-colors">Contact Us</Link>
+          <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-stone-500  hover:text-[#D2691E]  transition-colors">Privacy Policy</Link>
+          <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-stone-500  hover:text-[#D2691E]  transition-colors">Terms of Service</Link>
+          <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-stone-500  hover:text-[#D2691E]  transition-colors">Shipping & Returns</Link>
+          <Link to="/contact" className="font-manrope text-sm uppercase tracking-widest text-stone-500  hover:text-[#D2691E]  transition-colors">Contact Us</Link>
         </div>
         <div className="font-manrope text-xs uppercase tracking-widest text-stone-400">
           © 2024 The Heritage Curator. High-End Apothecary & Rituals.

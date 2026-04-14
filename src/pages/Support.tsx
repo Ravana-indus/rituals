@@ -178,18 +178,18 @@ export default function Support() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-[#c1c8c7]/15 bg-[#f1eee5] dark:bg-[#1c1c17] relative z-10">
+      <footer className="w-full border-t border-outline-variant/15 bg-surface-container  relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-screen-2xl mx-auto">
           <div className="flex flex-col gap-2 text-center md:text-left">
-            <div className="font-noto-serif text-lg font-bold text-[#2A5D5D]">The Heritage Curator</div>
-            <p className="font-manrope text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60">© 2024 The Heritage Curator. Crafted with Intent.</p>
+            <div className="font-noto-serif text-lg font-bold text-primary">The Heritage Curator</div>
+            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 The Heritage Curator. Crafted with Intent.</p>
           </div>
           <div className="flex flex-wrap justify-center gap-6">
-            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300">Privacy Policy</Link>
-            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300">Terms of Service</Link>
-            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300">Shipping & Returns</Link>
-            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300">Wholesale</Link>
-            <Link to="/contact" className="font-manrope text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-[#fcf9f0]/60 hover:text-[#2A5D5D] transition-colors duration-300">Contact Us</Link>
+            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Privacy Policy</Link>
+            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Terms of Service</Link>
+            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Shipping & Returns</Link>
+            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Wholesale</Link>
+            <Link to="/contact" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Contact Us</Link>
           </div>
         </div>
       </footer>

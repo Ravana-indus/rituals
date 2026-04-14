@@ -185,11 +185,11 @@ export default function ProductDetail() {
                 <span className="font-bold text-primary">Why our prices are lower:</span> We utilize direct ethical sourcing from local Sri Lankan artisans and manage clearance stock batches. You receive the exact same high-quality, authentic heritage formula at a fraction of the boutique price.
               </p>
               <div className="grid grid-cols-2 gap-3">
-                <div className="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-primary/5">
+                <div className="flex items-center gap-2 bg-surface p-2 rounded-lg border border-primary/5">
                   <Icon name="verified" className="text-primary text-base" />
                   <span className="text-xs font-black uppercase tracking-tighter">Authenticity Verified</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-primary/5">
+                <div className="flex items-center gap-2 bg-surface p-2 rounded-lg border border-primary/5">
                   <Icon name="eco" className="text-primary text-base" />
                   <span className="text-xs font-black uppercase tracking-tighter">Ethically Sourced</span>
                 </div>
@@ -240,7 +240,7 @@ export default function ProductDetail() {
               {product.sku && (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Icon name="inventory_2" className="text-primary dark:text-primary-fixed text-lg" />
+                    <Icon name="inventory_2" className="text-primary  text-lg" />
                     <span className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Batch Code</span>
                   </div>
                   <span className="text-xs font-mono text-on-surface-variant">{product.sku}</span>
@@ -248,7 +248,7 @@ export default function ProductDetail() {
               )}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Icon name="local_shipping" className="text-primary dark:text-primary-fixed text-lg" />
+                  <Icon name="local_shipping" className="text-primary  text-lg" />
                   <span className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Ships Within</span>
                 </div>
                 <span className="text-xs text-secondary font-bold">24 Hours</span>
@@ -283,8 +283,8 @@ export default function ProductDetail() {
                   disabled={addingToCart || (product.stock_qty ?? 0) <= 0}
                   className={`flex-1 py-5 px-6 rounded-lg font-bold text-base tracking-wide uppercase shadow-xl transition-all flex items-center justify-center gap-2 ${
                     addedToCart
-                      ? 'bg-green-600 text-white'
-                      : 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed hover:opacity-90'
+                      ? 'bg-green-600 text-on-surface'
+                      : 'bg-primary  text-on-primary  hover:opacity-90'
                   } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   {addingToCart ? (
@@ -298,7 +298,7 @@ export default function ProductDetail() {
                 <button
                   onClick={handleBuyNow}
                   disabled={addingToCart || (product.stock_qty ?? 0) <= 0}
-                  className="flex-1 py-5 px-6 rounded-lg font-bold text-base tracking-wide uppercase shadow-xl transition-all bg-secondary dark:bg-secondary text-on-secondary dark:text-on-secondary hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 py-5 px-6 rounded-lg font-bold text-base tracking-wide uppercase shadow-xl transition-all bg-secondary  text-on-secondary  hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Buy Now
                 </button>
@@ -415,19 +415,19 @@ export default function ProductDetail() {
         )}
       </main>
 
-      <footer className="bg-[#f1eee5] dark:bg-slate-950 w-full py-12 px-8 mt-20">
+      <footer className="bg-surface-container  w-full py-12 px-8 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end max-w-7xl mx-auto">
           <div className="space-y-6">
-            <div className="font-noto-serif text-lg text-[#2A5D5D]">Heritage Luxe</div>
+            <div className="font-noto-serif text-lg text-primary">Heritage Luxe</div>
             <div className="flex flex-col gap-4 font-manrope text-sm uppercase tracking-widest">
-              <Link to="/support" className="text-[#1c1c17]/60 dark:text-slate-500 hover:text-[#D2691E] transition-all duration-500">Store Locator</Link>
-              <Link to="/support" className="text-[#1c1c17]/60 dark:text-slate-500 hover:text-[#D2691E] transition-all duration-500">Privacy Policy</Link>
-              <Link to="/support" className="text-[#1c1c17]/60 dark:text-slate-500 hover:text-[#D2691E] transition-all duration-500">Shipping & Rituals</Link>
-              <Link to="/support" className="text-[#1c1c17]/60 dark:text-slate-500 hover:text-[#D2691E] transition-all duration-500">Contact Apothecary</Link>
+              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Store Locator</Link>
+              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Privacy Policy</Link>
+              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Shipping & Rituals</Link>
+              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Contact Apothecary</Link>
             </div>
           </div>
           <div className="text-right">
-            <p className="font-manrope text-sm uppercase tracking-widest text-[#1c1c17]/60 dark:text-slate-500">© 2024 The Heritage Curator. Ethically sourced in Sri Lanka.</p>
+            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 The Heritage Curator. Ethically sourced in Sri Lanka.</p>
           </div>
         </div>
       </footer>

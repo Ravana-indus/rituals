@@ -22,7 +22,7 @@ export default function InvoicePrint() {
   if (!order) return <div className="p-8">Loading Invoice...</div>;
 
   return (
-    <div className="p-8 max-w-4xl mx-auto bg-white text-black font-sans">
+    <div className="p-8 max-w-4xl mx-auto bg-surface text-black font-sans">
       <div className="flex justify-between items-start mb-12 border-b pb-8">
         <div>
           <h1 className="text-3xl font-serif font-bold mb-2">The Heritage Curator</h1>

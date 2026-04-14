@@ -63,7 +63,7 @@ export default function CuratedSelection() {
             <div className="pt-4">
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="text-primary dark:text-primary-fixed font-bold text-xs uppercase tracking-wider hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors flex items-center gap-1"
+                className="text-primary  font-bold text-xs uppercase tracking-wider hover:text-secondary  transition-colors flex items-center gap-1"
               >
                 View Full Analysis <Icon name="arrow_forward" className="text-sm" />
               </button>
@@ -243,20 +243,20 @@ export default function CuratedSelection() {
 
       {/* Bottom Navigation Bar (Mobile) */}
       <div className="md:hidden">
-        <div className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#fcf9f0] dark:bg-[#1c1c17] z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(28,28,23,0.04)] border-t border-[#c1c8c7]/15">
-          <Link to="/consult" className="flex flex-col items-center justify-center bg-[#2A5D5D] text-white rounded-xl min-w-[64px] min-h-[44px] px-3 py-2 scale-95 transition-transform duration-500 ease-in-out">
+        <div className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-surface  z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(28,28,23,0.04)] border-t border-outline-variant/15">
+          <Link to="/consult" className="flex flex-col items-center justify-center bg-primary text-on-surface rounded-xl min-w-[64px] min-h-[44px] px-3 py-2 scale-95 transition-transform duration-500 ease-in-out">
             <Icon name="chat_bubble" />
             <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Consult</span>
           </Link>
-          <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+          <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-on-surface/40  min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container  transition-all">
             <Icon name="auto_awesome" />
             <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Rituals</span>
           </Link>
-          <Link to="/curated-selection" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+          <Link to="/curated-selection" className="flex flex-col items-center justify-center text-on-surface/40  min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container  transition-all">
             <Icon name="auto_stories" />
             <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Curations</span>
           </Link>
-          <Link to="/" className="flex flex-col items-center justify-center text-[#1c1c17]/40 dark:text-[#fcf9f0]/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-[#f1eee5] dark:hover:bg-[#2A5D5D]/20 transition-all">
+          <Link to="/" className="flex flex-col items-center justify-center text-on-surface/40  min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container  transition-all">
             <Icon name="local_pharmacy" />
             <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Apothecary</span>
           </Link>

@@ -251,7 +251,7 @@ export function OrderTimeline({ orderId }: OrderTimelineProps) {
           <button
             onClick={handleSubmitNote}
             disabled={!noteContent.trim() || submitting}
-            className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="px-4 py-2 bg-primary text-on-surface text-sm font-medium rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {submitting ? 'Adding...' : 'Add Note'}
           </button>
