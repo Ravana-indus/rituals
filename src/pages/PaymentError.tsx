@@ -19,7 +19,7 @@ export default function PaymentError() {
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-tertiary-container/10 mb-8">
             <Icon name="error_outline" className="text-tertiary-container text-4xl" />
           </div>
-          <h1 className="font-noto-serif text-4xl md:text-5xl text-primary mb-4">Your Ritual Encountered a Slight Delay</h1>
+          <h1 className="font-noto-serif text-4xl lg:text-5xl text-primary mb-4">Your Ritual Encountered a Slight Delay</h1>
           <p className="font-manrope text-on-surface-variant max-w-xl mx-auto leading-relaxed">
             The essence of our apothecary rituals is patience, but we want to ensure your curation arrives without further pause. Your payment could not be processed at this time.
           </p>
@@ -101,12 +101,12 @@ export default function PaymentError() {
               <div className="bg-secondary-fixed/30 p-4 rounded-lg mb-8 relative">
                 <div className="flex items-center gap-2 text-on-secondary-fixed-variant mb-2">
                   <Icon name="stars" filled className="text-sm" />
-                  <p className="font-manrope text-[10px] uppercase tracking-widest font-bold">Limited Offering</p>
+                  <p className="font-manrope text-xs uppercase tracking-widest font-bold">Limited Offering</p>
                 </div>
                 <p className="font-manrope text-sm leading-snug">
                   Complete your purchase now to secure <span className="font-bold text-secondary">LKR 1,200</span> in Curated Savings.
                 </p>
-                <div className="absolute -top-3 -right-3 rotate-12 bg-tertiary-container text-on-tertiary-container px-3 py-1 text-[10px] font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
+                <div className="absolute -top-3 -right-3 rotate-12 bg-tertiary-container text-on-tertiary-container px-3 py-1 text-xs font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
                   Clearance
                 </div>
               </div>
@@ -141,7 +141,7 @@ export default function PaymentError() {
           <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-[#D2691E] dark:hover:text-orange-400 transition-colors">Shipping & Returns</Link>
           <Link to="/contact" className="font-manrope text-sm uppercase tracking-widest text-stone-500 dark:text-stone-400 hover:text-[#D2691E] dark:hover:text-orange-400 transition-colors">Contact Us</Link>
         </div>
-        <div className="font-manrope text-[10px] uppercase tracking-widest text-stone-400">
+        <div className="font-manrope text-xs uppercase tracking-widest text-stone-400">
           © 2024 The Heritage Curator. High-End Apothecary & Rituals.
         </div>
       </footer>

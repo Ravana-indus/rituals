@@ -23,7 +23,7 @@ function OrderStatusBadge({ status }: { status: string }) {
   };
   const { label, color } = map[status] ?? { label: status, color: 'bg-surface-container text-on-surface-variant' };
   return React.createElement('span', {
-    className: `inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter ${color}`,
+    className: `inline-block px-2 py-0.5 rounded text-xs font-bold uppercase tracking-tighter ${color}`,
     style: { clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }
   }, label);
 }
@@ -42,7 +42,7 @@ function TimelineItem({ label, description, date, done, current }: { label: stri
     React.createElement('div', { className: done || current ? '' : 'opacity-50' },
       React.createElement('h4', { className: `font-bold text-sm uppercase tracking-wide ${done || current ? 'text-primary' : 'text-on-surface-variant'}` }, label),
       React.createElement('p', { className: 'text-xs text-on-surface-variant mt-1 italic' }, description),
-      date && React.createElement('span', { className: 'text-[10px] text-outline mt-2 block' }, date)
+      date && React.createElement('span', { className: 'text-xs text-outline mt-2 block' }, date)
     )
   );
 }
@@ -71,7 +71,7 @@ function OrderResultCard({ order }: { order: Order }) {
       )
     ),
     React.createElement('div', { className: 'relative' },
-      React.createElement('div', { className: 'absolute left-[15px] top-0 bottom-0 w-[2px] bg-outline-variant/20' }),
+      React.createElement('div', { className: 'absolute left-4 top-0 bottom-0 w-[2px] bg-outline-variant/20' }),
       React.createElement('div', { className: 'space-y-12' },
         ...steps.map(step => React.createElement(TimelineItem, {
           key: step.key,
@@ -129,7 +129,7 @@ export default function TrackOrder() {
 
       <main className="pt-8 pb-20 px-6 max-w-6xl mx-auto flex-grow w-full">
         <header className="mb-16 text-center">
-          <h1 className="font-noto-serif text-4xl md:text-5xl lg:text-6xl text-primary mb-4 italic tracking-tight">Trace Your Ritual</h1>
+          <h1 className="font-noto-serif text-4xl lg:text-5xl lg:text-6xl text-primary mb-4 italic tracking-tight">Trace Your Ritual</h1>
           <p className="font-manrope text-on-surface-variant max-w-xl mx-auto leading-relaxed">Each heritage artifact travels with intent. Enter your details below to follow the journey from our apothecary to your sanctuary.</p>
         </header>
 

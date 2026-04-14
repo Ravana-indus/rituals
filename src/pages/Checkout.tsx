@@ -224,28 +224,30 @@ export default function Checkout() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-7 space-y-8">
-            <nav className="flex items-center gap-4 mb-8">
-              <div className="flex items-center gap-2">
-                <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold ${stepClass(1)}`}>
-                  {step > 1 ? <Icon name="check" className="text-sm" /> : '1'}
-                </span>
-                <span className={`text-sm tracking-tight font-medium ${step === 1 ? 'text-primary' : 'text-on-surface-variant'}`}>Shipping</span>
-              </div>
-              <div className="h-px w-8 bg-outline-variant/30"></div>
-              <div className="flex items-center gap-2">
-                <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold ${stepClass(2)}`}>
-                  {step > 2 ? <Icon name="check" className="text-sm" /> : '2'}
-                </span>
-                <span className={`text-sm tracking-tight font-medium ${step === 2 ? 'text-primary' : 'text-on-surface-variant'}`}>Delivery</span>
-              </div>
-              <div className="h-px w-8 bg-outline-variant/30"></div>
-              <div className="flex items-center gap-2">
-                <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold ${stepClass(3)}`}>
-                  {step > 3 ? <Icon name="check" className="text-sm" /> : '3'}
-                </span>
-                <span className={`text-sm tracking-tight font-medium ${step === 3 ? 'text-primary' : 'text-on-surface-variant'}`}>Payment</span>
-              </div>
-            </nav>
+            <div className="overflow-x-auto no-scrollbar mb-8 pb-2">
+              <nav className="flex items-center gap-4 min-w-[360px]">
+                <div className="flex items-center gap-2">
+                  <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0 ${stepClass(1)}`}>
+                    {step > 1 ? <Icon name="check" className="text-sm" /> : '1'}
+                  </span>
+                  <span className={`text-sm tracking-tight font-medium ${step === 1 ? 'text-primary' : 'text-on-surface-variant'}`}>Shipping</span>
+                </div>
+                <div className="h-px w-8 bg-outline-variant/30 flex-shrink-0"></div>
+                <div className="flex items-center gap-2">
+                  <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0 ${stepClass(2)}`}>
+                    {step > 2 ? <Icon name="check" className="text-sm" /> : '2'}
+                  </span>
+                  <span className={`text-sm tracking-tight font-medium ${step === 2 ? 'text-primary' : 'text-on-surface-variant'}`}>Delivery</span>
+                </div>
+                <div className="h-px w-8 bg-outline-variant/30 flex-shrink-0"></div>
+                <div className="flex items-center gap-2">
+                  <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold flex-shrink-0 ${stepClass(3)}`}>
+                    {step > 3 ? <Icon name="check" className="text-sm" /> : '3'}
+                  </span>
+                  <span className={`text-sm tracking-tight font-medium ${step === 3 ? 'text-primary' : 'text-on-surface-variant'}`}>Payment</span>
+                </div>
+              </nav>
+            </div>
 
             {step === 1 && (
               <section className="space-y-8">
@@ -308,13 +310,13 @@ export default function Checkout() {
                   </div>
                   <div className="md:col-span-2 flex flex-col gap-2">
                     <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Phone Number</label>
-                    <div className="flex gap-4">
-                      <span className="bg-surface-container border-b border-outline-variant/30 py-3 px-2 text-on-surface-variant dark:bg-[#1e1e1a]">+94</span>
+                    <div className="flex gap-2 sm:gap-4">
+                      <span className="bg-surface-container border-b border-outline-variant/30 py-3 px-2 text-on-surface-variant dark:bg-[#1e1e1a] flex-shrink-0">+94</span>
                       <input
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
+                        className="w-full min-w-0 bg-surface-container border-0 border-b border-outline-variant/30 focus:border-primary transition-colors py-3 px-0 text-on-surface placeholder:text-on-surface/30 outline-none dark:bg-[#1e1e1a]"
                         placeholder="77 123 4567"
                         type="tel"
                       />
@@ -494,21 +496,21 @@ export default function Checkout() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-12 border-t border-outline-variant/15">
               <div className="flex flex-col items-center text-center gap-3">
                 <Icon name="workspace_premium" filled className="text-primary text-3xl" />
-                <p className="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Authentic Sourcing</p>
+                <p className="text-xs uppercase tracking-widest font-bold text-on-surface-variant">Authentic Sourcing</p>
               </div>
               <div className="flex flex-col items-center text-center gap-3">
                 <Icon name="encrypted" filled className="text-primary text-3xl" />
-                <p className="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Secure SSL Payment</p>
+                <p className="text-xs uppercase tracking-widest font-bold text-on-surface-variant">Secure SSL Payment</p>
               </div>
               <div className="flex flex-col items-center text-center gap-3 col-span-2 md:col-span-1">
                 <Icon name="eco" filled className="text-primary text-3xl" />
-                <p className="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Ethically Crafted</p>
+                <p className="text-xs uppercase tracking-widest font-bold text-on-surface-variant">Ethically Crafted</p>
               </div>
             </div>
           </div>
 
           <aside className="lg:col-span-5">
-            <div className="sticky top-32 p-8 bg-surface-container dark:bg-[#1a1a16] rounded-2xl space-y-6 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
+            <div className="sticky top-20 md:top-32 p-8 bg-surface-container dark:bg-[#1a1a16] rounded-2xl space-y-6 shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
               <h2 className="font-noto-serif text-2xl text-on-surface">Order Summary</h2>
 
               <div className="space-y-4 max-h-64 overflow-y-auto">
@@ -517,12 +519,12 @@ export default function Checkout() {
                 ) : (
                   items.map((item) => (
                     <div key={item.id} className="flex gap-3 items-center">
-                      <div className="w-14 h-16 bg-surface-container-low rounded overflow-hidden flex-shrink-0">
+                      <div className="w-16 md:w-20 h-16 md:h-20 bg-surface-container-low rounded overflow-hidden flex-shrink-0">
                         <img src={item.imgSrc} alt={item.title} className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-grow">
                         <h4 className="font-manrope font-bold text-xs truncate">{item.title}</h4>
-                        <p className="text-[10px] text-on-surface-variant">{item.size} × {item.quantity}</p>
+                        <p className="text-xs text-on-surface-variant">{item.size} × {item.quantity}</p>
                         <p className="text-sm font-bold text-secondary">{item.price}</p>
                       </div>
                     </div>
@@ -556,7 +558,7 @@ export default function Checkout() {
                 <div className="flex justify-between items-center text-sm">
                   <span className="flex items-center gap-2">
                     Shipping
-                    {promoApplied && <span className="bg-green-600/20 text-green-600 dark:text-green-400 text-[10px] px-2 py-0.5 rounded-full font-bold">10% Off</span>}
+                    {promoApplied && <span className="bg-green-600/20 text-green-600 dark:text-green-400 text-xs px-2 py-0.5 rounded-full font-bold">10% Off</span>}
                   </span>
                   <span>{formatPrice(shipping)}</span>
                 </div>
@@ -570,7 +572,7 @@ export default function Checkout() {
                   <span className="font-noto-serif text-xl font-bold text-on-surface">Total</span>
                   <div className="text-right">
                     <p className="text-2xl font-bold font-noto-serif text-secondary">{formatPrice(total)}</p>
-                    <p className="text-[10px] text-on-surface-variant uppercase tracking-widest">Includes taxes</p>
+                    <p className="text-xs text-on-surface-variant uppercase tracking-widest">Includes taxes</p>
                   </div>
                 </div>
               </div>

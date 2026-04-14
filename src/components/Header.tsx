@@ -37,7 +37,7 @@ export default function Header() {
       <div className="flex items-center justify-between max-w-7xl mx-auto w-full">
         <div className="flex items-center gap-8">
           <Link to="/" className="font-noto-serif text-2xl font-bold italic text-primary dark:text-[#fcf9f0]">The Heritage Curator</Link>
-          <div className="hidden lg:flex items-center bg-surface-container dark:bg-[#2a2a24] rounded-full px-4 py-2 w-96 border border-secondary/20 dark:border-secondary/40">
+          <div className="hidden lg:flex items-center bg-surface-container dark:bg-[#2a2a24] rounded-full px-4 py-2 w-auto lg:w-96 flex-grow max-w-sm border border-secondary/20 dark:border-secondary/40">
             <Icon name="search" className="text-outline dark:text-outline-variant" />
             <form onSubmit={handleSearch} className="w-full ml-2">
               <input className="bg-transparent border-none focus:ring-0 text-sm w-full font-manrope text-on-surface dark:text-[#fcf9f0] placeholder:text-outline dark:placeholder:text-outline-variant outline-none" placeholder="Search authentic brands..." type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
@@ -46,7 +46,7 @@ export default function Header() {
         </div>
         <div className="flex items-center space-x-6 text-primary dark:text-[#fcf9f0]">
           <div className="hidden md:flex flex-col items-end">
-            <span className="text-[10px] uppercase tracking-widest text-outline dark:text-outline-variant">Balance</span>
+            <span className="text-xs uppercase tracking-widest text-outline dark:text-outline-variant">Balance</span>
             <span className="font-bold text-xs uppercase tracking-wider">Total Savings: LKR 2,450</span>
           </div>
           <div className="flex items-center space-x-4">

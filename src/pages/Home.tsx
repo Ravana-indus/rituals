@@ -75,9 +75,9 @@ export default function Home() {
           <div className="relative h-full flex flex-col justify-center max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-12 space-y-5">
             <div className="inline-flex items-center space-x-2 bg-tertiary-container dark:bg-[#8a2419] text-on-tertiary px-4 py-1.5 rounded-sm w-fit shadow-lg">
               <Icon name="bolt" filled className="text-sm" />
-              <span className="text-[11px] font-black uppercase tracking-[0.2em]">Limited Stock Event</span>
+              <span className="text-xs font-black uppercase tracking-[0.2em]">Limited Stock Event</span>
             </div>
-            <h1 className="font-noto-serif text-4xl md:text-5xl lg:text-7xl text-white font-bold leading-[1.05]">
+            <h1 className="font-noto-serif text-4xl lg:text-5xl xl:text-7xl text-white font-bold leading-[1.05]">
               Heritage Beauty,<br />
               <span className="italic font-normal text-secondary-fixed dark:text-[#ffdbc9]">Reclaimed.</span>
             </h1>
@@ -102,8 +102,8 @@ export default function Home() {
                 <Icon name="verified_user" className="text-xl md:text-2xl" />
               </div>
               <div>
-                <h4 className="font-noto-serif font-bold text-primary dark:text-primary-fixed uppercase text-[11px] md:text-xs tracking-wider leading-tight">100% Authentic Guarantee</h4>
-                <p className="text-[10px] md:text-xs text-on-surface-variant dark:text-outline-variant mt-0.5">Original batch codes on every item.</p>
+                <h4 className="font-noto-serif font-bold text-primary dark:text-primary-fixed uppercase text-xs md:text-xs tracking-wider leading-tight">100% Authentic Guarantee</h4>
+                <p className="text-xs md:text-xs text-on-surface-variant dark:text-outline-variant mt-0.5">Original batch codes on every item.</p>
               </div>
             </div>
             <div className="flex items-center gap-3.5 md:gap-4">
@@ -111,8 +111,8 @@ export default function Home() {
                 <Icon name="verified" className="text-xl md:text-2xl" />
               </div>
               <div>
-                <h4 className="font-noto-serif font-bold text-primary dark:text-primary-fixed uppercase text-[11px] md:text-xs tracking-wider leading-tight">Authorised Distribution</h4>
-                <p className="text-[10px] md:text-xs text-on-surface-variant dark:text-outline-variant mt-0.5">Direct from brand. No grey market.</p>
+                <h4 className="font-noto-serif font-bold text-primary dark:text-primary-fixed uppercase text-xs md:text-xs tracking-wider leading-tight">Authorised Distribution</h4>
+                <p className="text-xs md:text-xs text-on-surface-variant dark:text-outline-variant mt-0.5">Direct from brand. No grey market.</p>
               </div>
             </div>
             <div className="flex items-center gap-3.5 md:gap-4">
@@ -120,8 +120,8 @@ export default function Home() {
                 <Icon name="ac_unit" className="text-xl md:text-2xl" />
               </div>
               <div>
-                <h4 className="font-noto-serif font-bold text-primary dark:text-primary-fixed uppercase text-[11px] md:text-xs tracking-wider leading-tight">Temperature Controlled</h4>
-                <p className="text-[10px] md:text-xs text-on-surface-variant dark:text-outline-variant mt-0.5">Climate-safe storage & island-wide delivery.</p>
+                <h4 className="font-noto-serif font-bold text-primary dark:text-primary-fixed uppercase text-xs md:text-xs tracking-wider leading-tight">Temperature Controlled</h4>
+                <p className="text-xs md:text-xs text-on-surface-variant dark:text-outline-variant mt-0.5">Climate-safe storage & island-wide delivery.</p>
               </div>
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function Home() {
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
               <button
                 onClick={() => setActiveBrand('all')}
-                className={`px-3.5 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap transition-all flex-shrink-0 ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all flex-shrink-0 ${
                   activeBrand === 'all'
                     ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed shadow-sm'
                     : 'bg-surface-container-high dark:bg-[#2a2a24] text-on-surface-variant dark:text-[#a1a195] hover:bg-surface-variant dark:hover:bg-[#3a3a34] border border-transparent hover:border-outline-variant'
@@ -173,7 +173,7 @@ export default function Home() {
                 <button
                   key={brand.id}
                   onClick={() => setActiveBrand(brand.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap transition-all flex-shrink-0 ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all flex-shrink-0 ${
                     activeBrand === brand.id
                       ? 'bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed shadow-sm'
                       : 'bg-surface-container-high dark:bg-[#2a2a24] text-on-surface-variant dark:text-[#a1a195] hover:bg-surface-variant dark:hover:bg-[#3a3a34] border border-transparent hover:border-outline-variant'
@@ -256,25 +256,25 @@ export default function Home() {
       </footer>
 
       <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-4 md:hidden bg-[#fcf9f0] dark:bg-[#1c1c17] z-50 border-t border-[#e5e2da] dark:border-[#2c2c26] shadow-[0_-4px_12px_rgba(0,0,0,0.05)] transition-colors duration-300">
-        <Link to="/" className="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-black">
+        <Link to="/" className="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-black min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="storefront" filled />
-          <span className="font-manrope text-[10px] uppercase tracking-tighter mt-1">Shop</span>
+          <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Shop</span>
         </Link>
-        <Link to="/search" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg p-1">
+        <Link to="/search" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="search" />
-          <span className="font-manrope text-[10px] uppercase tracking-tighter mt-1">Search</span>
+          <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Search</span>
         </Link>
-        <Link to="/consult" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg p-1">
+        <Link to="/consult" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="chat_bubble" />
-          <span className="font-manrope text-[10px] uppercase tracking-tighter mt-1">Consult</span>
+          <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Consult</span>
         </Link>
-        <Link to="/profile" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg p-1">
+        <Link to="/profile" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="favorite" />
-          <span className="font-manrope text-[10px] uppercase tracking-tighter mt-1">Favorites</span>
+          <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Favorites</span>
         </Link>
-        <Link to="/login" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg p-1">
+        <Link to="/login" className="flex flex-col items-center justify-center text-[#4a4a40] dark:text-[#a1a195] hover:bg-[#f6f3ea] dark:hover:bg-[#252520] rounded-lg min-w-[64px] min-h-[44px] px-1 py-1">
           <Icon name="person" />
-          <span className="font-manrope text-[10px] uppercase tracking-tighter mt-1">Account</span>
+          <span className="font-manrope text-xs uppercase tracking-tighter mt-1">Account</span>
         </Link>
       </nav>
     </div>
@@ -332,15 +332,15 @@ function HomeProductCard({ product }: { product: ProductWithRelations }) {
         </Link>
         <div className="absolute top-4 left-4 flex flex-col gap-2">
           {discount && (
-            <span className="bg-tertiary text-on-tertiary text-[10px] font-black px-2 py-1 rounded-sm uppercase tracking-widest shadow-lg w-fit">-{discount}%</span>
+            <span className="bg-tertiary text-on-tertiary text-xs font-black px-2 py-1 rounded-sm uppercase tracking-widest shadow-lg w-fit">-{discount}%</span>
           )}
           {product.is_featured && (
-            <span className="bg-secondary text-on-secondary text-[9px] font-bold px-2 py-1 rounded-sm uppercase tracking-tighter w-fit">Featured</span>
+            <span className="bg-secondary text-on-secondary text-xs font-bold px-2 py-1 rounded-sm uppercase tracking-tighter w-fit">Featured</span>
           )}
         </div>
       </div>
       <div className="space-y-1">
-        <p className="font-manrope text-[10px] uppercase tracking-[0.2em] text-outline dark:text-outline-variant">{product.brand?.name ?? '—'}</p>
+        <p className="font-manrope text-xs uppercase tracking-[0.2em] text-outline dark:text-outline-variant">{product.brand?.name ?? '—'}</p>
         <Link to={`/product?slug=${product.slug}`}>
           <h3 className="font-noto-serif text-lg font-bold leading-tight text-on-surface dark:text-[#fcf9f0] hover:text-primary transition-colors">{product.name}</h3>
         </Link>
@@ -360,7 +360,7 @@ function HomeProductCard({ product }: { product: ProductWithRelations }) {
           />
         </div>
         {(product.stock_qty ?? 0) <= (product.low_stock_threshold ?? 5) && (
-          <span className="text-[10px] text-secondary dark:text-secondary-fixed-dim font-black whitespace-nowrap">
+          <span className="text-xs text-secondary dark:text-secondary-fixed-dim font-black whitespace-nowrap">
             Only {product.stock_qty ?? 0} left
           </span>
         )}
@@ -368,20 +368,20 @@ function HomeProductCard({ product }: { product: ProductWithRelations }) {
       <div className="flex gap-2 mt-2">
         <button
           onClick={handleAddToCart}
-          className="flex-1 py-2.5 bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed font-bold text-xs rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+          className="flex-1 min-h-[44px] py-2 bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed font-bold text-xs rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
         >
           <Icon name="add_shopping_cart" className="text-sm" />
           Add to Cart
         </button>
         <button
           onClick={handleBuyNow}
-          className="flex-1 py-2.5 bg-secondary dark:bg-secondary text-on-secondary dark:text-on-secondary font-bold text-xs rounded-lg hover:opacity-90 transition-opacity"
+          className="flex-1 min-h-[44px] py-2 bg-secondary dark:bg-secondary text-on-secondary dark:text-on-secondary font-bold text-xs rounded-lg hover:opacity-90 transition-opacity"
         >
           Buy Now
         </button>
       </div>
-      <div className="flex items-center gap-2 text-[9px] text-outline dark:text-outline-variant">
-        <Icon name="verified" className="text-[10px]" filled /> Authenticity Guaranteed
+      <div className="flex items-center gap-2 text-xs text-outline dark:text-outline-variant">
+        <Icon name="verified" className="text-xs" filled /> Authenticity Guaranteed
         {product.sku && <><span>·</span><span>SKU: {product.sku}</span></>}
       </div>
     </div>

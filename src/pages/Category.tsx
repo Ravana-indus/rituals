@@ -63,15 +63,15 @@ export default function CategoryPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow pb-24 md:pb-8">
         <section className="bg-primary-container py-12 px-6 md:px-10 lg:px-12">
           <div className="max-w-screen-2xl mx-auto">
             <nav className="flex items-center gap-2 text-xs uppercase tracking-widest text-on-surface-variant mb-4 font-medium">
               <Link to="/">Apothecary</Link>
-              <Icon name="chevron_right" className="text-[10px]" />
+              <Icon name="chevron_right" className="text-xs" />
               <span className="text-primary font-bold">{category?.name ?? slug ?? 'Category'}</span>
             </nav>
-            <h1 className="text-4xl md:text-5xl font-noto-serif text-primary font-bold">{category?.name ?? slug ?? 'Category'}</h1>
+            <h1 className="text-4xl lg:text-5xl font-noto-serif text-primary font-bold">{category?.name ?? slug ?? 'Category'}</h1>
             {category?.description && (
               <p className="text-on-surface-variant mt-3 max-w-xl">{category.description}</p>
             )}
@@ -199,15 +199,15 @@ function CategoryProductCard({ product }: { product: ProductWithRelations }) {
         </Link>
         <div className="absolute top-4 left-4 flex flex-col gap-2">
           {discount && (
-            <span className="bg-tertiary text-on-tertiary text-[10px] font-black px-2 py-1 rounded-sm uppercase tracking-widest shadow-lg w-fit">-{discount}%</span>
+            <span className="bg-tertiary text-on-tertiary text-xs font-black px-2 py-1 rounded-sm uppercase tracking-widest shadow-lg w-fit">-{discount}%</span>
           )}
           {product.is_featured && (
-            <span className="bg-secondary text-on-secondary text-[9px] font-bold px-2 py-1 rounded-sm uppercase tracking-tighter w-fit">Featured</span>
+            <span className="bg-secondary text-on-secondary text-xs font-bold px-2 py-1 rounded-sm uppercase tracking-tighter w-fit">Featured</span>
           )}
         </div>
       </div>
       <div className="space-y-1">
-        <p className="font-manrope text-[10px] uppercase tracking-[0.2em] text-outline dark:text-outline-variant">{product.brand?.name ?? '—'}</p>
+        <p className="font-manrope text-xs uppercase tracking-[0.2em] text-outline dark:text-outline-variant">{product.brand?.name ?? '—'}</p>
         <Link to={`/product?slug=${product.slug}`}>
           <h3 className="font-noto-serif text-lg font-bold leading-tight text-on-surface dark:text-[#fcf9f0] hover:text-primary transition-colors">{product.name}</h3>
         </Link>
@@ -227,7 +227,7 @@ function CategoryProductCard({ product }: { product: ProductWithRelations }) {
           />
         </div>
         {(product.stock_qty ?? 0) <= (product.low_stock_threshold ?? 5) && (
-          <span className="text-[10px] text-secondary dark:text-secondary-fixed-dim font-black whitespace-nowrap">
+          <span className="text-xs text-secondary dark:text-secondary-fixed-dim font-black whitespace-nowrap">
             Only {product.stock_qty ?? 0} left
           </span>
         )}

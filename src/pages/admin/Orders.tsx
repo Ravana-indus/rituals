@@ -83,10 +83,10 @@ export default function AdminOrders() {
                 <td className="p-4"><p className="text-sm">{order.email}</p></td>
                 <td className="p-4"><p className="text-sm font-semibold">{formatPriceCents(order.total_cents)}</p></td>
                 <td className="p-4">
-                  <span className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full ${order.payment_status === 'paid' ? 'bg-green-100 text-green-800' : order.payment_status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}`}>{order.payment_status}</span>
+                  <span className={`text-xs uppercase tracking-wider px-2 py-0.5 rounded-full ${order.payment_status === 'paid' ? 'bg-green-100 text-green-800' : order.payment_status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}`}>{order.payment_status}</span>
                 </td>
                 <td className="p-4">
-                  <select value={order.status ?? 'pending'} onChange={e => updateStatus(order.id, e.target.value)} className={`text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border-0 cursor-pointer font-semibold ${STATUS_COLORS[order.status ?? 'pending']}`}>
+                  <select value={order.status ?? 'pending'} onChange={e => updateStatus(order.id, e.target.value)} className={`text-xs uppercase tracking-wider px-2 py-1 rounded-full border-0 cursor-pointer font-semibold ${STATUS_COLORS[order.status ?? 'pending']}`}>
                     {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </td>
