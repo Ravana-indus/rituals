@@ -136,9 +136,35 @@ export function formatPriceCents(cents: number): string {
 }
 
 export function parsePriceString(priceStr: string): number {
-  const normalized = priceStr.replace(/,/g, '.');
-  const parts = normalized.split('.');
-  const intPart = parts[0];
-  const decPart = parts.length > 1 ? '.' + parts.slice(1).join('') : '';
-  return Math.round(parseFloat(intPart + decPart) * 100);
+  if (!priceStr) return 0;
+  let cleaned = priceStr.toString().replace(/[^\d.,]/g, '');
+  if (!cleaned) return 0;
+
+  const lastComma = cleaned.lastIndexOf(',');
+  const lastDot = cleaned.lastIndexOf('.');
+
+  if (lastComma > -1 && lastDot > -1) {
+    if (lastComma > lastDot) {
+      cleaned = cleaned.replace(/\./g, '');
+      cleaned = cleaned.replace(',', '.');
+    } else {
+      cleaned = cleaned.replace(/,/g, '');
+    }
+  } else if (lastComma > -1) {
+    const parts = cleaned.split(',');
+    if (parts.length === 2 && parts[1].length !== 3) {
+      cleaned = cleaned.replace(',', '.');
+    } else if (parts.length > 2) {
+      cleaned = cleaned.replace(/,/g, '');
+    } else {
+      if (parts[1].length === 3) {
+          cleaned = cleaned.replace(/,/g, '');
+      } else {
+          cleaned = cleaned.replace(',', '.');
+      }
+    }
+  }
+
+  const num = parseFloat(cleaned);
+  return isNaN(num) ? 0 : Math.round(num * 100);
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { api } from '../../lib/api';
 import type { Product, Brand, Category, ProductImage } from '../../types/database';
-import { formatPriceCents } from '../../types/database';
+import { formatPriceCents, parsePriceString } from '../../types/database';
 
 const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
   <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
@@ -43,6 +43,8 @@ export default function ProductForm({ product, brands, categories, onSave, onClo
   const [images, setImages] = useState<{ url: string; alt_text: string }[]>([]);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
+  const [priceInput, setPriceInput] = useState('');
+  const [comparePriceInput, setComparePriceInput] = useState('');
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -68,6 +70,11 @@ export default function ProductForm({ product, brands, categories, onSave, onClo
         is_active: product.is_active ?? true,
       });
       setImages(product.images?.map(img => ({ url: img.url ?? '', alt_text: img.alt_text ?? '' })) ?? []);
+      setPriceInput(product.price_cents ? (product.price_cents / 100).toFixed(2) : '');
+      setComparePriceInput(product.compare_at_price_cents ? (product.compare_at_price_cents / 100).toFixed(2) : '');
+    } else {
+      setPriceInput('');
+      setComparePriceInput('');
     }
     dialogRef.current?.showModal();
   }, [product]);
@@ -135,17 +142,9 @@ export default function ProductForm({ product, brands, categories, onSave, onClo
     setImages(imgs => imgs.map((img, i) => i === idx ? { ...img, [field]: value } : img));
   }
 
-  function formatPriceInput(cents: number) {
-    return (cents / 100).toFixed(2);
-  }
-
-  function parsePriceInput(str: string) {
-    const normalized = str.replace(/,/g, '.');
-    const parts = normalized.split('.');
-    const intPart = parts[0];
-    const decPart = parts.length > 1 ? '.' + parts.slice(1).join('') : '';
-    const num = parseFloat(intPart + decPart);
-    return isNaN(num) ? 0 : Math.round(num);
+  function handlePriceChange(val: string, field: 'price_cents' | 'compare_at_price_cents', setter: (val: string) => void) {
+    setter(val);
+    set(field, parsePriceString(val));
   }
 
   return (
@@ -276,11 +275,9 @@ export default function ProductForm({ product, brands, categories, onSave, onClo
           <div>
             <label className="block text-xs uppercase tracking-widest text-on-surface-variant mb-1">Price (LKR) *</label>
             <input
-              type="number"
-              step="0.01"
-              min="0"
-              value={formatPriceInput(form.price_cents)}
-              onChange={e => set('price_cents', parsePriceInput(e.target.value))}
+              type="text"
+              value={priceInput}
+              onChange={e => handlePriceChange(e.target.value, 'price_cents', setPriceInput)}
               className="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm"
               required
             />
@@ -292,11 +289,9 @@ export default function ProductForm({ product, brands, categories, onSave, onClo
           <div>
             <label className="block text-xs uppercase tracking-widest text-on-surface-variant mb-1">Compare At Price (LKR)</label>
             <input
-              type="number"
-              step="0.01"
-              min="0"
-              value={formatPriceInput(form.compare_at_price_cents)}
-              onChange={e => set('compare_at_price_cents', parsePriceInput(e.target.value))}
+              type="text"
+              value={comparePriceInput}
+              onChange={e => handlePriceChange(e.target.value, 'compare_at_price_cents', setComparePriceInput)}
               className="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm"
             />
           </div>
