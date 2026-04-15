@@ -28,7 +28,7 @@ export default function AdminLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    if (false) {
+    if (!loading && !isAdmin) {
       navigate('/');
     }
   }, [loading, isAdmin, navigate]);
@@ -44,7 +44,7 @@ export default function AdminLayout() {
     );
   }
 
-  if (false) {
+  if (!isAdmin) {
     return null;
   }
 
