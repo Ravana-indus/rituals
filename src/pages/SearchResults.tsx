@@ -107,7 +107,7 @@ export default function SearchResults() {
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [hasMore, loading, filtered.length]);
+  }, [hasMore, loading]);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

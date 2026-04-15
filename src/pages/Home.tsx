@@ -71,7 +71,7 @@ export default function Home() {
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [hasMore, loading, filteredProducts.length]);
+  }, [hasMore, loading]);
 
   const categoryIconMap: Record<string, string> = {
     'skincare': 'water_drop',
