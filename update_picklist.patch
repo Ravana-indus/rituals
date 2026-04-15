@@ -1,0 +1,34 @@
+--- src/components/admin/fulfillment/DailyPickList.tsx
++++ src/components/admin/fulfillment/DailyPickList.tsx
+@@ -1,11 +1,8 @@
+ import React, { useEffect, useState } from 'react';
+-import { api } from '../../lib/api';
+-import type { Order } from '../../types/database';
++import { api } from '../../../lib/api';
++import type { Order } from '../../../types/database';
++import { Icon } from '../../ui/Icon';
+
+-const Icon = ({ name, className = "" }: { name: string, className?: string }) => (
+-  <span className={`material-symbols-outlined ${className}`}>{name}</span>
+-);
+-
+-export default function Fulfillment() {
++export function DailyPickList() {
+   const [orders, setOrders] = useState<Order[]>([]);
+   const [loading, setLoading] = useState(true);
+   const [date, setDate] = useState<string>(new Date().toISOString().split('T')[0]);
+@@ -62,12 +59,12 @@
+   const summaryItems = Object.values(summary).sort((a, b) => a.name.localeCompare(b.name));
+
+   return (
+-    <div className="min-h-screen bg-surface-container-low text-on-surface p-6 space-y-6">
++    <div className="space-y-6">
+       <div className="flex items-center justify-between no-print">
+-        <div>
+-          <h1 className="text-3xl font-noto-serif text-primary">Daily Fulfillment Summary</h1>
+-          <p className="text-sm text-on-surface-variant mt-1">Pick list for warehouse</p>
+-        </div>
++        <h2 className="text-xl font-noto-serif text-primary">Daily Pick List</h2>
+         <div className="flex items-center gap-4">
+           <input
+             type="date"

@@ -77,11 +77,11 @@ export default function Home() {
               <Icon name="bolt" filled className="text-sm" />
               <span className="text-xs font-black uppercase tracking-[0.2em]">Limited Stock Event</span>
             </div>
-            <h1 className="font-noto-serif text-4xl lg:text-5xl xl:text-7xl text-on-surface font-bold leading-[1.05]">
+            <h1 className="font-noto-serif text-4xl lg:text-5xl xl:text-7xl text-white font-bold leading-[1.05]">
               Heritage Beauty,<br />
               <span className="italic font-normal text-secondary-fixed ">Reclaimed.</span>
             </h1>
-            <p className="text-on-surface font-manrope text-base md:text-lg max-w-xl leading-relaxed">
+            <p className="text-white/90 font-manrope text-base md:text-lg max-w-xl leading-relaxed">
               The curated edit of global luxury skincare and fragrance, now accessible for the discerning Sri Lankan ritual.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 pt-1">

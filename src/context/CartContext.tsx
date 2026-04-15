@@ -13,6 +13,7 @@ interface CartItemUI {
   priceValue: number;
   price: string;
   originalPrice: string;
+  originalPriceValue: number;
   imgSrc: string;
   size: string;
   quantity: number;
@@ -21,12 +22,13 @@ interface CartItemUI {
 
 interface CartContextType {
   items: CartItemUI[];
-  addItem: (item: Omit<CartItemUI, 'price' | 'id'> & { id?: string; price?: string }) => void;
+  addItem: (item: Omit<CartItemUI, 'price' | 'id' | 'originalPriceValue'> & { id?: string; price?: string; originalPriceValue?: number }) => void;
   removeItem: (productId: string) => void;
   updateQuantity: (productId: string, qty: number) => void;
   clearCart: () => void;
   itemCount: number;
   subtotal: number;
+  totalSavings: number;
   syncing: boolean;
 }
 
@@ -184,6 +186,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           priceValue: ci.price_cents,
           price: formatPriceCents(ci.price_cents),
           originalPrice: product?.compare_at_price_cents ? formatPriceCents(product.compare_at_price_cents) : '',
+          originalPriceValue: product?.compare_at_price_cents ?? 0,
           imgSrc: images[0]?.url ?? '',
           size: product?.tagline ?? '',
           quantity: ci.quantity,
@@ -234,6 +237,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                 priceValue: newItem.price_cents,
                 price: formatPriceCents(newItem.price_cents),
                 originalPrice: product?.compare_at_price_cents ? formatPriceCents(product.compare_at_price_cents) : '',
+                originalPriceValue: product?.compare_at_price_cents ?? 0,
                 imgSrc: images[0]?.url ?? '',
                 size: product?.tagline ?? '',
                 quantity: newItem.quantity,
@@ -407,6 +411,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const dedupedItems = mergeItemsByProductId(items);
   const itemCount = dedupedItems.reduce((sum, i) => sum + i.quantity, 0);
   const subtotal = dedupedItems.reduce((sum, i) => sum + i.priceValue * i.quantity, 0);
+  const totalSavings = dedupedItems.reduce((sum, i) => {
+    const originalTotal = i.originalPriceValue * i.quantity;
+    const actualTotal = i.priceValue * i.quantity;
+    return sum + (originalTotal - actualTotal);
+  }, 0);
 
   return (
     <CartContext.Provider value={{ 
@@ -417,6 +426,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       clearCart, 
       itemCount, 
       subtotal, 
+      totalSavings,
       syncing 
     }}>
       {children}
