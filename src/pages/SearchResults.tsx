@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { api } from '../lib/api';
@@ -38,6 +38,8 @@ export default function SearchResults() {
   const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState<Record<string, number>>({});
   const [activeFilter, setActiveFilter] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(12);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     async function load() {
@@ -80,6 +82,32 @@ export default function SearchResults() {
     }
     return result;
   }, [query, activeFilter, products]);
+
+  const displayedResults = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+
+  // Reset visible count when query or filter changes
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [query, activeFilter]);
+
+  // Infinite scroll observer
+  useEffect(() => {
+    if (!hasMore || loading) return;
+    const el = loadMoreRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount(prev => prev + 12);
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasMore, loading]);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -237,7 +265,7 @@ export default function SearchResults() {
           </section>
         ) : filtered.length > 0 ? (
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {filtered.map((product) => {
+            {displayedResults.map((product) => {
               const cardKey = `card-${product.id}`;
               const badge = getBadge(product);
               const marketPrice = getMarketPrice(product);
@@ -338,6 +366,14 @@ export default function SearchResults() {
             <Link to="/search" className="bg-primary  text-on-primary  px-8 py-3 rounded-lg font-bold uppercase tracking-widest text-xs hover:bg-primary-container  transition-colors">
               Browse All Products
             </Link>
+          </div>
+        )}
+
+        {hasMore && !loading && (
+          <div ref={loadMoreRef} className="mt-12 text-center">
+            <span className="font-bold uppercase tracking-widest text-xs text-primary">
+              Loading more results...
+            </span>
           </div>
         )}
 

@@ -3,6 +3,13 @@ import { supabase } from '../lib/supabase';
 import { useAuth } from './AuthContext';
 import type { Cart, CartItem, Product, ProductImage } from '../types/database';
 import { formatPriceCents } from '../types/database';
+import AddToCartToast from '../components/AddToCartToast';
+
+interface ToastItem {
+  title: string;
+  imgSrc: string;
+  price: string;
+}
 
 interface CartItemUI {
   id: string;
@@ -66,6 +73,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItemUI[]>([]);
   const [cart, setCart] = useState<Cart | null>(null);
   const [syncing, setSyncing] = useState(false);
+  const [toastItem, setToastItem] = useState<ToastItem | null>(null);
+  const [toastVisible, setToastVisible] = useState(false);
   const isLoadedRef = useRef(false);
   const isSavingRef = useRef(false);
 
@@ -298,6 +307,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
     });
 
+    // Show confirmation toast
+    setToastItem({ title: item.title, imgSrc: item.imgSrc ?? '', price: formatPriceCents(priceValue) });
+    setToastVisible(true);
+
     // Sync to database if logged in
     if (user && cart) {
       try {
@@ -430,6 +443,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       syncing 
     }}>
       {children}
+      <AddToCartToast
+        item={toastItem}
+        visible={toastVisible}
+        onClose={() => setToastVisible(false)}
+      />
     </CartContext.Provider>
   );
 }
