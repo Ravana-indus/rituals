@@ -55,7 +55,7 @@ export default function PaymentError() {
               <h3 className="font-noto-serif text-xl text-primary mb-3">Need Assistance?</h3>
               <p className="text-on-surface-variant mb-6 italic">Our heritage consultants are standing by to help you complete your ritual.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <a href="mailto:support@heritagecurator.com" className="flex items-center gap-3 text-primary hover:underline">
+                <a href="mailto:support@rituals.lk" className="flex items-center gap-3 text-primary hover:underline">
                   <Icon name="mail" />
                   <span className="font-manrope uppercase tracking-widest text-xs">Email Concierge</span>
                 </a>

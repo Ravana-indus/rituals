@@ -232,7 +232,7 @@ export default function OrderConfirmed() {
               <Icon name="support_agent" className="text-secondary" />
               <div>
                 <p className="text-sm font-bold text-primary">Need assistance?</p>
-                <p className="text-xs text-on-surface-variant">Our curators are available via chat or at care@heritagecurator.com</p>
+                <p className="text-xs text-on-surface-variant">Our curators are available via chat or at hello@rituals.lk</p>
               </div>
             </div>
           </aside>

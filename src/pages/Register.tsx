@@ -117,7 +117,7 @@ export default function Register() {
                 <label className="block font-manrope text-xs font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="email">Email Address</label>
                 <input
                   className="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary transition-all font-manrope text-on-surface placeholder:text-outline-variant/50"
-                  id="email" name="email" placeholder="ritualist@heritagecurator.com" required type="email"
+                  id="email" name="email" placeholder="hello@rituals.lk" required type="email"
                   value={email} onChange={e => setEmail(e.target.value)}
                 />
               </div>
