@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { api } from '../lib/api';
@@ -21,7 +21,8 @@ export default function Home() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [activeBrand, setActiveBrand] = useState<string>('all');
   const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(12);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => { loadData(); }, []);
 
@@ -45,6 +46,32 @@ export default function Home() {
     const brandMatch = activeBrand === 'all' || p.brand?.id === activeBrand;
     return categoryMatch && brandMatch && p.is_active;
   });
+
+  const displayedProducts = filteredProducts.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredProducts.length;
+
+  // Reset visible count when filters change
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [activeCategory, activeBrand]);
+
+  // Infinite scroll observer
+  useEffect(() => {
+    if (!hasMore || loading) return;
+    const el = loadMoreRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount(prev => prev + 12);
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasMore, loading, filteredProducts.length]);
 
   const categoryIconMap: Record<string, string> = {
     'skincare': 'water_drop',
@@ -223,24 +250,19 @@ export default function Home() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 lg:gap-x-8 gap-y-12 lg:gap-y-16">
-              {filteredProducts.map((product) =>
+              {displayedProducts.map((product) =>
                 React.createElement(HomeProductCard, { product, key: product.id })
               )}
             </div>
           )}
 
-          <div className="mt-20 lg:mt-24 text-center">
-            <button
-              onClick={() => {
-                setLoadingMore(true);
-                setTimeout(() => setLoadingMore(false), 1500);
-              }}
-              disabled={loadingMore}
-              className="border-b-2 border-primary  pb-1 font-bold uppercase tracking-widest text-xs hover:text-secondary hover:border-secondary transition-all text-primary  disabled:opacity-50"
-            >
-              {loadingMore ? 'Loading...' : 'Loading more curated selections...'}
-            </button>
-          </div>
+          {hasMore && !loading && (
+            <div ref={loadMoreRef} className="mt-20 lg:mt-24 text-center">
+              <span className="border-b-2 border-primary pb-1 font-bold uppercase tracking-widest text-xs text-primary">
+                Loading more curated selections...
+              </span>
+            </div>
+          )}
         </section>
       </main>
 
