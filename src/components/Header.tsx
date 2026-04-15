@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import { useCart } from '../context/CartContext';
+import { formatPriceCents } from '../types/database';
 
 const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
   <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
@@ -13,7 +14,7 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const { itemCount } = useCart();
+  const { itemCount, totalSavings } = useCart();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,7 +48,7 @@ export default function Header() {
         <div className="flex items-center space-x-6 text-primary ">
           <div className="hidden md:flex flex-col items-end">
             <span className="text-xs uppercase tracking-widest text-outline ">Balance</span>
-            <span className="font-bold text-xs uppercase tracking-wider">Total Savings: LKR 2,450</span>
+            <span className="font-bold text-xs uppercase tracking-wider">{totalSavings > 0 ? `Total Savings: ${formatPriceCents(totalSavings)}` : 'Your Heritage Cart'}</span>
           </div>
           <div className="flex items-center space-x-4">
             <ThemeToggle />
