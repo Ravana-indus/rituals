@@ -162,7 +162,7 @@ export default function Checkout() {
         cancel_url: `${window.location.origin}/checkout`,
         notify_url: `https://xbnsztyfyrhrdqhbboip.supabase.co/functions/v1/payhere-webhook`,
         order_id: order.id,
-        items: `${items.length} item(s) - The Heritage Curator`,
+        items: `${items.length} item(s) - Rituals.lk`,
         currency: 'LKR',
         amount: totalAmount,
         first_name: formData.firstName,
@@ -448,7 +448,7 @@ export default function Checkout() {
                     <div className="text-sm text-on-surface-variant space-y-1">
                       <p>Bank: Commercial Bank</p>
                       <p>Branch: Colombo 01</p>
-                      <p>Account Name: The Heritage Curator</p>
+                      <p>Account Name: Rituals.lk</p>
                       <p>Account Number: 1234567890</p>
                     </div>
                     <p className="text-xs text-on-surface-variant mt-4 italic">Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
@@ -620,9 +620,9 @@ export default function Checkout() {
       <footer className="bg-surface-container border-t border-outline-variant/15 py-12 px-8 mt-auto">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-4">
-            <span className="font-noto-serif italic text-xl text-on-surface">The Heritage Curator.</span>
+            <span className="font-noto-serif italic text-xl text-on-surface">Rituals.lk.</span>
             <p className="font-manrope text-sm tracking-wide text-on-surface-variant max-w-sm">
-              © 2024 The Heritage Curator. Crafted with intention. Supporting artisan communities across Sri Lanka.
+              © 2024 Rituals.lk. Affordable Personal Care. Bringing international brands to Sri Lanka.
             </p>
           </div>
           <div className="flex flex-wrap gap-8 md:justify-end">

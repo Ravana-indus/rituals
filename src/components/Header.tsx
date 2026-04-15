@@ -37,7 +37,7 @@ export default function Header() {
     <header className="bg-surface/80  backdrop-blur-md shadow-sm  sticky top-0 z-50 flex flex-col w-full px-6 py-4 space-y-4 transition-colors duration-300">
       <div className="flex items-center justify-between max-w-7xl mx-auto w-full">
         <div className="flex items-center gap-8">
-          <Link to="/" className="font-noto-serif text-2xl font-bold italic text-primary ">The Heritage Curator</Link>
+          <Link to="/" className="font-noto-serif text-2xl font-bold italic text-primary ">Rituals.lk</Link>
           <div className="hidden lg:flex items-center bg-surface-container  rounded-full px-4 py-2 w-auto lg:w-96 flex-grow max-w-sm border border-secondary/20 ">
             <Icon name="search" className="text-outline " />
             <form onSubmit={handleSearch} className="w-full ml-2">

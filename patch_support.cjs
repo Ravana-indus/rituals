@@ -1,0 +1,43 @@
+const fs = require('fs');
+
+let supportData = fs.readFileSync('src/pages/Support.tsx', 'utf8');
+
+supportData = supportData.replace(/The Heritage Curator/g, 'Rituals.lk');
+supportData = supportData.replace(/Ritual Support/g, 'Customer Support');
+supportData = supportData.replace(/How may we assist in guiding your wellness journey\?/g, 'How can we help you find the right personal care products?');
+supportData = supportData.replace(/Search the Apothecary Archives/g, 'Search Support');
+supportData = supportData.replace(/Our curated guides on formulations, orders, and apothecary etiquette\./g, 'Get help with your orders, shipping, and product authenticity.');
+supportData = supportData.replace(/Ritual Tracking/g, 'Order Tracking');
+supportData = supportData.replace(/Where is my botanical order\?/g, 'Where is my order?');
+supportData = supportData.replace(/View Shipping Ledger/g, 'View Shipping Policy');
+supportData = supportData.replace(/Concierge Assistance/g, 'Live Support');
+supportData = supportData.replace(/Personalized guidance for your routine\./g, 'Get help building your personal care routine.');
+supportData = supportData.replace(/Request Guidance/g, 'Contact Support');
+supportData = supportData.replace(/Apothecary Returns/g, 'Returns & Refunds');
+supportData = supportData.replace(/Our policy on returning handcrafted vessels\./g, 'Our policy on returning products.');
+supportData = supportData.replace(/Read Policy/g, 'Read Return Policy');
+supportData = supportData.replace(/Authenticity & Heritage/g, 'Authentic Products');
+supportData = supportData.replace(/Verification of our traditional Sri Lankan formulations and ethical trade certifications\./g, 'We guarantee 100% authenticity on all international brands.');
+supportData = supportData.replace(/View Certifications/g, 'View Our Guarantee');
+supportData = supportData.replace(/CERTIFIED<br\/>HERITAGE/g, '100%<br/>AUTHENTIC');
+supportData = supportData.replace(/Frequently Consulted/g, 'Frequently Asked Questions');
+supportData = supportData.replace(/How do I return a fragile botanical vessel\?/g, 'How do I return a product?');
+supportData = supportData.replace(/What is the shelf-life of fresh blends\?/g, 'What is the shelf-life of these products?');
+supportData = supportData.replace(/Canceling a subscription ritual\?/g, 'How do I cancel my order?');
+supportData = supportData.replace(/Wholesale inquiries for boutique hotels\?/g, 'Do you offer wholesale discounts?');
+supportData = supportData.replace(/Sourcing transparency reports\?/g, 'Are your products authentic?');
+supportData = supportData.replace(/The Concierge Desk/g, 'Contact Our Team');
+supportData = supportData.replace(/A personal touch for your heritage journey\./g, 'We are here to help.');
+supportData = supportData.replace(/For detailed questions regarding formulations or existing orders\./g, 'For questions regarding products or existing orders.');
+supportData = supportData.replace(/Live Concierge Chat/g, 'Live Chat');
+supportData = supportData.replace(/Connect with our consultants in real-time\./g, 'Connect with our team in real-time.');
+supportData = supportData.replace(/Visit Our Apothecary/g, 'Visit Our Store');
+supportData = supportData.replace(/Experience our scents and textures in our flagship Colombo flagship\./g, 'Find your favorite personal care products at our store.');
+supportData = supportData.replace(/Heritage Chronicles/g, 'Join Our Mailing List');
+supportData = supportData.replace(/Join our inner circle for ancestral beauty wisdom, early access to rare harvests, and invitations to our private curator events\./g, 'Sign up to receive our latest offers, bundle discounts, and routine tips.');
+supportData = supportData.replace(/Join the Circle/g, 'Subscribe');
+supportData = supportData.replace(/"Preserving the integrity of the ritual is our first priority\."/g, '"Affordable personal care, delivered to your door."');
+supportData = supportData.replace(/— The Chief Curator/g, '');
+supportData = supportData.replace(/Crafted with Intent\./g, 'Affordable Personal Care.');
+
+fs.writeFileSync('src/pages/Support.tsx', supportData);

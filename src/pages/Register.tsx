@@ -47,14 +47,14 @@ export default function Register() {
           </div>
           <div className="relative z-10 p-12 lg:p-24 flex flex-col justify-between h-full text-surface">
             <div className="space-y-4">
-              <Link to="/" className="font-noto-serif text-4xl lg:text-5xl font-medium tracking-tight hover:opacity-80 transition-opacity">The Heritage Curator</Link>
+              <Link to="/" className="font-noto-serif text-4xl lg:text-5xl font-medium tracking-tight hover:opacity-80 transition-opacity">Rituals.lk</Link>
               <div className="w-12 h-px bg-secondary-fixed"></div>
             </div>
             <div className="max-w-md space-y-8">
               <div>
                 <h2 className="font-noto-serif text-2xl mb-4 italic">A Legacy of Restoration</h2>
                 <p className="font-manrope font-light text-surface-variant leading-relaxed opacity-90">
-                  Rooted in the ancient botanical wisdom of Ceylon, we curate rituals that transcend time. Every vessel tells a story of provenance, authenticity, and the pursuit of refined well-being.
+                  Get the best deals on international personal care brands. Build your daily routine with our affordable, authentic products.
                 </p>
               </div>
               <div className="grid grid-cols-1 gap-6 pt-8">
@@ -82,14 +82,14 @@ export default function Register() {
               </div>
             </div>
             <div className="text-xs font-manrope tracking-widest opacity-60 uppercase">
-              Ceylon's Finest Apothecary • Established 2024
+              Affordable Personal Care • Established 2024
             </div>
           </div>
         </section>
 
         <section className="flex-1 flex flex-col justify-center items-center px-6 py-12 md:px-12 lg:px-24 bg-surface relative z-10">
           <div className="md:hidden w-full max-w-md mb-12 text-center">
-            <Link to="/" className="font-noto-serif text-3xl font-medium text-primary">The Heritage Curator</Link>
+            <Link to="/" className="font-noto-serif text-3xl font-medium text-primary">Rituals.lk</Link>
           </div>
           <div className="w-full max-w-md">
             <header className="mb-12">
@@ -168,7 +168,7 @@ export default function Register() {
 
       <footer className="bg-surface-container py-6 px-8 border-t border-outline-variant/10 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-manrope uppercase tracking-widest text-outline">
-          <div>© 2024 The Heritage Curator. Ceylon's Finest Apothecary.</div>
+          <div>© 2024 Rituals.lk. Affordable Personal Care.</div>
           <div className="flex gap-6">
             <Link to="/support" className="hover:text-primary transition-colors">Provenance</Link>
             <Link to="/support" className="hover:text-primary transition-colors">Shipping</Link>

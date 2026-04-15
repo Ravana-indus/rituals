@@ -269,11 +269,11 @@ export default function Profile() {
       <footer className="bg-surface-container  w-full mt-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-12 border-t border-outline-variant/10 max-w-7xl mx-auto">
           <div className="flex flex-col gap-4">
-            <div className="font-noto-serif italic text-primary text-xl">The Heritage Curator</div>
+            <div className="font-noto-serif italic text-primary text-xl">Rituals.lk</div>
             <p className="font-manrope text-sm tracking-tight text-on-surface/70  max-w-sm">
               Preserving the essence of Sri Lankan wellness through modern curation and ancient wisdom.
             </p>
-            <p className="font-manrope text-xs text-on-surface/50 mt-4">© 2024 The Heritage Curator. Ceylon's Finest Apothecary.</p>
+            <p className="font-manrope text-xs text-on-surface/50 mt-4">© 2024 Rituals.lk. Affordable Personal Care.</p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-3 font-manrope text-sm">

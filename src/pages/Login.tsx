@@ -48,7 +48,7 @@ export default function Login() {
         <div className="w-full max-w-md">
           <div className="text-center mb-10">
             <Link to="/">
-              <h1 className="text-3xl md:text-4xl font-noto-serif text-primary tracking-tight mb-2 hover:opacity-80 transition-opacity">The Heritage Curator</h1>
+              <h1 className="text-3xl md:text-4xl font-noto-serif text-primary tracking-tight mb-2 hover:opacity-80 transition-opacity">Rituals.lk</h1>
             </Link>
             <p className="text-on-surface-variant font-manrope text-sm uppercase tracking-[0.2em] mb-8">Apothecary & Rituals</p>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-highest/40 border border-outline-variant/15">
@@ -104,7 +104,7 @@ export default function Login() {
 
           <div className="mt-12 flex justify-center items-center gap-6 opacity-40">
             <div className="h-px w-8 bg-outline-variant"></div>
-            <div className="font-noto-serif italic text-sm text-primary">Ceylon's Finest</div>
+            <div className="font-noto-serif italic text-sm text-primary">Sri Lanka's Finest</div>
             <div className="h-px w-8 bg-outline-variant"></div>
           </div>
         </div>
@@ -112,8 +112,8 @@ export default function Login() {
 
       <footer className="w-full mt-auto px-8 py-10 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-outline-variant/10 bg-surface-container z-10">
         <div className="flex flex-col gap-2">
-          <span className="font-noto-serif italic text-primary">The Heritage Curator</span>
-          <p className="font-manrope text-sm tracking-tight text-on-surface/70">© 2024 The Heritage Curator. Ceylon's Finest Apothecary.</p>
+          <span className="font-noto-serif italic text-primary">Rituals.lk</span>
+          <p className="font-manrope text-sm tracking-tight text-on-surface/70">© 2024 Rituals.lk. Sri Lanka's Finest Apothecary.</p>
         </div>
         <div className="flex flex-wrap md:justify-end gap-6 items-center">
           <Link to="/support" className="font-manrope text-sm tracking-tight text-on-surface/70 hover:text-primary underline decoration-primary/30 transition-all duration-300">Provenance</Link>

@@ -242,8 +242,8 @@ export default function OrderConfirmed() {
       <footer className="bg-surface-container  w-full py-12 px-8 border-t border-outline-variant/15">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
           <div>
-            <div className="font-noto-serif italic text-lg text-on-surface  mb-2">The Heritage Curator</div>
-            <p className="font-manrope text-sm tracking-wide text-on-surface/60 ">© 2024 The Heritage Curator. Crafted with intention.</p>
+            <div className="font-noto-serif italic text-lg text-on-surface  mb-2">Rituals.lk</div>
+            <p className="font-manrope text-sm tracking-wide text-on-surface/60 ">© 2024 Rituals.lk. Affordable Personal Care.</p>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
             <Link to="/support" className="font-manrope text-sm tracking-wide text-on-surface/60  hover:text-[#D2691E] transition-colors duration-300">Privacy Policy</Link>

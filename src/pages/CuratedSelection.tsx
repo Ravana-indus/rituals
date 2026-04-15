@@ -13,7 +13,7 @@ export default function CuratedSelection() {
   const conditions = searchParams.get('conditions')?.split(',').filter(Boolean) || [];
   const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
 
-  const handleAddToRitual = (id: string) => {
+  const handleAddToRoutine = (id: string) => {
     setAddedItems(prev => new Set([...prev, id]));
     setTimeout(() => {
       setAddedItems(prev => {
@@ -35,7 +35,7 @@ export default function CuratedSelection() {
             <span>AI-Curated Selection</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-noto-serif italic tracking-tight text-primary leading-tight">Master Curator's Selection</h1>
-          <p className="max-w-2xl mx-auto text-on-surface-variant font-manrope">Based on your recent botanical consultation, we have curated these specific rituals to restore balance to your unique Prakriti.</p>
+          <p className="max-w-2xl mx-auto text-on-surface-variant font-manrope">Based on your recent botanical consultation, we have curated these specific routines to restore balance to your unique Prakriti.</p>
         </header>
 
         {/* Bento Layout: Why this is for you & Featured Bundle */}
@@ -70,17 +70,17 @@ export default function CuratedSelection() {
             </div>
           </div>
 
-          {/* Main Featured Ritual Bundle */}
+          {/* Main Featured routine Bundle */}
           <div className="lg:col-span-8 bg-surface-container-highest rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_20px_40px_rgba(28,28,23,0.04)]">
             <div className="md:w-1/2 relative h-64 md:h-auto">
-              <img alt="The Radiant Skin Ritual" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxwB-5-53l0fMcuJx-Hcmdim4J0kZOBYjSjttVSRAeZU9IsF01dDoMXvzZsnfGJT2KmhkFX_fUCEIgAn5CrpULqOUEbxLn0VAe_34Z3YAwBXx7B9ojLnTzJMq4n3W7nTF7sTFBAvs5hh48N3GECkXC3T9yz7NuvHohTYxXUMVVh7bzjMyHfUo-0RxyjK4v2CXwOyl5jjS8Z3WwvmV9T_UFngLGdKxPH0YtyY0Z_8xhEZTtsuZH66jIAU7SAPRQk9pYjGJbnh13w-tE" />
+              <img alt="The Radiant Skin routine" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxwB-5-53l0fMcuJx-Hcmdim4J0kZOBYjSjttVSRAeZU9IsF01dDoMXvzZsnfGJT2KmhkFX_fUCEIgAn5CrpULqOUEbxLn0VAe_34Z3YAwBXx7B9ojLnTzJMq4n3W7nTF7sTFBAvs5hh48N3GECkXC3T9yz7NuvHohTYxXUMVVh7bzjMyHfUo-0RxyjK4v2CXwOyl5jjS8Z3WwvmV9T_UFngLGdKxPH0YtyY0Z_8xhEZTtsuZH66jIAU7SAPRQk9pYjGJbnh13w-tE" />
               <div className="absolute top-4 left-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-xs font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
                 Save 15%
               </div>
             </div>
             <div className="md:w-1/2 p-8 flex flex-col justify-between">
               <div>
-                <h2 className="text-3xl font-noto-serif text-primary mb-2">The Radiant Skin Ritual</h2>
+                <h2 className="text-3xl font-noto-serif text-primary mb-2">The Radiant Skin routine</h2>
                 <p className="text-on-surface-variant text-sm mb-6">A 4-step sequence featuring Turmeric, Saffron, and Virgin Coconut oil to restore natural luminescence.</p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center gap-3 text-xs text-on-surface/70">
@@ -103,7 +103,7 @@ export default function CuratedSelection() {
                   <span className="text-2xl font-bold text-secondary font-manrope">LKR 10,540</span>
                 </div>
                 <Link to="/ritual-builder" className="bg-primary text-on-primary px-6 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-primary-container transition-colors shadow-lg">
-                  Add Ritual
+                  Add Routine
                 </Link>
               </div>
               <div className="flex items-center gap-2 mt-4 pt-4 border-t border-outline-variant/10">
@@ -123,23 +123,23 @@ export default function CuratedSelection() {
           </div>
         </section>
 
-        {/* Secondary Ritual Bundles */}
+        {/* Secondary routine Bundles */}
         <section className="space-y-8">
           <div className="flex justify-between items-end border-b border-outline-variant/15 pb-4">
-            <h3 className="text-2xl font-noto-serif italic text-primary">Secondary Focus Rituals</h3>
+            <h3 className="text-2xl font-noto-serif italic text-primary">Secondary Focus Routines</h3>
             <Link to="/" className="text-xs font-bold uppercase tracking-widest text-on-surface/60 hover:text-primary transition-colors">Explore All Bundles</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Bundle 2 */}
             <div className="bg-surface-container-low rounded-xl p-2 group hover:bg-surface-container transition-colors duration-300">
               <div className="relative h-64 rounded-lg overflow-hidden mb-6">
-                <img alt="The Strengthening Hair Ritual" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcOQK4tL1tcOwZsGNzPyxop0SyOjtbnIz42ZoBu23RYLYXKimRS1oTuELM3dtwPV9s-UhX3ZqwTJYWOlm9eoPPXYmzkBmDU8c5mOGp4KJ1WFQ2B3SKsq_fAURMbjlHA0XiG8VYxf3T2OafMG0jf8ccEaWcw-wdWBmFNVA6OZVLAAgd8BE_NqU6asmAAYlZlk2mJmileuqbINKl0s9bjLI_ZZjUxWpIfGDQvUmjvQNcbkW5IOrsEmK0SB1YfPt3WmBSfY6nPE1ZP29y" />
+                <img alt="The Strengthening Hair routine" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcOQK4tL1tcOwZsGNzPyxop0SyOjtbnIz42ZoBu23RYLYXKimRS1oTuELM3dtwPV9s-UhX3ZqwTJYWOlm9eoPPXYmzkBmDU8c5mOGp4KJ1WFQ2B3SKsq_fAURMbjlHA0XiG8VYxf3T2OafMG0jf8ccEaWcw-wdWBmFNVA6OZVLAAgd8BE_NqU6asmAAYlZlk2mJmileuqbINKl0s9bjLI_ZZjUxWpIfGDQvUmjvQNcbkW5IOrsEmK0SB1YfPt3WmBSfY6nPE1ZP29y" />
                 <div className="absolute top-4 right-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-xs font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
-                  Ritual Value
+                  routine Value
                 </div>
               </div>
               <div className="px-4 pb-4">
-                <h4 className="text-xl font-noto-serif text-primary mb-2">The Strengthening Hair Ritual</h4>
+                <h4 className="text-xl font-noto-serif text-primary mb-2">The Strengthening Hair routine</h4>
                 <p className="text-xs text-on-surface-variant leading-relaxed mb-6">Repair environmental damage with traditional Neelibringadi and Gotu Kola extracts.</p>
                 <div className="flex items-center justify-between">
                   <div>
@@ -147,7 +147,7 @@ export default function CuratedSelection() {
                     <span className="text-lg font-bold text-secondary">LKR 7,500</span>
                   </div>
                   <button
-                    onClick={() => handleAddToRitual('product-2')}
+                    onClick={() => handleAddToRoutine('product-2')}
                     className={`bg-secondary text-on-secondary w-10 h-10 rounded-full flex items-center justify-center hover:scale-105 transition-all ${addedItems.has('product-2') ? 'bg-green-600' : ''}`}
                   >
                     {addedItems.has('product-2') ? <Icon name="check" /> : <Icon name="add_shopping_cart" />}
@@ -171,13 +171,13 @@ export default function CuratedSelection() {
             {/* Bundle 3 */}
             <div className="bg-surface-container-low rounded-xl p-2 group hover:bg-surface-container transition-colors duration-300">
               <div className="relative h-64 rounded-lg overflow-hidden mb-6">
-                <img alt="The Evening Calm Ritual" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFTCRH0upS9rv3LmtXIsLl7in7SdAh74amhlZHxGcY8lciIeN25cln1tJxIznq-MKA7ZlK04tOrM2trmgO2TU0LMHxgy4vw9pn8iKbUYUIuIQH66hRQblJ6RgLpfoJmNy51AgXjg_92MHBA0giJUH9uX30xGMk6_9tVy5E_g4Rrrwfvn9WD9W_IDbwyoj3BMhSa6iENRwu4iZmHzKCJuwdvTzN8tVhAGPpMc8PEJpp0oyNjc50Gnly31-Oe4SqgukMfwWYpxhcx2vl" />
+                <img alt="The Evening Calm routine" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFTCRH0upS9rv3LmtXIsLl7in7SdAh74amhlZHxGcY8lciIeN25cln1tJxIznq-MKA7ZlK04tOrM2trmgO2TU0LMHxgy4vw9pn8iKbUYUIuIQH66hRQblJ6RgLpfoJmNy51AgXjg_92MHBA0giJUH9uX30xGMk6_9tVy5E_g4Rrrwfvn9WD9W_IDbwyoj3BMhSa6iENRwu4iZmHzKCJuwdvTzN8tVhAGPpMc8PEJpp0oyNjc50Gnly31-Oe4SqgukMfwWYpxhcx2vl" />
                 <div className="absolute top-4 right-4 bg-tertiary-container text-on-tertiary px-3 py-1 rounded-md text-xs font-bold uppercase tracking-tighter" style={{ clipPath: 'polygon(100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%, 0% 0%)' }}>
                   Deal Applied
                 </div>
               </div>
               <div className="px-4 pb-4">
-                <h4 className="text-xl font-noto-serif text-primary mb-2">The Evening Calm Ritual</h4>
+                <h4 className="text-xl font-noto-serif text-primary mb-2">The Evening Calm routine</h4>
                 <p className="text-xs text-on-surface-variant leading-relaxed mb-6">Soothe the senses before sleep with Ashwagandha tea and Lavender temple balms.</p>
                 <div className="flex items-center justify-between">
                   <div>
@@ -185,7 +185,7 @@ export default function CuratedSelection() {
                     <span className="text-lg font-bold text-secondary">LKR 5,200</span>
                   </div>
                   <button
-                    onClick={() => handleAddToRitual('product-3')}
+                    onClick={() => handleAddToRoutine('product-3')}
                     className={`bg-secondary text-on-secondary w-10 h-10 rounded-full flex items-center justify-center hover:scale-105 transition-all ${addedItems.has('product-3') ? 'bg-green-600' : ''}`}
                   >
                     {addedItems.has('product-3') ? <Icon name="check" /> : <Icon name="add_shopping_cart" />}
@@ -212,7 +212,7 @@ export default function CuratedSelection() {
               <div className="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center">
                 <Icon name="auto_fix_high" className="text-on-secondary-fixed text-3xl" />
               </div>
-              <h4 className="text-xl font-noto-serif text-primary italic">Modify Your Ritual</h4>
+              <h4 className="text-xl font-noto-serif text-primary italic">Modify Your Routine</h4>
               <p className="text-xs text-on-surface-variant">Prefer different scents or textures? Adjust your curated selection here.</p>
               <Link to="/ritual-builder" className="border border-primary text-primary px-6 py-2 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-primary/5 transition-colors">
                 Re-Curate
@@ -250,7 +250,7 @@ export default function CuratedSelection() {
           </Link>
           <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-on-surface/40  min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container  transition-all">
             <Icon name="auto_awesome" />
-            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Rituals</span>
+            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Routines</span>
           </Link>
           <Link to="/curated-selection" className="flex flex-col items-center justify-center text-on-surface/40  min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container  transition-all">
             <Icon name="auto_stories" />

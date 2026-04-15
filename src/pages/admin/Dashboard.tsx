@@ -55,7 +55,7 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-noto-serif text-primary">Admin Dashboard</h1>
-          <p className="text-sm text-on-surface-variant mt-1">Welcome to The Heritage Curator management console</p>
+          <p className="text-sm text-on-surface-variant mt-1">Welcome to Rituals.lk management console</p>
         </div>
         <Link to="/" className="text-sm text-secondary hover:text-primary flex items-center gap-1">
           <Icon name="arrow_back" className="text-sm" />

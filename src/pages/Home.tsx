@@ -245,14 +245,14 @@ export default function Home() {
       </main>
 
       <footer className="bg-surface-container  w-full flex flex-col items-center justify-center text-center space-y-6 px-8 py-12 mt-auto transition-colors duration-300 pb-24 md:pb-12">
-        <span className="font-noto-serif italic text-xl text-primary ">The Heritage Curator</span>
+        <span className="font-noto-serif italic text-xl text-primary ">Rituals.lk</span>
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-manrope text-xs tracking-widest uppercase">
           <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Shipping & Returns</Link>
           <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Privacy Policy</Link>
           <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Sustainability Manifesto</Link>
           <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Store Locator</Link>
         </div>
-        <p className="font-manrope text-xs tracking-widest uppercase text-on-surface-variant  opacity-60">© 2024 The Heritage Curator. High-End Editorial Beauty.</p>
+        <p className="font-manrope text-xs tracking-widest uppercase text-on-surface-variant  opacity-60">© 2024 Rituals.lk. Affordable Personal Care.</p>
       </footer>
 
       <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-4 md:hidden bg-surface  z-50 border-t border-[#e5e2da]  shadow-[0_-4px_12px_rgba(0,0,0,0.05)] transition-colors duration-300">

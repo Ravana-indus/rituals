@@ -53,7 +53,7 @@ export default function AdminLayout() {
     <div className="min-h-screen bg-surface flex">
       <aside className={`w-64 bg-primary text-on-primary flex flex-col fixed h-full z-50 transform transition-transform duration-200 ease-in-out ${mobileOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         <div className="p-6 border-b border-white/10 flex items-center justify-between">
-          <Link to="/" className="font-noto-serif text-xl font-bold hover:opacity-80 transition-opacity">The Heritage Curator</Link>
+          <Link to="/" className="font-noto-serif text-xl font-bold hover:opacity-80 transition-opacity">Rituals.lk</Link>
           <button onClick={() => setMobileOpen(false)} className="lg:hidden p-1 rounded hover:bg-surface text-on-primary">
             <Icon name="close" className="text-lg" />
           </button>
@@ -102,7 +102,7 @@ export default function AdminLayout() {
           >
             <Icon name="menu" className="text-xl" />
           </button>
-          <Link to="/" className="font-noto-serif text-lg font-bold text-primary">The Heritage Curator</Link>
+          <Link to="/" className="font-noto-serif text-lg font-bold text-primary">Rituals.lk</Link>
           <span className="text-xs uppercase tracking-widest text-on-surface-variant ml-2">Admin</span>
         </div>
         <Outlet />
