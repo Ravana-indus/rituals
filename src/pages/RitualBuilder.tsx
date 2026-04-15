@@ -13,7 +13,7 @@ type Product = {
 
 const PRODUCTS_HAIR: Product[] = [
   {
-    id: 'h0', name: 'Neem Infused Scalp Elixir', tagline: '100ml / Ritual Foundation',
+    id: 'h0', name: 'Neem Infused Scalp Elixir', tagline: '100ml / Routine Foundation',
     description: 'Sesame & Gotu Kola infusion for scalp revitalization.',
     curatorPrice: 4200, marketPrice: 6800, badge: 'Heritage Find', badgeType: 'tertiary' as const,
     stockPercent: 30, stockLeft: 6 as number | null, expiry: 'Dec 2026', whyDiscounted: 'Heritage batch',
@@ -100,7 +100,7 @@ const PRODUCTS_FRAGRANCE = [
   },
   {
     id: 'f2', name: 'Sandalwood Heritage Perfume', tagline: '15ml / Timeless Signature',
-    description: 'Pure Mysore sandalwood oil aged for 18 months — the cornerstone of any fragrance ritual.',
+    description: 'Pure Mysore sandalwood oil aged for 18 months — the cornerstone of any fragrance routine.',
     curatorPrice: 8900, marketPrice: 14000, badge: 'Best for Gifting', badgeType: 'editorial' as const,
     stockPercent: 10, stockLeft: 2 as number | null, expiry: 'Jun 2029', whyDiscounted: 'Limited reserve',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCWgebw0zMrkamRD4BqB9pjPw3bT4FD5Nb3pPgZUiOyQSO0YAHzcnvjLiHEOFc_xEPFfd4JPntfH21BauCZHzYF_mTNnAI7YRT3PSE57kQw4FRZPWHgqpt82p_TCFnlqGZijaJ0FXKetK0S_bgrGF21bczLlsqaQS9WBWD5vaL5r-MN-2LzRc7u46DcVXRVM7FsSzjIMNNxylykQspWIWT2M9tZgBYCTPXDRZJC84OgG2lopsFotgYOmv92AS0zcVb5kq-MHCpicJCm',
@@ -118,19 +118,19 @@ const PRODUCTS_FRAGRANCE = [
 
 const CATEGORY_DATA: Record<Category, { title: string; subtitle: string; curatorNote: { quote: string; attribution: string }; products: Product[] }> = {
   hair: {
-    title: 'Hair Ritual Collection',
-    subtitle: 'Rooted in Ayurvedic tradition and refined for the modern eye. Select your foundation, nourishment, and finish to curate a ritual that honors your heritage.',
-    curatorNote: { quote: 'Luxury is not found in the price, but in the time we take to honor ourselves. These formulas are sourced from generational growers across the island, ensuring that your thrifty choices never compromise on the sacredness of the ritual.', attribution: 'Dr. Amara Silva' },
+    title: 'Hair Care Routine',
+    subtitle: 'Build your perfect hair care routine with top international brands at the best prices.',
+    curatorNote: { quote: 'We believe everyone deserves access to high-quality personal care. Build your routine to unlock bundle discounts on your favorite brands.', attribution: 'Dr. Amara Silva' },
     products: PRODUCTS_HAIR,
   },
   skin: {
-    title: 'Skin Ritual Collection',
+    title: 'Skin Care Routine',
     subtitle: 'Centuries-old botanical wisdom meets modern dermal science. Each formulation in this collection has been curated from heritage apothecaries for luminous, resilient skin.',
-    curatorNote: { quote: 'The skin remembers what the mind forgets. These preparations carry the intelligence of turmeric, saffron, and rose — ingredients that have sustained beauty rituals across the subcontinent for millennia.', attribution: 'Priya Wickramasinghe' },
+    curatorNote: { quote: 'Create a skincare routine tailored to your needs. Mix and match international brands like CeraVe, Cetaphil, and Olay.', attribution: 'Priya Wickramasinghe' },
     products: PRODUCTS_SKIN,
   },
   fragrance: {
-    title: 'Fragrance Ritual Collection',
+    title: 'Fragrance Routine',
     subtitle: 'Attars, mists, and signatures crafted from rare botanical essences. These are not perfumes — they are personal ceremonies captured in glass.',
     curatorNote: { quote: 'A fragrance should arrive before you and linger after you leave. Our attars are slow-distilled over wood fires in Kannauj, exactly as they have been for eight centuries. There is no faster way to make them.', attribution: 'Farid Hussain Khatri' },
     products: PRODUCTS_FRAGRANCE,
@@ -142,8 +142,8 @@ const CURATOR_PORTRAIT = 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1
 const formatLKR = (n: number) => `LKR ${n.toLocaleString('en-US')}`;
 
 const NAV_ITEMS: { label: string; icon: string; category: Category }[] = [
-  { label: 'Hair Ritual', icon: 'spa', category: 'hair' },
-  { label: 'Skin Ritual', icon: 'face_6', category: 'skin' },
+  { label: 'Hair routine', icon: 'spa', category: 'hair' },
+  { label: 'Skin routine', icon: 'face_6', category: 'skin' },
   { label: 'Fragrance', icon: 'auto_awesome', category: 'fragrance' },
 ];
 
@@ -153,7 +153,7 @@ const Icon = ({ name, filled = false, className = '' }: { name: string; filled?:
   </span>
 );
 
-export default function RitualBuilder() {
+export default function routineBuilder() {
   const { category: categoryParam } = useParams<{ category?: string }>();
   const category: Category = (['hair', 'skin', 'fragrance'].includes(categoryParam || '') ? categoryParam : 'hair') as Category;
 
@@ -191,7 +191,7 @@ export default function RitualBuilder() {
         {/* Left Sidebar */}
         <aside className="flex flex-col py-6 lg:py-10 px-6 space-y-4 lg:space-y-8 w-full lg:w-80 flex-shrink-0 bg-surface-container overflow-y-auto no-scrollbar border-b lg:border-b-0 lg:border-r border-outline-variant/10">
           <div className="mb-4">
-            <h2 className="font-noto-serif italic text-secondary  text-lg">The Ritual Builder</h2>
+            <h2 className="font-noto-serif italic text-secondary  text-lg">Build Your Routine</h2>
             <p className="font-manrope text-xs uppercase tracking-widest text-on-surface/60 ">Curating your personal care</p>
           </div>
 
@@ -232,7 +232,7 @@ export default function RitualBuilder() {
                   <Icon name="auto_awesome" filled className="text-sm text-secondary-fixed-dim " />
                   <p className="text-xs uppercase tracking-widest opacity-80">Bundle Discount Activated</p>
                 </div>
-                <p className="font-noto-serif text-sm italic">15% off your entire ritual</p>
+                <p className="font-noto-serif text-sm italic">15% off your entire routine</p>
               </div>
             )}
             <Link
@@ -244,7 +244,7 @@ export default function RitualBuilder() {
                   : 'bg-surface-container-high  text-outline cursor-not-allowed'
               }`}
             >
-              {selectedProducts.size > 0 ? 'Complete Ritual' : 'Select Products'}
+              {selectedProducts.size > 0 ? 'Complete Routine' : 'Select Products'}
             </Link>
           </div>
 
@@ -318,7 +318,7 @@ export default function RitualBuilder() {
                         : 'border-primary/10  text-primary  hover:border-secondary  hover:text-secondary '
                     }`}
                   >
-                    {selectedProducts.has(product.id) ? 'Added to Ritual' : 'Add to Ritual'}
+                    {selectedProducts.has(product.id) ? 'Added to Routine' : 'Add to Routine'}
                   </button>
                 </div>
               </article>
@@ -354,12 +354,12 @@ export default function RitualBuilder() {
           {/* Footer */}
           <footer className="bg-surface w-full py-12 border-t-[0.5px] border-outline-variant/15">
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8">
-              <p className="font-manrope text-xs font-light text-on-surface-variant/60  mb-6 md:mb-0">&copy; 2024 The Heritage Curator. Thrifty Luxury, Rooted in Tradition.</p>
+              <p className="font-manrope text-xs font-light text-on-surface-variant/60  mb-6 md:mb-0">&copy; 2024 Rituals.lk. Affordable Personal Care.</p>
               <div className="flex flex-wrap justify-center gap-8 font-manrope text-xs font-light">
                 <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Privacy Policy</Link>
                 <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Sourcing Ethics</Link>
                 <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300">Wholesale</Link>
-                <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300 underline">Ritual Guide</Link>
+                <Link to="/support" className="text-on-surface-variant/70  hover:text-secondary  transition-colors duration-300 underline">routine Guide</Link>
               </div>
             </div>
           </footer>
@@ -368,7 +368,7 @@ export default function RitualBuilder() {
         {/* Right Summary Sidebar */}
         <aside className="hidden xl:flex flex-col w-96 flex-shrink-0 bg-surface-container-lowest border-l border-outline-variant/10 shadow-[-10px_0_30px_rgba(28,28,23,0.03)] overflow-y-auto no-scrollbar">
           <div className="p-8 pb-4">
-            <h2 className="font-noto-serif text-2xl text-primary  mb-1">Your Ritual</h2>
+            <h2 className="font-noto-serif text-2xl text-primary  mb-1">Your Routine</h2>
             <p className="text-xs uppercase tracking-[0.2em] text-on-surface/50 ">Selections so far</p>
           </div>
 
@@ -376,7 +376,7 @@ export default function RitualBuilder() {
             {selectedItems.length === 0 ? (
               <div className="text-center py-8">
                 <Icon name="spa" className="text-4xl text-outline-variant/30 " />
-                <p className="text-sm text-on-surface-variant/60  mt-3 italic font-light">Add products from the catalog to build your ritual</p>
+                <p className="text-sm text-on-surface-variant/60  mt-3 italic font-light">Add products from the catalog to build your routine</p>
               </div>
             ) : (
               selectedItems.map((item) => (
@@ -409,7 +409,7 @@ export default function RitualBuilder() {
                 </div>
                 {discount > 0 && (
                   <div className="flex justify-between text-xs font-bold text-secondary ">
-                    <span className="flex items-center"><Icon name="auto_awesome" className="text-xs mr-1" />Ritual Bundle Discount</span>
+                    <span className="flex items-center"><Icon name="auto_awesome" className="text-xs mr-1" />Routine Bundle Discount</span>
                     <span>- {formatLKR(discount)} (15%)</span>
                   </div>
                 )}
@@ -433,7 +433,7 @@ export default function RitualBuilder() {
             </Link>
 
             {selectedProducts.size >= bundleMin && (
-              <p className="text-center text-xs text-on-surface/40  mt-3 italic font-light">Free delivery included with this ritual bundle.</p>
+              <p className="text-center text-xs text-on-surface/40  mt-3 italic font-light">Free delivery included with this routine bundle.</p>
             )}
           </div>
         </aside>

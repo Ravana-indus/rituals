@@ -77,7 +77,7 @@ export default function Cart() {
           <span className="text-primary font-bold">Cart</span>
         </nav>
 
-        <h1 className="font-noto-serif text-4xl text-on-surface mb-8">Your Ritual Collection</h1>
+        <h1 className="font-noto-serif text-4xl text-on-surface mb-8">Your Cart</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-7 space-y-8">
@@ -85,7 +85,7 @@ export default function Cart() {
               <div className="text-center py-16 space-y-6">
                 <Icon name="shopping_bag" className="text-6xl text-on-surface-variant/30 mx-auto" />
                 <div>
-                  <h2 className="font-noto-serif text-2xl mb-2">Your ritual collection is empty</h2>
+                  <h2 className="font-noto-serif text-2xl mb-2">Your cart is empty</h2>
                   <p className="text-on-surface-variant text-sm">Add some clearance treasures to begin your heritage journey.</p>
                 </div>
                 <Link to="/" className="inline-block px-8 py-4 bg-primary text-on-primary rounded-md font-bold uppercase tracking-widest text-xs hover:opacity-90 transition-all">
@@ -295,9 +295,9 @@ export default function Cart() {
       <footer className="bg-surface-container border-t border-outline-variant/15 py-12 px-8 mt-auto">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-4">
-            <span className="font-noto-serif italic text-xl text-on-surface">The Heritage Curator.</span>
+            <span className="font-noto-serif italic text-xl text-on-surface">Rituals.lk.</span>
             <p className="font-manrope text-sm tracking-wide text-on-surface-variant max-w-sm">
-              Crafted with intention. Supporting artisan communities across Sri Lanka.
+              Affordable Personal Care. Bringing international brands to Sri Lanka.
             </p>
           </div>
           <div className="flex flex-wrap gap-8 md:justify-end">

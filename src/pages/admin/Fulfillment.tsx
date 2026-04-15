@@ -90,7 +90,7 @@ export default function Fulfillment() {
       ) : (
         <div className="bg-surface rounded-xl border border-outline-variant/10 p-8 print:border-none print:p-0 print:bg-surface print:text-black">
           <div className="hidden print:block mb-6 border-b pb-4">
-            <h1 className="text-2xl font-serif font-bold uppercase">The Heritage Curator</h1>
+            <h1 className="text-2xl font-serif font-bold uppercase">Rituals.lk</h1>
             <h2 className="text-lg uppercase mt-1">Daily Pick List - {new Date(date).toLocaleDateString()}</h2>
           </div>
 

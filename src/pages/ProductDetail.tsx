@@ -208,7 +208,7 @@ export default function ProductDetail() {
                 {product.sku && <span className="text-on-surface-variant text-xs uppercase tracking-widest">SKU: {product.sku}</span>}
               </div>
               <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-primary mb-2 font-noto-serif">{product.name}</h1>
-              <p className="text-lg italic font-noto-serif text-on-surface-variant">{product.brand?.name ?? 'The Heritage Curator Apothecary'}</p>
+              <p className="text-lg italic font-noto-serif text-on-surface-variant">{product.brand?.name ?? 'Rituals.lk Apothecary'}</p>
             </div>
 
             <div className="space-y-1">
@@ -379,7 +379,7 @@ export default function ProductDetail() {
         {related.length > 0 && (
           <section className="mt-32">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold text-primary mb-4 font-noto-serif">Complete Your Ritual</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-primary mb-4 font-noto-serif">Build Your Routine</h2>
               <p className="font-noto-serif italic text-on-surface-variant">Carefully selected items to enhance your results</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -422,12 +422,12 @@ export default function ProductDetail() {
             <div className="flex flex-col gap-4 font-manrope text-sm uppercase tracking-widest">
               <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Store Locator</Link>
               <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Privacy Policy</Link>
-              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Shipping & Rituals</Link>
+              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Shipping & Routines</Link>
               <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Contact Apothecary</Link>
             </div>
           </div>
           <div className="text-right">
-            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 The Heritage Curator. Ethically sourced in Sri Lanka.</p>
+            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 Rituals.lk. Affordable Personal Care.</p>
           </div>
         </div>
       </footer>

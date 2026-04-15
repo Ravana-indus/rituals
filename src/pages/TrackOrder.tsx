@@ -49,7 +49,7 @@ function TimelineItem({ label, description, date, done, current }: { label: stri
 
 function OrderResultCard({ order }: { order: Order }) {
   const steps = [
-    { key: 'pending', label: 'Ritual Prepared', description: 'Items curated in our Galle Fort apothecary.', done: ['confirmed', 'processing', 'shipped', 'delivered'].includes(order.status) },
+    { key: 'pending', label: 'Order Prepared', description: 'Items prepared for delivery.', done: ['confirmed', 'processing', 'shipped', 'delivered'].includes(order.status) },
     { key: 'confirmed', label: 'Confirmed', description: 'Order confirmed and payment verified.', done: ['processing', 'shipped', 'delivered'].includes(order.status), current: order.status === 'confirmed' },
     { key: 'processing', label: 'Processing', description: 'Being carefully packed for delivery.', done: ['shipped', 'delivered'].includes(order.status), current: order.status === 'processing' },
     { key: 'shipped', label: 'Journey Begun', description: 'Entrusted to our artisan logistics network.', done: order.status === 'delivered', current: order.status === 'shipped' },
@@ -129,7 +129,7 @@ export default function TrackOrder() {
 
       <main className="pt-8 pb-20 px-6 max-w-6xl mx-auto flex-grow w-full">
         <header className="mb-16 text-center">
-          <h1 className="font-noto-serif text-4xl lg:text-5xl lg:text-6xl text-primary mb-4 italic tracking-tight">Trace Your Ritual</h1>
+          <h1 className="font-noto-serif text-4xl lg:text-5xl lg:text-6xl text-primary mb-4 italic tracking-tight">Track Your Order</h1>
           <p className="font-manrope text-on-surface-variant max-w-xl mx-auto leading-relaxed">Each heritage artifact travels with intent. Enter your details below to follow the journey from our apothecary to your sanctuary.</p>
         </header>
 
@@ -141,7 +141,7 @@ export default function TrackOrder() {
             </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block font-manrope text-sm font-semibold mb-2 text-on-surface/80">Ritual Tracking Number</label>
+                <label className="block font-manrope text-sm font-semibold mb-2 text-on-surface/80">Order Tracking Number</label>
                 <input
                   value={orderNumber}
                   onChange={e => setOrderNumber(e.target.value)}
@@ -157,7 +157,7 @@ export default function TrackOrder() {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   className="w-full bg-surface py-3 px-4 border-b-2 border-surface-variant focus:border-primary focus:ring-0 transition-all outline-none text-on-surface font-medium placeholder:text-outline-variant"
-                  placeholder="ritualist@example.com"
+                  placeholder="hello@rituals.lk"
                   type="email"
                 />
               </div>
@@ -197,12 +197,12 @@ export default function TrackOrder() {
             ) : searching ? (
               React.createElement('div', { className: 'bg-surface-container rounded-xl p-8 shadow-sm border border-outline-variant/15 text-center animate-pulse' },
                 React.createElement(Icon, { name: "search", className: "text-5xl text-outline-variant mb-4" }),
-                React.createElement('p', { className: 'text-on-surface-variant' }, 'Searching your ritual...')
+                React.createElement('p', { className: 'text-on-surface-variant' }, 'Searching your order...')
               )
             ) : results.length === 0 ? (
               React.createElement('div', { className: 'bg-surface-container rounded-xl p-12 shadow-sm border border-outline-variant/15 text-center' },
                 React.createElement(Icon, { name: "search_off", className: "text-6xl text-outline-variant mb-4" }),
-                React.createElement('h3', { className: 'font-noto-serif text-xl font-bold text-primary mb-2' }, 'No Rituals Found'),
+                React.createElement('h3', { className: 'font-noto-serif text-xl font-bold text-primary mb-2' }, 'No Orders Found'),
                 React.createElement('p', { className: 'text-sm text-on-surface-variant mb-6 max-w-sm mx-auto' },
                   'We could not find any orders matching your details. Please check the order number or email and try again.'
                 ),
@@ -214,7 +214,7 @@ export default function TrackOrder() {
             ) : (
               React.createElement(React.Fragment, null,
                 React.createElement('p', { className: 'text-sm font-bold text-primary mb-4' },
-                  { plural: results.length, 1: '1 ritual found', default: `${results.length} rituals found` }[results.length] ?? `${results.length} rituals found`
+                  { plural: results.length, 1: '1 order found', default: `${results.length} orders found` }[results.length] ?? `${results.length} orders found`
                 ),
                 results.map(order => React.createElement(OrderResultCard, { key: order.id, order }))
               )
@@ -226,8 +226,8 @@ export default function TrackOrder() {
       <footer className="bg-surface-container  w-full border-t border-outline-variant/15 mt-auto">
         <div className="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-screen-2xl mx-auto">
           <div className="flex flex-col items-center md:items-start gap-4">
-            <div className="font-noto-serif text-lg font-bold text-primary ">Heritage Curator</div>
-            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 The Heritage Curator. Crafted with Intent.</p>
+            <div className="font-noto-serif text-lg font-bold text-primary ">Rituals.lk</div>
+            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 Rituals.lk. Affordable Personal Care.</p>
           </div>
           <div className="flex flex-wrap justify-center gap-8">
             <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Privacy Policy</Link>

@@ -77,40 +77,40 @@ export default function Support() {
               </div>
             </div>
 
-            {/* Authenticity & Heritage */}
+            {/* Authentic Products */}
             <div className="md:col-span-4 bg-tertiary-container text-on-tertiary rounded-xl p-10 flex flex-col gap-6 relative overflow-hidden group">
-              <h2 className="font-noto-serif text-2xl relative z-10">Authenticity & Heritage</h2>
-              <p className="text-on-tertiary-container/90 text-sm leading-relaxed relative z-10">Verification of our traditional Sri Lankan formulations and ethical trade certifications.</p>
+              <h2 className="font-noto-serif text-2xl relative z-10">Authentic Products</h2>
+              <p className="text-on-tertiary-container/90 text-sm leading-relaxed relative z-10">We guarantee 100% authenticity on all international brands.</p>
               <div className="relative z-10 mt-auto">
-                <span className="inline-flex items-center gap-2 font-manrope text-xs uppercase tracking-widest border-b border-on-tertiary-container pb-1 cursor-pointer">View Certifications</span>
+                <span className="inline-flex items-center gap-2 font-manrope text-xs uppercase tracking-widest border-b border-on-tertiary-container pb-1 cursor-pointer">View Our Guarantee</span>
               </div>
               {/* Custom Stamp Badge */}
               <div className="absolute -right-4 -bottom-4 w-32 h-32 rounded-full border-4 border-dashed border-on-tertiary-container/30 flex items-center justify-center rotate-12 group-hover:rotate-0 transition-transform">
-                <span className="font-noto-serif italic text-on-tertiary-container/30 text-center text-xs">CERTIFIED<br/>HERITAGE</span>
+                <span className="font-noto-serif italic text-on-tertiary-container/30 text-center text-xs">100%<br/>AUTHENTIC</span>
               </div>
             </div>
 
             {/* Common Questions */}
             <div className="md:col-span-8 bg-surface-container-highest rounded-xl p-10">
-              <h2 className="font-noto-serif text-2xl text-primary mb-8">Frequently Consulted</h2>
+              <h2 className="font-noto-serif text-2xl text-primary mb-8">Frequently Asked Questions</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                 <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">How do I return a fragile botanical vessel?</h3>
+                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">How do I return a product?</h3>
                 </div>
                 <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">What is the shelf-life of fresh blends?</h3>
+                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">What is the shelf-life of these products?</h3>
                 </div>
                 <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
                   <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">International duties and local taxes?</h3>
                 </div>
                 <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">Canceling a subscription ritual?</h3>
+                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">How do I cancel my order?</h3>
                 </div>
                 <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">Wholesale inquiries for boutique hotels?</h3>
+                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">Do you offer wholesale discounts?</h3>
                 </div>
                 <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">Sourcing transparency reports?</h3>
+                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">Are your products authentic?</h3>
                 </div>
               </div>
             </div>
@@ -120,8 +120,8 @@ export default function Support() {
         {/* Contact Options */}
         <section className="bg-surface-container-low py-24 px-8 mt-16 relative z-10">
           <div className="max-w-5xl mx-auto text-center mb-16">
-            <h2 className="font-noto-serif text-4xl text-primary mb-4">The Concierge Desk</h2>
-            <p className="text-on-surface-variant italic font-noto-serif">A personal touch for your heritage journey.</p>
+            <h2 className="font-noto-serif text-4xl text-primary mb-4">Contact Our Team</h2>
+            <p className="text-on-surface-variant italic font-noto-serif">We are here to help.</p>
           </div>
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Option 1 */}
@@ -130,7 +130,7 @@ export default function Support() {
                 <Icon name="mail" className="text-3xl" />
               </div>
               <h3 className="font-noto-serif text-xl mb-3">Send an Inquiry</h3>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">For detailed questions regarding formulations or existing orders.</p>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">For questions regarding products or existing orders.</p>
               <Link to="/contact" className="mt-auto w-full py-4 bg-gradient-to-br from-[#003a3a] to-[#1c5151] text-on-primary rounded-lg font-manrope text-xs uppercase tracking-widest">Compose Email</Link>
             </div>
             {/* Option 2 */}
@@ -138,8 +138,8 @@ export default function Support() {
               <div className="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center mb-6 text-secondary">
                 <Icon name="chat_bubble" className="text-3xl" />
               </div>
-              <h3 className="font-noto-serif text-xl mb-3">Live Concierge Chat</h3>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">Connect with our consultants in real-time. Available 9am - 6pm SLT.</p>
+              <h3 className="font-noto-serif text-xl mb-3">Live Chat</h3>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">Connect with our team in real-time. Available 9am - 6pm SLT.</p>
               <Link to="/consult" className="mt-auto w-full py-4 bg-secondary text-on-secondary rounded-lg font-manrope text-xs uppercase tracking-widest">Start Conversation</Link>
               <span className="mt-4 text-xs uppercase tracking-widest text-secondary font-bold">Active Now</span>
             </div>
@@ -148,8 +148,8 @@ export default function Support() {
               <div className="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-6 text-primary">
                 <Icon name="location_on" className="text-3xl" />
               </div>
-              <h3 className="font-noto-serif text-xl mb-3">Visit Our Apothecary</h3>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">Experience our scents and textures in our flagship Colombo flagship.</p>
+              <h3 className="font-noto-serif text-xl mb-3">Visit Our Store</h3>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">Find your favorite personal care products at our store.</p>
               <button className="mt-auto w-full py-4 border border-outline-variant text-primary rounded-lg font-manrope text-xs uppercase tracking-widest hover:bg-surface-container transition-colors">Find Location</button>
             </div>
           </div>
@@ -162,16 +162,16 @@ export default function Support() {
               <img className="w-full h-full object-cover mix-blend-multiply opacity-80" alt="Artistic composition of a vintage brass scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs6DkXEf3r77qKbOojGQp2qWYOdUAvI0k_18zdoTf128PuGzzQIjHvUvJasOJqQKE-VDPQWX39QbfpNLa-4EnLeNtmW-EOgD0_SNKfP7nLLLP79p4CnoLG4Zs7k6dcv39eAobyRNu3Wq95pEeP7bwMR2fkHDnzhEaimTPn3faY2QEkXu861xgj-L5gmLIzFyiyHWyviKoMp4Q83RQTrqzhAKkq-4FMVFmcctwOxDNHcqMbUaukqPTMRKi1BvAu3z8h1THgZUYmP_Ux" />
             </div>
             <div className="absolute -bottom-8 -right-8 p-8 bg-surface-bright shadow-xl rounded-lg max-w-xs">
-              <p className="font-noto-serif italic text-primary text-lg">"Preserving the integrity of the ritual is our first priority."</p>
-              <p className="font-manrope text-xs uppercase tracking-[0.2em] text-secondary mt-4">— The Chief Curator</p>
+              <p className="font-noto-serif italic text-primary text-lg">"Affordable personal care, delivered to your door."</p>
+              <p className="font-manrope text-xs uppercase tracking-[0.2em] text-secondary mt-4"></p>
             </div>
           </div>
           <div>
-            <h2 className="font-noto-serif text-4xl text-primary mb-6">Heritage Chronicles</h2>
-            <p className="text-on-surface-variant leading-relaxed mb-8">Join our inner circle for ancestral beauty wisdom, early access to rare harvests, and invitations to our private curator events.</p>
+            <h2 className="font-noto-serif text-4xl text-primary mb-6">Join Our Mailing List</h2>
+            <p className="text-on-surface-variant leading-relaxed mb-8">Sign up to receive our latest offers, bundle discounts, and routine tips.</p>
             <form className="flex flex-col gap-4">
               <input className="bg-surface-container-low border-none border-b border-primary p-4 focus:ring-0 placeholder:text-outline/40" placeholder="Your email address" type="email" />
-              <button className="bg-gradient-to-br from-[#003a3a] to-[#1c5151] text-on-primary py-4 px-8 font-manrope text-xs uppercase tracking-widest w-fit">Join the Circle</button>
+              <button className="bg-gradient-to-br from-[#003a3a] to-[#1c5151] text-on-primary py-4 px-8 font-manrope text-xs uppercase tracking-widest w-fit">Subscribe</button>
             </form>
           </div>
         </section>
@@ -181,8 +181,8 @@ export default function Support() {
       <footer className="w-full border-t border-outline-variant/15 bg-surface-container  relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-screen-2xl mx-auto">
           <div className="flex flex-col gap-2 text-center md:text-left">
-            <div className="font-noto-serif text-lg font-bold text-primary">The Heritage Curator</div>
-            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 The Heritage Curator. Crafted with Intent.</p>
+            <div className="font-noto-serif text-lg font-bold text-primary">Rituals.lk</div>
+            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 Rituals.lk. Affordable Personal Care.</p>
           </div>
           <div className="flex flex-wrap justify-center gap-6">
             <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Privacy Policy</Link>

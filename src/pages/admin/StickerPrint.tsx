@@ -24,7 +24,7 @@ export default function StickerPrint() {
   return (
     <div className="p-4 max-w-sm mx-auto bg-surface text-black font-sans border-2 border-dashed border-gray-300">
       <div className="text-center mb-6 border-b-2 border-black pb-4">
-        <h1 className="text-2xl font-serif font-bold uppercase tracking-widest">The Heritage Curator</h1>
+        <h1 className="text-2xl font-serif font-bold uppercase tracking-widest">Rituals.lk</h1>
         <p className="text-xs uppercase tracking-widest mt-1">Delivery</p>
       </div>
 

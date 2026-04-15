@@ -208,7 +208,7 @@ export default function SearchResults() {
           <div className="flex items-center gap-4">
             <Icon name="local_shipping" className="text-4xl text-on-primary-container " />
             <div>
-              <h3 className="font-noto-serif text-xl font-bold text-on-surface ">Island-wide Ritual Delivery</h3>
+              <h3 className="font-noto-serif text-xl font-bold text-on-surface ">Island-wide routine Delivery</h3>
               <p className="text-on-primary-container  text-sm">Carefully packaged with sustainable parchment. Ships in 24 hours.</p>
             </div>
           </div>
@@ -352,7 +352,7 @@ export default function SearchResults() {
       </main>
 
       <footer className="bg-surface-container  w-full flex flex-col items-center justify-center text-center space-y-6 px-8 py-12 mt-auto transition-colors duration-300">
-        <span className="font-noto-serif italic text-xl text-primary ">The Heritage Curator</span>
+        <span className="font-noto-serif italic text-xl text-primary ">Rituals.lk</span>
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-manrope text-xs tracking-widest uppercase">
           <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Privacy Policy</Link>
           <Link to="/support" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Shipping Details</Link>
@@ -360,7 +360,7 @@ export default function SearchResults() {
           <Link to="/contact" className="text-on-surface-variant  hover:text-secondary  transition-colors duration-300">Contact Us</Link>
         </div>
         <p className="font-manrope text-xs uppercase tracking-widest text-on-surface-variant ">
-          © 2024 The Heritage Curator. Ethically Sourced, Artfully Curated.
+          © 2024 Rituals.lk. Ethically Sourced, Artfully Curated.
         </p>
       </footer>
     </div>

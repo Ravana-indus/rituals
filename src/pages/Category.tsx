@@ -136,13 +136,13 @@ export default function CategoryPage() {
       </main>
 
       <footer className="bg-surface-container  w-full flex flex-col items-center justify-center text-center space-y-6 px-8 py-12 mt-auto">
-        <span className="font-noto-serif italic text-xl text-primary ">The Heritage Curator</span>
+        <span className="font-noto-serif italic text-xl text-primary ">Rituals.lk</span>
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-manrope text-xs tracking-widest uppercase">
           <Link to="/support" className="text-on-surface-variant  hover:text-secondary transition-colors">Shipping & Returns</Link>
           <Link to="/support" className="text-on-surface-variant  hover:text-secondary transition-colors">Privacy Policy</Link>
           <Link to="/support" className="text-on-surface-variant  hover:text-secondary transition-colors">Sustainability</Link>
         </div>
-        <p className="font-manrope text-xs tracking-widest uppercase text-on-surface-variant  opacity-60">© 2024 The Heritage Curator.</p>
+        <p className="font-manrope text-xs tracking-widest uppercase text-on-surface-variant  opacity-60">© 2024 Rituals.lk.</p>
       </footer>
     </div>
   );

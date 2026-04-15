@@ -25,7 +25,7 @@ export default function InvoicePrint() {
     <div className="p-8 max-w-4xl mx-auto bg-surface text-black font-sans">
       <div className="flex justify-between items-start mb-12 border-b pb-8">
         <div>
-          <h1 className="text-3xl font-serif font-bold mb-2">The Heritage Curator</h1>
+          <h1 className="text-3xl font-serif font-bold mb-2">Rituals.lk</h1>
           <p className="text-sm text-gray-600">Colombo, Sri Lanka</p>
           <p className="text-sm text-gray-600">hello@theheritagecurator.com</p>
         </div>
@@ -114,7 +114,7 @@ export default function InvoicePrint() {
       </div>
 
       <div className="mt-16 pt-8 border-t text-center text-sm text-gray-500">
-        <p>Thank you for shopping with The Heritage Curator!</p>
+        <p>Thank you for shopping with Rituals.lk!</p>
         <p className="mt-1">For any inquiries, please contact us at support@theheritagecurator.com</p>
       </div>
     </div>

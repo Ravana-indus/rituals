@@ -133,7 +133,7 @@ export default function PaymentError() {
       {/* Footer */}
       <footer className="w-full border-t border-outline-variant/15 bg-surface-container  flex flex-col md:flex-row justify-between items-center px-8 py-12 mt-auto">
         <div className="font-noto-serif italic text-stone-800  mb-6 md:mb-0">
-          The Heritage Curator
+          Rituals.lk
         </div>
         <div className="flex flex-wrap justify-center gap-8 mb-6 md:mb-0">
           <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-stone-500  hover:text-[#D2691E]  transition-colors">Privacy Policy</Link>
@@ -142,7 +142,7 @@ export default function PaymentError() {
           <Link to="/contact" className="font-manrope text-sm uppercase tracking-widest text-stone-500  hover:text-[#D2691E]  transition-colors">Contact Us</Link>
         </div>
         <div className="font-manrope text-xs uppercase tracking-widest text-stone-400">
-          © 2024 The Heritage Curator. High-End Apothecary & Rituals.
+          © 2024 Rituals.lk. Affordable Personal Care.
         </div>
       </footer>
     </div>
