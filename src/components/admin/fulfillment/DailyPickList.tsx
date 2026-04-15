@@ -17,15 +17,15 @@ export function DailyPickList() {
     try {
       const data = await api.orders.getAll();
 
-      // Filter for processing/pending and matching the selected date
-      const targetDate = new Date(date);
+      // Filter for processing/pending/confirmed and matching the selected date
       const filtered = data.filter(o => {
         if (!o.created_at) return false;
         const orderDate = new Date(o.created_at);
-        const isSameDate = orderDate.getFullYear() === targetDate.getFullYear() &&
-                           orderDate.getMonth() === targetDate.getMonth() &&
-                           orderDate.getDate() === targetDate.getDate();
-        return isSameDate && (o.status === 'pending' || o.status === 'processing');
+        const yyyy = orderDate.getFullYear();
+        const mm = String(orderDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(orderDate.getDate()).padStart(2, '0');
+        const isSameDate = `${yyyy}-${mm}-${dd}` === date;
+        return isSameDate && ['pending', 'processing', 'confirmed'].includes(o.status);
       });
 
       // We need to fetch items for these orders to generate a summary

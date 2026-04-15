@@ -5,7 +5,7 @@ import { Icon } from '../../ui/Icon';
 import { formatPriceCents } from '../../../types/database';
 
 export function FulfillmentDashboard() {
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Filters
@@ -37,7 +37,15 @@ export function FulfillmentDashboard() {
         o.status !== 'refunded'
       );
 
-      setOrders(toFulfill);
+      // Fetch items for these orders to display in the print view
+      const detailedOrders = await Promise.all(
+        toFulfill.map(async o => {
+          const detail = await api.orders.getById(o.id);
+          return detail || o;
+        })
+      );
+
+      setOrders(detailedOrders);
     } catch (e) {
       console.error(e);
     } finally {
@@ -247,7 +255,7 @@ export function FulfillmentDashboard() {
           <table className="w-full text-left">
             <thead className="bg-surface-container-low border-b border-outline-variant/10">
               <tr>
-                <th className="px-4 py-3 w-12">
+                <th className="px-4 py-3 w-12 no-print">
                   <input
                     type="checkbox"
                     checked={selectedOrderIds.size === filteredOrders.length && filteredOrders.length > 0}
@@ -274,8 +282,9 @@ export function FulfillmentDashboard() {
                 </tr>
               ) : (
                 filteredOrders.map(order => (
-                  <tr key={order.id} className="border-b border-outline-variant/5 hover:bg-surface-container-low/50">
-                    <td className="px-4 py-3">
+                  <React.Fragment key={order.id}>
+                  <tr className="border-b border-outline-variant/5 hover:bg-surface-container-low/50">
+                    <td className="px-4 py-3 no-print">
                       <input
                         type="checkbox"
                         checked={selectedOrderIds.has(order.id)}
@@ -309,6 +318,22 @@ export function FulfillmentDashboard() {
                       {formatPriceCents(order.total_cents)}
                     </td>
                   </tr>
+                  {order.items && order.items.length > 0 && (
+                    <tr className="hidden print:table-row bg-surface-container-lowest border-b-2 border-black">
+                      <td colSpan={7} className="px-8 py-4">
+                        <div className="text-sm font-bold mb-2 uppercase tracking-widest text-black">Items to Fulfill:</div>
+                        <ul className="list-disc pl-5 space-y-1">
+                          {order.items.map((item: any) => (
+                            <li key={item.id} className="text-sm text-black">
+                              <span className="font-semibold">{item.quantity}x</span> {item.product_name}
+                              {item.variant_name && <span className="text-gray-600 ml-1">({item.variant_name})</span>}
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                    </tr>
+                  )}
+                  </React.Fragment>
                 ))
               )}
             </tbody>
