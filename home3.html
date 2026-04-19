@@ -593,6 +593,54 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
+
+    /* Footer - Minimal */
+    .footer {
+      background-color: var(--color-surface-muted);
+      padding: var(--space-10) var(--space-6);
+      margin-top: var(--space-10);
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .footer-logo {
+      font-family: var(--font-family-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--color-text-primary);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-6);
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color var(--motion-duration-fast) var(--motion-easing-default);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-brand-primary);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--color-text-tertiary);
+    }
   </style>
 </head>
 <body>
@@ -772,6 +820,18 @@
       </div>
     </section>
   </main>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo">The Heritage Curator</span>
+      <nav class="footer-links">
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+      </nav>
+      <p class="footer-copy">2024 The Heritage Curator</p>
+    </div>
+  </footer>
   <script>
     document.querySelectorAll('.filter-pill').forEach(pill => {
       pill.addEventListener('click', function() {
