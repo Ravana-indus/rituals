@@ -1,22 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
+import {
+  MessageSquare,
+  Send,
+  User,
+  History,
+  Sparkles,
+  ChevronRight,
+  Droplets,
+  Zap,
+  Info,
+  Beaker,
+} from 'lucide-react';
+import BrandedLayout from '../components/BrandedLayout';
 
 type Message = { role: 'curator' | 'seeker'; content: string };
 
-const CONDITION_CHIPS: { label: string; icon: string }[] = [
-  { label: 'Dry Skin', icon: 'water_drop' },
-  { label: 'Stress', icon: 'spa' },
-  { label: 'Hair Loss', icon: 'content_cut' },
-  { label: 'Hyper-pigmentation', icon: 'wb_sunny' },
-  { label: 'Insomnia', icon: 'bedtime' },
-  { label: 'Oily Scalp', icon: 'opacity' },
+const CONDITION_CHIPS: { label: string; icon: any }[] = [
+  { label: 'Dry Skin', icon: Droplets },
+  { label: 'Stress', icon: Sparkles },
+  { label: 'Hair Loss', icon: Zap },
+  { label: 'Hyper-pigmentation', icon: Zap },
+  { label: 'Insomnia', icon: Sparkles },
+  { label: 'Oily Scalp', icon: Droplets },
 ];
 
 const INITIAL_MESSAGES: Message[] = [
@@ -55,7 +61,6 @@ export default function Consult() {
     setSelectedConditions([]);
     setIsTyping(true);
 
-    // Simulate a curator response
     setTimeout(() => {
       setIsTyping(false);
       setMessages(prev => [
@@ -75,208 +80,177 @@ export default function Consult() {
     }
   };
 
-  const adjustTextareaHeight = (el: HTMLTextAreaElement) => {
-    el.style.height = 'auto';
-    el.style.height = `${Math.min(el.scrollHeight, 160)}px`;
-  };
-
   return (
-    <div className="bg-surface text-on-surface min-h-screen flex flex-col selection:bg-secondary-fixed selection:text-on-secondary-fixed">
-      {/* Subtle texture overlay */}
-      <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfHnwCQOdAh-quvLEapn7MA132wVvOPjv5wdSn1tCpVepdfNoGZ39FMzaizRl04TfIMwccIQSalrB4g3JJar9qBZNvLu4lZa6GBH10rlsQJHELc3Id5sufOiQUT8rsVqLfHIZMVH6yuHxFZLSeB60ZwiukQN1uQW1ywetlWYowwCyRc0F_YLBXXVOnbakdphqKUPV6ZhCdX5HALTxx6iB1mKXZU7Nb8jHADczjJp_Zt1UslUHBJQPOwq8haPmlCDjfDu1ewQbPAI7n')" }}></div>
-
-      <div className="relative z-10 flex flex-col h-screen">
-        <Header />
-
-        <div className="flex flex-1 overflow-hidden max-w-7xl mx-auto w-full px-0 lg:px-6 gap-0 lg:gap-8 lg:py-6">
-
-          {/* ── Chat Column ── */}
-          <section className="flex flex-col flex-1 min-w-0 bg-surface lg:bg-surface-container-low lg:rounded-2xl overflow-hidden">
-
-            {/* Chat header bar */}
-            <div className="flex items-center gap-4 px-5 py-4 border-b border-outline-variant/15 bg-surface-container-low lg:bg-surface-container flex-shrink-0">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary flex-shrink-0">
-                <Icon name="psychiatry" filled className="text-xl" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-noto-serif font-bold text-on-surface leading-tight">The Apothecary's Curator</p>
-                <p className="text-xs text-on-surface-variant font-manrope">Digital Consultation · Ayurvedic Wisdom</p>
-              </div>
-              <span className="bg-tertiary-container text-on-tertiary-container text-xs font-bold tracking-[0.15em] px-3 py-1 rounded-full uppercase hidden sm:block">Live</span>
+    <BrandedLayout>
+      <div className="flex flex-col lg:flex-row h-[calc(100vh-140px)] overflow-hidden">
+        {/* Chat Column */}
+        <section className="flex flex-1 flex-col min-w-0 bg-white border-r border-[var(--dd-surface-strong)]">
+          {/* Chat Header */}
+          <div className="flex items-center gap-4 px-6 py-4 border-b border-[var(--dd-surface-strong)] bg-white sticky top-0 z-10">
+            <div className="h-10 w-10 rounded-full bg-[var(--dd-surface-base)] flex items-center justify-center text-white">
+              <Beaker className="h-5 w-5" />
             </div>
+            <div className="flex-1 min-w-0">
+              <h2 className="text-[16px] font-bold tracking-tight">The Apothecary's Curator</h2>
+              <p className="text-[12px] opacity-40 font-bold uppercase tracking-wider">Digital Consultation</p>
+            </div>
+            <span className="rounded-full bg-[#76885B]/10 px-3 py-1 text-[11px] font-bold text-[#76885B] uppercase tracking-wider">Live</span>
+          </div>
 
-            {/* Messages area */}
-            <div className="flex-1 overflow-y-auto px-4 md:px-8 py-6 space-y-6 no-scrollbar">
-              {messages.map((msg, i) => (
-                msg.role === 'curator' ? (
-                  /* Curator bubble – left aligned */
-                  <div key={i} className="flex gap-3 items-end max-w-2xl">
-                    <div className="w-8 h-8 rounded-full bg-primary flex-shrink-0 flex items-center justify-center text-on-primary mb-1">
-                      <Icon name="psychiatry" filled className="text-base" />
-                    </div>
-                    <div className="bg-surface-container-lowest border border-outline-variant/10 px-5 py-4 rounded-t-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-md shadow-sm">
-                      <p className="text-on-surface leading-relaxed italic font-noto-serif text-sm md:text-base">{msg.content}</p>
-                    </div>
+          {/* Messages Area */}
+          <div className="flex-1 overflow-y-auto px-6 py-8 space-y-6 no-scrollbar bg-[var(--dd-surface-muted)]">
+            {messages.map((msg, i) => (
+              <div key={i} className={`flex gap-3 items-end ${msg.role === 'seeker' ? 'justify-end' : 'max-w-2xl'}`}>
+                {msg.role === 'curator' && (
+                  <div className="h-8 w-8 rounded-full bg-[var(--dd-surface-base)] flex-shrink-0 flex items-center justify-center text-white mb-1">
+                    <Beaker className="h-4 w-4" />
                   </div>
-                ) : (
-                  /* Seeker bubble – right aligned */
-                  <div key={i} className="flex gap-3 items-end justify-end max-w-2xl ml-auto">
-                    <div className="bg-primary px-5 py-4 rounded-t-2xl rounded-tl-2xl rounded-bl-2xl rounded-br-md shadow-sm">
-                      <p className="text-on-primary leading-relaxed font-manrope text-sm md:text-base">{msg.content}</p>
-                    </div>
-                    <div className="w-8 h-8 rounded-full bg-surface-container-high flex-shrink-0 flex items-center justify-center text-on-surface-variant mb-1 border border-outline-variant/20">
-                      <Icon name="person" className="text-base" />
-                    </div>
+                )}
+                <div className={`px-5 py-4 rounded-2xl shadow-sm ${
+                  msg.role === 'seeker' 
+                    ? 'bg-[var(--dd-surface-base)] text-white rounded-br-md' 
+                    : 'bg-white border border-[var(--dd-surface-strong)] rounded-bl-md'
+                }`}>
+                  <p className={`text-[15px] leading-relaxed ${msg.role === 'curator' ? 'italic font-medium' : 'font-medium'}`}>
+                    {msg.content}
+                  </p>
+                </div>
+                {msg.role === 'seeker' && (
+                  <div className="h-8 w-8 rounded-full bg-[var(--dd-surface-strong)] flex-shrink-0 flex items-center justify-center text-black mb-1 border border-[var(--dd-surface-base)]/10">
+                    <User className="h-4 w-4" />
                   </div>
-                )
-              ))}
+                )}
+              </div>
+            ))}
 
-              {/* Typing indicator */}
-              {isTyping && (
-                <div className="flex gap-3 items-end max-w-2xl">
-                  <div className="w-8 h-8 rounded-full bg-primary flex-shrink-0 flex items-center justify-center text-on-primary mb-1">
-                    <Icon name="psychiatry" filled className="text-base" />
-                  </div>
-                  <div className="bg-surface-container-lowest border border-outline-variant/10 px-5 py-4 rounded-t-2xl rounded-br-2xl rounded-bl-md shadow-sm">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-primary/60 animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                      <span className="w-2 h-2 rounded-full bg-primary/60 animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                      <span className="w-2 h-2 rounded-full bg-primary/60 animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                    </div>
+            {isTyping && (
+              <div className="flex gap-3 items-end max-w-2xl">
+                <div className="h-8 w-8 rounded-full bg-[var(--dd-surface-base)] flex-shrink-0 flex items-center justify-center text-white mb-1">
+                  <Beaker className="h-4 w-4" />
+                </div>
+                <div className="bg-white border border-[var(--dd-surface-strong)] px-5 py-4 rounded-2xl rounded-bl-md shadow-sm">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--dd-surface-base)]/20 animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--dd-surface-base)]/20 animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--dd-surface-base)]/20 animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
-              )}
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
 
-              <div ref={messagesEndRef} />
+          {/* Input Dock */}
+          <div className="border-t border-[var(--dd-surface-strong)] bg-white p-4 md:p-6">
+            <div className="flex gap-2 mb-4 overflow-x-auto no-scrollbar pb-1">
+              {CONDITION_CHIPS.map(({ label, icon: Icon }) => (
+                <button
+                  key={label}
+                  onClick={() => toggleCondition(label)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full border text-[12px] font-bold whitespace-nowrap transition-all flex-shrink-0 ${
+                    selectedConditions.includes(label)
+                      ? 'bg-[var(--dd-surface-base)] text-white border-[var(--dd-surface-base)] shadow-md'
+                      : 'bg-white border-[var(--dd-surface-strong)] text-black hover:border-[var(--dd-surface-base)]'
+                  }`}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {label}
+                </button>
+              ))}
             </div>
 
-            {/* ── Input dock ── */}
-            <div className="flex-shrink-0 border-t border-outline-variant/15 bg-surface-container-low lg:bg-surface-container px-4 md:px-6 pt-3 pb-4 md:pb-5">
-              {/* Condition chips */}
-              <div className="flex gap-2 mb-3 overflow-x-auto no-scrollbar pb-1">
-                {CONDITION_CHIPS.map(({ label, icon }) => (
-                  <button
-                    key={label}
-                    onClick={() => toggleCondition(label)}
-                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 ${
-                      selectedConditions.includes(label)
-                        ? 'bg-primary text-on-primary border-primary shadow-sm'
-                        : 'bg-surface text-on-surface-variant border-outline-variant/40 hover:border-primary/60 hover:text-primary'
-                    }`}
-                  >
-                    <Icon name={icon} filled={selectedConditions.includes(label)} className="text-xs" />
-                    {label}
-                  </button>
-                ))}
-              </div>
-
-              {/* Textarea + send */}
-              <div className="flex gap-3 items-end">
+            <div className="flex gap-4 items-end max-w-4xl mx-auto">
+              <div className="flex-1 relative flex items-center rounded-xl bg-[var(--dd-surface-muted)] border border-[var(--dd-surface-strong)] px-4 focus-within:border-[var(--dd-surface-base)] transition">
                 <textarea
                   ref={textareaRef}
                   value={inputValue}
-                  onChange={e => { setInputValue(e.target.value); adjustTextareaHeight(e.target); }}
+                  onChange={e => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Describe your concern — as you would to a trusted friend…"
+                  placeholder="Describe your concern as you would to a friend…"
                   rows={1}
-                  className="flex-1 resize-none bg-surface rounded-xl border border-outline-variant/30 focus:outline-none focus:border-primary/60 transition-colors text-on-surface placeholder:text-outline/60 px-4 py-3 font-noto-serif text-sm italic leading-relaxed overflow-hidden"
-                  style={{ minHeight: '48px', maxHeight: '160px' }}
+                  className="w-full bg-transparent py-4 text-[14px] outline-none resize-none font-medium italic min-h-[56px] max-h-32"
                 />
-                <button
-                  onClick={sendMessage}
-                  disabled={!inputValue.trim() && selectedConditions.length === 0}
-                  className="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center flex-shrink-0 hover:opacity-90 active:scale-95 transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-md"
-                  aria-label="Send message"
-                >
-                  <Icon name="send" filled className="text-xl" />
-                </button>
               </div>
-              <p className="text-xs text-on-surface/30 font-manrope mt-2 text-center">Press Enter to send · Shift+Enter for new line</p>
-            </div>
-          </section>
-
-          {/* ── Right sidebar ── */}
-          <aside className="hidden lg:flex flex-col w-80 xl:w-96 flex-shrink-0 space-y-6 overflow-y-auto no-scrollbar">
-
-            {/* Past Journeys */}
-            <div className="bg-surface-container rounded-2xl p-6 border border-outline-variant/10">
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="font-noto-serif font-bold text-lg">Past Journeys</h3>
-                <Icon name="history_edu" className="text-primary" />
-              </div>
-              <div className="space-y-3">
-                <div className="p-4 bg-surface-container-lowest rounded-xl border-l-4 border-secondary transition-transform hover:-translate-x-1 cursor-pointer">
-                  <div className="flex justify-between items-start mb-1">
-                    <span className="text-xs font-bold uppercase tracking-tighter text-on-surface-variant">March 14, 2024</span>
-                    <span className="bg-secondary-fixed px-2 py-0.5 rounded text-xs font-bold text-on-secondary-fixed">RESOLVED</span>
-                  </div>
-                  <p className="font-noto-serif text-sm font-semibold mt-1">The Monsoon Skin Rescue</p>
-                  <p className="text-xs text-on-surface-variant mt-1 italic">Prescribed: Sandalwood & Honey Paste</p>
-                </div>
-                <div className="p-4 bg-surface-container-lowest rounded-xl border-l-4 border-primary transition-transform hover:-translate-x-1 cursor-pointer">
-                  <div className="flex justify-between items-start mb-1">
-                    <span className="text-xs font-bold uppercase tracking-tighter text-on-surface-variant">Feb 28, 2024</span>
-                    <span className="bg-primary-fixed px-2 py-0.5 rounded text-xs font-bold text-on-primary-fixed">ONGOING</span>
-                  </div>
-                  <p className="font-noto-serif text-sm font-semibold mt-1">Scalp Vitality Ritual</p>
-                  <p className="text-xs text-on-surface-variant mt-1 italic">Prescribed: Gotu Kola Infusion</p>
-                </div>
-              </div>
-              <button className="w-full mt-5 text-center text-primary/60 text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors">
-                VIEW COMPLETE ARCHIVE
+              <button
+                onClick={sendMessage}
+                disabled={!inputValue.trim() && selectedConditions.length === 0}
+                className="h-14 w-14 rounded-xl bg-[var(--dd-surface-base)] text-white flex items-center justify-center flex-shrink-0 hover:opacity-90 active:scale-95 transition-all disabled:opacity-20 shadow-lg"
+              >
+                <Send className="h-6 w-6" />
               </button>
             </div>
+            <p className="text-[11px] font-bold uppercase tracking-widest opacity-30 mt-3 text-center">
+              Press Enter to send · Shift+Enter for new line
+            </p>
+          </div>
+        </section>
 
-            {/* Curator's Tip */}
-            <div className="relative rounded-2xl overflow-hidden min-h-[340px] flex flex-col justify-end">
-              <img
-                alt="Traditional botanical herbs"
-                className="absolute inset-0 w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgsDGHA0LFDWT73Z6Yjj6-n6Y0vV48a2EdcuPsgthhGKghIrECnLKWEfvTxX_wRMQuk7CYbGfdBwAmPd_rYpBJNCKlEymu7m_oCneS2yt8YUnQ4jytqxF9Q5Dk0Ks0nAGGuBshHIxDWdWHqZ6XpXZGBFWsgea6xCpY8VdKpAfjjRTNGc2cLwCsia-RV_MnOm9YwSdfKHurrhRkhE8FdZGyb_EqkY8Dzw0wU6pSxcY2bMCdboNial45JRjq4Ejb3c86tTfJUObwoeq9"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent"></div>
-              <div className="relative z-10 text-on-primary p-7">
-                <span className="font-noto-serif italic text-base text-primary-fixed">Wisdom of the Week</span>
-                <h4 className="text-xl font-noto-serif font-bold mt-2">The Cooling Spirit of Vetiver</h4>
-                <p className="text-sm mt-3 font-manrope opacity-90 leading-relaxed">
-                  "When the mind burns with anxiety, the earth provides its roots. Vetiver calms the fire within."
-                </p>
-                <button className="mt-5 border border-white/30 px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-white/10 transition-all">
-                  Discover More
-                </button>
-              </div>
+        {/* Info Sidebar */}
+        <aside className="hidden lg:flex flex-col w-96 flex-shrink-0 bg-white p-8 space-y-8 overflow-y-auto no-scrollbar">
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-[20px] font-bold tracking-tight">Past Journeys</h3>
+              <History className="h-5 w-5 opacity-40" />
             </div>
+            <div className="space-y-4">
+              <JourneyCard 
+                date="March 14, 2024" 
+                title="The Monsoon Skin Rescue" 
+                status="Resolved"
+                treatment="Sandalwood & Honey Paste"
+              />
+              <JourneyCard 
+                date="Feb 28, 2024" 
+                title="Scalp Vitality Ritual" 
+                status="Ongoing"
+                treatment="Gotu Kola Infusion"
+                active
+              />
+            </div>
+          </div>
 
-            {/* Begin Ritual Analysis CTA */}
-            <Link
-              to="/"
-              className="block w-full text-center bg-secondary text-on-secondary px-6 py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:opacity-90 transition-all shadow-lg"
-            >
-              Begin Ritual Analysis
-            </Link>
-          </aside>
-        </div>
+          <div className="relative rounded-2xl overflow-hidden aspect-[3/4] group">
+            <img 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgsDGHA0LFDWT73Z6Yjj6-n6Y0vV48a2EdcuPsgthhGKghIrECnLKWEfvTxX_wRMQuk7CYbGfdBwAmPd_rYpBJNCKlEymu7m_oCneS2yt8YUnQ4jytqxF9Q5Dk0Ks0nAGGuBshHIxDWdWHqZ6XpXZGBFWsgea6xCpY8VdKpAfjjRTNGc2cLwCsia-RV_MnOm9YwSdfKHurrhRkhE8FdZGyb_EqkY8Dzw0wU6pSxcY2bMCdboNial45JRjq4Ejb3c86tTfJUObwoeq9"
+              alt="Botanicals"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-6 text-white">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] opacity-60">Wisdom of the Week</span>
+              <h4 className="text-[20px] font-bold leading-tight mt-2">The Cooling Spirit of Vetiver</h4>
+              <p className="mt-3 text-[13px] opacity-80 leading-relaxed font-medium">
+                "When the mind burns with anxiety, the earth provides its roots. Vetiver calms the fire within."
+              </p>
+            </div>
+          </div>
 
-        {/* Mobile bottom nav */}
-        <nav className="lg:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-surface z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(28,28,23,0.06)] border-t border-outline-variant/15">
-          <Link to="/consult" className="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl min-w-[64px] min-h-[44px] px-3 py-2">
-            <Icon name="chat_bubble" filled />
-            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Consult</span>
+          <Link
+            to="/"
+            className="flex items-center justify-center gap-2 w-full py-4 rounded-[var(--dd-radius-sm)] bg-[var(--dd-surface-base)] text-white text-[14px] font-bold shadow-lg transition hover:opacity-90 active:scale-[0.98]"
+          >
+            Explore apothecary
+            <ChevronRight className="h-4 w-4" />
           </Link>
-          <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-on-surface/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container transition-all rounded-xl">
-            <Icon name="auto_awesome" />
-            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Rituals</span>
-          </Link>
-          <Link to="/ritual-builder" className="flex flex-col items-center justify-center text-on-surface/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container transition-all rounded-xl">
-            <Icon name="auto_stories" />
-            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Stories</span>
-          </Link>
-          <Link to="/" className="flex flex-col items-center justify-center text-on-surface/40 min-w-[64px] min-h-[44px] px-3 py-2 hover:bg-surface-container transition-all rounded-xl">
-            <Icon name="local_pharmacy" />
-            <span className="font-manrope text-xs font-bold uppercase tracking-widest mt-1">Shop</span>
-          </Link>
-        </nav>
+        </aside>
       </div>
+    </BrandedLayout>
+  );
+}
+
+function JourneyCard({ date, title, status, treatment, active }: any) {
+  return (
+    <div className={`p-5 rounded-[var(--dd-radius-xs)] border transition-all cursor-pointer hover:shadow-md ${
+      active ? 'border-[var(--dd-surface-base)] ring-1 ring-[var(--dd-surface-base)]' : 'border-[var(--dd-surface-strong)] bg-white'
+    }`}>
+      <div className="flex justify-between items-start mb-2">
+        <span className="text-[10px] font-bold uppercase tracking-wider opacity-40">{date}</span>
+        <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${
+          active ? 'bg-[var(--dd-surface-base)] text-white' : 'bg-[var(--dd-surface-strong)] text-black'
+        }`}>{status}</span>
+      </div>
+      <h4 className="text-[15px] font-bold tracking-tight">{title}</h4>
+      <p className="text-[12px] opacity-60 mt-1 font-medium italic">Prescribed: {treatment}</p>
     </div>
   );
 }

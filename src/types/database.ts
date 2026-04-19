@@ -132,7 +132,7 @@ export function formatPriceCents(cents: number): string {
     currency: 'LKR',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(cents);
+  }).format(cents / 100);
 }
 
 export function parsePriceString(priceStr: string): number {

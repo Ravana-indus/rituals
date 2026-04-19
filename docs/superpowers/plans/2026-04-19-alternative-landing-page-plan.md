@@ -1,0 +1,1246 @@
+# Alternative Landing Page (A/B Test Variant) Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Create `home3.html` - a minimal/clean A/B test variant landing page for Lakbima Beauty with Swiss aesthetic.
+
+**Architecture:** Standalone HTML file with embedded CSS using existing design tokens as CSS variables. Minimal visual density, maximum white space, restrained color usage (brand primary as accent only).
+
+**Tech Stack:** HTML5, CSS (embedded with design tokens as variables), Vanilla JS (minimal interactions)
+
+---
+
+## File Structure
+
+- Create: `home3.html` (standalone landing page)
+
+---
+
+## Tasks
+
+### Task 1: HTML Structure and CSS Variables
+
+**Files:**
+- Create: `home3.html`
+
+- [ ] **Step 1: Create the HTML file with base structure**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Heritage Curator | Minimal Edit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Design Tokens as CSS Variables - Minimal Swiss Approach */
+    :root {
+      --color-brand-primary: #A44668;
+      --color-brand-primary-hover: #8C3955;
+      --color-brand-secondary: #D4A574;
+      --color-surface-base: #FEFCFA;
+      --color-surface-raised: #F7F4F0;
+      --color-surface-muted: #EFEAE4;
+      --color-text-primary: #1A1A1A;
+      --color-text-secondary: #5C5347;
+      --color-text-tertiary: #8A8078;
+      --color-border-default: #E8E3DD;
+      --color-icon-secondary: #8A8078;
+      --color-semantic-success: #1B7A4E;
+      
+      --font-family-display: "Playfair Display", Georgia, serif;
+      --font-family-primary: "Inter", -apple-system, "Segoe UI", sans-serif;
+      
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 1px 2px rgba(26, 26, 26, 0.05);
+      --shadow-md: 0 2px 8px rgba(26, 26, 26, 0.08);
+      --shadow-lg: 0 4px 16px rgba(26, 26, 26, 0.1);
+      
+      --motion-duration-fast: 150ms;
+      --motion-easing-default: cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-family-primary);
+      background-color: var(--color-surface-base);
+      color: var(--color-text-primary);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <!-- Content will be added in subsequent tasks -->
+</body>
+</html>
+```
+
+- [ ] **Step 2: Verify file structure**
+
+Run: None (static file creation)
+Expected: File created with CSS variables
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: start home3.html with base structure and CSS design tokens"
+```
+
+---
+
+### Task 2: Header Component
+
+**Files:**
+- Modify: `home3.html` (add header after opening `<body>`)
+
+- [ ] **Step 1: Add header HTML structure**
+
+Add inside `<body>` tag, after base HTML structure:
+```html
+<!-- Minimal Header -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">The Heritage Curator</a>
+    <div class="search-container">
+      <span class="material-symbols-outlined search-icon">search</span>
+      <input type="text" class="search-input" placeholder="Search brands, skincare, makeup" aria-label="Search products">
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Cart">
+        <span class="material-symbols-outlined">shopping_bag</span>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+```
+
+- [ ] **Step 2: Add header CSS**
+
+Add to `<style>` section:
+```css
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-surface-base);
+  border-bottom: 1px solid var(--color-border-default);
+  height: 64px;
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.logo {
+  font-family: var(--font-family-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.search-container {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: var(--space-4);
+  color: var(--color-icon-secondary);
+  font-size: 20px;
+}
+
+.search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--space-4) 0 var(--space-10);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-raised);
+  font-family: var(--font-family-primary);
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  transition: border-color var(--motion-duration-fast) var(--motion-easing-default),
+              box-shadow var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 3px rgba(164, 70, 104, 0.15);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.icon-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  color: var(--color-text-primary);
+  transition: color var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.icon-btn:hover {
+  color: var(--color-brand-primary);
+}
+
+.icon-btn .material-symbols-outlined {
+  font-size: 24px;
+}
+
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background-color: var(--color-brand-primary);
+  color: var(--color-surface-base);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+```
+
+- [ ] **Step 3: Add Material Icons link**
+
+Add to `<head>` before closing `</head>`:
+```html
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+```
+
+Add to CSS:
+```css
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+```
+
+- [ ] **Step 4: Verify styling**
+
+Run: Open `home3.html` in browser
+Expected: Sticky header with logo, search input, cart icon
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: add minimal header component to home3.html"
+```
+
+---
+
+### Task 3: Delivery Zone Selector
+
+**Files:**
+- Modify: `home3.html`
+
+- [ ] **Step 1: Add delivery zone HTML**
+
+Add after header (before `<main>`):
+```html
+<div class="delivery-zone">
+  <span class="material-symbols-outlined location-icon">location_on</span>
+  <span class="zone-text">Deliver to: <strong>Colombo 03</strong></span>
+</div>
+```
+
+- [ ] **Step 2: Add delivery zone CSS**
+
+Add to `<style>`:
+```css
+/* Delivery Zone */
+.delivery-zone {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+  color: var(--color-text-tertiary);
+}
+
+.delivery-zone .location-icon {
+  font-size: 18px;
+  color: var(--color-icon-secondary);
+}
+
+.delivery-zone strong {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+```
+
+- [ ] **Step 3: Verify styling**
+
+Run: Open `home3.html` in browser
+Expected: Subtle delivery zone indicator
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: add delivery zone selector to home3.html"
+```
+
+---
+
+### Task 4: Hero Section
+
+**Files:**
+- Modify: `home3.html`
+
+- [ ] **Step 1: Add hero section HTML**
+
+Add after delivery zone (inside `<main>`):
+```html
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Heritage Beauty,<br><span class="italic">Reclaimed.</span></h1>
+    <p class="hero-subtitle">The curated edit of global luxury skincare and fragrance for the discerning Sri Lankan ritual.</p>
+    <a href="#products" class="hero-cta">Shop The Edit</a>
+  </div>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=80" alt="Minimalist beauty products on clean surface" loading="eager">
+  </div>
+</section>
+```
+
+- [ ] **Step 2: Add hero CSS**
+
+Add to `<style>`:
+```css
+/* Hero Section - Minimal Swiss Style */
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-10) var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: center;
+  min-height: 70vh;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.hero-title {
+  font-family: var(--font-family-display);
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+.hero-title .italic {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  max-width: 400px;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) var(--space-8);
+  background-color: var(--color-brand-primary);
+  color: var(--color-surface-base);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-default);
+  width: fit-content;
+}
+
+.hero-cta:hover {
+  background-color: var(--color-brand-primary-hover);
+}
+
+.hero-image {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: var(--space-8) var(--space-6);
+  }
+
+  .hero-image {
+    order: -1;
+    aspect-ratio: 16/9;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.875rem;
+  }
+}
+```
+
+- [ ] **Step 3: Verify styling**
+
+Run: Open `home3.html` in browser
+Expected: Clean hero with large typography, single image, single CTA
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: add minimal hero section to home3.html"
+```
+
+---
+
+### Task 5: Category Navigation
+
+**Files:**
+- Modify: `home3.html`
+
+- [ ] **Step 1: Add category navigation HTML**
+
+Add after hero (inside `<main>`):
+```html
+<nav class="categories" aria-label="Product categories">
+  <div class="categories-scroll">
+    <a href="#" class="category-item active">
+      <span class="category-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </span>
+      <span class="category-label">New In</span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="category-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+      </span>
+      <span class="category-label">Brands</span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="category-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+      </span>
+      <span class="category-label">Skincare</span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="category-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 2h8l4 10H4L8 2zM5 12h14M12 12v10"/>
+        </svg>
+      </span>
+      <span class="category-label">Fragrance</span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="category-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </span>
+      <span class="category-label">Self-Care</span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="category-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+          <line x1="7" y1="7" x2="7.01" y2="7"/>
+        </svg>
+      </span>
+      <span class="category-label">Offers</span>
+    </a>
+  </div>
+</nav>
+```
+
+- [ ] **Step 2: Add category CSS**
+
+Add to `<style>`:
+```css
+/* Category Navigation - Minimal */
+.categories {
+  border-top: 1px solid var(--color-border-default);
+  border-bottom: 1px solid var(--color-border-default);
+  background-color: var(--color-surface-base);
+}
+
+.categories-scroll {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-6);
+  display: flex;
+  gap: var(--space-6);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.categories-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: color var(--motion-duration-fast) var(--motion-easing-default);
+  flex-shrink: 0;
+}
+
+.category-item:hover {
+  color: var(--color-text-primary);
+}
+
+.category-item.active {
+  color: var(--color-brand-primary);
+}
+
+.category-item.active .category-icon {
+  border-color: var(--color-brand-primary);
+}
+
+.category-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.category-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.category-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.category-item.active .category-label {
+  font-weight: 600;
+}
+```
+
+- [ ] **Step 3: Verify styling**
+
+Run: Open `home3.html` in browser
+Expected: Horizontal scroll categories with circular icons
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: add minimal category navigation to home3.html"
+```
+
+---
+
+### Task 6: Filter Pills
+
+**Files:**
+- Modify: `home3.html`
+
+- [ ] **Step 1: Add filter pills HTML**
+
+Add after category navigation (inside `<main>`):
+```html
+<div class="filters" id="products">
+  <div class="filters-inner">
+    <button class="filter-pill active" aria-pressed="true">All</button>
+    <button class="filter-pill" aria-pressed="false">Vegan</button>
+    <button class="filter-pill" aria-pressed="false">Cruelty-Free</button>
+    <button class="filter-pill" aria-pressed="false">Under Rs. 2,000</button>
+  </div>
+</div>
+```
+
+- [ ] **Step 2: Add filter pills CSS**
+
+Add to `<style>`:
+```css
+/* Filter Pills - Minimal */
+.filters {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+.filters-inner {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filters-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-pill {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background-color: transparent;
+  font-family: var(--font-family-primary);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.filter-pill:hover {
+  border-color: var(--color-text-tertiary);
+  color: var(--color-text-primary);
+}
+
+.filter-pill.active {
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: var(--color-surface-base);
+}
+```
+
+- [ ] **Step 3: Add filter interaction JS**
+
+Add before closing `</body>`:
+```html
+<script>
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.filter-pill').forEach(p => {
+        p.classList.remove('active');
+        p.setAttribute('aria-pressed', 'false');
+      });
+      this.classList.add('active');
+      this.setAttribute('aria-pressed', 'true');
+    });
+  });
+</script>
+```
+
+- [ ] **Step 4: Verify styling**
+
+Run: Open `home3.html` in browser
+Expected: Filter pills with active state toggle
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: add filter pills to home3.html"
+```
+
+---
+
+### Task 7: Product Grid
+
+**Files:**
+- Modify: `home3.html`
+
+- [ ] **Step 1: Add product grid HTML**
+
+Add after filters (inside `<main>`):
+```html
+<section class="products">
+  <div class="products-grid">
+    <!-- Product 1 -->
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&q=80" alt="Augustinus Bader The Rich Cream 30ml" loading="lazy">
+        <span class="product-badge">New</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Augustinus Bader</p>
+        <h3 class="product-name">The Rich Cream</h3>
+        <p class="product-price">Rs. 42,500</p>
+        <button class="add-to-bag-btn">Add to Bag</button>
+      </div>
+    </article>
+
+    <!-- Product 2 -->
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80" alt="Byredo Gypsy Water Eau de Parfum 50ml" loading="lazy">
+        <span class="product-badge sale">Sale</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Byredo</p>
+        <h3 class="product-name">Gypsy Water Eau de Parfum</h3>
+        <div class="product-price-wrapper">
+          <span class="product-price">Rs. 64,200</span>
+          <span class="product-price-original">Rs. 75,000</span>
+        </div>
+        <button class="add-to-bag-btn">Add to Bag</button>
+      </div>
+    </article>
+
+    <!-- Product 3 -->
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&q=80" alt="Gucci Beauty Rouge à Lèvres Mat Lipstick" loading="lazy">
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Gucci Beauty</p>
+        <h3 class="product-name">Rouge à Lèvres Mat</h3>
+        <p class="product-price">Rs. 12,800</p>
+        <button class="add-to-bag-btn">Add to Bag</button>
+      </div>
+    </article>
+
+    <!-- Product 4 -->
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=600&q=80" alt="Elemis Pro-Collagen Cleansing Balm 100g" loading="lazy">
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Elemis</p>
+        <h3 class="product-name">Pro-Collagen Cleansing Balm</h3>
+        <p class="product-price">Rs. 18,500</p>
+        <button class="add-to-bag-btn">Add to Bag</button>
+      </div>
+    </article>
+
+    <!-- Product 5 -->
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1570194065650-d99fb4b38b15?w=600&q=80" alt="Vintner's Daughter Active Botanical Serum 30ml" loading="lazy">
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Vintner's Daughter</p>
+        <h3 class="product-name">Active Botanical Serum</h3>
+        <p class="product-price">Rs. 55,000</p>
+        <button class="add-to-bag-btn">Add to Bag</button>
+      </div>
+    </article>
+
+    <!-- Product 6 -->
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&q=80" alt="Pat McGrath Labs Mothership X Palette" loading="lazy">
+        <span class="product-badge">Low Stock</span>
+      </div>
+      <div class="product-info">
+        <p class="product-brand">Pat McGrath Labs</p>
+        <h3 class="product-name">Mothership X: Moonlit Seduction</h3>
+        <p class="product-price">Rs. 38,900</p>
+        <button class="add-to-bag-btn">Add to Bag</button>
+      </div>
+    </article>
+  </div>
+</section>
+```
+
+- [ ] **Step 2: Add product grid CSS**
+
+Add to `<style>`:
+```css
+/* Product Grid - Minimal Swiss */
+.products {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Product Card - Simplified */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.product-image {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.03);
+}
+
+.product-badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-surface-base);
+  color: var(--color-text-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+}
+
+.product-badge.sale {
+  background-color: var(--color-brand-primary);
+  color: var(--color-surface-base);
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.product-brand {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-tertiary);
+}
+
+.product-name {
+  font-family: var(--font-family-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.product-price-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.product-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.product-price-original {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  text-decoration: line-through;
+}
+
+.add-to-bag-btn {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  margin-top: var(--space-2);
+  background-color: var(--color-brand-primary);
+  color: var(--color-surface-base);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.add-to-bag-btn:hover {
+  background-color: var(--color-brand-primary-hover);
+}
+
+.add-to-bag-btn:active {
+  transform: scale(0.98);
+}
+```
+
+- [ ] **Step 3: Verify styling**
+
+Run: Open `home3.html` in browser
+Expected: Clean 2-column product grid with simplified cards
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: add minimal product grid to home3.html"
+```
+
+---
+
+### Task 8: Bottom Navigation (Mobile)
+
+**Files:**
+- Modify: `home3.html`
+
+- [ ] **Step 1: Add bottom navigation HTML**
+
+Add before closing `</body>`:
+```html
+<nav class="bottom-nav" aria-label="Main navigation">
+  <a href="#" class="nav-item active">
+    <span class="material-symbols-outlined nav-icon">storefront</span>
+    <span class="nav-label">Shop</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="material-symbols-outlined nav-icon">search</span>
+    <span class="nav-label">Search</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="material-symbols-outlined nav-icon">shopping_bag</span>
+    <span class="nav-label">Cart</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="material-symbols-outlined nav-icon">favorite</span>
+    <span class="nav-label">Wishlist</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="material-symbols-outlined nav-icon">person</span>
+    <span class="nav-label">Account</span>
+  </a>
+</nav>
+```
+
+- [ ] **Step 2: Add bottom navigation CSS**
+
+Add to `<style>`:
+```css
+/* Bottom Navigation - Mobile Only */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: var(--color-surface-base);
+  border-top: 1px solid var(--color-border-default);
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 var(--space-4);
+  z-index: 50;
+}
+
+@media (max-width: 767px) {
+  .bottom-nav {
+    display: flex;
+  }
+
+  .products {
+    padding-bottom: calc(var(--space-6) + 64px);
+  }
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--color-text-tertiary);
+  padding: var(--space-2);
+  transition: color var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.nav-item.active {
+  color: var(--color-brand-primary);
+}
+
+.nav-item:hover {
+  color: var(--color-text-secondary);
+}
+
+.nav-icon {
+  font-size: 24px;
+}
+
+.nav-label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+```
+
+- [ ] **Step 3: Verify styling**
+
+Run: Open `home3.html` in browser (resize to mobile)
+Expected: Bottom navigation visible on mobile
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: add mobile bottom navigation to home3.html"
+```
+
+---
+
+### Task 9: Footer
+
+**Files:**
+- Modify: `home3.html`
+
+- [ ] **Step 1: Add footer HTML**
+
+Add after `<main>` and before bottom navigation:
+```html
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-logo">The Heritage Curator</span>
+    <nav class="footer-links">
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+      <a href="#">Privacy</a>
+      <a href="#">Contact</a>
+    </nav>
+    <p class="footer-copy">2024 The Heritage Curator</p>
+  </div>
+</footer>
+```
+
+- [ ] **Step 2: Add footer CSS**
+
+Add to `<style>`:
+```css
+/* Footer - Minimal */
+.footer {
+  background-color: var(--color-surface-muted);
+  padding: var(--space-10) var(--space-6);
+  margin-top: var(--space-10);
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.footer-logo {
+  font-family: var(--font-family-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-text-primary);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-6);
+}
+
+.footer-links a {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.footer-links a:hover {
+  color: var(--color-brand-primary);
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+```
+
+- [ ] **Step 3: Verify styling**
+
+Run: Open `home3.html` in browser
+Expected: Clean minimal footer
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: add minimal footer to home3.html"
+```
+
+---
+
+### Task 10: Reduced Motion and Accessibility
+
+**Files:**
+- Modify: `home3.html`
+
+- [ ] **Step 1: Add reduced motion support CSS**
+
+Add to `<style>`:
+```css
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```
+
+- [ ] **Step 2: Add focus styles**
+
+Add to existing CSS:
+```css
+*:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+```
+
+- [ ] **Step 3: Verify accessibility**
+
+Run: Tab through page, verify focus indicators visible
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add home3.html
+git commit -m "feat: add reduced motion and accessibility to home3.html"
+```
+
+---
+
+## Spec Coverage Check
+
+- [x] Page sections: Header, Delivery Zone, Hero, Categories, Filters, Product Grid, Bottom Nav, Footer
+- [x] Minimal Swiss design approach
+- [x] Uses design tokens as CSS variables
+- [x] Restrained color usage (brand primary as accent only)
+- [x] Responsive breakpoints
+- [x] Accessibility (focus visible, reduced motion, aria labels)
+
+## Placeholder Scan
+- No TODOs, TBDs, or placeholders found
+- All steps contain actual implementation code
+
+---
+
+## Plan Complete
+
+Plan saved to `docs/superpowers/plans/2026-04-19-alternative-landing-page-plan.md`.
+
+**Two execution options:**
+
+1. **Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks
+
+2. **Inline Execution** - Execute tasks in this session
+
+Which approach?

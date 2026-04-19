@@ -1,198 +1,199 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
+import {
+  Search,
+  ChevronRight,
+  LifeBuoy,
+  Truck,
+  RotateCcw,
+  ShieldCheck,
+  Mail,
+  MessageSquare,
+  MapPin,
+  ArrowRight,
+  HelpCircle,
+  Package,
+} from 'lucide-react';
+import BrandedLayout from '../components/BrandedLayout';
 
 export default function Support() {
   return (
-    <div className="bg-surface text-on-surface font-body selection:bg-secondary-fixed min-h-screen flex flex-col relative">
-      <div className="absolute inset-0 pointer-events-none z-[100] opacity-[0.03]" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqe1wcZJKuTGsNvvSewiOjDImllPfigsQ3VpquGkn1bNnte7BSXpfulK-emw8H5UYRFXnJ4XOo9lJq9767-ChNfk79uj_1d4BpznrFV2u6z9UdvJfSozdKyb1IsUZpUUM7OBKSPvUnskNafL2a6fvBnZqQiDXhXvQRNOy3kK0sPdy6eciY1DAJDTNXY59uvACjP5Wi4qMTQ9Ijw0P_vLaznIlywx_cMwH_7psutibAPCcvHZ4h0ni-0imZiScL2wzALPOey3QMwNys')" }}></div>
-      
-      <Header />
-
-      <main className="pt-8 flex-grow w-full">
-        {/* Hero Search Section */}
-        <section className="relative py-24 px-8 flex flex-col items-center justify-center text-center">
-          <div className="max-w-3xl w-full relative z-10">
-            <span className="font-manrope text-secondary uppercase tracking-[0.3em] text-xs mb-4 block">Concierge & Care</span>
-            <h1 className="font-noto-serif text-5xl md:text-6xl text-primary mb-8 leading-tight">How may we guide your ritual today?</h1>
-            <div className="relative group">
-              <input className="w-full bg-surface-container-lowest border-none py-6 px-8 pl-16 rounded-xl shadow-[0_10px_30px_rgba(28,28,23,0.04)] focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/50 font-body italic text-lg" placeholder="Search for apothecary guidance, order rituals..." type="text" />
-              <Icon name="search" className="absolute left-6 top-1/2 -translate-y-1/2 text-primary text-2xl" />
+    <BrandedLayout>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-[var(--dd-surface-base)] py-20 text-white">
+        <div className="absolute inset-0 opacity-10">
+           {/* Abstract pattern or texture could go here */}
+        </div>
+        <div className="relative mx-auto max-w-[1600px] px-[var(--dd-space-4)] md:px-[var(--dd-space-6)] text-center">
+          <span className="text-[12px] font-bold uppercase tracking-[0.3em] opacity-60">Concierge & Care</span>
+          <h1 className="mt-4 text-[40px] font-bold leading-tight tracking-tight md:text-[64px]">
+            How can we guide your ritual today?
+          </h1>
+          
+          <div className="mx-auto mt-10 max-w-2xl">
+            <div className="relative flex items-center rounded-[var(--dd-radius-sm)] bg-white px-6 py-4 shadow-2xl">
+              <Search className="h-6 w-6 text-black opacity-40" />
+              <input 
+                type="text" 
+                placeholder="Search for apothecary guidance, order rituals..." 
+                className="ml-4 w-full bg-transparent text-[18px] text-black outline-none placeholder:opacity-40 font-medium"
+              />
             </div>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <span className="text-on-surface-variant text-sm font-manrope uppercase tracking-wider">Suggested:</span>
-              <button className="text-xs font-manrope uppercase tracking-widest text-primary hover:underline underline-offset-4">Shipping Times</button>
-              <button className="text-xs font-manrope uppercase tracking-widest text-primary hover:underline underline-offset-4">Herb Sourcing</button>
-              <button className="text-xs font-manrope uppercase tracking-widest text-primary hover:underline underline-offset-4">Return Policy</button>
+            <div className="mt-6 flex flex-wrap justify-center gap-4 text-[13px] font-bold">
+              <span className="opacity-40">SUGGESTED:</span>
+              <button className="underline hover:opacity-80 transition">Shipping Times</button>
+              <button className="underline hover:opacity-80 transition">Herb Sourcing</button>
+              <button className="underline hover:opacity-80 transition">Return Policy</button>
             </div>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-container/20 via-surface to-surface z-0 pointer-events-none"></div>
-        </section>
-
-        {/* Help Categories Bento Grid */}
-        <section className="max-w-7xl mx-auto px-8 py-16 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            {/* Apothecary Guidance */}
-            <div className="md:col-span-8 group relative overflow-hidden bg-surface-container-low rounded-xl p-10 flex flex-col justify-between min-h-[250px] md:min-h-[400px] transition-all hover:bg-surface-container">
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <Icon name="medical_services" filled className="text-4xl text-primary-container" />
-                  <h2 className="font-noto-serif text-3xl text-primary">Apothecary Guidance</h2>
-                </div>
-                <p className="text-on-surface-variant leading-relaxed max-w-md mb-8">Expert advice on our botanical blends, ingredient sourcing, and personalized wellness consultations to honor your body's heritage.</p>
-                <ul className="space-y-4 font-manrope text-sm tracking-wide text-on-surface">
-                  <li className="flex items-center gap-3 group/item cursor-pointer">
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                    <span className="group-hover/item:text-secondary transition-colors">Understanding Botanical Potency</span>
-                  </li>
-                  <li className="flex items-center gap-3 group/item cursor-pointer">
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                    <span className="group-hover/item:text-secondary transition-colors">Personalized Skin Rituals</span>
-                  </li>
-                  <li className="flex items-center gap-3 group/item cursor-pointer">
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                    <span className="group-hover/item:text-secondary transition-colors">The Heritage Sourcing Map</span>
-                  </li>
-                </ul>
-              </div>
-              <img className="absolute right-[-10%] bottom-[-5%] w-1/2 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none grayscale" alt="Close-up of dried organic herbs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZkTFo2mNJoBdA-wgpB2MZ-HZAuUDlUmunGNlg6Pi8wDsQgcQYnPgD6ZrcheQUAksqxJFeUVu6jSzbsqq3vcDI-pYPjK3hqVsxr9UsbAeiByjp8SPbomq3PCzAqHEXth6sxQdp6YIpDQegxIlODjUIGqsVGAhRI91Rh_yxK3V_O9nLOykvQV3-0FUojCGi8OirR5sqsmK3xUdQPCBluY-ZHTxXVG1-oEkCjE-mWOGE0Es2e2a_UODdtYKlkzu9heZuZOknNCB41SYR" />
-            </div>
-
-            {/* Order & Delivery Rituals */}
-            <div className="md:col-span-4 bg-primary text-on-primary rounded-xl p-10 flex flex-col justify-between transition-all hover:translate-y-[-4px]">
-              <div>
-                <Icon name="local_shipping" filled className="text-4xl mb-6 text-on-primary-container" />
-                <h2 className="font-noto-serif text-2xl mb-4">Order & Delivery Rituals</h2>
-                <p className="text-on-primary-container/80 text-sm leading-relaxed mb-6">From our hands to yours. Track your package's journey across the world.</p>
-              </div>
-              <div className="space-y-4">
-                <Link to="/track-order" className="block w-full text-center py-4 rounded-lg bg-surface/10 hover:bg-surface/20 transition-all font-manrope text-xs uppercase tracking-widest border border-on-primary-container/20">Track Your Order</Link>
-                <Link to="/support" className="block w-full text-center py-4 rounded-lg font-manrope text-xs uppercase tracking-widest text-on-primary-container hover:text-on-primary">Shipping Information</Link>
-              </div>
-            </div>
-
-            {/* Authentic Products */}
-            <div className="md:col-span-4 bg-tertiary-container text-on-tertiary rounded-xl p-10 flex flex-col gap-6 relative overflow-hidden group">
-              <h2 className="font-noto-serif text-2xl relative z-10">Authentic Products</h2>
-              <p className="text-on-tertiary-container/90 text-sm leading-relaxed relative z-10">We guarantee 100% authenticity on all international brands.</p>
-              <div className="relative z-10 mt-auto">
-                <span className="inline-flex items-center gap-2 font-manrope text-xs uppercase tracking-widest border-b border-on-tertiary-container pb-1 cursor-pointer">View Our Guarantee</span>
-              </div>
-              {/* Custom Stamp Badge */}
-              <div className="absolute -right-4 -bottom-4 w-32 h-32 rounded-full border-4 border-dashed border-on-tertiary-container/30 flex items-center justify-center rotate-12 group-hover:rotate-0 transition-transform">
-                <span className="font-noto-serif italic text-on-tertiary-container/30 text-center text-xs">100%<br/>AUTHENTIC</span>
-              </div>
-            </div>
-
-            {/* Common Questions */}
-            <div className="md:col-span-8 bg-surface-container-highest rounded-xl p-10">
-              <h2 className="font-noto-serif text-2xl text-primary mb-8">Frequently Asked Questions</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-                <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">How do I return a product?</h3>
-                </div>
-                <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">What is the shelf-life of these products?</h3>
-                </div>
-                <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">International duties and local taxes?</h3>
-                </div>
-                <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">How do I cancel my order?</h3>
-                </div>
-                <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">Do you offer wholesale discounts?</h3>
-                </div>
-                <div className="border-b border-outline-variant/30 pb-4 group cursor-pointer">
-                  <h3 className="font-manrope text-sm font-semibold text-on-surface group-hover:text-secondary transition-colors">Are your products authentic?</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Options */}
-        <section className="bg-surface-container-low py-24 px-8 mt-16 relative z-10">
-          <div className="max-w-5xl mx-auto text-center mb-16">
-            <h2 className="font-noto-serif text-4xl text-primary mb-4">Contact Our Team</h2>
-            <p className="text-on-surface-variant italic font-noto-serif">We are here to help.</p>
-          </div>
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Option 1 */}
-            <div className="bg-surface p-10 rounded-xl shadow-[0_20px_40px_rgba(28,28,23,0.04)] text-center flex flex-col items-center">
-              <div className="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-6 text-primary">
-                <Icon name="mail" className="text-3xl" />
-              </div>
-              <h3 className="font-noto-serif text-xl mb-3">Send an Inquiry</h3>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">For questions regarding products or existing orders.</p>
-              <Link to="/contact" className="mt-auto w-full py-4 bg-gradient-to-br from-[#003a3a] to-[#1c5151] text-on-primary rounded-lg font-manrope text-xs uppercase tracking-widest">Compose Email</Link>
-            </div>
-            {/* Option 2 */}
-            <div className="bg-surface p-10 rounded-xl shadow-[0_20px_40px_rgba(28,28,23,0.04)] text-center flex flex-col items-center border-t-4 border-secondary">
-              <div className="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center mb-6 text-secondary">
-                <Icon name="chat_bubble" className="text-3xl" />
-              </div>
-              <h3 className="font-noto-serif text-xl mb-3">Live Chat</h3>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">Connect with our team in real-time. Available 9am - 6pm SLT.</p>
-              <Link to="/consult" className="mt-auto w-full py-4 bg-secondary text-on-secondary rounded-lg font-manrope text-xs uppercase tracking-widest">Start Conversation</Link>
-              <span className="mt-4 text-xs uppercase tracking-widest text-secondary font-bold">Active Now</span>
-            </div>
-            {/* Option 3 */}
-            <div className="bg-surface p-10 rounded-xl shadow-[0_20px_40px_rgba(28,28,23,0.04)] text-center flex flex-col items-center">
-              <div className="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-6 text-primary">
-                <Icon name="location_on" className="text-3xl" />
-              </div>
-              <h3 className="font-noto-serif text-xl mb-3">Visit Our Store</h3>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed">Find your favorite personal care products at our store.</p>
-              <button className="mt-auto w-full py-4 border border-outline-variant text-primary rounded-lg font-manrope text-xs uppercase tracking-widest hover:bg-surface-container transition-colors">Find Location</button>
-            </div>
-          </div>
-        </section>
-
-        {/* Newsletter / Trust Section */}
-        <section className="max-w-7xl mx-auto px-8 py-24 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
-          <div className="relative">
-            <div className="aspect-[4/5] bg-surface-container-low rounded-xl overflow-hidden">
-              <img className="w-full h-full object-cover mix-blend-multiply opacity-80" alt="Artistic composition of a vintage brass scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs6DkXEf3r77qKbOojGQp2qWYOdUAvI0k_18zdoTf128PuGzzQIjHvUvJasOJqQKE-VDPQWX39QbfpNLa-4EnLeNtmW-EOgD0_SNKfP7nLLLP79p4CnoLG4Zs7k6dcv39eAobyRNu3Wq95pEeP7bwMR2fkHDnzhEaimTPn3faY2QEkXu861xgj-L5gmLIzFyiyHWyviKoMp4Q83RQTrqzhAKkq-4FMVFmcctwOxDNHcqMbUaukqPTMRKi1BvAu3z8h1THgZUYmP_Ux" />
-            </div>
-            <div className="absolute -bottom-8 -right-8 p-8 bg-surface-bright shadow-xl rounded-lg max-w-xs">
-              <p className="font-noto-serif italic text-primary text-lg">"Affordable personal care, delivered to your door."</p>
-              <p className="font-manrope text-xs uppercase tracking-[0.2em] text-secondary mt-4"></p>
-            </div>
-          </div>
-          <div>
-            <h2 className="font-noto-serif text-4xl text-primary mb-6">Join Our Mailing List</h2>
-            <p className="text-on-surface-variant leading-relaxed mb-8">Sign up to receive our latest offers, bundle discounts, and routine tips.</p>
-            <form className="flex flex-col gap-4">
-              <input className="bg-surface-container-low border-none border-b border-primary p-4 focus:ring-0 placeholder:text-outline/40" placeholder="Your email address" type="email" />
-              <button className="bg-gradient-to-br from-[#003a3a] to-[#1c5151] text-on-primary py-4 px-8 font-manrope text-xs uppercase tracking-widest w-fit">Subscribe</button>
-            </form>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="w-full border-t border-outline-variant/15 bg-surface-container  relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-screen-2xl mx-auto">
-          <div className="flex flex-col gap-2 text-center md:text-left">
-            <div className="font-noto-serif text-lg font-bold text-primary">Rituals.lk</div>
-            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 Rituals.lk. Affordable Personal Care.</p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-6">
-            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Privacy Policy</Link>
-            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Terms of Service</Link>
-            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Shipping & Returns</Link>
-            <Link to="/support" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Wholesale</Link>
-            <Link to="/contact" className="font-manrope text-sm uppercase tracking-widest text-on-surface/60  hover:text-primary transition-colors duration-300">Contact Us</Link>
           </div>
         </div>
-      </footer>
+      </section>
+
+      <div className="mx-auto max-w-[1600px] px-[var(--dd-space-4)] py-[var(--dd-space-8)] md:px-[var(--dd-space-6)]">
+        {/* Help Categories Bento Grid */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
+          {/* Main Help Block */}
+          <div className="group relative overflow-hidden rounded-[var(--dd-radius-xs)] border border-[var(--dd-surface-strong)] bg-white p-10 md:col-span-8 flex flex-col justify-between transition hover:shadow-md">
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-[var(--dd-surface-strong)] rounded-full">
+                  <LifeBuoy className="h-8 w-8 text-black" />
+                </div>
+                <h2 className="text-[32px] font-bold tracking-tight">Apothecary Guidance</h2>
+              </div>
+              <p className="max-w-md text-[16px] leading-relaxed opacity-60 mb-8">
+                Expert advice on our botanical blends, ingredient sourcing, and personalized wellness consultations to honor your body's heritage.
+              </p>
+              <ul className="space-y-4">
+                <SupportLink label="Understanding Botanical Potency" />
+                <SupportLink label="Personalized Skin Rituals" />
+                <SupportLink label="The Heritage Sourcing Map" />
+              </ul>
+            </div>
+            <Package className="absolute bottom-[-20px] right-[-20px] h-64 w-64 opacity-[0.03] transition-transform group-hover:scale-110" />
+          </div>
+
+          {/* Side Blocks */}
+          <div className="rounded-[var(--dd-radius-xs)] bg-black p-10 text-white md:col-span-4 flex flex-col justify-between transition hover:shadow-lg">
+            <div>
+              <Truck className="h-10 w-10 mb-6 opacity-60" />
+              <h2 className="text-[24px] font-bold tracking-tight mb-4">Order & Delivery</h2>
+              <p className="text-[14px] leading-relaxed opacity-60">
+                From our hands to yours. Track your package's journey across the world.
+              </p>
+            </div>
+            <div className="mt-8 space-y-3">
+              <Link to="/track-order" className="flex w-full items-center justify-center rounded-[var(--dd-radius-sm)] bg-white py-3 text-[14px] font-bold text-black transition hover:opacity-90">
+                Track Your Order
+              </Link>
+              <button className="w-full text-center text-[13px] font-bold opacity-60 hover:opacity-100 transition">
+                Shipping Information
+              </button>
+            </div>
+          </div>
+
+          <div className="rounded-[var(--dd-radius-xs)] border border-[var(--dd-surface-strong)] bg-white p-10 md:col-span-4 flex flex-col justify-between transition hover:shadow-md">
+            <div>
+              <ShieldCheck className="h-10 w-10 mb-6 text-green-600" />
+              <h2 className="text-[24px] font-bold tracking-tight mb-4">Authentic Products</h2>
+              <p className="text-[14px] leading-relaxed opacity-60">
+                We guarantee 100% authenticity on all international brands in our catalog.
+              </p>
+            </div>
+            <button className="mt-8 inline-flex items-center gap-2 text-[14px] font-bold text-[var(--dd-text-secondary)] hover:underline">
+              View Our Guarantee
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* FAQ Block */}
+          <div className="rounded-[var(--dd-radius-xs)] border border-[var(--dd-surface-strong)] bg-white p-10 md:col-span-8 transition hover:shadow-md">
+            <h2 className="text-[24px] font-bold tracking-tight mb-8">Frequently Asked Questions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+              <FAQItem label="How do I return a product?" />
+              <FAQItem label="What is the shelf-life of these products?" />
+              <FAQItem label="International duties and local taxes?" />
+              <FAQItem label="How do I cancel my order?" />
+              <FAQItem label="Do you offer wholesale discounts?" />
+              <FAQItem label="Are your products authentic?" />
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Options */}
+        <section className="mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-[32px] font-bold tracking-tight">Contact Our Team</h2>
+            <p className="mt-2 text-[16px] opacity-60 italic">We are here to help you find your balance.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <ContactCard 
+              icon={Mail}
+              title="Send an Inquiry"
+              desc="For questions regarding products or existing orders."
+              action="Compose Email"
+              link="/contact"
+            />
+            <ContactCard 
+              icon={MessageSquare}
+              title="Live Chat"
+              desc="Connect with our team in real-time. Available 9am - 6pm SLT."
+              action="Start Conversation"
+              link="/consult"
+              featured
+            />
+            <ContactCard 
+              icon={MapPin}
+              title="Visit Our Store"
+              desc="Find your favorite personal care products at our flagship location."
+              action="Find Location"
+              link="#"
+            />
+          </div>
+        </section>
+      </div>
+    </BrandedLayout>
+  );
+}
+
+function SupportLink({ label }: { label: string }) {
+  return (
+    <li className="flex items-center gap-3 text-[15px] font-bold opacity-80 hover:opacity-100 hover:text-[var(--dd-text-secondary)] transition cursor-pointer">
+      <div className="h-1.5 w-1.5 rounded-full bg-black" />
+      {label}
+    </li>
+  );
+}
+
+function FAQItem({ label }: { label: string }) {
+  return (
+    <div className="group flex items-center justify-between border-b border-[var(--dd-surface-strong)] pb-4 cursor-pointer hover:border-black transition-colors">
+      <h3 className="text-[14px] font-bold opacity-80 group-hover:opacity-100">{label}</h3>
+      <ChevronRight className="h-4 w-4 opacity-40 group-hover:opacity-100" />
     </div>
   );
 }
+
+function ContactCard({ icon: Icon, title, desc, action, link, featured }: any) {
+  return (
+    <div className={`flex flex-col items-center text-center p-10 rounded-[var(--dd-radius-xs)] border transition shadow-sm hover:shadow-md ${
+      featured ? 'border-black bg-white ring-1 ring-black' : 'border-[var(--dd-surface-strong)] bg-white'
+    }`}>
+      <div className={`p-4 rounded-full mb-6 ${featured ? 'bg-black text-white' : 'bg-[var(--dd-surface-strong)]'}`}>
+        <Icon className="h-6 w-6" />
+      </div>
+      <h3 className="text-[20px] font-bold tracking-tight mb-3">{title}</h3>
+      <p className="text-[14px] opacity-60 leading-relaxed mb-8">{desc}</p>
+      <Link 
+        to={link}
+        className={`mt-auto w-full py-4 rounded-[var(--dd-radius-sm)] text-[13px] font-bold uppercase tracking-widest transition ${
+          featured ? 'bg-black text-white hover:opacity-90' : 'border border-black hover:bg-black hover:text-white'
+        }`}
+      >
+        {action}
+      </Link>
+      {featured && <span className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-[#76885B]">Active Now</span>}
+    </div>
+  );
+}
+

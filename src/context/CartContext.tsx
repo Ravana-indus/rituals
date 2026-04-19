@@ -114,25 +114,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!isLoadedRef.current || isSavingRef.current) return;
     
-    // Always dedupe before saving
     const deduped = mergeItemsByProductId(items);
-    
-    // Only save if different from current
-    const currentStored = localStorage.getItem(CART_STORAGE_KEY);
     const newStored = JSON.stringify(deduped);
+    const currentStored = localStorage.getItem(CART_STORAGE_KEY);
     
     if (currentStored !== newStored) {
       isSavingRef.current = true;
       localStorage.setItem(CART_STORAGE_KEY, newStored);
       localStorage.setItem(CART_VERSION_KEY, CURRENT_VERSION);
       
-      // If we deduped, update state too
-      if (deduped.length !== items.length) {
-        console.log('Deduped items before save:', items.length, '->', deduped.length);
+      // If the state items are different from deduped (e.g. they weren't deduped yet),
+      // update the state. But we must be careful not to loop.
+      if (items.length !== deduped.length) {
         setItems(deduped);
       }
       
-      setTimeout(() => { isSavingRef.current = false; }, 0);
+      isSavingRef.current = false;
     }
   }, [items]);
 
@@ -140,6 +137,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (isLoadedRef.current && !authLoading && user) {
       syncCartWithDatabase();
+    } else if (!authLoading && !user) {
+      // Clear cart metadata if user logs out, but keep local items
+      setCart(null);
     }
   }, [user, authLoading]);
 
@@ -148,121 +148,111 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setSyncing(true);
     
     try {
-      // Get or create user's cart
-      const { data: existing } = await supabase
+      // First try to find an existing active cart
+      const { data: existingCart } = await supabase
         .from('carts')
         .select('*')
         .eq('user_id', user.id)
         .eq('status', 'active')
-        .single();
+        .maybeSingle();
 
-      let userCart = existing;
+      let userCart = existingCart;
+
       if (!userCart) {
-        const { data: newCart } = await supabase
+        // If no active cart, create one
+        const { data: newCart, error: createError } = await supabase
           .from('carts')
           .insert({ user_id: user.id, status: 'active' })
           .select()
           .single();
+        
+        if (createError) {
+          console.error('Failed to create cart:', createError);
+          setSyncing(false);
+          return;
+        }
         userCart = newCart;
-      }
-      
-      if (!userCart) {
-        setSyncing(false);
-        return;
       }
       
       setCart(userCart);
       
-      // Get local items
-      const localItems = items;
-      
-      // Load items from database
+      // Load current items from database
       const { data: dbCartItems } = await supabase
         .from('cart_items')
         .select('*, product:products(*, images:product_images(*))')
         .eq('cart_id', userCart.id);
 
-      // Convert DB items to UI format
-      let dbItems: CartItemUI[] = (dbCartItems || []).map(ci => {
-        const product = (ci.product as Product);
-        const images = ((ci.product as any)?.images as ProductImage[]) ?? [];
+      const dbItems: CartItemUI[] = (dbCartItems || []).map(ci => {
+        const product = ci.product;
+        const images = product?.images ?? [];
         return {
           id: ci.id,
           productId: ci.product_id,
           variantId: ci.variant_id || undefined,
-          brand: (ci.product as any)?.brand?.name ?? '',
+          brand: product?.brand?.name ?? '',
           title: product?.name ?? '',
           priceValue: ci.price_cents,
           price: formatPriceCents(ci.price_cents),
           originalPrice: product?.compare_at_price_cents ? formatPriceCents(product.compare_at_price_cents) : '',
-          originalPriceValue: product?.compare_at_price_cents ?? 0,
+          originalPriceValue: product?.compare_at_price_cents ?? ci.price_cents,
           imgSrc: images[0]?.url ?? '',
           size: product?.tagline ?? '',
           quantity: ci.quantity,
         };
       });
 
-      // Merge local items into database
-      if (localItems.length > 0) {
-        console.log('Syncing', localItems.length, 'local items with', dbItems.length, 'DB items');
-        
-        for (const localItem of localItems) {
-          const existingDbItem = dbItems.find(dbItem => 
-            dbItem.productId === localItem.productId && 
-            dbItem.variantId === localItem.variantId
-          );
-          
-          if (existingDbItem) {
-            // Update quantity in database (add local quantity to existing)
-            const newQuantity = existingDbItem.quantity + localItem.quantity;
-            await supabase
-              .from('cart_items')
-              .update({ quantity: newQuantity })
-              .eq('id', existingDbItem.id);
-            existingDbItem.quantity = newQuantity;
-          } else {
-            // Insert new item to database
-            const { data: newItem } = await supabase
-              .from('cart_items')
-              .insert({
-                cart_id: userCart.id,
-                product_id: localItem.productId,
-                variant_id: localItem.variantId || null,
-                quantity: localItem.quantity,
-                price_cents: localItem.priceValue,
-              })
-              .select('*, product:products(*, images:product_images(*))')
-              .single();
-            
-            if (newItem) {
-              const product = (newItem.product as Product);
-              const images = ((newItem.product as any)?.images as ProductImage[]) ?? [];
-              dbItems.push({
-                id: newItem.id,
-                productId: newItem.product_id,
-                variantId: newItem.variant_id || undefined,
-                brand: (newItem.product as any)?.brand?.name ?? '',
-                title: product?.name ?? '',
-                priceValue: newItem.price_cents,
-                price: formatPriceCents(newItem.price_cents),
-                originalPrice: product?.compare_at_price_cents ? formatPriceCents(product.compare_at_price_cents) : '',
-                originalPriceValue: product?.compare_at_price_cents ?? 0,
-                imgSrc: images[0]?.url ?? '',
-                size: product?.tagline ?? '',
-                quantity: newItem.quantity,
-              });
-            }
-          }
+      // Merge logic: 
+      // If an item is in local but NOT in DB, add it to DB.
+      // If an item is in both, the DB quantity is the source of truth OR we sum them once on first login.
+      // For now, let's just use DB as truth if they exist there, and add local items that are missing.
+      
+      const localItems = [...items];
+      const itemsToUpdate = [];
+      const itemsToAdd = [];
+
+      for (const localItem of localItems) {
+        const existsInDb = dbItems.find(dbi => dbi.productId === localItem.productId && dbi.variantId === localItem.variantId);
+        if (!existsInDb) {
+          itemsToAdd.push({
+            cart_id: userCart.id,
+            product_id: localItem.productId,
+            variant_id: localItem.variantId || null,
+            quantity: localItem.quantity,
+            price_cents: localItem.priceValue,
+          });
         }
       }
 
-      // Final dedupe and set
-      const mergedItems = mergeItemsByProductId(dbItems);
-      setItems(mergedItems);
-      
-      // Clear localStorage after successful sync
-      localStorage.removeItem(CART_STORAGE_KEY);
-      console.log('Cart synced. Final items:', mergedItems.length, 'total qty:', mergedItems.reduce((s, i) => s + i.quantity, 0));
+      if (itemsToAdd.length > 0) {
+        await supabase.from('cart_items').insert(itemsToAdd);
+        // Refresh db items after insert
+        const { data: refreshedDbItems } = await supabase
+          .from('cart_items')
+          .select('*, product:products(*, images:product_images(*))')
+          .eq('cart_id', userCart.id);
+        
+        const finalItems = (refreshedDbItems || []).map(ci => {
+          const product = ci.product;
+          const images = product?.images ?? [];
+          return {
+            id: ci.id,
+            productId: ci.product_id,
+            variantId: ci.variant_id || undefined,
+            brand: product?.brand?.name ?? '',
+            title: product?.name ?? '',
+            priceValue: ci.price_cents,
+            price: formatPriceCents(ci.price_cents),
+            originalPrice: product?.compare_at_price_cents ? formatPriceCents(product.compare_at_price_cents) : '',
+            originalPriceValue: product?.compare_at_price_cents ?? ci.price_cents,
+            imgSrc: images[0]?.url ?? '',
+            size: product?.tagline ?? '',
+            quantity: ci.quantity,
+          };
+        });
+        setItems(finalItems);
+      } else {
+        setItems(dbItems);
+      }
       
     } catch (e) { 
       console.error('Cart sync error:', e); 
@@ -271,141 +261,150 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const addItem = useCallback(async (item: Omit<CartItemUI, 'price' | 'id'> & { id?: string; price?: string }) => {
-    const priceValue = item.priceValue;
-    const price = formatPriceCents(priceValue);
-    const productId = item.productId || item.id!;
-
-    setItems(prev => {
-      const key = getItemKey(productId, item.variantId);
-      const existingIndex = prev.findIndex(i => getItemKey(i.productId, i.variantId) === key);
+  const addItem = useCallback(async (item: Omit<CartItemUI, 'price' | 'id' | 'originalPriceValue'> & { id?: string; price?: string; originalPriceValue?: number }) => {
+    try {
+      const priceValue = item.priceValue;
+      const productId = item.productId || item.id!;
       
-      if (existingIndex >= 0) {
-        // Update quantity of existing item
-        const newItems = [...prev];
-        newItems[existingIndex] = {
-          ...newItems[existingIndex],
-          quantity: newItems[existingIndex].quantity + item.quantity
-        };
-        return newItems;
-      } else {
-        // Add new item
-        return [...prev, {
-          id: crypto.randomUUID(),
-          productId,
-          variantId: item.variantId,
-          brand: item.brand,
-          title: item.title,
-          priceValue,
-          price,
-          originalPrice: item.originalPrice ?? '',
-          imgSrc: item.imgSrc ?? '',
-          size: item.size ?? '',
-          quantity: item.quantity,
-          badge: item.badge,
-        }];
+      if (!productId) {
+        console.error('addItem failed: productId is missing', item);
+        return;
       }
-    });
 
-    // Show confirmation toast
-    setToastItem({ title: item.title, imgSrc: item.imgSrc ?? '', price: formatPriceCents(priceValue) });
-    setToastVisible(true);
-
-    // Sync to database if logged in
-    if (user && cart) {
-      try {
-        const { data: existingItem } = await supabase
-          .from('cart_items')
-          .select('id, quantity')
-          .eq('cart_id', cart.id)
-          .eq('product_id', productId)
-          .eq('variant_id', item.variantId || null)
-          .single();
-
-        if (existingItem) {
-          await supabase
-            .from('cart_items')
-            .update({ quantity: existingItem.quantity + item.quantity })
-            .eq('id', existingItem.id);
+      // 1. Update Local State Immediately
+      setItems(prev => {
+        const key = getItemKey(productId, item.variantId);
+        const existingIndex = prev.findIndex(i => getItemKey(i.productId, i.variantId) === key);
+        
+        if (existingIndex >= 0) {
+          const newItems = [...prev];
+          newItems[existingIndex] = {
+            ...newItems[existingIndex],
+            quantity: newItems[existingIndex].quantity + item.quantity
+          };
+          return newItems;
         } else {
-          await supabase
-            .from('cart_items')
-            .insert({
-              cart_id: cart.id,
-              product_id: productId,
-              variant_id: item.variantId || null,
-              quantity: item.quantity,
-              price_cents: priceValue,
-            });
+          // Use a simple ID generator for better compatibility
+          const uniqueId = `item_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+          return [...prev, {
+            id: uniqueId,
+            productId,
+            variantId: item.variantId,
+            brand: item.brand,
+            title: item.title,
+            priceValue,
+            price: formatPriceCents(priceValue),
+            originalPrice: item.originalPrice ?? '',
+            originalPriceValue: item.originalPriceValue ?? priceValue,
+            imgSrc: item.imgSrc ?? '',
+            size: item.size ?? '',
+            quantity: item.quantity,
+            badge: item.badge,
+          }];
         }
-      } catch (e) { 
-        console.error('Add to cart DB error:', e); 
+      });
+
+      // 2. Show Toast
+      setToastItem({ title: item.title, imgSrc: item.imgSrc ?? '', price: formatPriceCents(priceValue) });
+      setToastVisible(true);
+
+      // 3. Sync to DB if logged in
+      if (user && cart) {
+        try {
+          let query = supabase
+            .from('cart_items')
+            .select('id, quantity')
+            .eq('cart_id', cart.id)
+            .eq('product_id', productId);
+          
+          if (item.variantId) {
+            query = query.eq('variant_id', item.variantId);
+          } else {
+            query = query.is('variant_id', null);
+          }
+
+          const { data: existing } = await query.maybeSingle();
+
+          if (existing) {
+            await supabase
+              .from('cart_items')
+              .update({ quantity: existing.quantity + item.quantity })
+              .eq('id', existing.id);
+          } else {
+            await supabase
+              .from('cart_items')
+              .insert({
+                cart_id: cart.id,
+                product_id: productId,
+                variant_id: item.variantId || null,
+                quantity: item.quantity,
+                price_cents: priceValue,
+              });
+          }
+        } catch (e) {
+          console.error('DB add failed', e);
+        }
       }
+    } catch (err) {
+      console.error('addItem runtime error:', err);
     }
   }, [user, cart]);
 
   const removeItem = useCallback(async (productId: string, variantId?: string) => {
-    setItems(prev => prev.filter(i => 
-      !(i.productId === productId && i.variantId === variantId)
-    ));
+    // 1. Update Local State Immediately
+    setItems(prev => prev.filter(i => !(i.productId === productId && i.variantId === variantId)));
 
+    // 2. Sync to DB if logged in
     if (user && cart) {
       try {
-        await supabase
+        let query = supabase
           .from('cart_items')
           .delete()
           .eq('cart_id', cart.id)
-          .eq('product_id', productId)
-          .eq('variant_id', variantId || null);
-      } catch (e) {
-        console.error('Remove from cart DB error:', e);
-      }
+          .eq('product_id', productId);
+        
+        if (variantId) {
+          query = query.eq('variant_id', variantId);
+        } else {
+          query = query.is('variant_id', null);
+        }
+        
+        await query;
+      } catch (e) { console.error('DB remove failed', e); }
     }
   }, [user, cart]);
 
   const updateQuantity = useCallback(async (productId: string, qty: number, variantId?: string) => {
-    setItems(prev => {
-      if (qty <= 0) {
-        return prev.filter(i => !(i.productId === productId && i.variantId === variantId));
-      }
-      return prev.map(i => 
-        (i.productId === productId && i.variantId === variantId) 
-          ? { ...i, quantity: qty } 
-          : i
-      );
-    });
+    if (qty <= 0) {
+      return removeItem(productId, variantId);
+    }
 
+    // 1. Update Local State Immediately
+    setItems(prev => prev.map(i => 
+      (i.productId === productId && i.variantId === variantId) 
+        ? { ...i, quantity: qty } 
+        : i
+    ));
+
+    // 2. Sync to DB if logged in
     if (user && cart) {
       try {
-        if (qty <= 0) {
-          await supabase
-            .from('cart_items')
-            .delete()
-            .eq('cart_id', cart.id)
-            .eq('product_id', productId)
-            .eq('variant_id', variantId || null);
+        let query = supabase
+          .from('cart_items')
+          .update({ quantity: qty })
+          .eq('cart_id', cart.id)
+          .eq('product_id', productId);
+        
+        if (variantId) {
+          query = query.eq('variant_id', variantId);
         } else {
-          // Find the item first to get its ID
-          const { data: item } = await supabase
-            .from('cart_items')
-            .select('id')
-            .eq('cart_id', cart.id)
-            .eq('product_id', productId)
-            .eq('variant_id', variantId || null)
-            .single();
-            
-          if (item) {
-            await supabase
-              .from('cart_items')
-              .update({ quantity: qty })
-              .eq('id', item.id);
-          }
+          query = query.is('variant_id', null);
         }
-      } catch (e) {
-        console.error('Update quantity DB error:', e);
-      }
+        
+        await query;
+      } catch (e) { console.error('DB update failed', e); }
     }
-  }, [user, cart]);
+  }, [user, cart, removeItem]);
 
   const clearCart = useCallback(async () => {
     setItems([]);
@@ -414,28 +413,33 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (user && cart) {
       try {
         await supabase.from('cart_items').delete().eq('cart_id', cart.id);
-      } catch (e) {
-        console.error('Clear cart DB error:', e);
-      }
+      } catch (e) { console.error('DB clear failed', e); }
     }
   }, [user, cart]);
 
   // Recalculate totals from deduped items
   const dedupedItems = mergeItemsByProductId(items);
-  const itemCount = dedupedItems.reduce((sum, i) => sum + i.quantity, 0);
-  const subtotal = dedupedItems.reduce((sum, i) => sum + i.priceValue * i.quantity, 0);
+  const itemCount = dedupedItems.reduce((sum, i) => sum + (Number(i.quantity) || 0), 0);
+  const subtotal = dedupedItems.reduce((sum, i) => sum + (Number(i.priceValue) || 0) * (Number(i.quantity) || 0), 0);
   const totalSavings = dedupedItems.reduce((sum, i) => {
-    const originalTotal = i.originalPriceValue * i.quantity;
-    const actualTotal = i.priceValue * i.quantity;
-    return sum + (originalTotal - actualTotal);
+    const originalPrice = Number(i.originalPriceValue) || Number(i.priceValue) || 0;
+    const currentPrice = Number(i.priceValue) || 0;
+    const qty = Number(i.quantity) || 0;
+    return sum + ((originalPrice - currentPrice) * qty);
   }, 0);
 
   return (
     <CartContext.Provider value={{ 
       items: dedupedItems, // Always return deduped items
       addItem, 
-      removeItem: (productId: string) => removeItem(productId, undefined), 
-      updateQuantity: (productId: string, qty: number) => updateQuantity(productId, qty, undefined), 
+      removeItem: (productId: string) => {
+        console.log('Removing item:', productId);
+        removeItem(productId, undefined);
+      }, 
+      updateQuantity: (productId: string, qty: number) => {
+        console.log('Updating quantity:', productId, qty);
+        updateQuantity(productId, qty, undefined);
+      }, 
       clearCart, 
       itemCount, 
       subtotal, 

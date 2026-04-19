@@ -232,8 +232,8 @@ export default function Home() {
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 lg:gap-x-8 gap-y-12 lg:gap-y-16">
-              {[...Array(8)].map((_, i) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-6 lg:gap-x-8 gap-y-12 lg:gap-y-16">
+              {[...Array(10)].map((_, i) => (
                 <div key={i} className="flex flex-col space-y-4 animate-pulse">
                   <div className="aspect-[4/5] bg-surface-container-highest  rounded-sm" />
                   <div className="h-3 bg-surface-container-highest  w-1/2 rounded" />
@@ -249,7 +249,7 @@ export default function Home() {
               <p className="text-sm">Try adjusting your filters or check back later.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 lg:gap-x-8 gap-y-12 lg:gap-y-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-6 lg:gap-x-8 gap-y-12 lg:gap-y-16">
               {displayedProducts.map((product) =>
                 React.createElement(HomeProductCard, { product, key: product.id })
               )}

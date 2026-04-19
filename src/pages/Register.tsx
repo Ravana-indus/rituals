@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import Header from '../components/Header';
+import { ShieldCheck, Mail, Lock, User, ArrowRight, LogIn, Sparkles, History, UserCheck } from 'lucide-react';
+import BrandedLayout from '../components/BrandedLayout';
 import { useAuth } from '../context/AuthContext';
-
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
 
 export default function Register() {
   const navigate = useNavigate();
@@ -19,164 +14,152 @@ export default function Register() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Get redirect URL from query params, default to '/profile'
   const redirectTo = searchParams.get('redirect') || '/profile';
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
     setLoading(true);
-    const { error } = await signUp(email, password, fullName);
+    const { error: signUpError } = await signUp(email, password, fullName);
     setLoading(false);
-    if (error) {
-      setError(error);
+    if (signUpError) {
+      setError(signUpError);
     } else {
       navigate(redirectTo);
     }
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-surface text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed relative">
-      <Header />
-      <div className="absolute inset-0 pointer-events-none z-[99] opacity-[0.03]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
-
-      <main className="flex-grow flex flex-col md:flex-row min-h-screen">
-        <section className="flex flex-col w-full md:w-5/12 lg:w-1/2 relative overflow-hidden bg-primary-container min-h-[300px] md:min-h-full">
-          <div className="absolute inset-0 z-0">
-            <img className="w-full h-full object-cover opacity-60 mix-blend-multiply" alt="Atmospheric still life of antique amber apothecary bottles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8ytkqSi0aEfGGnZTpBVCcgGrNuyqlL92OuODC_0BUWz2F4cibJ1fYt3sLY40cppS87UjB9F5ekpI7XkgehMi-vYm3dKRvzKjxHmQx6Jv9a5dO5bAg1wPIRShZLyRZrNpe9U2dUP8mkhiUfWEeFBGVmVfy-FHchPv7Q5CHSVgEElLHZpHULJcz74ieyrLIBWQG25CrFe-BILB48P2DBklC_nqiYAMWBsuZMwybkadsH-FFF3Y7zuTWyEVrcNcSYgpVqBKCoKHrcc1M" />
+    <BrandedLayout>
+      <div className="flex min-h-[calc(100vh-140px)] flex-col md:flex-row">
+        {/* Visual Panel */}
+        <section className="relative hidden w-full overflow-hidden bg-[var(--dd-surface-base)] md:flex md:w-1/2">
+          <div className="absolute inset-0 opacity-40">
+            <img 
+              className="h-full w-full object-cover" 
+              alt="Apothecary" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8ytkqSi0aEfGGnZTpBVCcgGrNuyqlL92OuODC_0BUWz2F4cibJ1fYt3sLY40cppS87UjB9F5ekpI7XkgehMi-vYm3dKRvzKjxHmQx6Jv9a5dO5bAg1wPIRShZLyRZrNpe9U2dUP8mkhiUfWEeFBGVmVfy-FHchPv7Q5CHSVgEElLHZpHULJcz74ieyrLIBWQG25CrFe-BILB48P2DBklC_nqiYAMWBsuZMwybkadsH-FFF3Y7zuTWyEVrcNcSYgpVqBKCoKHrcc1M" 
+            />
           </div>
-          <div className="relative z-10 p-12 lg:p-24 flex flex-col justify-between h-full text-surface">
+          <div className="relative z-10 flex flex-col justify-between p-16 text-white lg:p-24">
             <div className="space-y-4">
-              <Link to="/" className="font-noto-serif text-4xl lg:text-5xl font-medium tracking-tight hover:opacity-80 transition-opacity">Rituals.lk</Link>
-              <div className="w-12 h-px bg-secondary-fixed"></div>
+              <h2 className="text-[40px] font-bold leading-tight tracking-tight lg:text-[56px]">A Legacy of Restoration</h2>
+              <div className="h-1 w-12 bg-[#76885B]" />
             </div>
+            
             <div className="max-w-md space-y-8">
-              <div>
-                <h2 className="font-noto-serif text-2xl mb-4 italic">A Legacy of Restoration</h2>
-                <p className="font-manrope font-light text-surface-variant leading-relaxed opacity-90">
-                  Get the best deals on international personal care brands. Build your daily routine with our affordable, authentic products.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 gap-6 pt-8">
-                <div className="flex items-start gap-4">
-                  <Icon name="auto_awesome" className="text-secondary-fixed text-2xl" />
-                  <div>
-                    <p className="font-manrope font-bold text-sm tracking-widest uppercase mb-1">Early Access</p>
-                    <p className="text-xs text-surface-variant opacity-80">Priority selection for our limited seasonal Clearance releases.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Icon name="history_edu" className="text-secondary-fixed text-2xl" />
-                  <div>
-                    <p className="font-manrope font-bold text-sm tracking-widest uppercase mb-1">Saved Rituals</p>
-                    <p className="text-xs text-surface-variant opacity-80">Preserve your personal apothecary guides for consistent restorative practice.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Icon name="verified_user" className="text-secondary-fixed text-2xl" />
-                  <div>
-                    <p className="font-manrope font-bold text-sm tracking-widest uppercase mb-1">Authenticity Tracking</p>
-                    <p className="text-xs text-surface-variant opacity-80">Verify the batch origin and botanical pedigree of every curator's choice.</p>
-                  </div>
-                </div>
-              </div>
+              <BenefitItem icon={Sparkles} title="Early Access" desc="Priority selection for our limited seasonal Clearance releases." />
+              <BenefitItem icon={History} title="Saved Rituals" desc="Preserve your personal apothecary guides for consistent practice." />
+              <BenefitItem icon={UserCheck} title="Authenticity Tracking" desc="Verify the batch origin and pedigree of every choice." />
             </div>
-            <div className="text-xs font-manrope tracking-widest opacity-60 uppercase">
-              Affordable Personal Care • Established 2024
-            </div>
+            
+            <p className="text-[12px] font-bold uppercase tracking-[0.3em] opacity-40">
+              ESTABLISHED 2024 • SRI LANKA'S FINEST
+            </p>
           </div>
         </section>
 
-        <section className="flex-1 flex flex-col justify-center items-center px-6 py-12 md:px-12 lg:px-24 bg-surface relative z-10">
-          <div className="md:hidden w-full max-w-md mb-12 text-center">
-            <Link to="/" className="font-noto-serif text-3xl font-medium text-primary">Rituals.lk</Link>
-          </div>
-          <div className="w-full max-w-md">
-            <header className="mb-12">
-              <h2 className="font-noto-serif text-3xl lg:text-4xl text-on-surface mb-3">Begin Your Ritual</h2>
-              <p className="font-manrope text-on-surface-variant text-sm">Join our collective of discerning curators and access the inner sanctum of apothecarial craft.</p>
-            </header>
+        {/* Form Panel */}
+        <section className="flex flex-1 items-center justify-center bg-white px-[var(--dd-space-4)] py-12 md:px-[var(--dd-space-6)]">
+          <div className="w-full max-w-[440px] space-y-8">
+            <div className="text-center md:text-left">
+               <h1 className="text-[32px] font-bold tracking-tight text-black">Begin Your Ritual</h1>
+               <p className="mt-2 text-[14px] font-medium opacity-40 uppercase tracking-widest leading-relaxed">
+                 Join our collective of curators
+               </p>
+            </div>
 
             {error && (
-              <div className="mb-4 p-3 bg-error-container rounded-lg text-sm text-on-error-container flex items-center gap-2">
-                <Icon name="error" className="text-sm" />
+              <div className="rounded-md bg-red-50 p-4 text-[13px] font-bold text-[#EB1700] border border-red-100 flex gap-3 items-center">
+                <div className="h-2 w-2 rounded-full bg-[#EB1700] animate-pulse" />
                 {error}
               </div>
             )}
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-[11px] font-bold uppercase tracking-widest opacity-40">Full Name</label>
+                <div className="relative flex items-center rounded-md border border-[var(--dd-surface-strong)] bg-[var(--dd-surface-muted)] focus-within:border-black transition">
+                  <div className="pl-4 opacity-40"><User className="h-4 w-4" /></div>
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={e => setFullName(e.target.value)}
+                    className="w-full bg-transparent px-4 py-3 text-[14px] outline-none placeholder:opacity-30"
+                    placeholder="Ananda Perera"
+                    required
+                  />
+                </div>
+              </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="relative group">
-                <label className="block font-manrope text-xs font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="full_name">Full Name</label>
-                <input
-                  className="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary transition-all font-manrope text-on-surface placeholder:text-outline-variant/50"
-                  id="full_name" name="full_name" placeholder="Ananda Perera" required type="text"
-                  value={fullName} onChange={e => setFullName(e.target.value)}
-                />
-              </div>
-              <div className="relative group">
-                <label className="block font-manrope text-xs font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="email">Email Address</label>
-                <input
-                  className="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary transition-all font-manrope text-on-surface placeholder:text-outline-variant/50"
-                  id="email" name="email" placeholder="ritualist@heritagecurator.com" required type="email"
-                  value={email} onChange={e => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="relative group">
-                <label className="block font-manrope text-xs font-bold tracking-widest uppercase text-outline mb-1 transition-colors group-focus-within:text-primary" htmlFor="password">Secret Key (Password)</label>
-                <input
-                  className="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary transition-all font-manrope text-on-surface placeholder:text-outline-variant/50"
-                  id="password" name="password" placeholder="••••••••••••" required type="password" minLength={8}
-                  value={password} onChange={e => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="flex items-start gap-3 py-2">
-                <div className="flex items-center h-5">
-                  <input className="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface-container" id="inner_circle" name="inner_circle" type="checkbox" />
-                </div>
-                <div className="text-sm leading-6">
-                  <label className="font-manrope text-sm text-on-surface-variant cursor-pointer" htmlFor="inner_circle">Join the Inner Circle</label>
-                  <p className="text-xs text-outline italic">Receive our monthly journal on heritage restoration and early apothecary releases.</p>
+              <div className="space-y-2">
+                <label className="text-[11px] font-bold uppercase tracking-widest opacity-40">Email Identity</label>
+                <div className="relative flex items-center rounded-md border border-[var(--dd-surface-strong)] bg-[var(--dd-surface-muted)] focus-within:border-black transition">
+                  <div className="pl-4 opacity-40"><Mail className="h-4 w-4" /></div>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    className="w-full bg-transparent px-4 py-3 text-[14px] outline-none placeholder:opacity-30"
+                    placeholder="ritualist@heritagecurator.com"
+                    required
+                  />
                 </div>
               </div>
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-gradient-to-br from-[#003a3a] to-[#1c5151] text-surface py-4 px-8 rounded-md font-manrope font-semibold text-sm tracking-widest uppercase shadow-[0_20px_40px_rgba(28,28,23,0.06)] hover:opacity-90 transition-all flex justify-between items-center group disabled:opacity-50"
-                >
-                  <span>{loading ? 'Creating...' : 'Begin Your Ritual'}</span>
-                  <Icon name="arrow_forward" className="transform group-hover:translate-x-1 transition-transform" />
-                </button>
+
+              <div className="space-y-2">
+                <label className="text-[11px] font-bold uppercase tracking-widest opacity-40">Security Key</label>
+                <div className="relative flex items-center rounded-md border border-[var(--dd-surface-strong)] bg-[var(--dd-surface-muted)] focus-within:border-black transition">
+                  <div className="pl-4 opacity-40"><Lock className="h-4 w-4" /></div>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    className="w-full bg-transparent px-4 py-3 text-[14px] outline-none placeholder:opacity-30"
+                    placeholder="••••••••"
+                    required
+                    minLength={8}
+                  />
+                </div>
               </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-2 rounded-[var(--dd-radius-sm)] bg-[var(--dd-surface-base)] py-4 text-[15px] font-bold text-white shadow-lg transition hover:opacity-90 active:scale-[0.98] disabled:opacity-20"
+              >
+                {loading ? 'Processing...' : 'Create Account'}
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </form>
-            <footer className="mt-12 pt-8 border-t border-outline-variant/15 text-center">
-              <p className="text-xs text-outline font-manrope uppercase tracking-wider">
+
+            <div className="mt-10 pt-8 border-t border-[var(--dd-surface-strong)] text-center">
+              <p className="text-[13px] font-medium opacity-60">
                 Already a curator?
-                <Link to="/login" className="text-secondary font-bold hover:text-primary transition-colors underline decoration-secondary/30 ml-2">Enter the Vault</Link>
+                <Link to="/login" className="ml-2 font-bold text-black hover:underline underline-offset-4 flex items-center justify-center gap-2 mt-2">
+                  <LogIn className="h-4 w-4" />
+                  Enter the Vault
+                </Link>
               </p>
-            </footer>
+            </div>
           </div>
         </section>
-      </main>
-
-      <div className="fixed bottom-8 right-8 z-50 pointer-events-none md:pointer-events-auto">
-        <div className="w-24 h-24 rounded-full bg-tertiary-container flex flex-col items-center justify-center text-on-tertiary shadow-xl transform rotate-12 shadow-[0_20px_40px_rgba(28,28,23,0.06)] border-4 border-dashed border-on-tertiary/20">
-          <Icon name="local_post_office" filled className="text-3xl" />
-          <span className="text-[8px] font-bold tracking-tighter uppercase text-center mt-1">Authentic<br/>Heritage</span>
-        </div>
       </div>
+    </BrandedLayout>
+  );
+}
 
-      <footer className="bg-surface-container py-6 px-8 border-t border-outline-variant/10 relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-manrope uppercase tracking-widest text-outline">
-          <div>© 2024 Rituals.lk. Affordable Personal Care.</div>
-          <div className="flex gap-6">
-            <Link to="/support" className="hover:text-primary transition-colors">Provenance</Link>
-            <Link to="/support" className="hover:text-primary transition-colors">Shipping</Link>
-            <Link to="/support" className="hover:text-primary transition-colors">Ritual Guide</Link>
-            <Link to="/support" className="hover:text-primary transition-colors">Privacy</Link>
-          </div>
-        </div>
-      </footer>
+function BenefitItem({ icon: Icon, title, desc }: any) {
+  return (
+    <div className="flex items-start gap-4">
+      <div className="mt-1 rounded-full bg-white/10 p-2">
+        <Icon className="h-5 w-5 text-[#76885B]" />
+      </div>
+      <div>
+        <h4 className="text-[14px] font-bold uppercase tracking-widest">{title}</h4>
+        <p className="mt-1 text-[13px] opacity-60 leading-relaxed font-medium">{desc}</p>
+      </div>
     </div>
   );
 }
+

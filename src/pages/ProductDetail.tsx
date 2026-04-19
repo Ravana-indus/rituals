@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
+import {
+  ChevronRight,
+  Star,
+  ShoppingBag,
+  ShieldCheck,
+  Truck,
+  RotateCcw,
+  Plus,
+  Check,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react';
+import BrandedLayout from '../components/BrandedLayout';
+import BrandedProductCard from '../components/BrandedProductCard';
 import { api } from '../lib/api';
 import { useCart } from '../context/CartContext';
 import type { Product, Brand, Category, ProductImage, ProductVariant } from '../types/database';
@@ -8,19 +21,13 @@ import { formatPriceCents } from '../types/database';
 
 type ProductWithRelations = Product & { brand: Brand; category: Category; images: ProductImage[]; variants: ProductVariant[] };
 
-const Icon = ({ name, filled = false, className = "" }: { name: string, filled?: boolean, className?: string }) => (
-  <span className={`material-symbols-outlined ${className}`} style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}>
-    {name}
-  </span>
-);
-
 export default function ProductDetail() {
   const [searchParams] = useSearchParams();
   const slug = searchParams.get('slug');
   const [product, setProduct] = useState<ProductWithRelations | null>(null);
   const [related, setRelated] = useState<ProductWithRelations[]>([]);
   const [loading, setLoading] = useState(true);
-  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  const [openAccordion, setOpenAccordion] = useState<string | null>('description');
   const [selectedImage, setSelectedImage] = useState(0);
   const [addingToCart, setAddingToCart] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
@@ -29,6 +36,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     if (slug) loadProduct(slug);
+    window.scrollTo(0, 0);
   }, [slug]);
 
   async function loadProduct(productSlug: string) {
@@ -39,7 +47,7 @@ export default function ProductDetail() {
       setSelectedImage(0);
       if (data?.category_id) {
         const allProducts = await api.products.getAll({ categoryId: data.category_id });
-        setRelated((allProducts as ProductWithRelations[]).filter(p => p.slug !== productSlug && p.is_active).slice(0, 3));
+        setRelated((allProducts as ProductWithRelations[]).filter(p => p.slug !== productSlug && p.is_active).slice(0, 5));
       }
     } catch (e) { console.error(e); }
     finally { setLoading(false); }
@@ -60,9 +68,6 @@ export default function ProductDetail() {
         imgSrc: firstImage?.url ?? '',
         size: product.tagline ?? '',
         quantity: 1,
-        badge: product.compare_at_price_cents && product.compare_at_price_cents > product.price_cents
-          ? { label: 'Clearance', type: 'clearance' as const }
-          : undefined,
       });
       setAddedToCart(true);
       setTimeout(() => setAddedToCart(false), 2000);
@@ -72,30 +77,8 @@ export default function ProductDetail() {
 
   async function handleBuyNow() {
     if (!product) return;
-    setAddingToCart(true);
-    try {
-      const firstImage = product.images?.[0];
-      await addItem({
-        id: product.id,
-        productId: product.id,
-        brand: product.brand?.name ?? '',
-        title: product.name,
-        priceValue: product.price_cents,
-        originalPrice: product.compare_at_price_cents ? formatPriceCents(product.compare_at_price_cents) : '',
-        imgSrc: firstImage?.url ?? '',
-        size: product.tagline ?? '',
-        quantity: 1,
-        badge: product.compare_at_price_cents && product.compare_at_price_cents > product.price_cents
-          ? { label: 'Clearance', type: 'clearance' as const }
-          : undefined,
-      });
-      navigate('/checkout');
-    } catch (e) { console.error(e); }
-    finally { setAddingToCart(false); }
-  }
-
-  function toggleAccordion(id: string) {
-    setOpenAccordion(prev => prev === id ? null : id);
+    await handleAddToCart();
+    navigate('/checkout');
   }
 
   const discount = product?.compare_at_price_cents && product.compare_at_price_cents > product.price_cents
@@ -103,334 +86,266 @@ export default function ProductDetail() {
     : null;
 
   if (loading) return (
-    <div className="bg-background text-on-surface min-h-screen flex flex-col">
-      <Header />
-      <main className="pt-8 pb-24 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto flex-grow flex items-center justify-center">
-        <div className="animate-pulse text-primary">Loading product...</div>
-      </main>
-    </div>
+    <BrandedLayout>
+      <div className="flex min-h-[60vh] items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[var(--dd-surface-strong)] border-t-[var(--dd-surface-base)]" />
+      </div>
+    </BrandedLayout>
   );
 
   if (!product) return (
-    <div className="bg-background text-on-surface min-h-screen flex flex-col">
-      <Header />
-      <main className="pt-8 pb-24 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto flex-grow flex items-center justify-center">
-        <div className="text-center">
-          <Icon name="search_off" className="text-5xl text-on-surface-variant mb-4" />
-          <h1 className="text-2xl font-noto-serif text-primary mb-2">Product Not Found</h1>
-          <p className="text-on-surface-variant mb-6">This product may have been removed or is no longer available.</p>
-          <Link to="/" className="bg-primary text-on-primary px-6 py-2 rounded-lg text-sm">Back to Shop</Link>
-        </div>
-      </main>
-    </div>
+    <BrandedLayout>
+      <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
+        <ShoppingBag className="mb-4 h-16 w-16 opacity-10" />
+        <h1 className="text-2xl font-bold">Product not found</h1>
+        <p className="mt-2 opacity-60">This ritual may have moved or is no longer available.</p>
+        <Link to="/" className="mt-6 rounded-[var(--dd-radius-sm)] bg-[var(--dd-surface-base)] px-8 py-3 font-bold text-white shadow-lg transition hover:opacity-90">
+          Back to Apothecary
+        </Link>
+      </div>
+    </BrandedLayout>
   );
 
-  const firstImage = product.images?.[0];
   const allImages = product.images ?? [];
 
   return (
-    <div className="bg-background text-on-surface min-h-screen flex flex-col">
-      <Header />
-
-      <main className="pt-8 pb-24 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto flex-grow">
-        <nav className="flex items-center gap-2 text-xs uppercase tracking-widest text-on-surface-variant mb-8 font-medium">
-          <Link to="/">Apothecary</Link>
-          <Icon name="chevron_right" className="text-xs" />
+    <BrandedLayout>
+      <div className="px-[var(--dd-space-4)] py-[var(--dd-space-4)] md:px-[var(--dd-space-6)]">
+        {/* Breadcrumbs */}
+        <nav className="mb-[var(--dd-space-6)] flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest opacity-40">
+          <Link to="/" className="hover:opacity-100 transition">Apothecary</Link>
+          <ChevronRight className="h-3 w-3" />
           {product.category && (
             <>
-              <Link to={`/category/${product.category.slug}`}>{product.category.name}</Link>
-              <Icon name="chevron_right" className="text-xs" />
+              <Link to={`/?category=${product.category.slug}`} className="hover:opacity-100 transition">{product.category.name}</Link>
+              <ChevronRight className="h-3 w-3" />
             </>
           )}
-          <span className="text-primary font-bold">{product.name}</span>
+          <span className="opacity-100 truncate max-w-[200px]">{product.name}</span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-7 flex flex-col gap-4">
-            <div className="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low relative">
-              <img
-                className="w-full h-full object-cover"
-                alt={product.name}
-                src={allImages[selectedImage]?.url ?? firstImage?.url ?? 'https://via.placeholder.com/600x750?text=No+Image'}
-              />
-              {discount && (
-                <div className="absolute top-6 right-6 bg-tertiary text-on-tertiary py-3 px-5 rounded-full flex flex-col items-center justify-center transform rotate-12 shadow-2xl border-2 border-tertiary-fixed-dim">
-                  <span className="text-xs uppercase font-bold tracking-tighter">Clearance Steal</span>
-                  <span className="text-xl font-noto-serif italic">-{discount}%</span>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+          {/* Visuals Column */}
+          <div className="lg:col-span-7">
+            <div className="sticky top-[100px] space-y-4">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--dd-radius-xs)] bg-[#f8f9fa] flex items-center justify-center border border-[var(--dd-surface-strong)]">
+                <img
+                  className="h-full w-full object-contain mix-blend-multiply p-8"
+                  alt={product.name}
+                  src={allImages[selectedImage]?.url ?? 'https://via.placeholder.com/800x1000?text=No+Image'}
+                />
+                {discount && (
+                  <div className="absolute right-4 top-4 rounded-full bg-[#AF8F6F] px-4 py-2 text-[14px] font-bold text-white shadow-lg">
+                    {discount}% OFF
+                  </div>
+                )}
+              </div>
+              
+              {allImages.length > 1 && (
+                <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+                  {allImages.map((img, i) => (
+                    <button
+                      key={img.id}
+                      onClick={() => setSelectedImage(i)}
+                      className={`relative aspect-[4/5] w-20 flex-shrink-0 overflow-hidden rounded-[var(--dd-radius-xs)] border-2 transition-all ${
+                        selectedImage === i ? 'border-[var(--dd-surface-base)]' : 'border-transparent opacity-60 hover:opacity-100'
+                      } bg-[#f8f9fa]`}
+                    >
+                      <img className="h-full w-full object-contain mix-blend-multiply p-2" alt={img.alt_text ?? product.name} src={img.url} />
+                    </button>
+                  ))}
                 </div>
               )}
-            </div>
-            {allImages.length > 1 && (
-              <div className="flex gap-4 overflow-x-auto no-scrollbar">
-                {allImages.map((img, i) => (
-                  <button
-                    key={img.id}
-                    onClick={() => setSelectedImage(i)}
-                    className={`w-16 md:w-20 h-20 md:h-24 rounded-lg overflow-hidden bg-surface-container-low flex-shrink-0 border-2 transition-all ${selectedImage === i ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'}`}
-                  >
-                    <img className="w-full h-full object-cover" alt={img.alt_text ?? product.name} src={img.url} />
-                  </button>
-                ))}
-              </div>
-            )}
 
-            <div className="p-5 bg-primary-fixed/30 border border-primary/10 rounded-xl">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="bg-primary text-on-primary p-2 rounded-lg">
-                  <Icon name="verified_user" className="text-xl" />
-                </div>
-                <h3 className="font-bold uppercase tracking-widest text-primary text-sm">100% Authenticity Guaranteed</h3>
-              </div>
-              <p className="text-xs leading-relaxed text-on-surface-variant mb-4">
-                <span className="font-bold text-primary">Why our prices are lower:</span> We utilize direct ethical sourcing from local Sri Lankan artisans and manage clearance stock batches. You receive the exact same high-quality, authentic heritage formula at a fraction of the boutique price.
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="flex items-center gap-2 bg-surface p-2 rounded-lg border border-primary/5">
-                  <Icon name="verified" className="text-primary text-base" />
-                  <span className="text-xs font-black uppercase tracking-tighter">Authenticity Verified</span>
-                </div>
-                <div className="flex items-center gap-2 bg-surface p-2 rounded-lg border border-primary/5">
-                  <Icon name="eco" className="text-primary text-base" />
-                  <span className="text-xs font-black uppercase tracking-tighter">Ethically Sourced</span>
-                </div>
+              {/* Trust Section */}
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 pt-4">
+                <TrustItem icon={ShieldCheck} label="100% Authentic" sub="Direct from source" />
+                <TrustItem icon={Truck} label="24h Dispatch" sub="Colombo & beyond" />
+                <TrustItem icon={RotateCcw} label="14-Day Returns" sub="Easy & Hassle-free" />
               </div>
             </div>
           </div>
 
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div>
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="bg-tertiary text-on-tertiary text-xs px-3 py-1 rounded-full font-black uppercase tracking-[0.2em] shadow-sm flex items-center gap-1">
-                  <Icon name="local_fire_department" className="text-[14px]" />
-                  Clearance Steal
-                </span>
-                <span className="bg-secondary-fixed text-on-secondary-fixed text-xs px-2 py-1 rounded font-bold uppercase tracking-widest">Heritage Batch</span>
-                {product.sku && <span className="text-on-surface-variant text-xs uppercase tracking-widest">SKU: {product.sku}</span>}
+          {/* Details Column */}
+          <div className="lg:col-span-5 flex flex-col">
+            <div className="space-y-6">
+              <div>
+                <p className="text-[14px] font-bold uppercase tracking-[0.2em] opacity-40">{product.brand?.name || 'Rituals'}</p>
+                <h1 className="mt-2 text-[32px] font-bold leading-tight tracking-tight lg:text-[48px]">
+                  {product.name}
+                </h1>
+                <div className="mt-4 flex items-center gap-4">
+                  <div className="flex items-center gap-1 rounded bg-[var(--dd-surface-strong)] px-2 py-1 text-[13px] font-bold">
+                    <Star className="h-4 w-4 fill-current text-black" />
+                    <span>4.8</span>
+                  </div>
+                  <span className="text-[13px] font-medium underline opacity-60 cursor-pointer">120 Reviews</span>
+                </div>
               </div>
-              <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-primary mb-2 font-noto-serif">{product.name}</h1>
-              <p className="text-lg italic font-noto-serif text-on-surface-variant">{product.brand?.name ?? 'Rituals.lk Apothecary'}</p>
-            </div>
 
-            <div className="space-y-1">
-              <div className="flex items-baseline gap-4">
-                <span className="text-4xl font-black text-secondary">{formatPriceCents(product.price_cents)}</span>
-                {product.compare_at_price_cents && product.compare_at_price_cents > product.price_cents && (
-                  <span className="text-xl text-on-surface-variant/60 line-through">{formatPriceCents(product.compare_at_price_cents)}</span>
-                )}
+              <div className="space-y-1">
+                <div className="flex items-baseline gap-4">
+                  <span className="text-[32px] font-bold">{formatPriceCents(product.price_cents)}</span>
+                  {product.compare_at_price_cents && product.compare_at_price_cents > product.price_cents && (
+                    <span className="text-[20px] font-medium opacity-30 line-through">
+                      {formatPriceCents(product.compare_at_price_cents)}
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <EMIBadge label="3 x Mintpay" value={Math.round(product.price_cents / 3)} color="#76885B" />
+                  <EMIBadge label="4 x Payzy" value={Math.round(product.price_cents / 4)} color="#AF8F6F" />
+                </div>
               </div>
-              {discount && (
-                <p className="text-sm font-bold text-tertiary flex items-center gap-1">
-                  <Icon name="sell" className="text-sm" />
-                  Save {discount}% — Lowest Price in Sri Lanka
+
+              {product.tagline && (
+                <p className="text-[18px] leading-relaxed opacity-70">
+                  {product.tagline}
                 </p>
               )}
-            </div>
 
-            {(product.stock_qty ?? 0) <= (product.low_stock_threshold ?? 5) && (
-              <div className="p-5 bg-error-container/30 border border-error/20 rounded-xl flex items-center gap-4">
-                <div className="w-4 h-4 bg-error rounded-full animate-pulse shadow-[0_0_10px_rgba(186,26,26,0.5)]" />
-                <div className="flex flex-col">
-                  <p className="text-sm font-black text-error uppercase tracking-wider">Limited Clearance Stock</p>
-                  <p className="text-xs text-on-error-container">Only {product.stock_qty ?? 0} units left at this special clearance price.</p>
-                </div>
-              </div>
-            )}
-
-            <div className="p-5 bg-surface-container rounded-lg space-y-3 mb-6 border border-outline-variant/10">
-              {product.sku && (
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Icon name="inventory_2" className="text-primary  text-lg" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Batch Code</span>
-                  </div>
-                  <span className="text-xs font-mono text-on-surface-variant">{product.sku}</span>
-                </div>
-              )}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon name="local_shipping" className="text-primary  text-lg" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Ships Within</span>
-                </div>
-                <span className="text-xs text-secondary font-bold">24 Hours</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <Icon name="sell" className="text-secondary text-lg mt-0.5" />
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-secondary block mb-0.5">Why Discounted?</span>
-                  <span className="text-xs text-on-surface-variant italic">Clearance pricing — limited stock available.</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <Icon name="verified" className="text-primary text-lg mt-0.5" />
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-primary block mb-0.5">100% Authentic</span>
-                  <span className="text-xs text-on-surface-variant">Direct from brand. Original batch.</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <Icon name="recycling" className="text-primary text-lg mt-0.5" />
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-primary block mb-0.5">Return Policy</span>
-                  <span className="text-xs text-on-surface-variant">Sealed items accepted within 14 days.</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <div className="flex gap-3">
+              {/* Action Section */}
+              <div className="space-y-3 pt-4">
                 <button
                   onClick={handleAddToCart}
                   disabled={addingToCart || (product.stock_qty ?? 0) <= 0}
-                  className={`flex-1 py-5 px-6 rounded-lg font-bold text-base tracking-wide uppercase shadow-xl transition-all flex items-center justify-center gap-2 ${
-                    addedToCart
-                      ? 'bg-green-600 text-on-surface'
-                      : 'bg-primary  text-on-primary  hover:opacity-90'
-                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  className={`w-full flex min-h-[56px] items-center justify-center gap-3 rounded-[var(--dd-radius-sm)] py-4 text-[16px] font-bold text-white shadow-xl transition-all active:scale-[0.98] ${
+                    addedToCart ? 'bg-green-600' : 'bg-[var(--dd-surface-base)] hover:opacity-95'
+                  } disabled:opacity-50`}
                 >
                   {addingToCart ? (
-                    <><Icon name="progress_activity" className="text-sm animate-spin" /> Adding...</>
+                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/20 border-t-white" />
                   ) : addedToCart ? (
-                    <><Icon name="check" className="text-sm" /> Added!</>
+                    <><Check className="h-5 w-5" /> Added to Bag</>
                   ) : (
-                    <><Icon name="add_shopping_cart" className="text-base" /> Add to Cart</>
+                    <><Plus className="h-5 w-5" /> Add to Bag</>
                   )}
                 </button>
                 <button
                   onClick={handleBuyNow}
                   disabled={addingToCart || (product.stock_qty ?? 0) <= 0}
-                  className="flex-1 py-5 px-6 rounded-lg font-bold text-base tracking-wide uppercase shadow-xl transition-all bg-secondary  text-on-secondary  hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full min-h-[56px] rounded-[var(--dd-radius-sm)] border-2 border-[var(--dd-surface-base)] py-4 text-[16px] font-bold transition-all hover:bg-[var(--dd-surface-strong)] active:scale-[0.98] disabled:opacity-50"
                 >
-                  Buy Now
+                  Buy It Now
                 </button>
               </div>
-              <p className="text-xs text-center text-on-surface-variant uppercase tracking-widest font-bold">Direct from source · Authenticity Guaranteed · Hand-Bottled in Colombo</p>
-            </div>
 
-            <div className="mt-4 border-t border-outline-variant/30">
-              {product.description && (
-                <div className="py-4 border-b border-outline-variant/30">
-                  <button onClick={() => toggleAccordion('description')} className="w-full flex justify-between items-center py-4 border-b border-outline-variant/20">
-                    <span className="font-bold uppercase tracking-widest text-sm">Description</span>
-                    <Icon name={openAccordion === 'description' ? 'expand_less' : 'expand_more'} className="text-primary" />
-                  </button>
-                  {openAccordion === 'description' && (
-                    <div className="py-4 text-sm text-on-surface-variant leading-relaxed">
-                      {product.description}
-                    </div>
-                  )}
+              {(product.stock_qty ?? 0) <= (product.low_stock_threshold ?? 5) && (
+                <div className="rounded-[var(--dd-radius-xs)] bg-[#AF8F6F]/5 border border-[#AF8F6F]/10 p-4">
+                  <p className="text-[13px] font-bold text-[#AF8F6F] uppercase tracking-wider flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-[#AF8F6F] animate-pulse" />
+                    Limited Stock
+                  </p>
+                  <p className="mt-1 text-[13px] opacity-70">Only {product.stock_qty} units available at this price.</p>
                 </div>
               )}
-              {product.key_benefits && (
-                <div className="py-4 border-b border-outline-variant/30">
-                  <button onClick={() => toggleAccordion('benefits')} className="w-full flex justify-between items-center py-4 border-b border-outline-variant/20">
-                    <span className="font-bold uppercase tracking-widest text-sm">Key Benefits</span>
-                    <Icon name={openAccordion === 'benefits' ? 'expand_less' : 'expand_more'} className="text-primary" />
-                  </button>
-                  {openAccordion === 'benefits' && (
-                    <div className="py-4 text-sm text-on-surface-variant leading-relaxed">
-                      {typeof product.key_benefits === 'string'
-                        ? product.key_benefits.split('\n').filter(Boolean).map((b, i) => (
-                            <p key={i} className="flex items-start gap-2 mb-1">
-                              <Icon name="check_circle" className="text-primary text-lg mt-0.5 flex-shrink-0" />
-                              <span>{b}</span>
-                            </p>
-                          ))
-                        : Array.isArray(product.key_benefits) && product.key_benefits.map((b, i) => (
-                            <p key={i} className="flex items-start gap-2 mb-1">
-                              <Icon name="check_circle" className="text-primary text-lg mt-0.5 flex-shrink-0" />
-                              <span>{String(b)}</span>
-                            </p>
-                          ))
-                      }
-                    </div>
-                  )}
-                </div>
-              )}
-              {product.ingredients && (
-                <div className="py-4 border-b border-outline-variant/30">
-                  <button onClick={() => toggleAccordion('ingredients')} className="w-full flex justify-between items-center py-4 border-b border-outline-variant/20">
-                    <span className="font-bold uppercase tracking-widest text-sm">Ingredients</span>
-                    <Icon name={openAccordion === 'ingredients' ? 'expand_less' : 'expand_more'} className="text-primary" />
-                  </button>
-                  {openAccordion === 'ingredients' && (
-                    <div className="py-4 text-sm text-on-surface-variant leading-relaxed">
-                      {product.ingredients}
-                    </div>
-                  )}
-                </div>
-              )}
-              {product.how_to_use && (
-                <div className="py-4 border-b border-outline-variant/30">
-                  <button onClick={() => toggleAccordion('how-to-use')} className="w-full flex justify-between items-center py-4 border-b border-outline-variant/20">
-                    <span className="font-bold uppercase tracking-widest text-sm">How to Use</span>
-                    <Icon name={openAccordion === 'how-to-use' ? 'expand_less' : 'expand_more'} className="text-primary" />
-                  </button>
-                  {openAccordion === 'how-to-use' && (
-                    <div className="py-4 text-sm text-on-surface-variant leading-relaxed">
-                      {product.how_to_use}
-                    </div>
-                  )}
-                </div>
-              )}
+
+              {/* Info Accordions */}
+              <div className="divide-y divide-[var(--dd-surface-strong)] border-t border-b border-[var(--dd-surface-strong)] mt-8">
+                <Accordion 
+                  title="Description" 
+                  isOpen={openAccordion === 'description'} 
+                  onClick={() => setOpenAccordion(openAccordion === 'description' ? null : 'description')}
+                >
+                  <div className="text-[15px] leading-relaxed opacity-70">{product.description || 'No description available for this item.'}</div>
+                </Accordion>
+                {product.key_benefits && (
+                  <Accordion 
+                    title="Key Benefits" 
+                    isOpen={openAccordion === 'benefits'} 
+                    onClick={() => setOpenAccordion(openAccordion === 'benefits' ? null : 'benefits')}
+                  >
+                    <ul className="space-y-3">
+                      {(typeof product.key_benefits === 'string' ? product.key_benefits.split('\n') : (Array.isArray(product.key_benefits) ? product.key_benefits : [])).filter(Boolean).map((b, i) => (
+                        <li key={i} className="flex items-start gap-3 text-[14px]">
+                          <Check className="mt-1 h-4 w-4 flex-shrink-0 text-black" />
+                          <span className="opacity-70">{String(b)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Accordion>
+                )}
+                {product.ingredients && (
+                  <Accordion 
+                    title="Ingredients" 
+                    isOpen={openAccordion === 'ingredients'} 
+                    onClick={() => setOpenAccordion(openAccordion === 'ingredients' ? null : 'ingredients')}
+                  >
+                    <div className="text-[14px] leading-relaxed opacity-70 italic">{product.ingredients}</div>
+                  </Accordion>
+                )}
+                <Accordion 
+                  title="Delivery & Returns" 
+                  isOpen={openAccordion === 'delivery'} 
+                  onClick={() => setOpenAccordion(openAccordion === 'delivery' ? null : 'delivery')}
+                >
+                  <div className="space-y-4 text-[14px] opacity-70">
+                    <p>Standard delivery arrives in 1-3 business days. Same-day delivery available for Colombo orders placed before 10 AM.</p>
+                    <p>Sealed and unused items can be returned within 14 days of purchase for a full refund or exchange.</p>
+                  </div>
+                </Accordion>
+              </div>
             </div>
           </div>
         </div>
 
+        {/* Related Products */}
         {related.length > 0 && (
-          <section className="mt-32">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold text-primary mb-4 font-noto-serif">Build Your Routine</h2>
-              <p className="font-noto-serif italic text-on-surface-variant">Carefully selected items to enhance your results</p>
+          <section className="mt-[var(--dd-space-8)] pb-[var(--dd-space-7)]">
+            <div className="mb-8 flex items-center justify-between border-b border-[var(--dd-surface-strong)] pb-6">
+              <h2 className="text-[24px] font-bold tracking-tight md:text-[32px]">Build Your Ritual</h2>
+              <Link to="/" className="text-[14px] font-bold text-[var(--dd-text-secondary)] hover:underline">See all Apothecary</Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {related.map(rel => {
-                const img = rel.images?.[0];
-                const relDiscount = rel.compare_at_price_cents && rel.compare_at_price_cents > rel.price_cents
-                  ? Math.round((1 - rel.price_cents / rel.compare_at_price_cents) * 100)
-                  : null;
-                return (
-                  <div key={rel.id} className="group">
-                    <div className="aspect-[3/4] bg-surface-container-low rounded-xl overflow-hidden mb-6 relative">
-                      <Link to={`/product?slug=${rel.slug}`}>
-                        <img
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          alt={rel.name}
-                          src={img?.url ?? 'https://via.placeholder.com/300x400?text=No+Image'}
-                        />
-                      </Link>
-                      {relDiscount && (
-                        <div className="absolute top-3 left-3">
-                          <span className="bg-tertiary text-on-tertiary text-xs font-black px-2 py-1 rounded-sm uppercase tracking-widest">-{relDiscount}%</span>
-                        </div>
-                      )}
-                    </div>
-                    <h3 className="font-bold text-lg mb-1 font-noto-serif">{rel.name}</h3>
-                    <p className="text-secondary font-bold text-sm mb-2">{formatPriceCents(rel.price_cents)}</p>
-                    <p className="text-xs text-on-surface-variant uppercase tracking-widest font-medium">{rel.brand?.name}</p>
-                  </div>
-                );
-              })}
+            <div className="grid gap-[var(--dd-space-5)] grid-cols-2 lg:grid-cols-5">
+              {related.map(rel => (
+                <BrandedProductCard key={rel.id} product={rel} />
+              ))}
             </div>
           </section>
         )}
-      </main>
+      </div>
+    </BrandedLayout>
+  );
+}
 
-      <footer className="bg-surface-container  w-full py-12 px-8 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end max-w-7xl mx-auto">
-          <div className="space-y-6">
-            <div className="font-noto-serif text-lg text-primary">Heritage Luxe</div>
-            <div className="flex flex-col gap-4 font-manrope text-sm uppercase tracking-widest">
-              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Store Locator</Link>
-              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Privacy Policy</Link>
-              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Shipping & Routines</Link>
-              <Link to="/support" className="text-on-surface/60  hover:text-[#D2691E] transition-all duration-500">Contact Apothecary</Link>
-            </div>
-          </div>
-          <div className="text-right">
-            <p className="font-manrope text-sm uppercase tracking-widest text-on-surface/60 ">© 2024 Rituals.lk. Affordable Personal Care.</p>
-          </div>
-        </div>
-      </footer>
+function TrustItem({ icon: Icon, label, sub }: { icon: any, label: string, sub: string }) {
+  return (
+    <div className="flex items-center gap-3 rounded-[var(--dd-radius-xs)] border border-[var(--dd-surface-strong)] p-3">
+      <Icon className="h-5 w-5 opacity-60" />
+      <div>
+        <p className="text-[11px] font-bold uppercase tracking-tight">{label}</p>
+        <p className="text-[10px] opacity-40">{sub}</p>
+      </div>
     </div>
   );
 }
+
+function EMIBadge({ label, value, color }: { label: string; value: number; color: string }) {
+  return (
+    <div className="flex items-center gap-2 rounded-full border border-[var(--dd-surface-strong)] bg-white px-3 py-1 text-[11px] font-bold shadow-sm">
+      <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: color }} />
+      <span className="opacity-40">{label}:</span>
+      <span>{formatPriceCents(value)}</span>
+    </div>
+  );
+}
+
+function Accordion({ title, isOpen, onClick, children }: { title: string, isOpen: boolean, onClick: () => void, children: React.ReactNode }) {
+  return (
+    <div>
+      <button 
+        onClick={onClick}
+        className="flex w-full items-center justify-between py-6 text-left transition hover:opacity-70"
+      >
+        <span className="text-[15px] font-bold uppercase tracking-widest">{title}</span>
+        {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4 opacity-40" />}
+      </button>
+      {isOpen && (
+        <div className="pb-8 animate-in slide-in-from-top-2 duration-200">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
