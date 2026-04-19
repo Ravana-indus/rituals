@@ -344,6 +344,47 @@
   font-weight: 600;
 }
 
+.filters {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+.filters-inner {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filters-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-pill {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background-color: transparent;
+  font-family: var(--font-family-primary);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.filter-pill:hover {
+  border-color: var(--color-text-tertiary);
+  color: var(--color-text-primary);
+}
+
+.filter-pill.active {
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: var(--color-surface-base);
+}
+
 /* Responsive */
     @media (max-width: 1024px) {
       .hero {
@@ -460,6 +501,26 @@
         </a>
       </div>
     </nav>
+    <div class="filters" id="products">
+      <div class="filters-inner">
+        <button class="filter-pill active" aria-pressed="true">All</button>
+        <button class="filter-pill" aria-pressed="false">Vegan</button>
+        <button class="filter-pill" aria-pressed="false">Cruelty-Free</button>
+        <button class="filter-pill" aria-pressed="false">Under Rs. 2,000</button>
+      </div>
+    </div>
   </main>
+  <script>
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.addEventListener('click', function() {
+        document.querySelectorAll('.filter-pill').forEach(p => {
+          p.classList.remove('active');
+          p.setAttribute('aria-pressed', 'false');
+        });
+        this.classList.add('active');
+        this.setAttribute('aria-pressed', 'true');
+      });
+    });
+  </script>
 </body>
 </html>
