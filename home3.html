@@ -274,7 +274,77 @@
       object-fit: cover;
     }
 
-    /* Responsive */
+    /* Category Navigation - Minimal */
+.categories {
+  border-top: 1px solid var(--color-border-default);
+  border-bottom: 1px solid var(--color-border-default);
+  background-color: var(--color-surface-base);
+}
+
+.categories-scroll {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-6);
+  display: flex;
+  gap: var(--space-6);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.categories-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: color var(--motion-duration-fast) var(--motion-easing-default);
+  flex-shrink: 0;
+}
+
+.category-item:hover {
+  color: var(--color-text-primary);
+}
+
+.category-item.active {
+  color: var(--color-brand-primary);
+}
+
+.category-item.active .category-icon {
+  border-color: var(--color-brand-primary);
+}
+
+.category-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--motion-duration-fast) var(--motion-easing-default);
+}
+
+.category-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.category-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.category-item.active .category-label {
+  font-weight: 600;
+}
+
+/* Responsive */
     @media (max-width: 1024px) {
       .hero {
         grid-template-columns: 1fr;
@@ -335,6 +405,61 @@
         <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=80" alt="Minimalist beauty products on clean surface" loading="eager">
       </div>
     </section>
+    <nav class="categories" aria-label="Product categories">
+      <div class="categories-scroll">
+        <a href="#" class="category-item active">
+          <span class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </span>
+          <span class="category-label">New In</span>
+        </a>
+        <a href="#" class="category-item">
+          <span class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+            </svg>
+          </span>
+          <span class="category-label">Brands</span>
+        </a>
+        <a href="#" class="category-item">
+          <span class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </span>
+          <span class="category-label">Skincare</span>
+        </a>
+        <a href="#" class="category-item">
+          <span class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 2h8l4 10H4L8 2zM5 12h14M12 12v10"/>
+            </svg>
+          </span>
+          <span class="category-label">Fragrance</span>
+        </a>
+        <a href="#" class="category-item">
+          <span class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </span>
+          <span class="category-label">Self-Care</span>
+        </a>
+        <a href="#" class="category-item">
+          <span class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+              <line x1="7" y1="7" x2="7.01" y2="7"/>
+            </svg>
+          </span>
+          <span class="category-label">Offers</span>
+        </a>
+      </div>
+    </nav>
   </main>
 </body>
 </html>
