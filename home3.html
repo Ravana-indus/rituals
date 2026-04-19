@@ -537,6 +537,62 @@
     .add-to-bag-btn:active {
       transform: scale(0.98);
     }
+
+    /* Bottom Navigation - Mobile Only */
+    .bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background-color: var(--color-surface-base);
+      border-top: 1px solid var(--color-border-default);
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 var(--space-4);
+      z-index: 50;
+    }
+
+    @media (max-width: 767px) {
+      .bottom-nav {
+        display: flex;
+      }
+
+      .products {
+        padding-bottom: calc(var(--space-6) + 64px);
+      }
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      text-decoration: none;
+      color: var(--color-text-tertiary);
+      padding: var(--space-2);
+      transition: color var(--motion-duration-fast) var(--motion-easing-default);
+    }
+
+    .nav-item.active {
+      color: var(--color-brand-primary);
+    }
+
+    .nav-item:hover {
+      color: var(--color-text-secondary);
+    }
+
+    .nav-icon {
+      font-size: 24px;
+    }
+
+    .nav-label {
+      font-size: 0.625rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
   </style>
 </head>
 <body>
@@ -728,5 +784,27 @@
       });
     });
   </script>
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <a href="#" class="nav-item active">
+      <span class="material-symbols-outlined nav-icon">storefront</span>
+      <span class="nav-label">Shop</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="material-symbols-outlined nav-icon">search</span>
+      <span class="nav-label">Search</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="material-symbols-outlined nav-icon">shopping_bag</span>
+      <span class="nav-label">Cart</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="material-symbols-outlined nav-icon">favorite</span>
+      <span class="nav-label">Wishlist</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="material-symbols-outlined nav-icon">person</span>
+      <span class="nav-label">Account</span>
+    </a>
+  </nav>
 </body>
 </html>
